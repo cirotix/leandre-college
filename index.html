@@ -95,6 +95,15 @@ mark{background:var(--hl-2); color:inherit; border-radius:3px; padding:0 1px}
 .empty{background:var(--sheet); border-radius:8px; padding:18px; margin-top:24px; box-shadow:0 1px 2px var(--shadow)}
 .empty b{font-family:var(--f-display); font-weight:400; font-size:24px; color:var(--pen); display:block}
 .sub{margin-top:28px}
+.pushbox{background:var(--sheet); border-radius:8px; padding:14px 18px 16px; margin-top:44px; box-shadow:0 1px 2px var(--shadow), 0 8px 20px var(--shadow); display:grid; gap:6px}
+.pushbox .label{font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--muted); margin:0}
+.pushbox .d{margin:0}
+.pushbox b{color:var(--ok, #0F8456); font-weight:600}
+.pbtns{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.chip.on{background:var(--pen); color:var(--sheet); border-color:var(--pen); font-weight:600}
+.chip:disabled{opacity:.5}
+.pmsg{font-size:13px; color:var(--muted); margin:0; min-height:0}
+.pmsg:empty{display:none}
 </style>
 </head>
 <body>
@@ -110,8 +119,11 @@ mark{background:var(--hl-2); color:inherit; border-radius:3px; padding:0 1px}
   <p class="count" id="count" aria-live="polite"></p>
   <div id="list"><p class="d">Chargement…</p></div>
 
+  <section class="pushbox" id="push" hidden></section>
+
   <p class="tip"><b>Sur la tablette :</b> ouvre cette page dans Safari, touche le bouton Partager puis « Sur l'écran d'accueil ». Les révisions s'ouvriront comme une appli, et la progression reste enregistrée sur la tablette.</p>
 </main>
 <script src="lib/home.js"></script>
+<script src="lib/push.js"></script>
 </body>
 </html>

@@ -14,6 +14,10 @@ lib/module.html            gabarit de page : chaque <matiere>/<module>/index.htm
 lib/home.js                logique de l'accueil
 <matiere>/<module>/module.js   le module : données + règles, rien d'autre
 tools/check.py             vérifications à lancer avant chaque commit
+sw.js                      service worker : hors connexion (réseau d'abord, modules préchargés via modules.json) + notifications
+lib/push.js                bloc « Notifications » de l'accueil (abonnement) ; adresse du worker dans push.json
+worker/                    Worker Cloudflare « leandre-push » (abonnements en KV, envoi Web Push sans dépendance)
+.github/workflows/deploy-worker.yml   déploie worker/ à chaque push qui le modifie
 ```
 
 Identifiants en minuscules, sans accent, avec des tirets : `maths/fractions/`, `francais/accords-participe/`.
@@ -70,3 +74,12 @@ La note du contrôle = moyenne des items (un item à champs vaut la part de cham
 - Exercices générés avec des nombres tirés au hasard, correction rédigée « comme au tableau ».
 - Tout en français, ton encourageant. Aucune dépendance externe hors Google Fonts.
 - Ne jamais renommer ni déplacer un module publié (favoris, écran d'accueil) ni changer sa `key` (progression perdue).
+
+## Notifications
+
+- Seules les nouveautés sont annoncées : le worker relit `modules.json` toutes les heures (cron `17 * * * *`, UTC)
+  et envoie « Nouveau en <matière> ! » pour chaque `chemin` jamais vu. Rien d'autre à faire qu'ajouter le module.
+- Rappels de révision : prévus mais désactivés (`REMINDERS` dans `worker/wrangler.toml`), seulement sur demande de Damien.
+- Les clés VAPID sont générées par le worker au premier appel et gardées dans le KV : ne jamais les mettre dans le dépôt.
+- Sur iPad, l'abonnement n'est possible que depuis l'appli ajoutée à l'écran d'accueil (iPadOS 16.4+), en HTTPS.
+- Tests de la crypto : chiffrement RFC 8291 et JWT VAPID vérifiés par une implémentation Python indépendante.

@@ -1,0 +1,21 @@
+# Worker des notifications. Déployé par .github/workflows/deploy-worker.yml (secrets CLOUDFLARE_API_TOKEN et CLOUDFLARE_ACCOUNT_ID).
+name = "leandre-push"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "SUBS"
+id = "__KV_ID__"
+
+[vars]
+SITE_URL = "https://leandre.cirotteau.info/"
+ALLOWED_ORIGINS = "https://leandre.cirotteau.info,https://cirotix.github.io"
+VAPID_SUBJECT = "https://leandre.cirotteau.info/"
+# Doit être identique à la première entrée de [triggers].crons
+MODULES_CRON = "17 * * * *"
+# Rappels de révision (désactivés) : {"<cron UTC>": {"title": "…", "body": "…"}}, et ajouter le cron dans [triggers]
+REMINDERS = "{}"
+
+[triggers]
+crons = ["17 * * * *"]
