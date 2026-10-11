@@ -1,0 +1,26 @@
+{
+  "matieres": [
+    { "id": "anglais", "nom": "Anglais", "couleur": "hl-2" },
+    { "id": "maths",   "nom": "Maths",   "couleur": "hl-1" },
+    { "id": "francais", "nom": "Français", "couleur": "hl-3" },
+    { "id": "histoire-geo", "nom": "Histoire-géo", "couleur": "hl-2" },
+    { "id": "sciences", "nom": "Sciences", "couleur": "hl-1" }
+  ],
+  "modules": [
+    {
+      "matiere": "anglais",
+      "chemin": "anglais/verbes-irreguliers/",
+      "titre": "Les verbes irréguliers",
+      "resume": "Base verbale, prétérit, participe passé et traduction.",
+      "ajoute": "2026-10-10"
+    },
+    {
+      "matiere": "maths",
+      "chemin": "maths/triangles/",
+      "titre": "Les triangles",
+      "chapitre": "Chapitre 2 · Géométrie",
+      "resume": "Triangles égaux et semblables, agrandissement et réduction.",
+      "ajoute": "2026-10-11"
+    }
+  ]
+}

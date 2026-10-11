@@ -53,7 +53,7 @@ h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px
 .hand{font-family:var(--f-hand); font-size:25px; font-weight:500; color:var(--red); margin:6px 0 0; transform:rotate(-1.2deg); transform-origin:left center}
 .mods{display:grid; gap:22px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin:36px 0 40px}
 .mod{
-  display:grid; grid-template-rows:46px auto auto; row-gap:10px; padding:0 20px 20px; color:var(--ink); text-decoration:none;
+  display:grid; grid-template-rows:46px auto; row-gap:10px; padding:0 20px 20px; color:var(--ink); text-decoration:none;
   background:
     linear-gradient(var(--margin),var(--margin)) 0 46px / 100% 2px no-repeat,
     linear-gradient(var(--sheet),var(--sheet)) 0 0 / 100% 46px no-repeat,
@@ -71,6 +71,13 @@ h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px
 .d{line-height:28px; font-size:15px; margin:0}
 .tip{font-size:13px; color:var(--muted); line-height:1.5; max-width:60ch}
 .tip b{color:var(--ink); font-weight:600}
+.sub{display:flex; align-items:baseline; gap:12px; margin:40px 0 0}
+.sub h2{font-family:var(--f-display); font-weight:400; font-size:30px; line-height:1; margin:0; color:var(--ink)}
+.sub .n{font-size:13px; color:var(--muted); font-weight:500}
+.mods{margin:18px 0 0}
+.new{font-family:var(--f-hand); font-size:22px; font-weight:700; color:var(--red); transform:rotate(-3deg)}
+.ch{font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.tip{margin-top:44px}
 </style>
 </head>
 <body>
@@ -79,20 +86,31 @@ h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px
   <h1>Les révisions de Léandre</h1>
   <p class="hand">Choisis ta matière et c'est parti !</p>
 
-  <div class="mods">
-    <a class="mod" href="anglais/" style="--r:-.7deg; --hl:var(--hl-2)">
-      <span class="top"><span class="tag">Anglais</span><span class="go">Cartes · Quiz · Contrôle</span></span>
-      <span class="k">Les verbes irréguliers</span>
-      <p class="d">Base verbale, prétérit, participe passé et traduction.</p>
-    </a>
-    <a class="mod" href="maths/" style="--r:.6deg; --hl:var(--hl-1)">
-      <span class="top"><span class="tag">Maths</span><span class="go">Cartes · Quiz · Contrôle</span></span>
-      <span class="k">Les triangles</span>
-      <p class="d">Triangles égaux et semblables, agrandissement et réduction.</p>
-    </a>
-  </div>
+  <div id="list"><p class="d">Chargement…</p></div>
 
   <p class="tip"><b>Sur la tablette :</b> ouvre cette page dans Safari, touche le bouton Partager puis « Sur l'écran d'accueil ». Les révisions s'ouvriront comme une appli, et la progression reste enregistrée sur la tablette.</p>
 </main>
+<script>
+(async () => {
+  const el = document.getElementById("list");
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  let data;
+  try { data = await (await fetch("modules.json", {cache: "no-cache"})).json(); }
+  catch (e) { el.innerHTML = '<p class="d">Impossible de charger la liste des modules. Vérifie la connexion et recharge la page.</p>'; return; }
+  const now = Date.now(), rot = [-.7, .6, -.4, .5];
+  const isNew = m => m.ajoute && now - new Date(m.ajoute).getTime() < 14 * 864e5;
+  el.innerHTML = data.matieres.map(mat => {
+    const mods = data.modules.filter(m => m.matiere === mat.id).sort((a, b) => (b.ajoute || "").localeCompare(a.ajoute || ""));
+    if (!mods.length) return "";
+    return `<section><div class="sub"><h2>${esc(mat.nom)}</h2><span class="n">${mods.length} module${mods.length > 1 ? "s" : ""}</span></div>
+      <div class="mods">${mods.map((m, i) => `<a class="mod" href="${esc(m.chemin)}" style="--r:${rot[i % rot.length]}deg; --hl:var(--${esc(mat.couleur)})">
+        <span class="top"><span class="tag">${esc(mat.nom)}</span>${isNew(m) ? '<span class="new">Nouveau !</span>' : '<span class="go">Cartes · Quiz · Contrôle</span>'}</span>
+        ${m.chapitre ? `<span class="ch">${esc(m.chapitre)}</span>` : ""}
+        <span class="k">${esc(m.titre)}</span>
+        <p class="d">${esc(m.resume)}</p>
+      </a>`).join("")}</div></section>`;
+  }).join("");
+})();
+</script>
 </body>
 </html>
