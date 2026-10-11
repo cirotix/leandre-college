@@ -1,4 +1,4 @@
-# Worker des notifications. Déployé par .github/workflows/deploy-worker.yml (secrets CLOUDFLARE_API_TOKEN et CLOUDFLARE_ACCOUNT_ID).
+# Worker des notifications. Déployé par .github/workflows/deploy-worker.yml (secrets GitHub CLOUDFLARE_API_TOKEN et CLOUDFLARE_ACCOUNT_ID).
 name = "leandre-push"
 main = "src/index.js"
 compatibility_date = "2025-09-01"
