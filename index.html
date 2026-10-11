@@ -78,39 +78,40 @@ h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px
 .new{font-family:var(--f-hand); font-size:22px; font-weight:700; color:var(--red); transform:rotate(-3deg)}
 .ch{font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
 .tip{margin-top:44px}
+.find{display:grid; gap:12px; margin:30px 0 0; position:sticky; top:0; z-index:2; padding:12px 0 10px; background:linear-gradient(var(--paper) 85%, transparent)}
+.srch{display:flex; align-items:center; gap:10px; background:var(--sheet); border:1.5px solid var(--line); border-radius:12px; padding:0 14px; min-height:52px; box-shadow:0 1px 2px var(--shadow)}
+.srch:focus-within{border-color:var(--pen); box-shadow:0 0 0 3px color-mix(in srgb, var(--pen) 18%, transparent)}
+.srch svg{width:20px; height:20px; flex:none; fill:none; stroke:var(--muted); stroke-width:2.2; stroke-linecap:round}
+.srch input{flex:1; min-width:0; border:0; outline:0; background:transparent; color:var(--ink); font:500 17px var(--f-body); padding:12px 0}
+.srch input::placeholder{color:var(--muted); font-weight:400}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{font:500 14px var(--f-body); padding:8px 14px; min-height:40px; border-radius:999px; border:1.5px solid var(--line); background:var(--sheet); color:var(--ink); cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--sheet); border-color:var(--ink)}
+.chip small{font-size:12px; opacity:.7; margin-left:4px}
+.count{font-size:13px; color:var(--muted); margin:6px 0 0; min-height:20px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+mark{background:var(--hl-2); color:inherit; border-radius:3px; padding:0 1px}
+.empty{background:var(--sheet); border-radius:8px; padding:18px; margin-top:24px; box-shadow:0 1px 2px var(--shadow)}
+.empty b{font-family:var(--f-display); font-weight:400; font-size:24px; color:var(--pen); display:block}
+.sub{margin-top:28px}
 </style>
 </head>
 <body>
 <main class="app">
   <span class="eyebrow">Cahier de révisions</span>
   <h1>Les révisions de Léandre</h1>
-  <p class="hand">Choisis ta matière et c'est parti !</p>
+  <p class="hand">Cherche un chapitre ou choisis ta matière</p>
 
+  <div class="find">
+    <label class="srch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><span class="sr">Chercher un module</span><input id="q" type="search" placeholder="Chercher : verbes, triangles, fractions…" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <div class="chips" id="mats" role="group" aria-label="Matières"></div>
+  </div>
+  <p class="count" id="count" aria-live="polite"></p>
   <div id="list"><p class="d">Chargement…</p></div>
 
   <p class="tip"><b>Sur la tablette :</b> ouvre cette page dans Safari, touche le bouton Partager puis « Sur l'écran d'accueil ». Les révisions s'ouvriront comme une appli, et la progression reste enregistrée sur la tablette.</p>
 </main>
-<script>
-(async () => {
-  const el = document.getElementById("list");
-  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  let data;
-  try { data = await (await fetch("modules.json", {cache: "no-cache"})).json(); }
-  catch (e) { el.innerHTML = '<p class="d">Impossible de charger la liste des modules. Vérifie la connexion et recharge la page.</p>'; return; }
-  const now = Date.now(), rot = [-.7, .6, -.4, .5];
-  const isNew = m => m.ajoute && now - new Date(m.ajoute).getTime() < 14 * 864e5;
-  el.innerHTML = data.matieres.map(mat => {
-    const mods = data.modules.filter(m => m.matiere === mat.id).sort((a, b) => (b.ajoute || "").localeCompare(a.ajoute || ""));
-    if (!mods.length) return "";
-    return `<section><div class="sub"><h2>${esc(mat.nom)}</h2><span class="n">${mods.length} module${mods.length > 1 ? "s" : ""}</span></div>
-      <div class="mods">${mods.map((m, i) => `<a class="mod" href="${esc(m.chemin)}" style="--r:${rot[i % rot.length]}deg; --hl:var(--${esc(mat.couleur)})">
-        <span class="top"><span class="tag">${esc(mat.nom)}</span>${isNew(m) ? '<span class="new">Nouveau !</span>' : '<span class="go">Cartes · Quiz · Contrôle</span>'}</span>
-        ${m.chapitre ? `<span class="ch">${esc(m.chapitre)}</span>` : ""}
-        <span class="k">${esc(m.titre)}</span>
-        <p class="d">${esc(m.resume)}</p>
-      </a>`).join("")}</div></section>`;
-  }).join("");
-})();
-</script>
+<script src="lib/home.js"></script>
 </body>
 </html>

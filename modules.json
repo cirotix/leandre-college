@@ -1,10 +1,30 @@
 {
   "matieres": [
-    { "id": "anglais", "nom": "Anglais", "couleur": "hl-2" },
-    { "id": "maths",   "nom": "Maths",   "couleur": "hl-1" },
-    { "id": "francais", "nom": "Français", "couleur": "hl-3" },
-    { "id": "histoire-geo", "nom": "Histoire-géo", "couleur": "hl-2" },
-    { "id": "sciences", "nom": "Sciences", "couleur": "hl-1" }
+    {
+      "id": "anglais",
+      "nom": "Anglais",
+      "couleur": "hl-2"
+    },
+    {
+      "id": "maths",
+      "nom": "Maths",
+      "couleur": "hl-1"
+    },
+    {
+      "id": "francais",
+      "nom": "Français",
+      "couleur": "hl-3"
+    },
+    {
+      "id": "histoire-geo",
+      "nom": "Histoire-géo",
+      "couleur": "hl-2"
+    },
+    {
+      "id": "sciences",
+      "nom": "Sciences",
+      "couleur": "hl-1"
+    }
   ],
   "modules": [
     {
@@ -12,7 +32,14 @@
       "chemin": "anglais/verbes-irreguliers/",
       "titre": "Les verbes irréguliers",
       "resume": "Base verbale, prétérit, participe passé et traduction.",
-      "ajoute": "2026-10-10"
+      "ajoute": "2026-10-10",
+      "motsCles": [
+        "irregular verbs",
+        "prétérit",
+        "participe passé",
+        "preterit",
+        "conjugaison"
+      ]
     },
     {
       "matiere": "maths",
@@ -20,7 +47,18 @@
       "titre": "Les triangles",
       "chapitre": "Chapitre 2 · Géométrie",
       "resume": "Triangles égaux et semblables, agrandissement et réduction.",
-      "ajoute": "2026-10-11"
+      "ajoute": "2026-10-11",
+      "motsCles": [
+        "géométrie",
+        "triangles égaux",
+        "semblables",
+        "agrandissement",
+        "réduction",
+        "facteur k",
+        "aire",
+        "cas d'égalité",
+        "proportionnalité"
+      ]
     }
   ]
 }
