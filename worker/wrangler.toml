@@ -6,7 +6,7 @@ workers_dev = true
 
 [[kv_namespaces]]
 binding = "SUBS"
-id = "__KV_ID__"
+id = "cad791266dc34e099dbe52a580bb511b"
 
 [vars]
 SITE_URL = "https://leandre.cirotteau.info/"
