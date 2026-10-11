@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Les révisions de Léandre</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Révisions">
+<meta name="theme-color" content="#2340C4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lexend:wght@400;500;600;700&family=Lilita+One&display=swap">
+<style>
+:root{
+  --paper:#F4F7FC; --sheet:#FFFFFF; --rule:#E3EAF6; --rule-strong:#CBD8EF; --card-rule:#DCE5F5;
+  --margin:#E05A6C; --ink:#1A2250; --muted:#5B6488; --line:#CDD6EA; --pen:#2340C4; --red:#CC2D2A;
+  --hl-1:#C2F4A0; --hl-2:#FFD98C; --hl-3:#FFB6D9; --shadow:rgba(26,34,80,.10);
+  --f-display:"Lilita One","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Lexend",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-hand:"Caveat","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#13201E; --sheet:#1B2B29; --rule:rgba(210,235,226,.045); --rule-strong:rgba(210,235,226,.09); --card-rule:rgba(210,235,226,.08);
+    --margin:#C95A69; --ink:#E9F1EE; --muted:#9CB1AA; --line:rgba(210,235,226,.16); --pen:#9DB5FF; --red:#FF857C;
+    --hl-1:#2E5627; --hl-2:#674A17; --hl-3:#68294A; --shadow:rgba(0,0,0,.35); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13201E; --sheet:#1B2B29; --rule:rgba(210,235,226,.045); --rule-strong:rgba(210,235,226,.09); --card-rule:rgba(210,235,226,.08);
+  --margin:#C95A69; --ink:#E9F1EE; --muted:#9CB1AA; --line:rgba(210,235,226,.16); --pen:#9DB5FF; --red:#FF857C;
+  --hl-1:#2E5627; --hl-2:#674A17; --hl-3:#68294A; --shadow:rgba(0,0,0,.35); color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; padding:env(safe-area-inset-top,0) 20px env(safe-area-inset-bottom,0);
+  background-color:var(--paper);
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 31px, var(--rule-strong) 31px 32px),
+    repeating-linear-gradient(180deg, transparent 0 7px, var(--rule) 7px 8px),
+    repeating-linear-gradient(90deg, transparent 0 31px, var(--rule) 31px 32px);
+  color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.5; min-height:100vh;
+}
+body::before{content:""; position:fixed; top:0; bottom:0; z-index:-1; left:max(8px, calc(50% - 412px)); width:2px; background:var(--margin); opacity:.7}
+.app{max-width:760px; margin:0 auto; padding-block:40px 64px}
+.eyebrow{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px); line-height:1; margin:8px 0 0; color:var(--pen); text-wrap:balance}
+.hand{font-family:var(--f-hand); font-size:25px; font-weight:500; color:var(--red); margin:6px 0 0; transform:rotate(-1.2deg); transform-origin:left center}
+.mods{display:grid; gap:22px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin:36px 0 40px}
+.mod{
+  display:grid; grid-template-rows:46px auto auto; row-gap:10px; padding:0 20px 20px; color:var(--ink); text-decoration:none;
+  background:
+    linear-gradient(var(--margin),var(--margin)) 0 46px / 100% 2px no-repeat,
+    linear-gradient(var(--sheet),var(--sheet)) 0 0 / 100% 46px no-repeat,
+    repeating-linear-gradient(180deg, transparent 0 27px, var(--card-rule) 27px 28px) 0 20px,
+    var(--sheet);
+  border-radius:6px; box-shadow:0 1px 2px var(--shadow), 0 10px 24px var(--shadow);
+  transform:rotate(var(--r,0deg)); transition:transform .2s ease, box-shadow .2s ease;
+}
+.mod:hover,.mod:focus-visible{transform:rotate(0) translateY(-3px); box-shadow:0 2px 4px var(--shadow), 0 16px 30px var(--shadow)}
+.mod:focus-visible{outline:3px solid var(--pen); outline-offset:3px}
+.top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.tag{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:2px 9px; background:var(--hl); border-radius:2px 8px 3px 7px; transform:rotate(-1.5deg)}
+.go{font-family:var(--f-hand); font-size:22px; font-weight:700; color:var(--red); transform:rotate(-3deg)}
+.k{font-family:var(--f-display); font-size:34px; line-height:1.1; color:var(--pen)}
+.d{line-height:28px; font-size:15px; margin:0}
+.tip{font-size:13px; color:var(--muted); line-height:1.5; max-width:60ch}
+.tip b{color:var(--ink); font-weight:600}
+</style>
+</head>
+<body>
+<main class="app">
+  <span class="eyebrow">Cahier de révisions</span>
+  <h1>Les révisions de Léandre</h1>
+  <p class="hand">Choisis ta matière et c'est parti !</p>
+
+  <div class="mods">
+    <a class="mod" href="anglais/" style="--r:-.7deg; --hl:var(--hl-2)">
+      <span class="top"><span class="tag">Anglais</span><span class="go">Cartes · Quiz · Contrôle</span></span>
+      <span class="k">Les verbes irréguliers</span>
+      <p class="d">Base verbale, prétérit, participe passé et traduction.</p>
+    </a>
+    <a class="mod" href="maths/" style="--r:.6deg; --hl:var(--hl-1)">
+      <span class="top"><span class="tag">Maths</span><span class="go">Cartes · Quiz · Contrôle</span></span>
+      <span class="k">Les triangles</span>
+      <p class="d">Triangles égaux et semblables, agrandissement et réduction.</p>
+    </a>
+  </div>
+
+  <p class="tip"><b>Sur la tablette :</b> ouvre cette page dans Safari, touche le bouton Partager puis « Sur l'écran d'accueil ». Les révisions s'ouvriront comme une appli, et la progression reste enregistrée sur la tablette.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,1009 @@
+<!doctype html><html lang="fr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../icon.svg" type="image/svg+xml"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#2340C4"></head><body>
+<title>Les triangles de Léandre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lexend:wght@400;500;600;700&family=Lilita+One&display=swap">
+<style>
+/* Une colonne posée sur une page de cahier Seyès ; chaque jeu est une fiche bristol (marge rouge en haut, lignes bleues). La nuit, le cahier devient une ardoise. */
+:root{
+  --paper:#F4F7FC;
+  --sheet:#FFFFFF;
+  --rule:#E3EAF6;
+  --rule-strong:#CBD8EF;
+  --card-rule:#DCE5F5;
+  --margin:#E05A6C;
+  --ink:#1A2250;
+  --muted:#5B6488;
+  --line:#CDD6EA;
+  --pen:#2340C4;
+  --pen-soft:#E2E8FF;
+  --red:#CC2D2A;
+  --red-soft:#FCE6E5;
+  --ok:#0F8456;
+  --ok-soft:#DAF3E6;
+  --hl-1:#C2F4A0;
+  --hl-2:#FFD98C;
+  --hl-3:#FFB6D9;
+  --lv-1:#3E9B3A;
+  --lv-2:#D98A00;
+  --lv-3:#D23F86;
+  --shadow:rgba(26,34,80,.10);
+  --f-display:"Lilita One","Arial Rounded MT Bold","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Lexend",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-hand:"Caveat","Segoe Print","Bradley Hand","Comic Sans MS",cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#13201E; --sheet:#1B2B29; --rule:rgba(210,235,226,.045); --rule-strong:rgba(210,235,226,.09); --card-rule:rgba(210,235,226,.08);
+    --margin:#C95A69; --ink:#E9F1EE; --muted:#9CB1AA; --line:rgba(210,235,226,.16); --pen:#9DB5FF; --pen-soft:rgba(157,181,255,.16);
+    --red:#FF857C; --red-soft:rgba(255,133,124,.13); --ok:#62D9A2; --ok-soft:rgba(98,217,162,.13);
+    --hl-1:#2E5627; --hl-2:#674A17; --hl-3:#68294A; --lv-1:#74C96A; --lv-2:#F2B13F; --lv-3:#F27DB8; --shadow:rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#13201E; --sheet:#1B2B29; --rule:rgba(210,235,226,.045); --rule-strong:rgba(210,235,226,.09); --card-rule:rgba(210,235,226,.08);
+  --margin:#C95A69; --ink:#E9F1EE; --muted:#9CB1AA; --line:rgba(210,235,226,.16); --pen:#9DB5FF; --pen-soft:rgba(157,181,255,.16);
+  --red:#FF857C; --red-soft:rgba(255,133,124,.13); --ok:#62D9A2; --ok-soft:rgba(98,217,162,.13);
+  --hl-1:#2E5627; --hl-2:#674A17; --hl-3:#68294A; --lv-1:#74C96A; --lv-2:#F2B13F; --lv-3:#F27DB8; --shadow:rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;
+  padding-inline:20px;
+  background-color:var(--paper);
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 31px, var(--rule-strong) 31px 32px),
+    repeating-linear-gradient(180deg, transparent 0 7px, var(--rule) 7px 8px),
+    repeating-linear-gradient(90deg, transparent 0 31px, var(--rule) 31px 32px);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.5;
+}
+body::before{
+  content:""; position:fixed; top:0; bottom:0; z-index:-1;
+  left:max(8px, calc(50% - 412px)); width:2px; background:var(--margin); opacity:.7; pointer-events:none;
+}
+.app{max-width:760px; margin:0 auto; padding-block:24px 64px}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--pen); outline-offset:2px}
+
+/* En-tête */
+.hd{display:grid; gap:2px; margin-bottom:8px}
+.eyebrow{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px); line-height:1; margin:8px 0 0; color:var(--pen); text-wrap:balance; letter-spacing:.01em}
+.hand-note{font-family:var(--f-hand); font-size:25px; font-weight:500; color:var(--red); line-height:1.15; margin:4px 0 0; transform:rotate(-1.2deg); transform-origin:left center}
+.jx{justify-self:start; margin-top:10px; font-size:13px; font-weight:600; padding:4px 10px; border-radius:999px; background:var(--sheet); border:1.5px solid var(--line); color:var(--ink); font-variant-numeric:tabular-nums}
+
+/* Progression */
+.prog{display:grid; gap:8px; margin:20px 0 26px}
+.prog-n{font-weight:500}
+.prog-n b{font-family:var(--f-display); font-weight:400; font-size:24px; color:var(--pen)}
+.cells{display:flex; flex-wrap:wrap; gap:5px}
+.cell{width:22px; height:22px; border:1.5px solid var(--ink); border-radius:4px; background:linear-gradient(to top, var(--pen) var(--p,0%), var(--sheet) var(--p,0%))}
+.fine{font-size:13px; color:var(--muted); margin:0; line-height:1.45}
+
+/* Commun */
+.label{font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--muted); margin:0}
+.sec{display:grid; gap:10px; margin:0 0 30px}
+.sec-h{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{font-size:14px; font-weight:500; padding:8px 14px; min-height:40px; border-radius:999px; border:1.5px solid var(--line); background:var(--sheet); color:var(--ink); cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--sheet); border-color:var(--ink)}
+.btn{font-weight:600; font-size:15px; min-height:46px; padding:10px 18px; border-radius:10px; border:1.5px solid var(--ink); background:var(--sheet); color:var(--ink); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none}
+.btn:hover{background:var(--pen-soft)}
+.btn.primary{background:var(--pen); border-color:var(--pen); color:var(--sheet)}
+.btn.primary:hover{filter:brightness(1.08); background:var(--pen)}
+.btn.ghost{border-color:transparent; background:transparent; color:var(--muted)}
+.btn.ghost:hover{color:var(--ink); background:transparent; text-decoration:underline}
+.btn.small{min-height:38px; padding:6px 12px; font-size:14px}
+.btn:disabled{opacity:.4; cursor:default}
+.btn svg{flex:none}
+.tag{display:inline-block; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:2px 9px; background:var(--hl); color:var(--ink); border-radius:2px 8px 3px 7px; transform:rotate(-1.5deg)}
+.l1{--hl:var(--hl-1); --lv:var(--lv-1)} .l2{--hl:var(--hl-2); --lv:var(--lv-2)} .l3{--hl:var(--hl-3); --lv:var(--lv-3)}
+.w{font-family:var(--f-display); font-weight:400; color:var(--pen); font-size:1.3em; letter-spacing:.01em; white-space:nowrap}
+.muted{color:var(--muted)}
+
+/* Fiche bristol : marge rouge à 46px, lignes bleues tous les 28px */
+.bristol{
+  background:
+    linear-gradient(var(--margin),var(--margin)) 0 46px / 100% 2px no-repeat,
+    linear-gradient(var(--sheet),var(--sheet)) 0 0 / 100% 46px no-repeat,
+    repeating-linear-gradient(180deg, transparent 0 27px, var(--card-rule) 27px 28px) 0 20px,
+    var(--sheet);
+  border-radius:6px;
+  box-shadow:0 1px 2px var(--shadow), 0 10px 24px var(--shadow);
+}
+.fhead{height:46px; display:flex; align-items:center; gap:12px}
+.fhead .push{margin-left:auto}
+
+/* Choix des jeux */
+.modes{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin:14px 0 34px}
+.mode{text-align:left; color:var(--ink); border:0; cursor:pointer; padding:0 18px 18px; display:grid; grid-template-rows:46px auto; row-gap:10px; transform:rotate(var(--r,0deg)); transition:transform .2s ease, box-shadow .2s ease}
+.mode:hover{transform:rotate(0deg) translateY(-3px); box-shadow:0 2px 4px var(--shadow), 0 16px 30px var(--shadow)}
+.mode-top{display:flex; align-items:center; justify-content:space-between; gap:8px}
+.mode-k{font-family:var(--f-display); font-size:29px; line-height:1; color:var(--pen)}
+.mode-x{font-family:var(--f-hand); font-size:21px; font-weight:700; color:var(--red); transform:rotate(-3deg); white-space:nowrap}
+.mode-d{line-height:28px; font-size:15px}
+
+/* Tableau de la liste */
+.vt-wrap{overflow-x:auto; border-radius:8px; box-shadow:0 1px 2px var(--shadow), 0 8px 20px var(--shadow)}
+.vt{background:var(--sheet); min-width:300px}
+.vt-row{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,1.1fr) 44px; gap:8px; align-items:center; padding:9px 14px; border-top:1px solid var(--line)}
+.vt-head{font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--muted); border-top:0; padding-block:12px 10px}
+.vt-grp{padding:14px 14px 6px; border-top:1px solid var(--line)}
+.vt-row .b{font-weight:600; overflow-wrap:anywhere}
+.vt-row .fr{display:block; font-size:13px; color:var(--muted); font-weight:400; line-height:1.3}
+.vt-row .f{overflow-wrap:anywhere}
+.dots{display:flex; gap:4px; justify-content:flex-end}
+.dots i{width:9px; height:9px; border-radius:50%; border:1.5px solid var(--pen)}
+.dots i.on{background:var(--pen)}
+
+/* Barre des jeux */
+.bar{display:flex; align-items:center; gap:14px; margin:0 0 20px; flex-wrap:wrap}
+.bar h2{font-family:var(--f-display); font-weight:400; font-size:34px; margin:0; color:var(--pen); line-height:1}
+.bar .meta{margin-left:auto; color:var(--muted); font-weight:500; font-variant-numeric:tabular-nums}
+.ctrls{display:flex; gap:10px; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-top:18px}
+.ctrls.center{justify-content:center}
+
+/* Cartes */
+.flash{perspective:1400px}
+.flip{display:grid; cursor:pointer; transform-style:preserve-3d; -webkit-transform-style:preserve-3d; transition:transform .55s cubic-bezier(.3,.7,.25,1); border-radius:6px}
+.flip.on{transform:rotateY(180deg)}
+.face{grid-area:1 / 1; backface-visibility:hidden; -webkit-backface-visibility:hidden; display:flex; flex-direction:column; padding:0 22px 22px; min-height:320px}
+.back{transform:rotateY(180deg)}
+.fbody{flex:1; display:grid; place-items:center; align-content:center; gap:6px; text-align:center; padding-block:20px 6px}
+.big{font-family:var(--f-display); font-size:clamp(52px,15vw,84px); line-height:1; color:var(--ink); overflow-wrap:anywhere}
+.frl{font-size:19px; color:var(--muted)}
+.hint{font-size:13px; color:var(--muted); margin-top:18px}
+.forms{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:26px}
+.form{display:grid; gap:2px}
+.flab{font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--muted)}
+.fw{font-family:var(--f-display); font-size:clamp(28px,6vw,36px); line-height:1.1; color:var(--pen); overflow-wrap:anywhere}
+.back .frl{margin-top:14px}
+.tip{font-family:var(--f-hand); font-size:24px; font-weight:500; color:var(--red); line-height:1.15; margin-top:12px}
+@media (max-width:520px){
+  .forms{grid-template-columns:1fr; gap:8px}
+  .form{display:flex; justify-content:space-between; align-items:baseline; gap:12px; border-bottom:1px dashed var(--line); padding-bottom:6px}
+  .form .fw{text-align:right}
+}
+
+/* Quiz */
+.qcard,.copy,.result,.intro{padding:0 20px 22px}
+.prompt{font-size:21px; line-height:30px; margin:22px 0 18px; text-wrap:balance}
+.opts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+.opts.wide{grid-template-columns:1fr}
+@media (max-width:480px){ .opts{grid-template-columns:1fr} }
+.opt{font-size:18px; font-weight:500; text-align:left; padding:10px 14px; min-height:56px; border-radius:10px; border:1.5px solid var(--line); background:var(--sheet); color:var(--ink); cursor:pointer; display:flex; align-items:center; gap:12px}
+.opt:hover:not(:disabled){border-color:var(--pen)}
+.opt:disabled{cursor:default}
+.opt .k{font-size:12px; font-weight:600; width:26px; height:26px; border-radius:50%; border:1.5px solid var(--line); display:grid; place-items:center; flex:none; color:var(--muted)}
+.opt .t{min-width:0; overflow-wrap:anywhere}
+.opt.good{border-color:var(--ok); background:var(--ok-soft)}
+.opt.good .k{border-color:var(--ok); color:var(--ok)}
+.opt.bad{border-color:var(--red); background:var(--red-soft)}
+.opt.bad .t{text-decoration:line-through; text-decoration-color:var(--red)}
+.fb{margin-top:16px; display:grid; gap:6px; justify-items:start}
+.fb:empty{display:none}
+.remark{font-family:var(--f-hand); font-size:32px; font-weight:700; line-height:1}
+.remark.ok{color:var(--ok)} .remark.ko{color:var(--red)}
+.fullline{font-size:16px}
+.fullline b{font-weight:600}
+.streak{font-family:var(--f-hand); font-size:22px; font-weight:700; color:var(--ok); transform:rotate(-2deg)}
+.score{font-variant-numeric:tabular-nums; font-size:14px; font-weight:600; color:var(--muted)}
+
+/* Contrôle */
+.lead{font-size:16px; line-height:28px; margin:20px 0 16px; max-width:60ch}
+.intro .label{margin:6px 0 10px}
+.intro .fine{margin:14px 0 4px}
+.given{margin:20px 0 4px; display:grid; gap:0}
+.gval{font-family:var(--f-display); font-size:clamp(36px,10vw,52px); line-height:1.1; color:var(--ink); overflow-wrap:anywhere}
+.fields{display:grid; gap:14px; margin-top:16px}
+.field{display:grid; gap:4px}
+.field label{font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.inp{font-family:var(--f-body); font-size:20px; font-weight:500; padding:10px 14px; min-height:52px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--pen); width:100%}
+.inp:focus{outline:none; border-color:var(--pen); box-shadow:0 0 0 3px var(--pen-soft)}
+.field.good .inp{border-color:var(--ok); background:var(--ok-soft); color:var(--ink)}
+.field.bad .inp{border-color:var(--red); background:var(--red-soft); color:var(--ink); text-decoration:line-through; text-decoration-color:var(--red)}
+.fix{font-family:var(--f-hand); font-size:27px; font-weight:700; color:var(--red); line-height:1.1}
+.field.good .fix{color:var(--ok)}
+.cfb{display:grid; gap:6px; margin-top:16px; justify-items:start}
+.cfb:empty{display:none}
+
+/* Résultats */
+.result{text-align:center}
+.grade{position:relative; display:grid; place-items:center; width:240px; max-width:100%; height:140px; margin:18px auto 4px}
+.grade svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.grade path{fill:none; stroke:var(--red); stroke-width:3.5; stroke-linecap:round; stroke-dasharray:700; stroke-dashoffset:0; animation:draw 1s ease-out .15s both}
+@keyframes draw{from{stroke-dashoffset:700} to{stroke-dashoffset:0}}
+.grade span{font-family:var(--f-hand); font-weight:700; font-size:62px; color:var(--red); line-height:1; font-variant-numeric:tabular-nums}
+.verdict{font-family:var(--f-hand); font-size:28px; font-weight:700; color:var(--red); margin:0 0 6px}
+.result .sum{margin:0 0 6px}
+.misses{text-align:left; margin-top:18px; display:grid; gap:0; border-top:1px solid var(--line)}
+.miss{display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; padding:10px 2px; border-bottom:1px solid var(--line)}
+.miss b{font-weight:600}
+.miss .muted{font-size:14px}
+
+/* Ma liste */
+.lvl-sec{margin:24px 0}
+.lvl-h{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px}
+.vchips{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px}
+.star{display:inline-block; width:.9em; height:.9em; fill:var(--red); vertical-align:-.1em; margin-left:.3em; flex:none}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.sub{font-size:12px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:var(--muted); margin:16px 0 8px}
+.legend{display:flex; align-items:center; gap:4px; flex-wrap:wrap}
+.legend .star{margin-left:0}
+.vchip{position:relative; text-align:left; padding:8px 12px; border-radius:10px; border:1.5px solid var(--line); background:var(--sheet); color:var(--ink); cursor:pointer; display:grid; min-height:54px; align-content:center}
+.vchip b{font-weight:600; font-size:16px}
+.vchip small{color:var(--muted); font-size:12.5px; overflow-wrap:anywhere}
+.vchip{border:2px solid var(--lv); padding-right:36px}
+.vchip:hover{box-shadow:0 0 0 1px var(--lv)}
+.vchip[aria-pressed="true"]{background:var(--hl); box-shadow:inset 0 0 0 1px var(--lv)}
+.vchip .ck{position:absolute; top:8px; right:8px; width:20px; height:20px; border-radius:50%; border:2px solid var(--lv); display:grid; place-items:center; background:var(--sheet)}
+.vchip .ck svg{width:12px; height:12px; fill:none; stroke:var(--sheet); stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round; opacity:0}
+.vchip[aria-pressed="true"] .ck{background:var(--ink); border-color:var(--ink)}
+.vchip[aria-pressed="true"] .ck svg{opacity:1}
+.legend-row{display:flex; flex-wrap:wrap; align-items:center; gap:6px 16px; font-size:13px; color:var(--muted); margin-top:4px}
+.lg{display:inline-flex; align-items:center; gap:6px}
+.lg i{width:18px; height:14px; border-radius:4px; border:2px solid var(--lv); background:var(--sheet)}
+.lg .star{margin-left:0}
+.vchip[aria-pressed="true"] small{color:var(--ink)}
+.counter{background:var(--sheet); border-radius:8px; padding:14px 16px; box-shadow:0 1px 2px var(--shadow); display:grid; gap:4px}
+.counter strong{font-family:var(--f-display); font-weight:400; font-size:26px; color:var(--pen); line-height:1.1}
+
+.foot{margin-top:40px; display:grid; gap:4px; justify-items:start}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+}
+</style>
+<style>
+/* Ajouts maths : figures, tableaux de correction, réponses chiffrées */
+.fig{margin:14px 0 4px; display:flex; justify-content:center}
+.fig svg{width:100%; max-width:420px; height:auto; overflow:visible}
+.fig .tri{fill:var(--pen-soft); stroke:var(--pen); stroke-width:2; stroke-linejoin:round}
+.fig .vx{font:600 14px var(--f-body); fill:var(--ink)}
+.fig .sd{font:500 13px var(--f-body); fill:var(--muted)}
+.fig .sd.q{fill:var(--red); font-weight:700; font-size:16px}
+.fig .ra{fill:none; stroke:var(--pen); stroke-width:1.5}
+.qtext{font-size:18px; line-height:28px; margin:20px 0 10px}
+.qtext b{color:var(--pen)}
+.steps{display:grid; gap:8px; width:100%; margin-top:6px; padding:12px 14px; border-left:3px solid var(--pen); background:var(--pen-soft); border-radius:0 8px 8px 0; font-size:15px; line-height:1.5}
+.steps p{margin:0}
+.steps .concl{font-weight:600}
+.tb{border-collapse:collapse; font-size:14px; background:var(--sheet); font-variant-numeric:tabular-nums}
+.tb th,.tb td{border:1.5px solid var(--line); padding:5px 9px; text-align:center; white-space:nowrap}
+.tb th{font-weight:600; text-align:left; color:var(--muted); font-size:13px}
+.tbw{overflow-x:auto; max-width:100%}
+.numrow{display:flex; align-items:center; gap:10px; margin-top:8px}
+.numrow .inp{max-width:200px}
+.unit{font-weight:600; color:var(--muted); font-size:18px}
+.ans-k{font-family:var(--f-hand); font-size:27px; font-weight:700; color:var(--red); line-height:1.1}
+.ans-k.ok{color:var(--ok)}
+.nrow{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 12px; align-items:center; padding:10px 14px; border-top:1px solid var(--line); background:var(--sheet)}
+.nrow:first-child{border-top:0}
+.nrow b{font-weight:600}
+.nrow small{grid-column:1 / -1; color:var(--muted); font-size:13px; line-height:1.35}
+.ndots{display:flex; gap:4px}
+.ndots i{width:10px; height:10px; border-radius:50%; border:1.5px solid var(--lv)}
+.ndots i.on{background:var(--lv)}
+.card-q{font-family:var(--f-display); font-size:clamp(26px,7vw,36px); line-height:1.15; color:var(--ink); text-wrap:balance}
+.card-a{font-size:18px; line-height:28px; text-align:left; margin-top:18px; white-space:pre-line}
+.back .fbody{place-items:start; text-align:left}
+.opt .t{font-size:16px; line-height:1.35}
+.miss .q{font-size:14px; color:var(--muted); width:100%}
+</style>
+
+<div style="max-width:760px;margin:0 auto"><a class="site-back" href="../">← Mes révisions</a><style>.site-back{display:inline-block;margin:16px 0 0;font:600 14px var(--f-body);color:var(--muted);text-decoration:none}.site-back:hover{color:var(--ink);text-decoration:underline}@media (min-width:800px){.site-back{position:absolute;left:24px;top:8px}}</style></div><div class="app" id="screen"></div>
+
+<script>
+(() => {
+"use strict";
+
+/* ---------- notions du chapitre ---------- */
+const NOT = {
+  egaux: {p:1, name:"Triangles égaux", d:"Définition, sommets, côtés et angles homologues"},
+  cas:   {p:1, name:"Cas d'égalité", d:"Ce qui suffit pour dire que deux triangles sont égaux"},
+  semb:  {p:2, name:"Triangles semblables", d:"Côtés proportionnels, tableau rangé, quotients"},
+  agr:   {p:3, name:"Agrandir, réduire", d:"Le facteur k, ce qui est conservé, les longueurs"},
+  aire:  {p:3, name:"Les aires", d:"Les aires sont multipliées par k²"}
+};
+const PART = {1:{name:"Triangles égaux", cls:"l1"}, 2:{name:"Semblables", cls:"l2"}, 3:{name:"Agrandissement", cls:"l3"}};
+const MAXM = 5;
+
+/* ---------- questions de cours ---------- */
+/* card : recto de la carte ; q : énoncé du quiz ; a : réponse (verso) ; o : bonne réponse puis 3 pièges */
+const COURS = [
+  {id:"def", n:"egaux", card:"Des triangles égaux, c'est quoi ?",
+   q:"Deux triangles sont égaux quand…",
+   a:"Ils sont superposables.\nLeurs côtés sont deux à deux de même longueur, et leurs angles deux à deux de même mesure.",
+   o:["leurs côtés ont deux à deux la même longueur et leurs angles la même mesure","ils ont la même aire","ils ont les mêmes angles, même si les côtés sont différents","ils ont le même périmètre"],
+   tip:"Égaux = superposables : on peut poser l'un pile sur l'autre, quitte à le retourner."},
+  {id:"homo", n:"egaux", card:"Les angles qui se superposent dans deux triangles égaux s'appellent…",
+   q:"Dans deux triangles égaux, les angles qui se superposent sont dits…",
+   a:"Des angles homologues.\nDe même, on parle de sommets homologues et de côtés homologues.",
+   o:["homologues","adjacents","opposés","complémentaires"],
+   tip:"Homologue = qui se correspond. Sur les figures, ils ont la même couleur ou le même codage."},
+  {id:"homo2", n:"egaux", card:"Dans deux triangles égaux, deux côtés homologues…",
+   q:"Dans deux triangles égaux, deux côtés homologues…",
+   a:"ont la même longueur.\nEt deux angles homologues ont la même mesure.",
+   o:["ont la même longueur","sont parallèles","sont perpendiculaires","sont proportionnels avec k = 2"],
+   tip:"Même couleur ou même codage sur la figure = même longueur."},
+  {id:"nbcas", n:"cas", card:"Combien y a-t-il de cas d'égalité des triangles ?",
+   q:"Combien y a-t-il de cas d'égalité des triangles ?",
+   a:"Trois.",
+   o:["3","2","4","1"], tip:"Trois cas : un côté et deux angles · un angle et deux côtés · les trois côtés."},
+  {id:"cas1", n:"cas", card:"1er cas d'égalité des triangles",
+   q:"Deux triangles ont un côté de même longueur et les deux angles adjacents à ce côté de même mesure deux à deux. Alors…",
+   a:"Si deux triangles ont :\n– un côté de même longueur,\n– et les angles adjacents à ce côté de même mesure deux à deux,\nalors ces deux triangles sont égaux.",
+   o:["ils sont égaux","ils sont seulement semblables","on ne peut rien dire","ils ont la même aire mais ne sont pas égaux"],
+   tip:"Adjacents à ce côté = les deux angles qui sont aux deux bouts de ce côté."},
+  {id:"cas2", n:"cas", card:"2e cas d'égalité des triangles",
+   q:"Deux triangles ont un angle de même mesure, et les deux côtés de cet angle de même longueur. Alors…",
+   a:"Si deux triangles ont :\n– un angle de même mesure,\n– et les deux côtés de cet angle de même longueur,\nalors ces deux triangles sont égaux.",
+   o:["ils sont égaux","ils sont seulement semblables","on ne peut rien dire","ils sont rectangles"],
+   tip:"Les deux côtés de cet angle = les deux côtés qui partent de son sommet."},
+  {id:"cas3", n:"cas", card:"3e cas d'égalité des triangles",
+   q:"Deux triangles ont leurs trois côtés de même longueur deux à deux. Alors…",
+   a:"Si deux triangles ont leurs trois côtés de même longueur deux à deux, alors ces deux triangles sont égaux.",
+   o:["ils sont égaux","ils sont seulement semblables","on ne peut rien dire, il faut aussi un angle","ils sont isocèles"],
+   tip:"Avec trois longueurs, on ne peut construire qu'un seul triangle (à un retournement près)."},
+  {id:"aaa", n:"cas", card:"Trois angles de même mesure, ça suffit pour des triangles égaux ?",
+   q:"Deux triangles ont leurs trois angles de même mesure. Sont-ils forcément égaux ?",
+   a:"Non !\nIls ont la même forme, mais l'un peut être plus grand que l'autre : ils sont semblables, pas forcément égaux.",
+   o:["Non, ils sont seulement semblables","Oui, toujours","Oui, s'ils sont rectangles","Non, ils n'ont rien en commun"],
+   tip:"Le piège classique : les angles donnent la forme, pas la taille."},
+  {id:"sdef", n:"semb", card:"Dire que deux triangles sont semblables, ça revient à dire…",
+   q:"Dire que deux triangles sont semblables revient à dire que…",
+   a:"les longueurs des côtés de l'un sont proportionnelles aux longueurs des côtés de l'autre.",
+   o:["les longueurs des côtés de l'un sont proportionnelles à celles de l'autre","ils ont la même aire","leurs côtés ont les mêmes longueurs","ils ont un côté en commun"],
+   tip:"Semblables = même forme, mais pas forcément la même taille."},
+  {id:"sang", n:"semb", card:"Les angles de deux triangles semblables…",
+   q:"Deux triangles semblables ont leurs angles…",
+   a:"deux à deux de même mesure.\nC'est pour ça qu'ils ont la même forme.",
+   o:["deux à deux de même mesure","proportionnels","multipliés par k","tous égaux à 60°"],
+   tip:"On agrandit les côtés, on ne touche pas aux angles."},
+  {id:"smeth", n:"semb", card:"Méthode : montrer que deux triangles sont semblables avec les côtés",
+   q:"Pour montrer que deux triangles sont semblables avec les côtés, on…",
+   a:"1. Dans un tableau, on range dans l'ordre croissant les côtés des deux triangles.\n2. On calcule les quotients colonne par colonne.\n3. S'ils sont tous égaux, les côtés sont proportionnels : les triangles sont semblables.",
+   o:["range les côtés dans l'ordre croissant et vérifie que les quotients sont égaux","vérifie que les périmètres sont égaux","additionne les côtés des deux triangles","mesure un seul côté de chaque triangle"],
+   tip:"Exemple du cahier : 4,8 ÷ 0,8 = 7,2 ÷ 1,2 = 9,6 ÷ 1,6 = 6. Tous égaux, donc semblables."},
+  {id:"sord", n:"semb", card:"Pourquoi range-t-on les côtés dans l'ordre croissant ?",
+   q:"Pourquoi range-t-on les côtés dans l'ordre croissant dans le tableau ?",
+   a:"Pour mettre ensemble les côtés homologues : le plus petit avec le plus petit, le moyen avec le moyen, le plus grand avec le plus grand.",
+   o:["Pour associer les côtés homologues","Pour que le tableau soit plus joli","Pour calculer le périmètre","Parce que k doit être plus grand que 1"],
+   tip:"Le plus grand côté d'un triangle correspond toujours au plus grand côté de l'autre."},
+  {id:"kdef", n:"agr", card:"Agrandissement ou réduction ?",
+   q:"Une réduction correspond à un facteur k…",
+   a:"On multiplie toutes les longueurs par un nombre k strictement positif.\nk > 1 : agrandissement\n0 < k < 1 : réduction\nk = 1 : les deux figures sont identiques.",
+   o:["compris entre 0 et 1","plus grand que 1","égal à 1","négatif"],
+   tip:"k = 0,5 : tout est deux fois plus petit. k = 3 : tout est trois fois plus grand."},
+  {id:"kprop", n:"agr", card:"Dans le cas des triangles semblables, que représente k ?",
+   q:"Pour deux triangles semblables, le nombre k est…",
+   a:"le coefficient de proportionnalité du tableau des côtés.\nSelon le cas, on l'appelle facteur d'agrandissement ou facteur de réduction.",
+   o:["le coefficient de proportionnalité du tableau","la somme des côtés","la différence entre les deux périmètres","la mesure du plus grand angle"],
+   tip:"k = côté du nouveau triangle ÷ côté homologue de l'ancien."},
+  {id:"kcons", n:"agr", card:"Qu'est-ce qui est conservé lors d'un agrandissement ou d'une réduction ?",
+   q:"Lors d'un agrandissement ou d'une réduction, ce qui est conservé, c'est…",
+   a:"Les angles et le parallélisme.\nLes longueurs, elles, sont multipliées par k.",
+   o:["les angles et le parallélisme","les longueurs","les aires","le périmètre"],
+   tip:"Un angle de 40° reste un angle de 40°, même si la figure est 10 fois plus grande."},
+  {id:"klong", n:"agr", card:"Agrandissement de facteur k : que deviennent les longueurs et le périmètre ?",
+   q:"Lors d'un agrandissement de facteur k, les longueurs et le périmètre sont…",
+   a:"multipliés par k.",
+   o:["multipliés par k","multipliés par k²","augmentés de k","inchangés"],
+   tip:"Si chaque côté est multiplié par 3, le tour complet aussi."},
+  {id:"kinv", n:"agr", card:"DEF est un agrandissement de ABC de facteur 3. Donc ABC est…",
+   q:"DEF est un agrandissement de ABC de facteur 3. Donc ABC est…",
+   a:"une réduction de DEF de facteur 1/3.",
+   o:["une réduction de DEF de facteur 1/3","une réduction de DEF de facteur 3","un agrandissement de DEF de facteur 3","égal à DEF"],
+   tip:"Dans un sens on multiplie par 3, dans l'autre on divise par 3 (× 1/3)."},
+  {id:"kaire", n:"aire", card:"Agrandissement ou réduction de facteur k : que deviennent les aires ?",
+   q:"Lors d'un agrandissement ou d'une réduction de facteur k, les aires sont…",
+   a:"multipliées par k² (k × k).",
+   o:["multipliées par k²","multipliées par k","multipliées par 2k","inchangées"],
+   tip:"Le piège : si k = 2, l'aire est multipliée par 4, pas par 2 !"},
+  {id:"atri", n:"aire", card:"Comment calcule-t-on l'aire d'un triangle ?",
+   q:"L'aire d'un triangle se calcule avec…",
+   a:"(base × hauteur) ÷ 2.\nPour un triangle rectangle : on multiplie les deux côtés de l'angle droit, puis on divise par 2.",
+   o:["(base × hauteur) ÷ 2","base × hauteur","base + hauteur","(base + hauteur) × 2"],
+   tip:"Exemple du cahier : (6 × 4,5) ÷ 2 = 13,5 cm²."},
+  {id:"eqsem", n:"semb", card:"Deux triangles égaux sont-ils semblables ?",
+   q:"Deux triangles égaux sont-ils semblables ?",
+   a:"Oui : ce sont des triangles semblables avec k = 1.",
+   o:["Oui, avec k = 1","Non, jamais","Seulement s'ils sont rectangles","Oui, avec k = 2"],
+   tip:"k = 1 : rien n'est agrandi ni réduit, les figures sont identiques."}
+];
+const CBY = Object.fromEntries(COURS.map(c => [c.id, c]));
+
+/* ---------- outils ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const ri = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+function shuffle(a){ a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const r2 = x => Math.round(x * 100) / 100;
+const f = x => String(r2(x)).replace(".", ",");
+function fk(k){ // facteur affiché, en fraction si besoin
+  const fr = {[1/3]:"1/3", [2/3]:"2/3", [1/4]:"1/4"};
+  for (const v in fr) if (Math.abs(k - v) < 1e-9) return fr[v];
+  return f(k);
+}
+function parseNum(s){
+  s = String(s).trim().toLowerCase().replace(/\s/g, "").replace(/cm²|cm2|cm|°|degrés?/g, "").replace(/,/g, ".");
+  if (!s) return NaN;
+  const m = s.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);
+  if (m) return +m[1] / +m[2];
+  return /^-?\d+(\.\d+)?$|^-?\.\d+$/.test(s) ? +s : NaN;
+}
+const numOk = (s, ans) => { const x = parseNum(s); return !isNaN(x) && Math.abs(x - ans) < 0.006 + Math.abs(ans) * 1e-6; };
+
+/* ---------- figures ---------- */
+const TRI = [[4,5,7],[5,6,8],[4,6,7],[6,7,9],[5,7,8],[3,5,6],[6,8,9],[5,6,9],[4,7,8],[3,4,6],[2,3,4],[4,5,6]];
+function geom(xy, yz, xz){
+  const x = (xy * xy + xz * xz - yz * yz) / (2 * xy);
+  const y = Math.sqrt(Math.max(0, xz * xz - x * x));
+  return [[0, 0], [xy, 0], [x, -y]];
+}
+/* tris : [{v:["A","B","C"], s:[AB,BC,AC], lab:[...3 textes], right:index du sommet droit ou -1}] */
+function fig(tris){
+  const G = tris.map(t => geom(t.s[0], t.s[1], t.s[2]));
+  const bb = G.map(P => ({x0: Math.min(...P.map(p => p[0])), x1: Math.max(...P.map(p => p[0])), y0: Math.min(...P.map(p => p[1])), y1: Math.max(...P.map(p => p[1]))}));
+  const W = 360, H = 150, GAP = 46, PAD = 26;
+  const tw = bb.reduce((a, b) => a + b.x1 - b.x0, 0), th = Math.max(...bb.map(b => b.y1 - b.y0));
+  const s = Math.min((W - GAP * (tris.length - 1)) / tw, H / th, 30);
+  let ox = PAD, out = "";
+  const totalW = tw * s + GAP * (tris.length - 1) + PAD * 2, totalH = th * s + PAD * 2;
+  tris.forEach((t, i) => {
+    const b = bb[i];
+    const P = G[i].map(p => [ox + (p[0] - b.x0) * s, PAD + (th - (b.y1 - b.y0)) * s + (p[1] - b.y0) * s]);
+    const cx = (P[0][0] + P[1][0] + P[2][0]) / 3, cy = (P[0][1] + P[1][1] + P[2][1]) / 3;
+    out += `<polygon class="tri" points="${P.map(p => p.map(v => v.toFixed(1)).join(",")).join(" ")}"/>`;
+    if (t.right >= 0) {
+      const R = P[t.right], o = P.filter((_, k) => k !== t.right);
+      const u = o.map(q => { const dx = q[0] - R[0], dy = q[1] - R[1], L = Math.hypot(dx, dy); return [dx / L * 9, dy / L * 9]; });
+      out += `<path class="ra" d="M${R[0] + u[0][0]} ${R[1] + u[0][1]} L${R[0] + u[0][0] + u[1][0]} ${R[1] + u[0][1] + u[1][1]} L${R[0] + u[1][0]} ${R[1] + u[1][1]}"/>`;
+    }
+    P.forEach((p, k) => {
+      const dx = p[0] - cx, dy = p[1] - cy, L = Math.hypot(dx, dy) || 1;
+      out += `<text class="vx" x="${(p[0] + dx / L * 13).toFixed(1)}" y="${(p[1] + dy / L * 13 + 5).toFixed(1)}" text-anchor="middle">${t.v[k]}</text>`;
+    });
+    [[0, 1], [1, 2], [0, 2]].forEach(([a, c], k) => {
+      if (!t.lab[k]) return;
+      const mx = (P[a][0] + P[c][0]) / 2, my = (P[a][1] + P[c][1]) / 2, dx = mx - cx, dy = my - cy, L = Math.hypot(dx, dy) || 1;
+      const q = t.lab[k] === "?";
+      out += `<text class="sd${q ? " q" : ""}" x="${(mx + dx / L * 14).toFixed(1)}" y="${(my + dy / L * 14 + 4).toFixed(1)}" text-anchor="middle">${esc(t.lab[k])}</text>`;
+    });
+    ox += (b.x1 - b.x0) * s + GAP;
+  });
+  return `<div class="fig"><svg viewBox="0 0 ${totalW.toFixed(0)} ${totalH.toFixed(0)}" role="img" aria-label="Figure des triangles">${out}</svg></div>`;
+}
+const SN = ["AB", "BC", "AC"], DN = ["DE", "EF", "DF"];
+function table(rows){ // rows: [[titre, [cellules]]]
+  return `<div class="tbw"><table class="tb">${rows.map(([h, c]) => `<tr><th>${h}</th>${c.map(x => `<td>${x}</td>`).join("")}</tr>`).join("")}</table></div>`;
+}
+function sortedPairs(A, Bv){ // A, B : {nom: longueur}
+  const a = Object.entries(A).sort((x, y) => x[1] - y[1]), b = Object.entries(Bv).sort((x, y) => x[1] - y[1]);
+  return [a, b];
+}
+function numOpts(ans, cands, unit){
+  const seen = new Set([r2(ans)]), out = [{t: f(ans) + unit, ok: true}];
+  for (const c of shuffle(cands)) { const v = r2(c); if (v > 0 && !seen.has(v)) { seen.add(v); out.push({t: f(v) + unit, ok: false}); } if (out.length === 4) break; }
+  let d = 1;
+  while (out.length < 4) { const v = r2(ans + d); if (!seen.has(v) && v > 0) { seen.add(v); out.push({t: f(v) + unit, ok: false}); } d = d > 0 ? -d : -d + 1; }
+  return shuffle(out);
+}
+
+/* ---------- exercices (tirés au hasard, nouveaux nombres à chaque fois) ---------- */
+const GEN = {
+  findK(){
+    const base = pick(TRI), red = Math.random() < .35;
+    const k = red ? pick([2, 4, 5]) : pick([1.5, 2, 2.5, 3, 4]);
+    const small = shuffle(base), big = shuffle(base.map(x => x * k));
+    const abc = red ? big : small, def = red ? small : big, ans = red ? 1 / k : k;
+    const A = Object.fromEntries(SN.map((n, i) => [n, abc[i]])), D = Object.fromEntries(DN.map((n, i) => [n, def[i]]));
+    const [sa, sd] = sortedPairs(A, D);
+    return {n:"semb", kind:"num", ans, unit:"",
+      prompt:`Les triangles ABC et DEF sont semblables. Calcule le facteur <b>k</b> qui permet de passer de ABC à DEF.`,
+      fig: fig([{v:["A","B","C"], s:abc, lab:abc.map(f), right:-1}, {v:["D","E","F"], s:def, lab:def.map(f), right:-1}]),
+      short:"Calculer le facteur k entre ABC et DEF",
+      dist:[1 / ans, ans + 1, sd[0][1] - sa[0][1], ans * ans],
+      steps:`<p>On range les côtés dans l'ordre croissant :</p>${table([["Côtés de ABC", sa.map(([n, v]) => `${n} = ${f(v)}`)], ["Côtés de DEF", sd.map(([n, v]) => `${n} = ${f(v)}`)]])}
+        <p>${sd.map(([n, v], i) => `${f(v)} ÷ ${f(sa[i][1])}`).join(" = ")} = ${f(ans)}</p>
+        <p class="concl">k = ${fk(ans)} : DEF est ${red ? "une réduction" : "un agrandissement"} de ABC.</p>`};
+  },
+  semYN(){
+    const base = pick(TRI), k = pick([1.5, 2, 2.5, 3]), yes = Math.random() < .5;
+    let def = base.map(x => x * k);
+    if (!yes) { const i = ri(0, 2); def = def.map((x, j) => j === i ? x + pick([1, -1, 0.5]) : x); }
+    const abc = shuffle(base), dd = shuffle(def);
+    const A = Object.fromEntries(SN.map((n, i) => [n, abc[i]])), D = Object.fromEntries(DN.map((n, i) => [n, dd[i]]));
+    const [sa, sd] = sortedPairs(A, D);
+    const qs = sd.map(([, v], i) => v / sa[i][1]);
+    return {n:"semb", kind:"choice",
+      prompt:`Les triangles ABC et DEF sont-ils semblables ?`,
+      fig: fig([{v:["A","B","C"], s:abc, lab:abc.map(f), right:-1}, {v:["D","E","F"], s:dd, lab:dd.map(f), right:-1}]),
+      short:"Dire si ABC et DEF sont semblables",
+      opts:[{t:"Oui, ils sont semblables", ok:yes}, {t:"Non, ils ne sont pas semblables", ok:!yes}],
+      answerText: yes ? "Oui" : "Non",
+      steps:`<p>On range les côtés dans l'ordre croissant :</p>${table([["Côtés de ABC", sa.map(([n, v]) => `${n} = ${f(v)}`)], ["Côtés de DEF", sd.map(([n, v]) => `${n} = ${f(v)}`)]])}
+        <p>${sd.map(([, v], i) => `${f(v)} ÷ ${f(sa[i][1])} = ${f(qs[i])}`).join(" ; ")}</p>
+        <p class="concl">${yes ? `Les quotients sont tous égaux à ${f(k)} : les côtés sont proportionnels, donc les triangles sont semblables.` : `Les quotients ne sont pas tous égaux : les côtés ne sont pas proportionnels, donc les triangles ne sont pas semblables.`}</p>`};
+  },
+  missTab(){
+    const base = pick(TRI), k = pick([1.5, 2, 2.5, 3, 4]);
+    const abc = shuffle(base), def = shuffle(base.map(x => x * k));
+    const A = Object.fromEntries(SN.map((n, i) => [n, abc[i]])), D = Object.fromEntries(DN.map((n, i) => [n, def[i]]));
+    const [sa, sd] = sortedPairs(A, D);
+    const hide = ri(0, 2), known = hide === 0 ? 1 : 0, [hn, hv] = sd[hide];
+    const lab = DN.map(n => n === hn ? "?" : f(D[n]));
+    return {n:"semb", kind:"num", ans:hv, unit:" cm",
+      prompt:`Les triangles ABC et DEF sont semblables. Calcule la longueur <b>${hn}</b> (en cm).`,
+      fig: fig([{v:["A","B","C"], s:abc, lab:abc.map(f), right:-1}, {v:["D","E","F"], s:def, lab, right:-1}]),
+      short:`Calculer ${hn} dans des triangles semblables`,
+      dist:[sa[hide][1] + (sd[known][1] - sa[known][1]), sa[hide][1] * k * k, sa[hide][1], hv + k],
+      steps:`<p>On range les côtés dans l'ordre croissant :</p>${table([["Côtés de ABC", sa.map(([n, v]) => `${n} = ${f(v)}`)], ["Côtés de DEF", sd.map(([n, v], i) => i === hide ? `${n} = ?` : `${n} = ${f(v)}`)]])}
+        <p>Le facteur : k = ${f(sd[known][1])} ÷ ${f(sa[known][1])} = ${f(k)}</p>
+        <p>Donc ${hn} = ${f(k)} × ${f(sa[hide][1])} = ${f(hv)}</p>
+        <p class="concl">${hn} = ${f(hv)} cm</p>`};
+  },
+  missK(){
+    const base = shuffle(pick(TRI)), red = Math.random() < .3;
+    const k = red ? 0.5 : pick([1.5, 2, 2.5, 3]);
+    const i = ri(0, 2), src = red ? base.map(x => x * 2) : base;
+    const ans = src[i] * k, names = red ? [DN, SN] : [SN, DN];
+    const lab = src.map(f), t1 = red ? ["D","E","F"] : ["A","B","C"], t2 = red ? ["A","B","C"] : ["D","E","F"];
+    const txt = red ? `ABC est une réduction de DEF de facteur ${f(k)}` : `DEF est un agrandissement de ABC de facteur ${f(k)}`;
+    return {n:"agr", kind:"num", ans, unit:" cm",
+      prompt:`${txt}. Les sommets homologues sont A et D, B et E, C et F. Calcule <b>${names[1][i]}</b> (en cm).`,
+      fig: fig([{v:t1, s:src, lab, right:-1}]),
+      short:`Calculer une longueur avec k = ${f(k)}`,
+      dist:[src[i] + k, src[i] / (k || 1), src[i] * k * k, src[i]],
+      steps:`<p>${names[1][i]} est le côté homologue de ${names[0][i]}. Les longueurs sont multipliées par k = ${f(k)}.</p>
+        <p>${names[1][i]} = ${f(k)} × ${names[0][i]} = ${f(k)} × ${f(src[i])} = ${f(ans)}</p>
+        <p class="concl">${names[1][i]} = ${f(ans)} cm</p>`};
+  },
+  angle(){
+    const x = ri(5, 22) * 5, k = pick([2, 3, 4, 0.5, 1.5]), V = pick([["A","D"],["B","E"],["C","F"]]);
+    return {n:"agr", kind:"num", ans:x, unit:"°",
+      prompt:`Dans le triangle ABC, l'angle en <b>${V[0]}</b> mesure ${x}°. Le triangle DEF est ${k > 1 ? "un agrandissement" : "une réduction"} de ABC de facteur ${f(k)} (${V[0]} et ${V[1]} sont homologues). Combien mesure l'angle en <b>${V[1]}</b> ?`,
+      fig:"", short:`Angle après ${k > 1 ? "agrandissement" : "réduction"}`,
+      dist:[x * k, x + k, x * k * k, 180 - x],
+      steps:`<p>Un agrandissement ou une réduction conserve les angles. Le facteur k ne change rien aux angles !</p>
+        <p class="concl">L'angle en ${V[1]} mesure ${x}°, comme l'angle en ${V[0]}.</p>`};
+  },
+  perim(){
+    const base = pick(TRI), k = pick([2, 3, 1.5, 0.5]), P = base[0] + base[1] + base[2], ans = P * k;
+    return {n:"agr", kind:"num", ans, unit:" cm",
+      prompt:`Le triangle ABC a pour côtés ${base.map(x => f(x) + " cm").join(", ")}. Le triangle DEF est ${k > 1 ? "un agrandissement" : "une réduction"} de ABC de facteur ${f(k)}. Calcule le <b>périmètre</b> de DEF.`,
+      fig:"", short:"Périmètre après agrandissement ou réduction",
+      dist:[P * k * k, P + k, P, P * 2 * k],
+      steps:`<p>Périmètre de ABC : ${base.map(f).join(" + ")} = ${f(P)} cm</p>
+        <p>Les longueurs sont multipliées par k, donc le périmètre aussi : ${f(P)} × ${f(k)} = ${f(ans)}</p>
+        <p class="concl">Le périmètre de DEF est ${f(ans)} cm.</p>`};
+  },
+  kind(){
+    const k = pick([0.8, 1.2, 1, 2.5, 0.25, 3, 0.9, 1.05, 0.5, 4]);
+    const right = k > 1 ? 0 : k < 1 ? 1 : 2;
+    const L = ["Un agrandissement", "Une réduction", "Deux figures identiques"];
+    return {n:"agr", kind:"choice",
+      prompt:`On multiplie toutes les longueurs d'une figure par <b>k = ${f(k)}</b>. On obtient…`,
+      fig:"", short:`Facteur k = ${f(k)} : agrandissement ou réduction ?`,
+      opts:L.map((t, i) => ({t, ok: i === right})), answerText:L[right],
+      steps:`<p>k > 1 : agrandissement · 0 < k < 1 : réduction · k = 1 : figures identiques.</p>
+        <p class="concl">${f(k)} ${k > 1 ? "> 1" : k < 1 ? "< 1" : "= 1"} : ${L[right].toLowerCase()}.</p>`};
+  },
+  aire(){
+    const A = pick([6, 8, 10, 12, 13.5, 15, 20, 24, 30]), k = pick([2, 3, 0.5, 1.5, 10, 4]), ans = A * k * k;
+    return {n:"aire", kind:"num", ans, unit:" cm²",
+      prompt:`Un triangle a une aire de ${f(A)} cm². On ${k > 1 ? "l'agrandit" : "le réduit"} avec un facteur ${f(k)}. Quelle est l'<b>aire</b> du nouveau triangle ?`,
+      fig:"", short:"Aire après agrandissement ou réduction",
+      dist:[A * k, A * 2 * k, A + k, A],
+      steps:`<p>Les aires sont multipliées par k² = ${f(k)} × ${f(k)} = ${f(k * k)}.</p>
+        <p>${f(A)} × ${f(k * k)} = ${f(ans)}</p>
+        <p class="concl">L'aire du nouveau triangle est ${f(ans)} cm².</p>`};
+  },
+  aireFac(){
+    const k = pick([2, 3, 4, 5, 10, 0.5]);
+    return {n:"aire", kind:"num", ans:k * k, unit:"",
+      prompt:`On ${k > 1 ? "agrandit" : "réduit"} une figure : toutes les longueurs sont multipliées par ${f(k)}. Par combien l'<b>aire</b> est-elle multipliée ?`,
+      fig:"", short:"Facteur des aires",
+      dist:[k, 2 * k, k + 2, k * 3],
+      steps:`<p>Les aires sont multipliées par k², c'est-à-dire k × k.</p><p class="concl">${f(k)} × ${f(k)} = ${f(k * k)}</p>`};
+  },
+  aireRev(){
+    const k = pick([2, 3, 4, 5, 10]);
+    return {n:"aire", kind:"num", ans:k, unit:"",
+      prompt:`Après un agrandissement, l'aire d'une figure a été multipliée par ${k * k}. Quel est le <b>facteur d'agrandissement k</b> ?`,
+      fig:"", short:"Retrouver k à partir des aires",
+      dist:[k * k, k * k / 2, k + 1, k * k * k],
+      steps:`<p>Les aires sont multipliées par k². On cherche donc le nombre qui, multiplié par lui-même, donne ${k * k}.</p><p class="concl">${k} × ${k} = ${k * k}, donc k = ${k}.</p>`};
+  },
+  rect(){
+    const L = pick([[3, 4], [4, 6], [6, 8], [4.5, 6], [5, 12], [3, 8], [6, 9]]), k = pick([2, 3]);
+    const a1 = L[0] * L[1] / 2, ans = a1 * k * k, hyp = Math.hypot(L[0], L[1]);
+    return {n:"aire", kind:"num", ans, unit:" cm²",
+      prompt:`ABC est rectangle en A, avec AB = ${f(L[1])} cm et AC = ${f(L[0])} cm. DEF est un agrandissement de ABC de facteur ${k}. Calcule l'<b>aire de DEF</b>.`,
+      fig: fig([{v:["A","B","C"], s:[L[1], hyp, L[0]], lab:[f(L[1]) + " cm", "", f(L[0]) + " cm"], right:0}]),
+      short:"Aire d'un triangle rectangle agrandi",
+      dist:[a1 * k, a1, L[0] * L[1] * k * k, a1 * 2 * k],
+      steps:`<p>Aire de ABC = (${f(L[1])} × ${f(L[0])}) ÷ 2 = ${f(L[0] * L[1])} ÷ 2 = ${f(a1)} cm²</p>
+        <p>Aire de DEF = aire de ABC × k² = ${f(a1)} × ${k}² = ${f(a1)} × ${k * k} = ${f(ans)}</p>
+        <p class="concl">L'aire de DEF est ${f(ans)} cm².</p>`};
+  },
+  homSide(){
+    const base = shuffle(pick(TRI)), L2 = pick(["RST", "IJK", "MNP", "UVW", "XYZ"]).split(""), perm = shuffle([0, 1, 2]);
+    const map = {A: L2[perm[0]], B: L2[perm[1]], C: L2[perm[2]]};
+    const q = ri(0, 2), src = SN[q], ans = base[q];
+    const tgt = map[src[0]] + map[src[1]];
+    return {n:"egaux", kind:"num", ans, unit:" cm",
+      prompt:`Les triangles ABC et ${L2.join("")} sont égaux : A et ${map.A} sont homologues, B et ${map.B}, C et ${map.C}. On sait que AB = ${f(base[0])} cm, BC = ${f(base[1])} cm et AC = ${f(base[2])} cm. Combien mesure <b>${tgt}</b> ?`,
+      fig:"", short:"Côté homologue dans des triangles égaux",
+      dist:base.filter((_, i) => i !== q).concat([ans * 2]),
+      steps:`<p>${tgt[0]} est l'homologue de ${src[0]}, ${tgt[1]} est l'homologue de ${src[1]}. Donc ${tgt} est le côté homologue de ${src}.</p>
+        <p>Dans deux triangles égaux, les côtés homologues ont la même longueur.</p>
+        <p class="concl">${tgt} = ${src} = ${f(ans)} cm</p>`};
+  },
+  homAngle(){
+    const a = ri(6, 16) * 5, b = ri(6, 16) * 5, c = 180 - a - b;
+    const L2 = pick(["RST", "IJK", "MNP"]).split(""), perm = shuffle([0, 1, 2]);
+    const map = {A: L2[perm[0]], B: L2[perm[1]], C: L2[perm[2]]};
+    return {n:"egaux", kind:"num", ans:c, unit:"°",
+      prompt:`Les triangles ABC et ${L2.join("")} sont égaux : A et ${map.A} sont homologues, B et ${map.B}, C et ${map.C}. L'angle en A mesure ${a}° et l'angle en B mesure ${b}°. Combien mesure l'angle en <b>${map.C}</b> ?`,
+      fig:"", short:"Angle homologue dans des triangles égaux",
+      dist:[a, b, 180 - a, 360 - a - b],
+      steps:`<p>${map.C} est l'homologue de C, donc les angles en ${map.C} et en C ont la même mesure.</p>
+        <p>Dans un triangle, la somme des angles fait 180° : angle C = 180 − ${a} − ${b} = ${c}°.</p>
+        <p class="concl">L'angle en ${map.C} mesure ${c}°.</p>`};
+  },
+  cas(){
+    const t = pick(["aca", "cac", "ccc", "aaa", "cca"]);
+    const x = ri(7, 14) * 5, y = ri(5, 12) * 5, z = 180 - x - y, s = TRI[ri(0, TRI.length - 1)];
+    const D = {
+      aca:`un côté de ${s[0]} cm, et les deux angles adjacents à ce côté mesurent ${x}° et ${y}°`,
+      cac:`deux côtés de ${s[0]} cm et ${s[1]} cm, et l'angle compris entre ces deux côtés mesure ${x}°`,
+      ccc:`trois côtés de ${s[0]} cm, ${s[1]} cm et ${s[2]} cm`,
+      aaa:`trois angles de ${x}°, ${y}° et ${z}°`,
+      cca:`deux côtés de ${s[0]} cm et ${s[1]} cm, et un angle de ${x}° qui n'est pas entre ces deux côtés`
+    };
+    const O = [["aca", "Oui : un côté et les deux angles adjacents (1er cas)"], ["cac", "Oui : un angle et les deux côtés de cet angle (2e cas)"], ["ccc", "Oui : les trois côtés (3e cas)"], ["no", "Non, on ne peut pas conclure"]];
+    const right = t === "aaa" || t === "cca" ? "no" : t;
+    const why = {
+      aca:"On connaît un côté et les deux angles à ses extrémités : c'est le 1er cas d'égalité.",
+      cac:"On connaît un angle et les deux côtés qui partent de son sommet : c'est le 2e cas d'égalité.",
+      ccc:"Les trois côtés sont de même longueur deux à deux : c'est le 3e cas d'égalité.",
+      aaa:"Trois angles égaux ne suffisent pas : les triangles ont la même forme mais peuvent avoir des tailles différentes. Ils sont semblables, pas forcément égaux.",
+      cca:"L'angle n'est pas entre les deux côtés connus : ce n'est aucun des trois cas. On ne peut pas conclure."
+    };
+    return {n:"cas", kind:"choice",
+      prompt:`Deux triangles ont ${D[t]}, deux à deux. Peut-on affirmer qu'ils sont égaux ?`,
+      fig:"", short:"Reconnaître un cas d'égalité",
+      opts:O.map(([k, txt]) => ({t:txt, ok:k === right})), answerText:O.find(o => o[0] === right)[1], wide:true,
+      steps:`<p class="concl">${why[t]}</p>`};
+  }
+};
+const GBY_N = {};
+Object.keys(GEN).forEach(g => { const n = GEN[g]().n; (GBY_N[n] = GBY_N[n] || []).push(g); });
+
+/* ---------- état (sur cet appareil) ---------- */
+const KEY = "triangles-leandre-v1";
+let S = load();
+function load(){
+  let s = null;
+  try { s = JSON.parse(localStorage.getItem(KEY) || "null"); } catch(e) {}
+  s = s && typeof s === "object" ? s : {};
+  return {f: ["all", "1", "2", "3"].includes(s.f) ? s.f : "all", m: s.m && typeof s.m === "object" ? s.m : {}};
+}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} }
+const mOf = n => Math.max(0, Math.min(MAXM, S.m[n] || 0));
+const notions = () => Object.keys(NOT).filter(n => S.f === "all" || String(NOT[n].p) === S.f);
+const coursPool = () => COURS.filter(c => notions().includes(c.n));
+const genPool = () => notions().flatMap(n => GBY_N[n] || []);
+
+function weightedNotion(){
+  const ns = notions(), w = ns.map(n => MAXM + 1 - mOf(n));
+  let r = Math.random() * w.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < ns.length; i++) { r -= w[i]; if (r < 0) return ns[i]; }
+  return ns[ns.length - 1];
+}
+function makeCours(c){ return {src:{t:"c", id:c.id}, n:c.n, kind:"choice", prompt:esc(c.q), fig:"", short:c.q, wide:true,
+  opts:shuffle(c.o.map((t, i) => ({t, ok: i === 0}))), answerText:c.o[0], steps:`<p class="concl">${esc(c.a).replace(/\n/g, "<br>")}</p>`, tip:c.tip}; }
+function makeGen(g){ const e = GEN[g](); e.src = {t:"g", g}; return e; }
+function fromSrc(s){ return s.t === "c" ? makeCours(CBY[s.id]) : makeGen(s.g); }
+function anyItem(preferCours){
+  const n = weightedNotion();
+  const cs = COURS.filter(c => c.n === n), gs = GBY_N[n] || [];
+  const useC = preferCours === undefined ? Math.random() < .45 : preferCours;
+  return useC || !gs.length ? makeCours(pick(cs)) : makeGen(pick(gs));
+}
+function toChoice(e){
+  if (e.kind === "choice") return e;
+  return Object.assign({}, e, {kind:"choice", opts:numOpts(e.ans, e.dist || [], e.unit), answerText:f(e.ans) + e.unit});
+}
+
+/* ---------- affichage commun ---------- */
+const screen = $("screen");
+let cur = "home";
+const GOOD = ["Bien !", "Très bien !", "Bravo !", "Parfait !", "Oui !", "Excellent !"];
+const BAD = ["Presque…", "Pas tout à fait", "Attention !", "À revoir"];
+function show(name, html){ cur = name; screen.innerHTML = html; window.scrollTo(0, 0); }
+function bar(title, meta){ return `<div class="bar"><button class="btn small" type="button" data-act="home">← Accueil</button><h2>${title}</h2><span class="meta">${meta}</span></div>`; }
+const tagOf = n => `<span class="tag ${PART[NOT[n].p].cls}">${NOT[n].name}</span>`;
+function grade(note){
+  const s = (Number.isInteger(note) ? String(note) : note.toFixed(1).replace(".", ",")) + "/20";
+  return `<div class="grade" role="img" aria-label="Note : ${s}"><svg viewBox="0 0 240 140" aria-hidden="true"><path d="M34 80 C 22 32, 150 12, 206 42 C 240 62, 222 114, 138 124 C 68 132, 16 112, 26 74 C 32 50, 72 28, 130 24"/></svg><span>${s}</span></div>`;
+}
+function verdict(n){
+  return n >= 18 ? "Excellent, prêt pour le contrôle !" : n >= 15 ? "Très bien, encore un petit effort." : n >= 12 ? "Bien, continue comme ça." : n >= 8 ? "Ça vient. Relis les corrections." : "On s'accroche ! Repasse par les cartes.";
+}
+function progress(){
+  const ns = Object.keys(NOT), done = ns.filter(n => mOf(n) >= MAXM).length;
+  return `<div class="prog">
+    <span class="prog-n"><b>${done}</b> / ${ns.length} notions maîtrisées</span>
+    <div class="vt-wrap"><div>${ns.map(n => `<div class="nrow ${PART[NOT[n].p].cls}"><b>${NOT[n].name}</b><span class="ndots" role="img" aria-label="Maîtrise ${mOf(n)} sur ${MAXM}">${Array.from({length: MAXM}, (_, k) => `<i class="${k < mOf(n) ? "on" : ""}"></i>`).join("")}</span><small>Partie ${NOT[n].p} · ${NOT[n].d}</small></div>`).join("")}</div></div>
+    <p class="fine">Une pastille se remplit à chaque bonne réponse au contrôle et se vide à chaque erreur. Cinq pastilles : notion maîtrisée.</p>
+  </div>`;
+}
+
+/* ---------- accueil ---------- */
+function home(keepScroll){
+  const y = window.scrollY;
+  const fl = [["all", "Tout le chapitre"], ["1", "Partie 1 · Égaux"], ["2", "Partie 2 · Semblables"], ["3", "Partie 3 · Agrandissement"]];
+  show("home", `
+    <header class="hd">
+      <span class="eyebrow">Maths · Géométrie · Chapitre 2</span>
+      <h1>Les triangles</h1>
+      <p class="hand-note">Égaux, semblables, agrandis ou réduits</p>
+    </header>
+    <section class="sec" style="margin-top:22px">
+      <p class="label" id="f-lab">Je révise</p>
+      <div class="chips" role="group" aria-labelledby="f-lab">${fl.map(([k, t]) => `<button class="chip" type="button" data-act="filter" data-f="${k}" aria-pressed="${S.f === k}">${t}</button>`).join("")}</div>
+    </section>
+    <div class="modes">
+      <button class="mode bristol" type="button" style="--r:-.8deg" data-act="cards"><span class="mode-top"><span class="mode-k">Cartes</span><span class="mode-x">pour commencer</span></span><span class="mode-d">Lis la question, retourne la carte : la leçon et une astuce.</span></button>
+      <button class="mode bristol" type="button" style="--r:.6deg" data-act="quiz"><span class="mode-top"><span class="mode-k">Quiz</span><span class="mode-x">10 questions</span></span><span class="mode-d">Cours et exercices, la bonne réponse parmi plusieurs.</span></button>
+      <button class="mode bristol" type="button" style="--r:-.4deg" data-act="control"><span class="mode-top"><span class="mode-k">Contrôle</span><span class="mode-x">noté sur 20</span></span><span class="mode-d">Tu calcules toi-même, puis tu vois la correction rédigée.</span></button>
+    </div>
+    <section class="sec">
+      <p class="label">Ma progression</p>
+      ${progress()}
+    </section>
+    <footer class="foot">
+      <button class="btn ghost small" type="button" data-act="reset">Remettre les compteurs à zéro</button>
+      <p class="fine">La progression est gardée sur cet appareil. Les exercices changent de nombres à chaque fois.</p>
+    </footer>`);
+  if (keepScroll) window.scrollTo(0, y);
+}
+
+/* ---------- cartes ---------- */
+let K = null;
+function startCards(){ K = {deck: coursPool().map(c => c.id), i: 0, on: false}; renderCards(); }
+function renderCards(){
+  const c = CBY[K.deck[K.i]], n = K.deck.length;
+  const head = `<span class="fhead">${tagOf(c.n)}<span class="fine push">${K.i + 1} / ${n}</span></span>`;
+  show("cards", `${bar("Cartes", `${K.i + 1} / ${n}`)}
+    <div class="flash">
+      <div class="flip${K.on ? " on" : ""}" id="flip" role="button" tabindex="0" data-act="flip" aria-label="Retourner la carte">
+        <div class="face front bristol" aria-hidden="${K.on}">
+          ${head}
+          <div class="fbody"><span class="card-q">${esc(c.card)}</span><span class="hint">Touche la carte pour voir la réponse</span></div>
+        </div>
+        <div class="face back bristol" aria-hidden="${!K.on}">
+          ${head}
+          <div class="fbody"><span class="card-a">${esc(c.a)}</span>${c.tip ? `<span class="tip">${esc(c.tip)}</span>` : ""}</div>
+        </div>
+      </div>
+    </div>
+    <div class="ctrls">
+      <button class="btn" type="button" data-act="prev" ${K.i === 0 ? "disabled" : ""}>← Précédente</button>
+      <button class="btn primary" type="button" data-act="next">${K.i < n - 1 ? "Suivante →" : "Recommencer"}</button>
+    </div>
+    <div class="ctrls center"><button class="btn ghost" type="button" data-act="shuffle">Mélanger les cartes</button></div>`);
+}
+function flip(){
+  K.on = !K.on;
+  const el = $("flip"); if (!el) return;
+  el.classList.toggle("on", K.on);
+  el.querySelector(".front").setAttribute("aria-hidden", K.on);
+  el.querySelector(".back").setAttribute("aria-hidden", !K.on);
+}
+
+/* ---------- quiz ---------- */
+let Q = null;
+function startQuiz(){
+  const qs = []; let lastShort = "";
+  for (let i = 0; i < 10; i++) {
+    let e, t = 0;
+    do { e = toChoice(anyItem(i % 2 === 0)); t++; } while (e.short === lastShort && t < 8);
+    lastShort = e.short; qs.push(e);
+  }
+  Q = {qs, i: 0, score: 0, streak: 0, best: 0, done: false, wrong: []};
+  renderQuiz();
+}
+function renderQuiz(){
+  const q = Q.qs[Q.i];
+  show("quiz", `${bar("Quiz", `Question ${Q.i + 1} / ${Q.qs.length}`)}
+    <div class="qcard bristol">
+      <div class="fhead">${tagOf(q.n)}<span class="streak" id="streak" ${Q.streak < 2 ? "hidden" : ""}>Série de ${Q.streak} !</span><span class="score push" id="qscore">${Q.score} / ${Q.i}</span></div>
+      <p class="qtext">${q.prompt}</p>
+      ${q.fig}
+      <div class="opts${q.wide || q.opts.some(o => o.t.length > 22) ? " wide" : ""}">${q.opts.map((o, i) => `<button class="opt" type="button" data-act="answer" data-i="${i}"><span class="k">${"ABCD"[i]}</span><span class="t">${esc(o.t)}</span></button>`).join("")}</div>
+      <div class="fb" id="fb" aria-live="polite"></div>
+    </div>
+    <div class="ctrls"><span></span><button class="btn primary" type="button" id="qnext" data-act="qnext" hidden>${Q.i < Q.qs.length - 1 ? "Question suivante →" : "Voir ma note"}</button></div>`);
+}
+function answer(i){
+  if (Q.done) return;
+  Q.done = true;
+  const q = Q.qs[Q.i], ok = q.opts[i].ok;
+  screen.querySelectorAll(".opt").forEach((b, k) => { b.disabled = true; if (q.opts[k].ok) b.classList.add("good"); else if (k === i) b.classList.add("bad"); });
+  if (ok) { Q.score++; Q.streak++; Q.best = Math.max(Q.best, Q.streak); } else { Q.streak = 0; Q.wrong.push(q); }
+  const st = $("streak"); st.hidden = Q.streak < 2; st.textContent = `Série de ${Q.streak} !`;
+  $("qscore").textContent = `${Q.score} / ${Q.i + 1}`;
+  $("fb").innerHTML = `<span class="remark ${ok ? "ok" : "ko"}">${pick(ok ? GOOD : BAD)}</span><div class="steps">${q.steps}</div>${!ok && q.tip ? `<span class="tip">${esc(q.tip)}</span>` : ""}`;
+  const nx = $("qnext"); nx.hidden = false; nx.focus({preventScroll: true});
+}
+function quizEnd(){
+  const note = Q.score * 2;
+  show("quiz-end", `${bar("Quiz", "Terminé")}
+    <div class="result bristol">
+      <div class="fhead"><span class="fine">Résultat</span></div>
+      ${grade(note)}
+      <p class="verdict">${verdict(note)}</p>
+      <p class="sum">${Q.score} bonne${Q.score > 1 ? "s" : ""} réponse${Q.score > 1 ? "s" : ""} sur 10${Q.best >= 2 ? ` · meilleure série : ${Q.best}` : ""}.</p>
+      ${missList(Q.wrong)}
+      <div class="ctrls center"><button class="btn" type="button" data-act="home">Accueil</button><button class="btn primary" type="button" data-act="quiz">Rejouer</button></div>
+    </div>`);
+}
+function missList(list){
+  if (!list.length) return "";
+  return `<div class="misses"><p class="label" style="padding:12px 2px 4px">À revoir</p>${list.map(e => `<div class="miss">${tagOf(e.n)}<span class="q">${esc(e.short)}</span><span>Réponse : <b>${esc(e.answerText || (f(e.ans) + e.unit))}</b></span></div>`).join("")}</div>`;
+}
+
+/* ---------- contrôle ---------- */
+let C = null;
+function controlIntro(){
+  show("control-intro", `${bar("Contrôle", "10 questions")}
+    <div class="intro bristol">
+      <div class="fhead"><span class="label">Consigne</span></div>
+      <p class="lead">3 questions de cours et 7 exercices. Pour les calculs, écris ton résultat (une virgule ou un point, comme tu veux). Chaque question vaut 2 points.</p>
+      <p class="fine">Après chaque réponse, tu vois la correction rédigée, comme au tableau. Garde un brouillon à côté pour poser tes calculs.</p>
+      <div class="ctrls"><span></span><button class="btn primary" type="button" data-act="cstart">Commencer le contrôle</button></div>
+    </div>`);
+}
+function startControl(srcs){
+  let items;
+  if (srcs && srcs.length) items = srcs.map(fromSrc);
+  else {
+    const cs = shuffle(coursPool()).slice(0, 3).map(makeCours);
+    const gp = genPool(), gs = [];
+    const order = shuffle(gp);
+    for (let i = 0; i < 7; i++) gs.push(makeGen(i < order.length ? order[i] : pick(gp)));
+    items = shuffle([...cs, ...gs]);
+  }
+  C = {q: items, i: 0, ok: 0, res: [], checked: false};
+  renderCItem();
+}
+function renderCItem(){
+  const e = C.q[C.i];
+  const body = e.kind === "num"
+    ? `<div class="field" id="fd"><label for="c-in">Ta réponse</label><div class="numrow"><input class="inp" id="c-in" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done">${e.unit ? `<span class="unit">${e.unit.trim()}</span>` : ""}</div><span class="ans-k" id="ck" hidden></span></div>`
+    : `<div class="opts${e.wide || e.opts.some(o => o.t.length > 22) ? " wide" : ""}">${e.opts.map((o, i) => `<button class="opt" type="button" data-act="canswer" data-i="${i}"><span class="k">${"ABCD"[i]}</span><span class="t">${esc(o.t)}</span></button>`).join("")}</div>`;
+  show("control", `${bar("Contrôle", `Question ${C.i + 1} / ${C.q.length}`)}
+    <form class="copy bristol" id="cform" autocomplete="off" novalidate>
+      <div class="fhead">${tagOf(e.n)}<span class="fine push">${C.i + 1} / ${C.q.length}</span></div>
+      <p class="qtext">${e.prompt}</p>
+      ${e.fig}
+      ${body}
+      <div class="cfb" id="cfb" aria-live="polite"></div>
+      <div class="ctrls"><span></span><button class="btn primary" type="submit" id="cbtn" ${e.kind === "choice" ? "hidden" : ""}>Valider</button></div>
+    </form>`);
+  const inp = $("c-in"); if (inp) setTimeout(() => inp.focus({preventScroll: true}), 30);
+}
+function checkC(choice){
+  const e = C.q[C.i];
+  let ok;
+  if (e.kind === "num") {
+    const inp = $("c-in");
+    if (!inp.value.trim()) { inp.focus(); return; }
+    ok = numOk(inp.value, e.ans);
+    inp.readOnly = true;
+    $("fd").classList.add(ok ? "good" : "bad");
+    const ck = $("ck"); ck.hidden = false; ck.className = "ans-k" + (ok ? " ok" : "");
+    ck.textContent = ok ? "✓" : isNaN(parseNum(inp.value)) ? `Écris un nombre. → ${f(e.ans)}${e.unit}` : `→ ${f(e.ans)}${e.unit}`;
+  } else {
+    ok = e.opts[choice].ok;
+    screen.querySelectorAll(".opt").forEach((b, k) => { b.disabled = true; if (e.opts[k].ok) b.classList.add("good"); else if (k === choice) b.classList.add("bad"); });
+  }
+  S.m[e.n] = ok ? Math.min(MAXM, mOf(e.n) + 1) : Math.max(0, mOf(e.n) - 1);
+  save();
+  if (ok) C.ok++;
+  C.res.push({e, ok});
+  $("cfb").innerHTML = `<span class="remark ${ok ? "ok" : "ko"}">${pick(ok ? GOOD : BAD)}</span><p class="label" style="margin-top:4px">Correction</p><div class="steps">${e.steps}</div>${!ok && e.tip ? `<span class="tip">${esc(e.tip)}</span>` : ""}`;
+  C.checked = true;
+  const b = $("cbtn"); b.hidden = false;
+  b.textContent = C.i < C.q.length - 1 ? "Question suivante →" : "Voir ma note";
+  b.focus({preventScroll: true});
+}
+function nextC(){ C.i++; C.checked = false; if (C.i >= C.q.length) cResults(); else renderCItem(); }
+function cResults(){
+  const note = Math.round(C.ok / C.q.length * 40) / 2;
+  const miss = C.res.filter(r => !r.ok).map(r => r.e);
+  C.miss = miss.map(e => e.src);
+  show("control-end", `${bar("Contrôle", "Terminé")}
+    <div class="result bristol">
+      <div class="fhead"><span class="fine">Copie corrigée</span></div>
+      ${grade(note)}
+      <p class="verdict">${verdict(note)}</p>
+      <p class="sum">${C.ok} bonne${C.ok > 1 ? "s" : ""} réponse${C.ok > 1 ? "s" : ""} sur ${C.q.length}.</p>
+      ${missList(miss)}
+      ${miss.length ? `<p class="fine" style="margin-top:10px">« Refaire mes erreurs » te redonne les mêmes types d'exercices, avec de nouveaux nombres.</p>` : ""}
+      <div class="ctrls center">
+        <button class="btn" type="button" data-act="home">Accueil</button>
+        ${miss.length ? `<button class="btn" type="button" data-act="cretry">Refaire mes erreurs (${miss.length})</button>` : ""}
+        <button class="btn primary" type="button" data-act="cstart">Nouveau contrôle</button>
+      </div>
+    </div>
+    ${progress()}`);
+}
+
+/* ---------- actions ---------- */
+let armTimer = null;
+function act(a, el){
+  switch (a) {
+    case "home": home(); break;
+    case "filter": S.f = el.dataset.f; save(); home(true); break;
+    case "cards": startCards(); break;
+    case "flip": flip(); break;
+    case "prev": if (K.i > 0) { K.i--; K.on = false; renderCards(); } break;
+    case "next": K.i = K.i < K.deck.length - 1 ? K.i + 1 : 0; K.on = false; renderCards(); break;
+    case "shuffle": K.deck = shuffle(K.deck); K.i = 0; K.on = false; renderCards(); break;
+    case "quiz": startQuiz(); break;
+    case "answer": answer(+el.dataset.i); break;
+    case "qnext": Q.i++; Q.done = false; if (Q.i >= Q.qs.length) quizEnd(); else renderQuiz(); break;
+    case "control": controlIntro(); break;
+    case "cstart": startControl(); break;
+    case "cretry": startControl(C.miss); break;
+    case "canswer": if (!C.checked) checkC(+el.dataset.i); break;
+    case "reset":
+      if (el.dataset.armed) { S.m = {}; save(); clearTimeout(armTimer); home(); }
+      else {
+        el.dataset.armed = "1"; el.textContent = "Sûr ? Touche encore pour tout effacer";
+        clearTimeout(armTimer);
+        armTimer = setTimeout(() => { if (el.isConnected) { delete el.dataset.armed; el.textContent = "Remettre les compteurs à zéro"; } }, 5000);
+      }
+      break;
+  }
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-act]");
+  if (!t || t.disabled) return;
+  if (t.tagName === "BUTTON" && t.closest("form")) e.preventDefault();
+  act(t.dataset.act, t);
+});
+document.addEventListener("submit", e => {
+  if (e.target.id !== "cform") return;
+  e.preventDefault();
+  if (C.checked) nextC(); else if (C.q[C.i].kind === "num") checkC();
+});
+document.addEventListener("keydown", e => {
+  if (cur === "cards") {
+    if (e.key === "ArrowRight") act("next");
+    else if (e.key === "ArrowLeft" && K.i > 0) act("prev");
+    else if ((e.key === " " || e.key === "Enter") && e.target.id === "flip") { e.preventDefault(); flip(); }
+  } else if (cur === "quiz" && Q && !Q.done) {
+    const i = "1234".indexOf(e.key) >= 0 ? "1234".indexOf(e.key) : "abcd".indexOf(e.key.toLowerCase());
+    if (e.key.length === 1 && i >= 0 && i < Q.qs[Q.i].opts.length) answer(i);
+  }
+});
+
+window.__T = {GEN, COURS, numOk, parseNum, toChoice, makeGen, startQuiz, startControl};
+home();
+})();
+</script>
+
+</body></html>
