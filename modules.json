@@ -59,6 +59,31 @@
         "cas d'égalité",
         "proportionnalité"
       ]
+    },
+    {
+      "matiere": "histoire-geo",
+      "chemin": "histoire-geo/urbanisation/",
+      "titre": "L'urbanisation du monde",
+      "chapitre": "Géographie",
+      "resume": "Villes et métropoles, centres et périphéries, Shanghai et Londres.",
+      "ajoute": "2026-10-11",
+      "motsCles": [
+        "géographie",
+        "villes",
+        "métropoles",
+        "CBD",
+        "quartier d'affaires",
+        "périphérie",
+        "étalement urbain",
+        "exode rural",
+        "gentrification",
+        "bidonville",
+        "Shanghai",
+        "Londres",
+        "Mumbai",
+        "Los Angeles",
+        "São Paulo"
+      ]
     }
   ]
 }
