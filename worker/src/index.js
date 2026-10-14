@@ -43,17 +43,18 @@ async function listSubs(env){
 
 /* Envoie à toutes les tablettes abonnées ; supprime les abonnements expirés. */
 export async function broadcast(env, payload, fetchImpl = fetch){
-  const vapid = await getVapid(env), subs = await listSubs(env);
+  const vapid = await getVapid(env), subs = await listSubs(env), codes = [];
   let ok = 0, gone = 0, failed = 0;
   for (const s of subs) {
     try {
       const st = await sendPush(s.subscription, payload, vapid, env.VAPID_SUBJECT, {fetchImpl});
+      codes.push(st);
       if (st === 404 || st === 410) { await env.SUBS.delete(s.key); gone++; }
       else if (st >= 200 && st < 300) ok++;
       else failed++;
-    } catch (e) { failed++; }
+    } catch (e) { failed++; codes.push(String(e && e.message || e).slice(0, 80)); }
   }
-  return {ok, gone, failed, total: subs.length};
+  return {ok, gone, failed, total: subs.length, codes};
 }
 
 /* Annonce les modules apparus dans modules.json depuis la dernière vérification. */
@@ -102,6 +103,13 @@ export default {
     if (req.method === "POST" && !allowed.includes(origin)) return json({error: "origine non autorisée"}, 403, h);
 
     try {
+      if (req.method === "GET" && url.pathname === "/status") {
+        const subs = await listSubs(env);
+        const hosts = {};
+        subs.forEach(s => { const host = new URL(s.subscription.endpoint).hostname; hosts[host] = (hosts[host] || 0) + 1; });
+        return json({subscriptions: subs.length, byService: hosts, created: subs.map(s => s.created).sort(),
+          seenModules: await env.SUBS.get("seen-modules", "json"), lastRuns: (await env.SUBS.get("runs", "json")) || []}, 200, h);
+      }
       if (req.method === "GET" && url.pathname === "/vapid-public-key") {
         return json({key: (await getVapid(env)).publicKey}, 200, h);
       }
@@ -127,6 +135,7 @@ export default {
         const rec = typeof endpoint === "string" && await env.SUBS.get("sub:" + await sha256hex(endpoint), "json");
         if (!rec) return json({error: "tablette non abonnée"}, 404, h);
         const st = await sendPush(rec.subscription, {title: "Ça marche !", body: "Tu recevras ici les nouveaux modules de révision.", url: env.SITE_URL, tag: "test"}, await getVapid(env), env.VAPID_SUBJECT);
+        if (st === 404 || st === 410) await env.SUBS.delete("sub:" + await sha256hex(endpoint));
         return json({ok: st >= 200 && st < 300, status: st}, 200, h);
       }
       return json({error: "introuvable"}, 404, h);
@@ -140,8 +149,13 @@ export default {
       let reminders = {};
       try { reminders = JSON.parse(env.REMINDERS || "{}"); } catch (e) {}
       const r = reminders[event.cron];
-      if (r) await broadcast(env, {title: r.title, body: r.body, url: r.url || env.SITE_URL, tag: "rappel"});
-      if (event.cron === env.MODULES_CRON) await checkNewModules(env);
+      const run = {at: new Date().toISOString(), cron: event.cron};
+      try {
+        if (r) run.reminder = await broadcast(env, {title: r.title, body: r.body, url: r.url || env.SITE_URL, tag: "rappel"});
+        if (event.cron === env.MODULES_CRON) run.modules = await checkNewModules(env);
+      } catch (e) { run.error = String(e && e.message || e).slice(0, 200); }
+      const runs = (await env.SUBS.get("runs", "json")) || [];
+      await env.SUBS.put("runs", JSON.stringify([run, ...runs].slice(0, 12)));
     })());
   }
 };
