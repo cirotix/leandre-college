@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Le système nerveux — film</title>
+<style>
+:root{
+  --paper:#F4F7FC; --sheet:#FFFFFF; --rule:#E3EAF6; --rule2:#CBD8EF; --margin:#E05A6C;
+  --ink:#1A2250; --muted:#5B6488; --pen:#2340C4; --pen-soft:#DDE4FB; --red:#CC2D2A; --red-soft:#FCE6E5;
+  --ok:#0F8456; --ok-soft:#DDF3E8; --hl1:#C2F4A0; --hl2:#FFD98C; --hl3:#FFB6D9; --spark:#FFB800;
+  --a-dec:#F7A8A0; --a-mot:#FFD45C; --a-som:#9FE08A; --a-aud:#FFA25C; --a-vis:#7FB2FF; --a-mem:#C9A2F2; --a-gus:#D9A27A; --a-olf:#B8C2CC;
+}
+html,body{margin:0;background:#000}
+#stage{width:1920px;height:1080px;position:relative;overflow:hidden;transform-origin:0 0;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(90deg, transparent 150px, var(--margin) 150px, var(--margin) 153px, transparent 153px),
+    repeating-linear-gradient(180deg, transparent 0 47px, var(--rule2) 47px 48px),
+    repeating-linear-gradient(180deg, transparent 0 11px, var(--rule) 11px 12px),
+    repeating-linear-gradient(90deg, transparent 0 47px, var(--rule) 47px 48px);
+  font-family:"Inter",system-ui,sans-serif; color:var(--ink)}
+.sc{position:absolute;inset:0;display:none}
+.sc > *{position:absolute}
+svg.art{left:0;top:0;width:1920px;height:1080px;overflow:visible}
+#s8mus{transform-box:fill-box;transform-origin:center}
+.tag{left:190px;top:52px;font:800 24px "Inter";letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:4px 14px 5px 12px;background:var(--hl1);transform:rotate(-1.5deg)}
+.tag.l2{background:var(--hl2)} .tag.l3{background:var(--hl3)} .tag.l0{background:var(--pen-soft)}
+.h{left:190px;top:100px;margin:0;font:900 76px/1.05 "Inter Display","Inter";color:var(--pen);letter-spacing:-.01em}
+.cap{left:190px;right:110px;bottom:56px;background:var(--sheet);border-radius:10px;padding:22px 30px;font:600 40px/1.3 "Inter";
+  box-shadow:0 2px 4px rgba(26,34,80,.08),0 14px 30px rgba(26,34,80,.12);border-left:8px solid var(--pen)}
+.cap.red{border-left-color:var(--red)} .cap.ok{border-left-color:var(--ok)}
+.cap b{color:var(--pen)} .cap .r{color:var(--red)} .cap .g{color:var(--ok)}
+.fiche{font:700 22px "Inter";color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px}
+.pill{font:700 34px "Inter";padding:8px 20px;border-radius:999px;background:var(--sheet);border:3px solid var(--ink);white-space:nowrap;box-shadow:0 6px 14px rgba(26,34,80,.12)}
+.pill.b{border-color:var(--pen);color:var(--pen)} .pill.r{border-color:var(--red);color:var(--red)} .pill.g{border-color:var(--ok);color:var(--ok)}
+.box{background:var(--sheet);border-radius:16px;border:4px solid var(--ink);box-shadow:0 8px 20px rgba(26,34,80,.12);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px 10px 18px;text-align:center}
+.box .k{font:800 22px "Inter";letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.box .v{font:800 34px/1.1 "Inter";color:var(--ink);margin-top:4px}
+.big{font:900 150px/0.95 "Inter Display","Inter";color:var(--pen);letter-spacing:-.02em;margin:0}
+.txt{font:600 44px/1.3 "Inter";color:var(--ink)}
+.txt b{color:var(--pen)} .txt .r{color:var(--red)} .txt .g{color:var(--ok)}
+.num{font:900 120px/1 "Inter Display","Inter";color:var(--pen)}
+.hand{font:700 46px "Inter";color:var(--red);transform:rotate(-2deg)}
+.list{font:600 38px/1.35 "Inter";display:grid;gap:18px}
+.list div{display:flex;gap:22px;align-items:baseline}
+.list i{font-style:normal;font:900 40px "Inter Display";color:var(--sheet);background:var(--pen);border-radius:50%;width:56px;height:56px;display:grid;place-items:center;flex:none}
+</style></head>
+<body><div id="stage">
+
+<!-- 0 · Titre -->
+<section class="sc" id="s0" data-d="9">
+  <svg class="art" viewBox="0 0 1920 1080"><g id="s0n" transform="translate(1000,560) scale(2.4)"></g></svg>
+  <div class="tag l0" style="top:250px" data-a="fade .2 .6">SVT · 4e · Chapitre 1</div>
+  <h1 class="big" style="left:190px;top:310px" data-a="up .4 .8">Le système<br>nerveux</h1>
+  <div class="hand" style="left:196px;top:640px" data-a="up 1.4 .7">Tout le chapitre en 5 minutes</div>
+  <div style="left:190px;top:800px;display:flex;gap:14px;flex-wrap:wrap;width:1600px">
+    <span class="pill" data-a="pop 3 .4">1 · Le trajet du message</span>
+    <span class="pill" data-a="pop 3.4 .4">2 · Le neurone</span>
+    <span class="pill" data-a="pop 3.8 .4">3 · La synapse</span>
+    <span class="pill" data-a="pop 4.2 .4">4 · Le cerveau</span>
+    <span class="pill" data-a="pop 4.6 .4">5 · Addictions</span>
+  </div>
+</section>
+
+<!-- 1 · Trajet du message (schéma fonctionnel) -->
+<section class="sc" id="s1" data-d="36">
+  <div class="tag" data-a="fade 0 .4">1 · Le trajet du message</div>
+  <h2 class="h" data-a="up .2 .6">Du coup de feu à la course</h2>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1A2250"/></marker></defs>
+    <path id="p1a" d="M410 480 L470 480" stroke="#1A2250" stroke-width="7" fill="none" marker-end="url(#ar)" data-a="draw 4.5 .8"/>
+    <path id="p1b" d="M780 480 L840 480" stroke="#2340C4" stroke-width="7" fill="none" marker-end="url(#ar)" data-a="draw 8.5 1.4"/>
+    <path id="p1c" d="M1150 480 L1210 480" stroke="#CC2D2A" stroke-width="7" fill="none" marker-end="url(#ar)" data-a="draw 15.5 1.4"/>
+    <path id="p1d" d="M1520 480 L1580 480" stroke="#1A2250" stroke-width="7" fill="none" marker-end="url(#ar)" data-a="draw 19.5 .8"/>
+    <path id="p1path" d="M260 480 L1740 480" fill="none" stroke="none"/>
+    <g id="p1dot" style="opacity:0"><circle r="30" fill="#FFB800" opacity=".35"/><circle r="14" fill="#FFB800"/></g>
+  </svg>
+  <div class="box" style="left:110px;top:340px;width:300px;height:280px" data-a="pop 2 .5">
+    <svg width="150" height="120" viewBox="0 0 150 120"><path d="M75 8 L88 42 L124 30 L104 60 L140 78 L100 82 L108 114 L75 92 L42 114 L50 82 L10 78 L46 60 L26 30 L62 42Z" fill="#FFD98C" stroke="#1A2250" stroke-width="4" stroke-linejoin="round"/><text x="75" y="70" text-anchor="middle" font-family="Inter" font-weight="900" font-size="24" fill="#1A2250">PAN !</text></svg>
+    <span class="k">Stimulus</span><span class="v">le coup de feu</span></div>
+  <div class="box" style="left:480px;top:340px;width:300px;height:280px" data-a="pop 5.4 .5">
+    <svg width="150" height="120" viewBox="0 0 150 120"><path d="M95 20 C60 0 28 22 30 56 C32 80 50 84 54 100 C58 116 80 118 88 104" fill="#FFE1D0" stroke="#1A2250" stroke-width="5" stroke-linecap="round"/><path d="M78 40 C62 36 54 52 64 62 C72 70 66 80 74 84" fill="none" stroke="#1A2250" stroke-width="4" stroke-linecap="round"/><path d="M112 38 q12 18 0 36 M124 28 q20 28 0 56" fill="none" stroke="#2340C4" stroke-width="4" stroke-linecap="round"/></svg>
+    <span class="k">Organe sensoriel</span><span class="v">l'oreille</span></div>
+  <div class="box" style="left:850px;top:340px;width:300px;height:280px;border-color:#2340C4" data-a="pop 11 .5">
+    <svg width="150" height="120" viewBox="0 0 150 120"><path d="M30 60 C20 30 50 10 78 14 C110 10 134 30 128 60 C124 80 104 84 92 80 C82 90 60 90 52 80 C36 82 30 72 30 60Z" fill="#FFB6D9" stroke="#1A2250" stroke-width="4"/><path d="M58 30 q10 10 0 22 M84 26 q-8 14 6 26 M104 40 q-10 10 2 20" fill="none" stroke="#1A2250" stroke-width="3" stroke-linecap="round"/><path d="M84 84 L84 118" stroke="#1A2250" stroke-width="10" stroke-linecap="round"/></svg>
+    <span class="k">Centre nerveux</span><span class="v">cerveau, moelle épinière</span></div>
+  <div class="box" style="left:1220px;top:340px;width:300px;height:280px" data-a="pop 17.5 .5">
+    <svg width="150" height="120" viewBox="0 0 150 120"><path d="M14 66 C30 28 70 22 92 34 C112 44 136 50 140 66 C136 84 112 90 92 98 C70 110 30 104 14 66Z" fill="#F7A8A0" stroke="#1A2250" stroke-width="4"/><path d="M40 54 L50 86 M60 44 L72 96 M82 40 L92 98 M104 48 L112 90" stroke="#CC2D2A" stroke-width="3" stroke-linecap="round"/></svg>
+    <span class="k">Organe effecteur</span><span class="v">les muscles</span></div>
+  <div class="box" style="left:1590px;top:340px;width:250px;height:280px;border-color:#0F8456" data-a="pop 21 .5">
+    <svg width="120" height="120" viewBox="0 0 120 120"><circle cx="70" cy="18" r="11" fill="#1A2250"/><path d="M66 32 L56 66 M60 42 L84 54 L96 44 M60 44 L34 50 L24 38 M56 66 L78 84 L74 112 M56 66 L38 88 L14 92" fill="none" stroke="#1A2250" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="k">Réponse</span><span class="v" style="color:#0F8456">elle court !</span></div>
+  <div class="pill b" style="left:640px;top:660px;font-size:30px" data-a="pop 9.2 .4">nerf sensitif →</div>
+  <div class="pill r" style="left:1040px;top:660px;font-size:30px" data-a="pop 16.2 .4">nerf moteur →</div>
+  <div class="cap" data-a="up 24 .7 29.4 .5">Le message nerveux va <b>des organes sensoriels vers les centres nerveux</b>, puis <span class="r">des centres nerveux vers les muscles</span>.</div>
+  <div class="cap red" data-a="up 30 .7">Attention : le <span class="r">nerf moteur</span> transporte le message. Ce sont <b>les muscles</b> (organes effecteurs) qui font le mouvement.</div>
+</section>
+
+<!-- 2 · Système nerveux / centre nerveux -->
+<section class="sc" id="s2" data-d="17">
+  <div class="tag" data-a="fade 0 .4">1 · Le trajet du message</div>
+  <h2 class="h" data-a="up .2 .6">Le système nerveux</h2>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <g transform="translate(1340,140)">
+      <g fill="#E8EEFA" stroke="#CBD8EF" stroke-width="4">
+        <circle cx="160" cy="90" r="78"/><rect x="70" y="180" width="180" height="300" rx="70"/>
+        <path d="M80 210 L10 420" stroke-width="44" stroke-linecap="round"/><path d="M240 210 L310 420" stroke-width="44" stroke-linecap="round"/>
+        <path d="M120 450 L100 800" stroke-width="54" stroke-linecap="round"/><path d="M200 450 L220 800" stroke-width="54" stroke-linecap="round"/>
+      </g>
+      <path d="M118 74 C110 38 150 22 166 28 C196 18 214 50 206 76 C210 100 190 112 172 108 C160 118 132 114 126 104 C110 104 108 88 118 74Z" fill="#FFB6D9" stroke="#1A2250" stroke-width="4" data-a="pop 1.2 .5"/>
+      <path d="M160 120 L160 470" stroke="#2340C4" stroke-width="12" stroke-linecap="round" data-a="draw 3 1.2"/>
+      <g fill="#FFD98C" stroke="#1A2250" stroke-width="2" data-a="fade 11 .8">
+        <rect x="142" y="170" width="36" height="22" rx="6"/><rect x="142" y="210" width="36" height="22" rx="6"/><rect x="142" y="250" width="36" height="22" rx="6"/><rect x="142" y="290" width="36" height="22" rx="6"/><rect x="142" y="330" width="36" height="22" rx="6"/><rect x="142" y="370" width="36" height="22" rx="6"/><rect x="142" y="410" width="36" height="22" rx="6"/>
+      </g>
+      <g stroke="#CC2D2A" stroke-width="5" fill="none" stroke-linecap="round">
+        <path d="M160 220 L60 300 L20 410" data-a="draw 5 1"/><path d="M160 220 L260 300 L300 410" data-a="draw 5 1"/>
+        <path d="M160 440 L120 600 L104 790" data-a="draw 5.6 1"/><path d="M160 440 L200 600 L216 790" data-a="draw 5.6 1"/>
+      </g>
+    </g>
+  </svg>
+  <div class="pill" style="left:1080px;top:180px" data-a="pop 1.4 .4">cerveau</div>
+  <div class="pill b" style="left:960px;top:400px" data-a="pop 3.4 .4">moelle épinière</div>
+  <div class="pill r" style="left:1040px;top:640px" data-a="pop 5.6 .4">nerfs</div>
+  <div class="txt" style="left:190px;top:280px;width:760px" data-a="up 7 .7"><span class="fiche">Fiche mémo · question 1</span>Un ensemble : <b>cerveau</b> + <b>moelle épinière</b> + un réseau de <span class="r">nerfs</span> dans tout le corps.<br>Il <b>commande et contrôle</b> tout le corps.</div>
+  <div class="txt" style="left:190px;top:700px;width:760px;font-size:38px" data-a="up 10.5 .7"><b>Centre nerveux</b> = encéphale (surtout le cerveau) + moelle épinière.<br>La moelle est protégée par les <span style="background:#FFD98C;padding:0 8px;border-radius:6px">vertèbres</span>.</div>
+</section>
+
+<!-- 3 · Vitesse + paralysie -->
+<section class="sc" id="s3" data-d="12">
+  <div class="tag" data-a="fade 0 .4">1 · Le trajet du message</div>
+  <h2 class="h" data-a="up .2 .6">Très vite… sauf si c'est coupé</h2>
+  <div class="num" style="left:190px;top:300px" data-a="pop .8 .5">≈ 100 m/s</div>
+  <div class="txt" style="left:200px;top:440px" data-a="up 1.4 .6">soit environ <b>360 km/h</b> : plus vite qu'un TGV.</div>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <line x1="1000" y1="370" x2="1760" y2="370" stroke="#CBD8EF" stroke-width="14" stroke-linecap="round"/>
+    <circle id="s3dot" cx="1000" cy="370" r="20" fill="#FFB800"/>
+    <g data-a="fade 6 .5">
+      <path d="M200 770 L860 770" stroke="#2340C4" stroke-width="10"/>
+      <path d="M1060 770 L1720 770" stroke="#2340C4" stroke-width="10" stroke-dasharray="4 26" stroke-linecap="round"/>
+      <circle cx="200" cy="770" r="22" fill="#2340C4"/><circle cx="1720" cy="770" r="22" fill="#CBD8EF"/>
+      <path d="M900 720 L1020 820 M1020 720 L900 820" stroke="#CC2D2A" stroke-width="16" stroke-linecap="round"/>
+    </g>
+  </svg>
+  <div class="txt" style="left:1660px;top:300px;font-size:30px;color:var(--muted)" data-a="fade 1 .5">100 m</div>
+  <div class="cap red" data-a="up 7.5 .7">Si le système nerveux est <span class="r">lésé</span>, le message ne passe plus : plus de mouvement, c'est la <span class="r">paralysie</span>.</div>
+</section>
+
+<!-- 4 · Le neurone -->
+<section class="sc" id="s4" data-d="27">
+  <div class="tag l2" data-a="fade 0 .4">2 · Le neurone</div>
+  <h2 class="h" data-a="up .2 .6">Le neurone, une cellule nerveuse</h2>
+  <svg class="art" viewBox="0 0 1920 1080"><g id="s4n" transform="translate(250,290) scale(3.4)"></g>
+    <g stroke="#CC2D2A" stroke-width="3">
+      <line x1="342" y1="392" x2="330" y2="330" data-a="draw 3.2 .4"/>
+      <line x1="540" y1="620" x2="500" y2="700" data-a="draw 1.4 .4"/>
+      <line x1="522" y1="545" x2="600" y2="420" data-a="draw 2.2 .4"/>
+      <line x1="763" y1="545" x2="780" y2="650" data-a="draw 4.6 .4"/>
+      <line x1="937" y1="520" x2="950" y2="440" data-a="draw 6 .4"/>
+      <line x1="1450" y1="460" x2="1430" y2="390" data-a="draw 7.2 .4"/>
+    </g>
+  </svg>
+  <div class="pill" style="left:200px;top:270px" data-a="pop 3.2 .4">dendrites</div>
+  <div class="pill" style="left:330px;top:700px" data-a="pop 1.4 .4">corps cellulaire</div>
+  <div class="pill" style="left:560px;top:360px" data-a="pop 2.2 .4">noyau (ADN)</div>
+  <div class="pill b" style="left:690px;top:650px" data-a="pop 4.6 .4">axone</div>
+  <div class="pill" style="left:840px;top:380px;border-color:#D98A00;color:#9A6200" data-a="pop 6 .4">gaine de myéline</div>
+  <div class="pill" style="left:1180px;top:330px" data-a="pop 7.2 .4">terminaisons de l'axone</div>
+  <div class="cap" data-a="up 10 .7 19.4 .5"><span class="fiche">Fiche mémo · question 4</span>Le <b>corps cellulaire</b> (avec le <b>noyau</b>) et les <b>dendrites</b>, puis un long prolongement : l'<b>axone</b>, entouré de <b>myéline</b>.</div>
+  <div class="cap ok" data-a="up 20 .7"><span class="fiche">Fiche mémo · question 3</span>Les <span class="g">neurones</span> (cellules nerveuses) permettent la communication entre les organes du système nerveux.</div>
+</section>
+
+<!-- 5 · Message électrique, un seul sens, myéline -->
+<section class="sc" id="s5" data-d="18">
+  <div class="tag l2" data-a="fade 0 .4">2 · Le neurone</div>
+  <h2 class="h" data-a="up .2 .6">Dans le neurone : un message électrique</h2>
+  <svg class="art" viewBox="0 0 1920 1080"><g id="s5n" transform="translate(330,230) scale(2.6)"></g>
+    <g data-a="fade 1 .5"><path d="M560 640 L1360 640" stroke="#2340C4" stroke-width="8" stroke-linecap="round"/><path d="M1340 615 L1390 640 L1340 665Z" fill="#2340C4"/></g>
+    <g data-a="fade 9 .5">
+      <line x1="560" y1="760" x2="1700" y2="760" stroke="#1A2250" stroke-width="6"/>
+      <line x1="560" y1="880" x2="1700" y2="880" stroke="#1A2250" stroke-width="6"/>
+      <g fill="#FFD98C" stroke="#1A2250" stroke-width="3"><rect x="590" y="742" width="120" height="36" rx="16"/><rect x="730" y="742" width="120" height="36" rx="16"/><rect x="870" y="742" width="120" height="36" rx="16"/><rect x="1010" y="742" width="120" height="36" rx="16"/><rect x="1150" y="742" width="120" height="36" rx="16"/><rect x="1290" y="742" width="120" height="36" rx="16"/><rect x="1430" y="742" width="120" height="36" rx="16"/><rect x="1570" y="742" width="120" height="36" rx="16"/></g>
+      <circle id="s5a" cx="560" cy="760" r="18" fill="#FFB800"/><circle id="s5b" cx="560" cy="880" r="18" fill="#FFB800"/>
+    </g>
+  </svg>
+  <div class="pill b" style="left:760px;top:670px;font-size:30px" data-a="pop 2 .4">un seul sens</div>
+  <div class="txt" style="left:190px;top:735px;font-size:32px;font-weight:700" data-a="fade 9 .5">avec myéline</div>
+  <div class="txt" style="left:190px;top:855px;font-size:32px;font-weight:700" data-a="fade 9 .5">sans myéline</div>
+  <div class="cap" data-a="up 3.5 .7 8.5 .4"><span class="fiche">Fiche mémo · question 5</span>Le message nerveux circule sous forme <b>électrique</b> le long du neurone, <b>dans un seul sens</b>.</div>
+  <div class="txt" style="left:190px;top:960px;font-size:38px" data-a="up 12 .6">La <span style="background:#FFD98C;padding:0 8px;border-radius:6px">myéline</span> <b>accélère</b> le message.</div>
+</section>
+
+<!-- 6 · Le nerf -->
+<section class="sc" id="s6" data-d="10">
+  <div class="tag l2" data-a="fade 0 .4">2 · Le neurone</div>
+  <h2 class="h" data-a="up .2 .6">Et un nerf, c'est quoi ?</h2>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <g data-a="fade .6 .6">
+      <path d="M300 420 L1300 420 A 70 160 0 0 1 1300 740 L300 740 A 70 160 0 0 1 300 420Z" fill="#F7F3E8" stroke="#1A2250" stroke-width="5"/>
+      <ellipse cx="1300" cy="580" rx="70" ry="160" fill="#FFFDF6" stroke="#1A2250" stroke-width="5"/>
+    </g>
+    <g id="s6ax" fill="#FFD98C" stroke="#1A2250" stroke-width="2"></g>
+    <g stroke="#CBC4AE" stroke-width="3" data-a="fade 1 .6"><line x1="320" y1="480" x2="1260" y2="480"/><line x1="310" y1="540" x2="1250" y2="540"/><line x1="310" y1="610" x2="1250" y2="610"/><line x1="320" y1="680" x2="1260" y2="680"/></g>
+  </svg>
+  <div class="pill b" style="left:1430px;top:520px" data-a="pop 2.6 .4">plein d'axones</div>
+  <div class="cap" data-a="up 3.6 .7"><span class="fiche">Fiche mémo · question 9</span>Un <b>nerf</b> est un cordon blanchâtre composé d'<b>axones</b>, qui permet de conduire les messages nerveux.</div>
+</section>
+
+<!-- 7 · La synapse -->
+<section class="sc" id="s7" data-d="27">
+  <div class="tag l2" data-a="fade 0 .4">3 · La synapse</div>
+  <h2 class="h" data-a="up .2 .6">Entre deux neurones : la synapse</h2>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <path id="s7in" d="M150 330 C 380 330 500 360 640 450" fill="none" stroke="#1A2250" stroke-width="40" stroke-linecap="round"/>
+    <ellipse cx="760" cy="520" rx="190" ry="170" fill="#DDE4FB" stroke="#1A2250" stroke-width="6"/>
+    <path d="M1000 260 C 1040 400 1040 640 1000 800 L1920 800 L1920 260Z" fill="#FCE6E5" stroke="#1A2250" stroke-width="6"/>
+    <g id="s7ves" fill="#FFFFFF" stroke="#2340C4" stroke-width="4"><circle cx="700" cy="460" r="34"/><circle cx="790" cy="430" r="30"/><circle cx="820" cy="560" r="34"/><circle cx="700" cy="590" r="30"/></g>
+    <g id="s7rec" stroke="#CC2D2A" stroke-width="7" fill="none" stroke-linecap="round"></g>
+    <g id="s7nt" fill="#2340C4"></g>
+    <path id="s7out" d="M1100 530 L1880 530" fill="none" stroke="none"/>
+    <g id="s7dot" style="opacity:0"><circle r="34" fill="#FFB800" opacity=".35"/><circle r="16" fill="#FFB800"/></g>
+    <path d="M955 860 L955 890 L1015 890 L1015 860" fill="none" stroke="#1A2250" stroke-width="4" data-a="fade 1.6 .4"/>
+  </svg>
+  <div class="pill" style="left:300px;top:640px" data-a="pop .8 .4">neurone 1</div>
+  <div class="pill" style="left:1560px;top:820px" data-a="pop .8 .4">neurone 2</div>
+  <div class="pill" style="left:880px;top:910px" data-a="pop 1.6 .4">synapse</div>
+  <div class="pill b" style="left:420px;top:760px" data-a="pop 7.6 .4">neurotransmetteurs</div>
+  <div class="pill r" style="left:1180px;top:300px" data-a="pop 10 .4">récepteurs</div>
+  <div class="cap" style="right:auto;width:1000px;bottom:auto;top:250px;left:auto;right:110px;display:none"></div>
+  <div class="txt" style="left:1100px;top:600px;width:760px;font-size:36px" data-a="up 13 .6"><span class="fiche">Fiche mémo · questions 6, 7, 8</span>Les <b>neurotransmetteurs</b> sont des molécules libérées dans la synapse : ils portent le message.</div>
+  <div style="left:190px;top:990px;display:flex;gap:18px;align-items:center;font:800 40px Inter" data-a="up 19 .6"><span style="color:#B07A00">électrique</span><span>→</span><span style="color:#2340C4">chimique</span><span>→</span><span style="color:#B07A00">électrique</span><span style="font-weight:600;font-size:34px;color:var(--muted);margin-left:30px">1 neurone ≈ 1 000 à 10 000 synapses</span></div>
+</section>
+
+<!-- 8 · Du neurone au muscle + anesthésie -->
+<section class="sc" id="s8" data-d="18">
+  <div class="tag l2" data-a="fade 0 .4">3 · La synapse</div>
+  <h2 class="h" data-a="up .2 .6">Du neurone au muscle</h2>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <path d="M150 300 C 360 300 470 340 560 420" fill="none" stroke="#1A2250" stroke-width="34" stroke-linecap="round"/>
+    <ellipse cx="660" cy="480" rx="130" ry="115" fill="#DDE4FB" stroke="#1A2250" stroke-width="6"/>
+    <g id="s8mus"><rect x="830" y="330" width="900" height="300" rx="150" fill="#F7A8A0" stroke="#1A2250" stroke-width="6"/>
+      <g stroke="#CC2D2A" stroke-width="5"><line x1="960" y1="350" x2="960" y2="610"/><line x1="1080" y1="345" x2="1080" y2="615"/><line x1="1200" y1="342" x2="1200" y2="618"/><line x1="1320" y1="342" x2="1320" y2="618"/><line x1="1440" y1="345" x2="1440" y2="615"/><line x1="1560" y1="350" x2="1560" y2="610"/></g></g>
+    <g id="s8nt" fill="#2340C4"></g>
+    <g id="s8bar" style="opacity:0"><rect x="770" y="380" width="22" height="200" rx="8" fill="#CC2D2A"/></g>
+  </svg>
+  <div class="pill" style="left:420px;top:640px" data-a="pop .6 .4">neurone</div>
+  <div class="pill" style="left:1180px;top:660px" data-a="pop .6 .4">muscle</div>
+  <div class="hand" id="s8con" style="left:1120px;top:220px;font-size:60px;opacity:0">contraction !</div>
+  <div class="cap" data-a="up 2 .6 8.6 .4">Les neurotransmetteurs se fixent sur le <b>muscle</b> : il se <b>contracte</b>.</div>
+  <div class="pill r" style="left:640px;top:250px;font-size:30px;opacity:0" id="s8ane">anesthésie</div>
+  <div class="cap red" data-a="up 10 .6">L'<span class="r">anesthésie</span> bloque la communication entre le neurone et le muscle : le muscle reste <span class="r">relâché</span>.</div>
+</section>
+
+<!-- 9 · Les aires du cerveau -->
+<section class="sc" id="s9" data-d="18">
+  <div class="tag l3" data-a="fade 0 .4">4 · Le cerveau</div>
+  <h2 class="h" data-a="up .2 .6">Le cerveau et ses aires</h2>
+  <svg class="art" viewBox="0 0 1920 1080"><g id="s9b" transform="translate(150,40)"></g></svg>
+  <div class="pill" style="left:420px;top:330px;border-color:#D9534B" data-a="pop 2 .4">décision</div>
+  <div class="pill" style="left:910px;top:190px;border-color:#C29400" data-a="pop 3.2 .4">aire motrice</div>
+  <div class="pill" style="left:1310px;top:250px;border-color:#3E9A2D" data-a="pop 4.4 .4">toucher</div>
+  <div class="pill" style="left:690px;top:830px;border-color:#D96A1E" data-a="pop 5.6 .4">aire auditive</div>
+  <div class="pill" style="left:1560px;top:540px;border-color:#2F6FD6" data-a="pop 6.8 .4">aire visuelle</div>
+  <div class="pill" style="left:1140px;top:860px;border-color:#8F5CC7" data-a="pop 8 .4">mémoire</div>
+  <div class="txt" style="left:190px;top:960px;font-size:36px" data-a="up 9.5 .6">2 <b>hémisphères</b> (droit et gauche). Chaque <b>aire</b> a une fonction précise.</div>
+</section>
+
+<!-- 10 · Le téléphone sonne -->
+<section class="sc" id="s10" data-d="22">
+  <div class="tag l3" data-a="fade 0 .4">4 · Le cerveau</div>
+  <h2 class="h" data-a="up .2 .6">Le téléphone sonne…</h2>
+  <svg class="art" viewBox="0 0 1920 1080"><g id="s10b" transform="translate(300,60) scale(.82)"></g>
+    <g transform="translate(150,520)" data-a="pop .8 .5"><rect x="0" y="0" width="90" height="160" rx="16" fill="#1A2250"/><rect x="10" y="20" width="70" height="110" rx="6" fill="#DDE4FB"/><path d="M110 40 q16 40 0 80 M130 24 q28 56 0 112" fill="none" stroke="#2340C4" stroke-width="6" stroke-linecap="round"/></g>
+    <g fill="none" stroke-width="8" stroke-linecap="round">
+      <path d="M300 600 C 520 650 820 640 990 575" stroke="#FFA25C" data-a="draw 1.6 1"/>
+      <path d="M1110 580 C 1150 595 1160 605 1168 618" stroke="#C9A2F2" data-a="draw 6 .9"/>
+      <path d="M1140 640 C 1000 620 900 540 885 470" stroke="#F7A8A0" data-a="draw 10 .9"/>
+      <path d="M900 390 C 950 330 1000 315 1060 325" stroke="#FFD45C" data-a="draw 14 .9"/>
+      <path d="M1110 290 C 1300 210 1550 320 1650 520" stroke="#FFD45C" data-a="draw 16 1.2"/>
+    </g>
+    <g transform="translate(1620,500)" data-a="pop 17 .5"><path d="M0 120 C10 60 40 40 70 50 L120 60" fill="none" stroke="#1A2250" stroke-width="22" stroke-linecap="round"/><rect x="110" y="20" width="56" height="96" rx="10" fill="#1A2250"/></g>
+  </svg>
+  <div style="left:190px;top:860px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:1620px">
+    <div class="box" style="position:static;height:170px;justify-content:center;border-color:#FFA25C" data-a="pop 2.2 .4"><span class="k">0 ms · aire auditive</span><span class="v">j'entends</span></div>
+    <div class="box" style="position:static;height:170px;justify-content:center;border-color:#C9A2F2" data-a="pop 6.6 .4"><span class="k">10 ms · mémoire</span><span class="v">je reconnais ma sonnerie</span></div>
+    <div class="box" style="position:static;height:170px;justify-content:center;border-color:#F7A8A0" data-a="pop 10.6 .4"><span class="k">20 ms · décision</span><span class="v">je réponds</span></div>
+    <div class="box" style="position:static;height:170px;justify-content:center;border-color:#FFD45C" data-a="pop 14.6 .4"><span class="k">30 ms · aire motrice</span><span class="v">j'attrape le téléphone</span></div>
+  </div>
+</section>
+
+<!-- 11 · L'intégration -->
+<section class="sc" id="s11" data-d="10">
+  <div class="tag l3" data-a="fade 0 .4">4 · Le cerveau</div>
+  <h2 class="h" data-a="up .2 .6">Le cerveau, chef d'orchestre</h2>
+  <div class="txt" style="left:190px;top:300px;width:1560px;font-size:50px" data-a="up .8 .7"><span class="fiche" style="font-size:24px">Fiche mémo · question 10</span>Le cerveau <b>intègre</b> les informations sensorielles dans des zones spécialisées, les <b>aires</b>.<br>Puis il élabore une <span class="g">réponse adaptée</span>, comme un mouvement.</div>
+  <div class="cap ok" data-a="up 5 .7"><b>Intégrer</b> = analyser les informations et les relier entre elles. La <b>mémoire</b> aide à reconnaître ce qu'on a déjà vécu.</div>
+</section>
+
+<!-- 12 · AVC -->
+<section class="sc" id="s12" data-d="16">
+  <div class="tag l3" data-a="fade 0 .4">4 · Le cerveau</div>
+  <h2 class="h" data-a="up .2 .6">Quand une aire est abîmée : l'AVC</h2>
+  <svg class="art" viewBox="0 0 1920 1080"><g id="s12b" transform="translate(40,90) scale(.78)"></g>
+    <circle id="s12h" cx="1085" cy="500" r="10" fill="#CC2D2A" opacity=".85"/>
+    <g transform="translate(1340,330)" id="s12ok" data-a="pop 7 .5"><circle cx="110" cy="130" r="95" fill="#E23A2E"/><path d="M110 40 q10 -30 40 -36" stroke="#5B3A1A" stroke-width="10" fill="none" stroke-linecap="round"/><ellipse cx="150" cy="30" rx="34" ry="16" fill="#3E9A2D" transform="rotate(-20 150 30)"/></g>
+    <g transform="translate(1610,330)" id="s12ko" data-a="pop 9 .5"><path d="M40 160 C10 90 70 20 120 60 C190 30 200 150 150 200 C100 240 60 220 40 160Z" fill="none" stroke="#8A8A8A" stroke-width="8" stroke-dasharray="18 12"/><path d="M110 40 l20 -30" stroke="#8A8A8A" stroke-width="8"/></g>
+    <path d="M1580 440 L1620 440" stroke="#1A2250" stroke-width="6" data-a="fade 9 .4"/>
+  </svg>
+  <div class="txt" style="left:1340px;top:600px;width:520px;font-size:32px" data-a="up 9.5 .5">il voit mal les <b>formes</b> et les <b>couleurs</b></div>
+  <div class="cap red" data-a="up 3 .7"><span class="r">AVC</span> = accident vasculaire cérébral (par exemple une hémorragie). Ici, l'<b>aire visuelle</b> est touchée → troubles de la vue.</div>
+</section>
+
+<!-- 13 · Addiction : définition + chiffres -->
+<section class="sc" id="s13" data-d="16">
+  <div class="tag l3" data-a="fade 0 .4">5 · Addictions et hygiène de vie</div>
+  <h2 class="h" data-a="up .2 .6">L'addiction, une maladie</h2>
+  <div class="txt" style="left:190px;top:250px;width:1560px" data-a="up .8 .7"><span class="fiche">Fiche mémo · question 11</span>Une <b>dépendance</b> à une substance (tabac, alcool…) ou à une activité (jeux vidéo, réseaux sociaux…), avec des <span class="r">conséquences nuisibles sur la santé</span>.</div>
+  <div class="txt" style="left:190px;top:560px;font-size:30px;color:var(--muted)" data-a="fade 5.5 .5">Usagers quotidiens en France (11-75 ans)</div>
+  <div style="left:190px;top:620px;display:grid;grid-template-columns:220px 1fr;gap:22px 24px;align-items:center;width:1600px;font:700 38px Inter">
+    <span data-a="fade 6 .4">Tabac</span><div style="display:flex;align-items:center;gap:20px"><div style="height:56px;width:1100px;background:#CC2D2A;border-radius:8px;transform-origin:left" data-a="grow 6 1"></div><span data-a="fade 6.8 .4">12 millions</span></div>
+    <span data-a="fade 7 .4">Alcool</span><div style="display:flex;align-items:center;gap:20px"><div style="height:56px;width:458px;background:#FFA25C;border-radius:8px;transform-origin:left" data-a="grow 7 1"></div><span data-a="fade 7.8 .4">5 millions</span></div>
+    <span data-a="fade 8 .4">Cannabis</span><div style="display:flex;align-items:center;gap:20px"><div style="height:56px;width:78px;background:#3E9A2D;border-radius:8px;transform-origin:left" data-a="grow 8 1"></div><span data-a="fade 8.8 .4">850 000</span></div>
+  </div>
+</section>
+
+<!-- 14 · Drogues, dopamine -->
+<section class="sc" id="s14" data-d="16">
+  <div class="tag l3" data-a="fade 0 .4">5 · Addictions et hygiène de vie</div>
+  <h2 class="h" data-a="up .2 .6">Drogues et dopamine</h2>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <g transform="translate(190,250)"><rect width="760" height="430" rx="20" fill="#FFFFFF" stroke="#CBD8EF" stroke-width="4"/>
+      <ellipse cx="380" cy="120" rx="220" ry="80" fill="#DDE4FB" stroke="#1A2250" stroke-width="5"/><path d="M80 430 C 160 320 600 320 680 430" fill="#FCE6E5" stroke="#1A2250" stroke-width="5"/>
+      <g id="s14a" fill="#0F8456"></g></g>
+    <g transform="translate(1010,250)"><rect width="760" height="430" rx="20" fill="#FFFFFF" stroke="#CC2D2A" stroke-width="4"/>
+      <ellipse cx="380" cy="120" rx="220" ry="80" fill="#DDE4FB" stroke="#1A2250" stroke-width="5"/><path d="M80 430 C 160 320 600 320 680 430" fill="#FCE6E5" stroke="#1A2250" stroke-width="5"/>
+      <g id="s14b" fill="#0F8456"></g><g id="s14d" fill="#CC2D2A"></g></g>
+  </svg>
+  <div class="pill" style="left:420px;top:710px" data-a="pop .6 .4">sans drogue</div>
+  <div class="pill r" style="left:1240px;top:710px" data-a="pop .6 .4">avec drogue</div>
+  <div class="cap" data-a="up 6 .7"><span class="g">Beaucoup plus de dopamine</span> (la molécule du plaisir) → le cerveau en redemande : c'est la <span class="r">dépendance</span>.</div>
+</section>
+
+<!-- 15 · Hygiène de vie + aide -->
+<section class="sc" id="s15" data-d="14">
+  <div class="tag l3" data-a="fade 0 .4">5 · Addictions et hygiène de vie</div>
+  <h2 class="h" data-a="up .2 .6">Prendre soin de son cerveau</h2>
+  <svg class="art" viewBox="0 0 1920 1080">
+    <g transform="translate(230,300)" data-a="pop .6 .5"><path d="M120 10 A110 110 0 1 0 220 150 A85 85 0 1 1 120 10Z" fill="#2340C4"/><text x="200" y="40" font-family="Inter" font-weight="900" font-size="44" fill="#2340C4">z</text><text x="236" y="0" font-family="Inter" font-weight="900" font-size="34" fill="#2340C4">z</text></g>
+    <g transform="translate(250,600)" data-a="pop 3.6 .5"><rect width="200" height="140" rx="14" fill="#1A2250"/><rect x="14" y="14" width="172" height="100" rx="6" fill="#7FB2FF"/><circle cx="100" cy="128" r="6" fill="#FFF"/></g>
+  </svg>
+  <div class="txt" style="left:560px;top:320px;width:1200px" data-a="up 1 .6"><span class="fiche">Fiche mémo · question 12</span>Un <span class="r">manque de sommeil</span> fait baisser les performances du cerveau.</div>
+  <div class="txt" style="left:560px;top:600px;width:1200px" data-a="up 4 .6">Les <span class="r">drogues</span> et l'addiction aux <span class="r">jeux</span> stimulent le <b>circuit de la récompense</b> et créent des dépendances.</div>
+  <div class="cap ok" data-a="up 8 .7">Une <span class="g">bonne hygiène de vie</span> protège le système nerveux. Besoin d'aide ? Un médecin, un addictologue… Tabac info service : <b>39 89</b>.</div>
+</section>
+
+<!-- 16 · Récap -->
+<section class="sc" id="s16" data-d="16">
+  <div class="tag l0" data-a="fade 0 .4">À retenir</div>
+  <h2 class="h" data-a="up .2 .6">Les 6 idées du chapitre</h2>
+  <div class="list" style="left:190px;top:250px;width:1620px">
+    <div data-a="up .8 .5"><i>1</i><span>Organe sensoriel → <b style="color:#2340C4">nerf sensitif</b> → centre nerveux → <b style="color:#CC2D2A">nerf moteur</b> → muscle</span></div>
+    <div data-a="up 2.4 .5"><i>2</i><span>Neurone : corps cellulaire, noyau, dendrites, axone, myéline</span></div>
+    <div data-a="up 4 .5"><i>3</i><span>Dans le neurone : <b style="color:#B07A00">électrique</b>. À la synapse : <b style="color:#2340C4">chimique</b> (neurotransmetteurs)</span></div>
+    <div data-a="up 5.6 .5"><i>4</i><span>Le cerveau <b>intègre</b> les informations dans des <b>aires</b></span></div>
+    <div data-a="up 7.2 .5"><i>5</i><span>AVC : une aire abîmée → une fonction perdue</span></div>
+    <div data-a="up 8.8 .5"><i>6</i><span>Drogues et jeux : trop de dopamine → <b style="color:#CC2D2A">dépendance</b></span></div>
+  </div>
+  <div class="hand" style="left:1150px;top:950px;font-size:54px" data-a="pop 11 .6">À toi : tes cartes du jour !</div>
+</section>
+
+</div>
+<script>
+"use strict";
+/* ---------- dessins réutilisés ---------- */
+function neuron(t0, sc, dotId){   // t0 : début du dessin ; sc : rythme
+  const d = (a, dur) => `${(t0 + a * sc).toFixed(2)} ${(dur * sc).toFixed(2)}`;
+  const dend = ["M62 62 L40 45 L27 30","M40 45 L22 48","M59 80 L36 92 L22 104","M36 92 L30 112","M72 54 L68 30 L58 18","M68 30 L80 16","M78 97 L72 120 L62 132","M72 120 L86 134","M58 72 L38 70 L20 66"];
+  const term = ["M318 75 L340 58 L355 50","M340 58 L354 66","M318 75 L360 76","M318 75 L340 92 L356 100","M340 92 L354 86"];
+  let s = dend.map(p => `<path d="${p}" fill="none" stroke="#1A2250" stroke-width="2.4" stroke-linecap="round" data-a="draw ${d(2, .8)}"/>`).join("");
+  s += `<path d="M100 75 L318 75" stroke="#1A2250" stroke-width="2.6" fill="none" data-a="draw ${d(3.2, 1.2)}"/>`;
+  s += term.map(p => `<path d="${p}" fill="none" stroke="#1A2250" stroke-width="2.4" stroke-linecap="round" data-a="draw ${d(6.6, .6)}"/>`).join("");
+  s += [[355,50],[354,66],[360,76],[356,100],[354,86]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="3.2" fill="#1A2250" data-a="pop ${d(7, .3)}"/>`).join("");
+  s += [120,154,188,222,256].map((x,i) => `<rect x="${x}" y="67" width="28" height="16" rx="7" fill="#FFD98C" stroke="#1A2250" stroke-width="1.6" data-a="pop ${d(5.4 + i * .12, .3)}"/>`).join("");
+  s += `<circle cx="80" cy="75" r="22" fill="#DDE4FB" stroke="#1A2250" stroke-width="2.4" data-a="pop ${d(0, .5)}"/>`;
+  s += `<circle cx="80" cy="75" r="7" fill="#2340C4" stroke="#1A2250" stroke-width="1.5" data-a="pop ${d(.8, .4)}"/>`;
+  if (dotId) s += `<path id="${dotId}p" d="M27 30 L40 45 L62 62 L80 75 L318 75 L340 58 L355 50" fill="none" stroke="none"/><g id="${dotId}" style="opacity:0"><circle r="9" fill="#FFB800" opacity=".35"/><circle r="4.5" fill="#FFB800"/></g>`;
+  return s;
+}
+function brain(k, t0, withAreas){
+  let s = `<path d="M560 560 C 520 380 640 250 820 230 C 980 200 1160 220 1290 300 C 1420 380 1450 520 1390 640 C 1350 720 1250 760 1150 770 C 1100 820 1000 830 930 800 C 860 830 760 810 720 760 C 620 740 570 660 560 560 Z" fill="#FFF3F7" stroke="#1A2250" stroke-width="6" data-a="fade ${t0} .6"/>`;
+  s += `<ellipse cx="1240" cy="800" rx="120" ry="66" fill="#FFE3EE" stroke="#1A2250" stroke-width="5" data-a="fade ${t0} .6"/><path d="M1070 790 L1058 890" stroke="#1A2250" stroke-width="40" stroke-linecap="round" data-a="fade ${t0} .6"/>`;
+  s += `<g fill="none" stroke="#E4B9CC" stroke-width="5" stroke-linecap="round" data-a="fade ${t0} .6"><path d="M680 360 q60 30 40 90 M820 300 q-20 70 40 110 M1180 300 q-40 60 10 120 M1300 420 q-60 20 -40 100 M760 640 q60 -40 120 0 M1150 650 q-40 -50 -110 -20"/></g>`;
+  const A = [
+    ["dec", `<ellipse cx="700" cy="450" rx="135" ry="150" fill="var(--a-dec)"/>`, 2],
+    ["mot", `<ellipse cx="960" cy="330" rx="50" ry="150" transform="rotate(14 960 330)" fill="var(--a-mot)"/>`, 3.2],
+    ["som", `<ellipse cx="1065" cy="345" rx="45" ry="140" transform="rotate(14 1065 345)" fill="var(--a-som)"/>`, 4.4],
+    ["aud", `<ellipse cx="930" cy="615" rx="125" ry="48" transform="rotate(-8 930 615)" fill="var(--a-aud)"/>`, 5.6],
+    ["vis", `<ellipse cx="1335" cy="520" rx="68" ry="120" fill="var(--a-vis)"/>`, 6.8],
+    ["mem", `<ellipse cx="1060" cy="690" rx="70" ry="34" fill="var(--a-mem)"/>`, 8]
+  ];
+  for (const [id, shape, ta] of A) s += `<g id="${k}${id}" opacity=".9" ${withAreas ? `data-a="pop ${t0 + ta} .4"` : ""}>${shape}</g>`;
+  return s;
+}
+document.getElementById("s0n").innerHTML = neuron(.6, .5, "s0dot");
+document.getElementById("s4n").innerHTML = neuron(.3, .9, null);
+document.getElementById("s5n").innerHTML = neuron(0, .01, "s5dot");
+document.getElementById("s9b").innerHTML = brain("s9", .4, true);
+document.getElementById("s10b").innerHTML = brain("s10", 0, false);
+document.getElementById("s12b").innerHTML = brain("s12", 0, false);
+/* nerf : coupe avec des axones */
+(() => { let s = ""; const R = [[1300,470],[1270,520],[1330,520],[1300,560],[1260,590],[1340,590],[1290,620],[1320,650],[1280,680],[1310,700],[1260,640],[1345,640],[1285,500],[1320,480]];
+  R.forEach(([x,y],i) => s += `<circle cx="${x}" cy="${y}" r="17" data-a="pop ${1.2 + i * .08} .3"/>`); document.getElementById("s6ax").innerHTML = s; })();
+/* synapse : récepteurs */
+(() => { let s = ""; [380, 440, 500, 560, 620, 680].forEach((y, i) => s += `<path id="rc${i}" d="M1035 ${y} l-22 -14 M1035 ${y} l-22 14 M1035 ${y} l20 0"/>`); document.getElementById("s7rec").innerHTML = s; })();
+/* molécules (positions de départ et d'arrivée) */
+const NT7 = Array.from({length: 18}, (_, i) => ({x0: 860 + (i % 3) * 20, y0: 440 + i * 9, x1: 1008, y1: 380 + (i % 6) * 60 + (i % 2 ? 6 : -6), d: (i % 6) * .12}));
+document.getElementById("s7nt").innerHTML = NT7.map((_, i) => `<circle id="nt${i}" r="9" style="opacity:0"/>`).join("");
+const NT8 = Array.from({length: 14}, (_, i) => ({x0: 760, y0: 420 + i * 9, x1: 832, y1: 400 + (i % 7) * 26, d: (i % 7) * .1}));
+document.getElementById("s8nt").innerHTML = NT8.map((_, i) => `<circle id="mt${i}" r="9" style="opacity:0"/>`).join("");
+const D14a = Array.from({length: 5}, (_, i) => ({x: 300 + i * 40, d: i * .5}));
+const D14b = Array.from({length: 22}, (_, i) => ({x: 210 + (i % 11) * 34, d: (i % 11) * .18 + (i > 10 ? .3 : 0)}));
+document.getElementById("s14a").innerHTML = D14a.map((_, i) => `<circle id="da${i}" r="11"/>`).join("");
+document.getElementById("s14b").innerHTML = D14b.map((_, i) => `<circle id="db${i}" r="11"/>`).join("");
+document.getElementById("s14d").innerHTML = [0,1,2,3,4].map(i => `<path id="dd${i}" d="M0 -14 L14 12 L-14 12Z"/>`).join("");
+
+/* ---------- moteur d'animation : tout est une fonction du temps t ---------- */
+const cl = x => Math.max(0, Math.min(1, x));
+const E = {out: x => 1 - Math.pow(1 - x, 3), io: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2, back: x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }};
+const $ = id => document.getElementById(id);
+const scenes = [...document.querySelectorAll(".sc")];
+let acc = 0;
+scenes.forEach(s => { s._s = acc; acc += +s.dataset.d; s._e = acc; });
+const TOTAL = acc;
+const anims = scenes.map(s => [...s.querySelectorAll("[data-a]")].map(el => {
+  const [type, a, d, oa, od] = el.dataset.a.split(/\s+/);
+  const svg = el instanceof SVGElement;
+  return {el, type, a: +a, d: +(d || .6), oa: oa !== undefined ? +oa : null, od: +(od || .5), len: 0, svg, base: svg ? (el.getAttribute("transform") || "") : null, c: null};
+}));
+function xf(A, k, dy){   // transformation composée : SVG via l'attribut (garde translate/rotate d'origine), HTML via CSS
+  if (!A.svg) { A.el.style.transform = `translateY(${dy}px) scale(${k})`; return; }
+  if (!A.c) { const b = A.el.getBBox(); A.c = [b.x + b.width / 2, b.y + b.height / 2]; }
+  const [cx, cy] = A.c;
+  A.el.setAttribute("transform", `${A.base} translate(${cx} ${cy + dy}) scale(${k}) translate(${-cx} ${-cy})`);
+}
+function apply(A, t){
+  const p = cl((t - A.a) / A.d), o = A.oa === null ? 1 : 1 - cl((t - A.oa) / A.od), el = A.el, e = E.out(p);
+  switch (A.type) {
+    case "fade": el.style.opacity = p * o; break;
+    case "up": el.style.opacity = e * o; xf(A, 1, (1 - e) * 40); break;
+    case "pop": el.style.opacity = cl(p * 3) * o; xf(A, .5 + .5 * E.back(p), 0); break;
+    case "grow": el.style.opacity = (p > 0 ? 1 : 0) * o; el.style.transform = `scaleX(${e})`; break;
+    case "draw": if (!A.len) A.len = el.getTotalLength() || 1; el.style.strokeDasharray = A.len; el.style.strokeDashoffset = A.len * (1 - E.io(p)); el.style.opacity = (p > 0 ? 1 : 0) * o; break;
+  }
+}
+function along(path, p){ const L = path.getTotalLength(); return path.getPointAtLength(L * cl(p)); }
+function dotOn(dot, path, p){ if (p <= 0 || p >= 1) { dot.style.opacity = 0; return; } const q = along(path, p); dot.setAttribute("transform", `translate(${q.x} ${q.y})`); dot.style.opacity = 1; }
+const seg = (t, a, d) => (t - a) / d;
+const lerp = (a, b, p) => a + (b - a) * p;
+function areaGlow(id, t, a){ const g = $(id); if (!g) return; const p = cl((t - a) / .4); g.style.opacity = .15 + .85 * p; g.style.filter = p > 0 ? `drop-shadow(0 0 ${18 * p}px rgba(255,184,0,.9))` : "none"; }
+
+const HOOKS = {
+  s0(t){ dotOn($("s0dot"), $("s0dotp"), seg((t - 5) % 2.4 + 5, 5, 2) * (t > 5 ? 1 : 0)); },
+  s1(t){ const P = $("p1path");
+    const legs = [[3.6, 1.6, 260, 630], [8.4, 2.4, 630, 1000], [15.4, 2.4, 1000, 1370], [19.4, 1.4, 1370, 1715]];
+    const dot = $("p1dot"); dot.style.opacity = 0;
+    for (const [a, d, x0, x1] of legs) { const p = seg(t, a, d); if (p > 0 && p < 1) { dot.setAttribute("transform", `translate(${lerp(x0, x1, E.io(p))} 480)`); dot.style.opacity = 1; } }
+  },
+  s3(t){ const p = ((t - 1) % 1) ; $("s3dot").setAttribute("cx", t > 1 ? lerp(1000, 1760, p) : 1000);
+    const a = $("s3dot"); a.style.opacity = t > 1 && t < 7 ? 1 : 0; },
+  s5(t){ const p = t > 1 ? ((t - 1) % 2.2) / 2.2 : 0; dotOn($("s5dot"), $("s5dotp"), p);
+    const a = $("s5a"), b = $("s5b"), q = t - 9.6;
+    if (q < 0) { a.setAttribute("cx", 560); b.setAttribute("cx", 560); return; }
+    const pa = cl(q / 1.4), pb = cl(q / 4.2); const hop = Math.floor(pa * 8) / 8;   // la myéline fait « sauter » le message
+    a.setAttribute("cx", lerp(560, 1700, q < 1.4 ? hop + (pa * 8 % 1 > .7 ? .125 * ((pa * 8 % 1) - .7) / .3 : 0) : 1)); b.setAttribute("cx", lerp(560, 1700, pb));
+  },
+  s7(t){ dotOn($("s7dot"), $("s7in"), seg(t, 3, 2.2));
+    const ves = $("s7ves"); ves.style.opacity = 1;
+    NT7.forEach((m, i) => { const el = $("nt" + i), p = cl(seg(t, 5.6 + m.d, 1.6)); el.style.opacity = t > 5.4 + m.d ? 1 : 0;
+      el.setAttribute("cx", lerp(m.x0, m.x1, E.io(p))); el.setAttribute("cy", lerp(m.y0, m.y1, E.io(p))); });
+    [0,1,2,3,4,5].forEach(i => { const r = $("rc" + i); r.style.stroke = t > 8.4 + i * .12 ? "#0F8456" : "#CC2D2A"; });
+    dotOn($("s7dot") , $("s7in"), seg(t, 3, 2.2));
+    const p2 = seg(t, 9.6, 2.4); if (p2 > 0 && p2 < 1) dotOn($("s7dot"), $("s7out"), p2);
+    if (t > 12 && t < 18.5) { const p3 = seg((t - 12) % 3.25, 0, 1.2); dotOn($("s7dot"), $("s7in"), p3); }
+  },
+  s8(t){ const block = t > 10;
+    NT8.forEach((m, i) => { const el = $("mt" + i), base = block ? 11 : 1.4, p = cl(seg(t, base + m.d, 1.2));
+      el.style.opacity = t > base + m.d - .1 && !(block && t < 11) ? 1 : 0; const x1 = block ? 760 : m.x1;
+      el.setAttribute("cx", lerp(m.x0, x1, E.io(p))); el.setAttribute("cy", lerp(m.y0, m.y1, E.io(p))); });
+    const c = !block ? cl(seg(t, 3, .6)) : 0, mus = $("s8mus");
+    mus.style.transform = `scale(${1 - .14 * E.out(c)}, ${1 + .18 * E.out(c)})`;
+    $("s8con").style.opacity = !block ? cl(seg(t, 3.2, .4)) * (1 - cl(seg(t, 9, .4))) : 0;
+    $("s8bar").style.opacity = cl(seg(t, 10.6, .4)); $("s8ane").style.opacity = cl(seg(t, 10.8, .4));
+  },
+  s10(t){ ["aud", "mem", "dec", "mot"].forEach(k => { const g = $("s10" + k); if (g) g.style.opacity = .18; });
+    areaGlow("s10aud", t, 2); areaGlow("s10mem", t, 6.4); areaGlow("s10dec", t, 10.4); areaGlow("s10mot", t, 14.4);
+    ["som", "vis"].forEach(k => $("s10" + k).style.opacity = .18); },
+  s12(t){ ["dec", "mot", "som", "aud", "mem"].forEach(k => $("s12" + k).style.opacity = .35);
+    const v = $("s12vis"), p = cl(seg(t, 1.2, 2.4)); v.style.opacity = .9 - .55 * p; v.style.filter = `grayscale(${p})`;
+    const h = $("s12h"); h.setAttribute("r", 10 + 70 * E.out(p)); h.style.opacity = .85 * (t > 1 ? 1 : 0); },
+  s14(t){ const loop = (t % 2.4) / 2.4;
+    D14a.forEach((m, i) => { const el = $("da" + i), p = cl(((t + m.d) % 2.4) / 1.6); el.setAttribute("cx", m.x + 40); el.setAttribute("cy", lerp(150, 330, p)); el.style.opacity = t > 1 ? 1 : 0; });
+    D14b.forEach((m, i) => { const el = $("db" + i), p = cl(((t + m.d) % 2.4) / 1.6); el.setAttribute("cx", m.x + 40); el.setAttribute("cy", lerp(150, 330, p)); el.style.opacity = t > 1.6 ? 1 : 0; });
+    [0,1,2,3,4].forEach(i => { const el = $("dd" + i); el.setAttribute("transform", `translate(${260 + i * 60} ${100 + (i % 2) * 40})`); el.style.opacity = t > 1.2 ? 1 : 0; });
+  }
+};
+function render(T){
+  for (let i = 0; i < scenes.length; i++) {
+    const s = scenes[i], on = T >= s._s && T < s._e;
+    s.style.display = on ? "block" : "none";
+    if (!on) continue;
+    const t = T - s._s;
+    s.style.opacity = Math.min(cl(t / .45), cl((s._e - T) / .45));
+    for (const A of anims[i]) apply(A, t);
+    if (HOOKS[s.id]) HOOKS[s.id](t);
+  }
+}
+/* sons : un petit « pop » à chaque apparition d'étiquette */
+function events(){ const out = []; scenes.forEach((s, i) => anims[i].forEach(A => { if (A.type === "pop" && A.el.classList.contains("pill") || A.type === "pop" && A.el.classList.contains("box")) out.push(+(s._s + A.a).toFixed(2)); })); return out.sort((a, b) => a - b); }
+const chapters = () => [["Introduction", 0], ["1 · Le trajet du message", "s1"], ["2 · Le neurone", "s4"], ["3 · La synapse", "s7"], ["4 · Le cerveau", "s9"], ["5 · Addictions et hygiène de vie", "s13"], ["À retenir", "s16"]]
+  .map(([n, id]) => [typeof id === "number" ? id : $(id)._s, n]);
+window.FILM = {render, TOTAL, events, chapters};
+function fit(){ const k = Math.min(innerWidth / 1920, innerHeight / 1080); $("stage").style.transform = `scale(${k})`; }
+addEventListener("resize", fit); fit(); render(0);
+</script>
+</body></html>

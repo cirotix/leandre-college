@@ -15,6 +15,7 @@ lib/home.js                logique de l'accueil
 <matiere>/<module>/module.js   le module : données + règles, rien d'autre
 tools/check.py             vérifications de cohérence à lancer avant chaque commit
 tools/test_module.py       test d'un module dans Chromium : python3 tools/test_module.py <matiere>/<module>/ [--shots DOSSIER]
+tools/film/                fabrication des films animés des modules (make_film.py + sources/ des scènes)
 sw.js                      service worker : hors connexion (réseau d'abord, modules préchargés via modules.json) + notifications
 lib/push.js                bloc « Notifications » de l'accueil (abonnement) ; adresse du worker dans push.json
 worker/                    Worker Cloudflare « leandre-push » (abonnements en KV, envoi Web Push sans dépendance)
@@ -34,10 +35,15 @@ Identifiants en minuscules, sans accent, avec des tirets : `maths/fractions/`, `
    Nouvelle matière : l'ajouter dans `matieres` (`id`, `nom`, `couleur` parmi hl-1, hl-2, hl-3).
 4. `python3 tools/check.py` puis `python3 tools/test_module.py <chemin> --shots /tmp/shots` (regarder les captures), commit, push.
 
-Vidéo de révision (facultative) : poser le fichier dans le dossier du module (`video.mp4` en H.264/AAC, < 100 Mo,
-remuxé avec `ffmpeg -i in.mp4 -c copy -movflags +faststart video.mp4`, affiche `video.jpg`) et déclarer `video` dans
-`Revision.start`. Sans `video`, rien ne change. Les vidéos ne passent pas par le cache hors connexion (sw.js).
-Le Chromium des tests ne lit pas le H.264 : pour tester la lecture, utiliser une copie WebM temporaire.
+Vidéo (facultative, sur demande de Damien) : un film animé de ~5 min, sans voix off, fabriqué avec `tools/film/` :
+- source = une page HTML de scènes, `tools/film/sources/<matiere>-<module>.html` ; partir de
+  `sciences-systeme-nerveux.html` (moteur d'animation, style cahier, dessins du neurone et du cerveau réutilisables) ;
+- `python3 tools/film/make_film.py <source> --preview DOSSIER [--at 12,40]` : planche d'images pour relire la mise en page ;
+- `python3 tools/film/make_film.py <source> --out <matiere>/<module>/` : écrit `film.mp4` (H.264/AAC, faststart) et
+  `film.jpg`, et affiche les chapitres à recopier dans `video: {src: "film.mp4", poster: "film.jpg", length, title, text, chapters}`.
+Une vidéo fournie par Damien peut aussi être déposée telle quelle (H.264/AAC, < 100 Mo, remuxée avec
+`ffmpeg -i in.mp4 -c copy -movflags +faststart video.mp4`). Sans `video`, rien ne change. Les vidéos ne passent pas par
+le cache hors connexion (sw.js). Le Chromium des tests ne lit pas le H.264 : pour tester la lecture, copie WebM temporaire.
 
 Ne pas modifier le moteur pour un besoin propre à un module : soit c'est générique et ça va dans `lib/`
 (en vérifiant que tous les modules marchent encore), soit ça reste dans le `module.js`.
