@@ -65,8 +65,11 @@ export async function checkNewModules(env, fetchImpl = fetch){
   const data = await res.json();
   const seen = await env.SUBS.get("seen-modules", "json");
   const all = data.modules.map(m => m.chemin);
-  if (!seen) { await env.SUBS.put("seen-modules", JSON.stringify(all)); return {initialised: all.length}; }
-  const fresh = data.modules.filter(m => !seen.includes(m.chemin));
+  // Premier passage : on considère comme déjà annoncés les modules ajoutés il y a plus de 2 jours,
+  // pour ne pas rater un module publié juste avant la toute première vérification.
+  const recent = m => m.ajoute && Date.now() - new Date(m.ajoute + "T00:00:00Z").getTime() < 2 * 864e5;
+  const known = seen || data.modules.filter(m => !recent(m)).map(m => m.chemin);
+  const fresh = data.modules.filter(m => !known.includes(m.chemin));
   const mat = Object.fromEntries((data.matieres || []).map(m => [m.id, m.nom]));
   const results = [];
   for (const m of fresh) {
@@ -77,7 +80,7 @@ export async function checkNewModules(env, fetchImpl = fetch){
       tag: "module-" + m.chemin
     }, fetchImpl));
   }
-  if (fresh.length) await env.SUBS.put("seen-modules", JSON.stringify([...new Set([...seen, ...all])]));
+  if (fresh.length || !seen) await env.SUBS.put("seen-modules", JSON.stringify([...new Set([...known, ...all])]));
   return {fresh: fresh.map(m => m.chemin), results};
 }
 
