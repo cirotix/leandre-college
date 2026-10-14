@@ -16,6 +16,10 @@ VAPID_SUBJECT = "https://leandre.cirotteau.info/"
 MODULES_CRON = "17 * * * *"
 # Rappels de révision (désactivés) : {"<cron UTC>": {"title": "…", "body": "…"}}, et ajouter le cron dans [triggers]
 REMINDERS = "{}"
+# Correction des réponses rédigées (src/ia.js). Secrets à poser une fois : wrangler secret put ANTHROPIC_API_KEY / IA_PASSWORD
+IA_MODEL = "claude-sonnet-5-5"
+IA_MODELS = "claude-sonnet-5-5,claude-haiku-5-5"
+IA_DAILY = "40"
 
 [triggers]
 crons = ["17 * * * *"]

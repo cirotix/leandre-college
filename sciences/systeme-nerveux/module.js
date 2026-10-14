@@ -438,6 +438,53 @@ function make(kinds, n, typed){
   return G.cours(n);
 }
 
+/* ---------- rédaction : questions comme à l'évaluation, corrigées critère par critère ---------- */
+const REDAC = [
+  {id: "avc-jean", unit: "air", titre: "L'AVC de Jean",
+   doc: `<p>Jean a fait un <b>AVC</b> : une hémorragie soudaine dans son cerveau. L'IRM montre que la zone touchée se trouve <b>à l'arrière du cerveau</b>.</p>
+     <p>Rappel du document 2 : le cerveau est divisé en <b>aires</b> spécialisées. L'aire visuelle est à l'arrière du cerveau, l'aire motrice sur le dessus, l'aire auditive sur le côté.</p>
+     <p>Document 3 : des patients touchés à cet endroit confondent les formes et les couleurs des objets.</p>`,
+   consigne: `<p>Tu es médecin. Écris quelques phrases à la famille de Jean pour lui expliquer <b>quelle aire de son cerveau est touchée</b> et <b>quelles seront les conséquences</b> de son AVC. Appuie-toi sur les documents.</p>`,
+   modele: "D'après l'IRM (document 1), l'hémorragie a touché l'arrière du cerveau de Jean. Le document 2 montre que l'arrière du cerveau correspond à l'aire visuelle : c'est la zone qui traite les messages venant des yeux. Chaque aire du cerveau est spécialisée dans une fonction, donc si l'aire visuelle est abîmée, cette fonction ne se fait plus correctement. Comme les patients du document 3, Jean risque d'avoir des troubles de la vue : il pourra confondre les formes et les couleurs des objets.",
+   criteres: [
+     {t: "Dit que la zone touchée est l'aire visuelle, à l'arrière du cerveau", pts: 1},
+     {t: "Explique qu'une aire est spécialisée dans une fonction : abîmée, elle ne fonctionne plus bien", pts: 1},
+     {t: "En déduit un trouble de la vue (formes, couleurs)", pts: 1},
+     {t: "S'appuie sur les documents (« d'après le document… »)", pts: 1},
+     {t: "Rédige des phrases claires, adressées à la famille", pts: 1}]},
+  {id: "sprinteuse", unit: "trj", titre: "Le départ de la sprinteuse",
+   doc: `<p>Sur ses starting-blocks, la sprinteuse attend le coup de feu. Dès qu'elle l'entend, elle s'élance.</p>`,
+   consigne: `<p>Explique le <b>trajet du message nerveux</b>, du coup de feu jusqu'au mouvement, en utilisant le vocabulaire du cours. Tu peux aussi faire le <b>schéma fonctionnel</b> sur une feuille et le prendre en photo.</p>`,
+   modele: "Le coup de feu est le stimulus. Il est capté par l'oreille, un organe sensoriel. Un message nerveux part alors de l'oreille et circule dans un nerf sensitif jusqu'aux centres nerveux (le cerveau et la moelle épinière). Les centres nerveux envoient à leur tour un message nerveux moteur, qui circule dans des nerfs moteurs jusqu'aux muscles des jambes, les organes effecteurs. Les muscles se contractent : la sprinteuse s'élance.",
+   criteres: [
+     {t: "Le coup de feu (stimulus) est capté par l'oreille, un organe sensoriel", pts: 1},
+     {t: "Un message nerveux va de l'oreille aux centres nerveux par un nerf sensitif", pts: 1},
+     {t: "Les centres nerveux (cerveau, moelle épinière) envoient un message vers les muscles", pts: 1},
+     {t: "Ce message passe par un nerf moteur jusqu'aux muscles, les organes effecteurs, qui se contractent", pts: 1},
+     {t: "Les étapes sont dans le bon ordre", pts: 1}]},
+  {id: "cycliste", unit: "int", titre: "Le cycliste et le feu rouge",
+   doc: `<p>Un cycliste roule en ville. Le feu passe au rouge : il serre aussitôt le frein avec sa main.</p>`,
+   consigne: `<p>Explique ce qui se passe dans son système nerveux, <b>de l'œil jusqu'à la main</b>. Précise aussi <b>sous quelle forme</b> circule le message nerveux <b>dans un neurone</b> et <b>entre deux neurones</b>.</p>`,
+   modele: "La lumière rouge du feu est le stimulus : elle est captée par l'œil, un organe sensoriel. Un message nerveux circule dans un nerf sensitif jusqu'au cerveau, où il arrive dans l'aire visuelle. Le cerveau intègre l'information : il reconnaît le feu rouge grâce à la mémoire et décide de freiner. L'aire motrice envoie alors un message nerveux qui passe par la moelle épinière puis par un nerf moteur jusqu'aux muscles de la main, qui se contractent et serrent le frein. Dans un neurone, le message nerveux est électrique. Entre deux neurones, au niveau de la synapse, il devient chimique : le neurone libère des neurotransmetteurs qui se fixent sur le neurone suivant.",
+   criteres: [
+     {t: "L'œil (organe sensoriel) capte la lumière du feu, un nerf sensitif emmène le message au cerveau", pts: 1},
+     {t: "Le cerveau analyse l'information (aire visuelle, mémoire) et décide de freiner", pts: 1},
+     {t: "L'aire motrice envoie un message par la moelle épinière et un nerf moteur jusqu'aux muscles de la main", pts: 1},
+     {t: "Dans un neurone, le message nerveux est électrique", pts: 1},
+     {t: "Entre deux neurones (synapse), il est chimique : des neurotransmetteurs sont libérés", pts: 1}]},
+  {id: "dependance", unit: "add", titre: "Pourquoi devient-on dépendant ?",
+   doc: `<p>Document : « Les drogues perturbent le fonctionnement des synapses au niveau cérébral : elles entraînent une augmentation de la libération de dopamine, à l'origine de la dépendance. » La dopamine est une substance qui assure la communication entre neurones et provoque la sensation de plaisir.</p>
+     <p>En France, 12 millions de personnes fument du tabac chaque jour.</p>`,
+   consigne: `<p>Explique comment la consommation répétée d'une drogue peut entraîner une <b>dépendance</b>, puis donne <b>un conseil</b> pour garder son système nerveux en bonne santé.</p>`,
+   modele: "D'après le document, les drogues agissent sur les synapses du cerveau : elles font libérer beaucoup plus de dopamine que d'habitude. La dopamine provoque une sensation de plaisir, car elle stimule le circuit de la récompense. Le cerveau en redemande, alors la personne consomme à nouveau la drogue : c'est la dépendance, une addiction, qui est une maladie avec des conséquences nuisibles sur la santé. Pour préserver son système nerveux, il faut avoir une bonne hygiène de vie, par exemple dormir suffisamment, et ne pas consommer de drogues. En cas d'addiction, on peut se faire aider par un professionnel de santé.",
+   criteres: [
+     {t: "Les drogues agissent sur les synapses du cerveau", pts: 1},
+     {t: "Elles augmentent la libération de dopamine", pts: 1},
+     {t: "La dopamine donne du plaisir : le cerveau en redemande, d'où la dépendance", pts: 1},
+     {t: "Donne un conseil d'hygiène de vie (sommeil, ne pas consommer, se faire aider…)", pts: 1},
+     {t: "S'appuie sur le document", pts: 1}]}
+];
+
 /* ---------- passage au moteur ---------- */
 const asQuiz = e => ({unit: UBY[e.n], key: e.review, prompt: e.prompt, fig: e.fig, wide: e.wide, opts: e.opts, tip: e.tip,
   feedback: () => box(e.explain), review: e.review});
@@ -464,6 +511,7 @@ Revision.start({
     "2": {name: "La communication nerveuse", cls: "l2", filter: "Neurones et synapses"},
     "3": {name: "Le cerveau", cls: "l3", filter: "Le cerveau"}
   },
+  redaction: {items: REDAC, text: "4 sujets comme à l'évaluation : tu rédiges (ou tu prends ta copie en photo), puis tu es corrigé critère par critère."},
   units: UNITS,
   allLabel: () => "Tout le chapitre",
   mastery: {max: 5, noun: "notions", feminine: true, help: "Une pastille se remplit à chaque bonne réponse au contrôle et se vide à chaque erreur. Cinq pastilles : notion maîtrisée."},

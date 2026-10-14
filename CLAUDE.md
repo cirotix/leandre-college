@@ -18,7 +18,9 @@ tools/test_module.py       test d'un module dans Chromium : python3 tools/test_m
 tools/film/                fabrication des films animés des modules (make_film.py + sources/ des scènes)
 sw.js                      service worker : hors connexion (réseau d'abord, modules préchargés via modules.json) + notifications
 lib/push.js                bloc « Notifications » de l'accueil (abonnement) ; adresse du worker dans push.json
-worker/                    Worker Cloudflare « leandre-push » (abonnements en KV, envoi Web Push sans dépendance)
+worker/                    Worker Cloudflare « leandre-push » : notifications (KV, Web Push) + correction par l'IA (src/ia.js)
+worker/test/ia.test.mjs    test de la correction IA sans réseau : node worker/test/ia.test.mjs
+outils/comparer-ia.html    page cachée : 10 réponses tests corrigées par Haiku et Sonnet, pour choisir le modèle
 .github/workflows/deploy-worker.yml   déploie worker/ à chaque push qui le modifie
 ```
 
@@ -63,6 +65,10 @@ Ne pas modifier le moteur pour un besoin propre à un module : soit c'est géné
   je savais, gauche = à revoir ; en parcours, gauche = suivante, droite = précédente. Une notion avec des cartes
   difficiles est tirée plus souvent au quiz et au contrôle ; la maîtrise, elle, ne bouge qu'au contrôle.
   Pour tester sur plusieurs jours : `window.__revisionNow = "2026-10-20T18:00"` avant d'appeler les fonctions.
+- Rédaction (si `redaction`) : dernière étape. Sujets comme à l'évaluation (document + consigne), réponse tapée ou
+  photo de la copie, puis correction critère par critère : par l'IA si l'appareil est débloqué (mot de passe tapé une
+  fois, jeton gardé dans `localStorage["revisions-ia-jeton"]`), sinon autocorrection (cases à cocher + réponse modèle).
+  Meilleure note par sujet dans `S.rd`.
 - Quiz et contrôle : glisser à gauche = question suivante une fois la réponse donnée ; en fin de série, les boutons
   passent avant la liste des erreurs (repliée) et « Revoir les cartes » relance les cartes des notions ratées.
 - Chaque module écrit un résumé dans `localStorage["revisions-index"]` (`{chemin: {seen, done, n, noun, fem, cd, k, kd}}`, k = cartes du jour calculées le jour kd),
@@ -78,6 +84,8 @@ Revision.start({
   title, subtitle?, eyebrow?, hand?,        // en-tête du module (hand = note manuscrite rouge)
   countdown?: {date: "AAAA-MM-JJ", label: "mardi 13 octobre"},
   video?: {src: "video.mp4", poster?, length?: "6 min", title?, text?, chapters?: [[secondes, "titre"]]} ou une liste de ces objets,  // tuile « Vidéo(s) »
+  redaction?: {text?, items: [{id, unit, titre, doc?: html, consigne: html, photo?: false, modele: "texte",
+               criteres: [{t: "ce que la réponse doit contenir", pts}]}]},   // étape « Rédaction »
   groups: {"1": {name, plural?, cls: "l1"|"l2"|"l3", filter?}},   // couleur + chips « Je révise »
   units: [{id, name, group, tag?, sub?}],   // ce dont on suit la maîtrise (verbe, notion…)
   allLabel?: n => "Tout le chapitre",
@@ -108,6 +116,18 @@ La note du contrôle = moyenne des items (un item à champs vaut la part de cham
 - Exercices générés avec des nombres tirés au hasard, correction rédigée « comme au tableau ».
 - Tout en français, ton encourageant. Aucune dépendance externe hors Google Fonts.
 - Ne jamais renommer ni déplacer un module publié (favoris, écran d'accueil) ni changer sa `key` (progression perdue).
+
+## Correction par l'IA (worker, src/ia.js)
+
+- Routes : `GET /ia/etat`, `POST /ia/login {password}` → jeton signé (HMAC, 400 jours), `POST /ia/evaluer {token, sujet,
+  reponse | image, model?}` → `{criteres: [{ok, commentaire, pts}], points, total, bilan, conseil, transcription, restant}`.
+- Secrets posés par Damien, jamais dans le dépôt : `wrangler secret put ANTHROPIC_API_KEY` et `wrangler secret put IA_PASSWORD`.
+  Changer `IA_PASSWORD` invalide tous les jetons. Sans ces secrets, le site propose seulement l'autocorrection.
+- `wrangler.toml` : `IA_MODEL` (par défaut), `IA_MODELS` (autorisés, pour la comparaison), `IA_DAILY` (corrections par jour
+  et par appareil ; une erreur de l'API ne compte pas). Sortie JSON contrainte (`output_config.format`), consigne au modèle
+  d'ignorer toute instruction écrite dans la copie.
+- Grille : 3 à 5 critères vérifiables chacun (« dit que… », « s'appuie sur le document »), une réponse modèle de niveau
+  collège ; le worker calcule les points à partir des critères, pas le modèle.
 
 ## Notifications
 

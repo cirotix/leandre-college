@@ -399,3 +399,49 @@ details.misses[open] > summary{color:var(--muted)}
 [hidden]{display:none !important}
 .vpick{margin:0 0 12px}
 .vtext{margin:0 2px 10px}
+
+/* ---------- rédaction ---------- */
+.modes.four > .mode:last-child:nth-child(odd){grid-column:1 / -1}
+.rd-lead{margin:0 0 18px}
+.rd-list{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.rd-item{display:grid; gap:10px; text-align:left; padding:14px 18px 18px; border:0; cursor:pointer; color:var(--ink); transform:rotate(var(--r,0deg)); font:inherit}
+.rd-top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.rd-t{font-family:var(--f-display); font-size:26px; line-height:1.15; color:var(--pen)}
+.rd-score{font-size:14px; font-weight:700; color:var(--muted); white-space:nowrap}
+.rd-score.on{color:var(--ok)}
+.rd-sheet{padding:0 20px 22px}
+.rd-h{font-family:var(--f-display); font-weight:400; font-size:30px; color:var(--pen); margin:14px 0 6px; line-height:1.15}
+.rd-doc{background:var(--paper); border-radius:8px; padding:4px 16px 12px; margin:12px 0; border-left:4px solid var(--line)}
+.rd-doc p, .rd-q p{margin:6px 0}
+.rd-q{margin:12px 0 16px; font-size:18px; font-weight:500}
+.seg{display:flex; gap:8px; margin:0 0 12px}
+.rd-text{display:block; width:100%; box-sizing:border-box; min-height:220px; font:16px/28px var(--f-body); color:var(--ink); background:var(--sheet);
+  border:1.5px solid var(--line); border-radius:10px; padding:2px 14px; resize:vertical;
+  background-image:repeating-linear-gradient(180deg, transparent 0 27px, var(--card-rule) 27px 28px); background-attachment:local}
+.rd-text:focus{outline:none; border-color:var(--pen); box-shadow:0 0 0 3px var(--pen-soft)}
+.rd-count{text-align:right; margin:4px 0 0; min-height:18px}
+.rd-pick{cursor:pointer}
+.rd-prev{display:block; max-width:100%; max-height:420px; margin:12px auto; border-radius:8px; box-shadow:0 2px 10px var(--shadow)}
+.rd-err{color:var(--red); font-weight:600; min-height:0; margin:10px 0 0}
+.rd-err:empty{display:none}
+.ia-unlock{margin:18px 0 0}
+.ia-unlock > summary{cursor:pointer; color:var(--pen); font-weight:600}
+.ia-form{display:grid; gap:6px; margin-top:10px}
+.ia-form .numrow{display:flex; gap:10px}
+.ia-form .inp{flex:1; min-width:0}
+.ia-on{color:var(--ok); margin:18px 0 0}
+.rd-mine, .rd-model{background:var(--paper); border-radius:8px; padding:4px 16px 10px; margin:12px 0}
+.rd-model{border-left:4px solid var(--ok)}
+.rd-checks{display:grid; gap:8px; margin:6px 0 4px}
+.rd-check{display:grid; grid-template-columns:28px 1fr auto; gap:10px; align-items:start; padding:12px 14px; border:1.5px solid var(--line); border-radius:10px; cursor:pointer; background:var(--sheet)}
+.rd-check input{width:22px; height:22px; margin:2px 0 0; accent-color:var(--ok)}
+.rd-check b{font-size:13px; color:var(--muted); white-space:nowrap}
+.rd-bilan{font-size:24px}
+.rd-crits{display:grid; gap:8px; text-align:left; margin:16px 0 8px}
+.rd-crit{display:grid; grid-template-columns:34px 1fr auto; gap:10px; align-items:start; padding:12px 14px; border-radius:10px; border:1.5px solid var(--line)}
+.rd-crit.ok{border-color:var(--ok); background:var(--ok-soft)} .rd-crit.ko{border-color:var(--red); background:var(--red-soft)}
+.rd-mark{font-weight:900; font-size:20px; line-height:1.2} .rd-crit.ok .rd-mark{color:var(--ok)} .rd-crit.ko .rd-mark{color:var(--red)}
+.rd-com{display:block; font-size:15px; margin-top:3px}
+.rd-crit em{font-style:normal; font-weight:700; font-size:14px; color:var(--muted); white-space:nowrap}
+.rd-tip{text-align:left; margin:10px 0 0; font-size:15px}
+.rd-tr{text-align:left; padding:6px 2px 10px; margin:0}

@@ -4,10 +4,14 @@
      POST /subscribe          {subscription}            → enregistre la tablette
      POST /unsubscribe        {endpoint}                → l'oublie
      POST /test               {endpoint}                → notification de test vers cette tablette seulement
+     GET  /ia/etat            correction par l'IA activée ? (clé et mot de passe présents)
+     POST /ia/login           {password}                → jeton pour cet appareil (voir ia.js)
+     POST /ia/evaluer         {token, sujet, reponse | image, model?} → correction critère par critère
    Tâches planifiées (wrangler.toml → [triggers]) :
      - toutes les heures : regarde modules.json sur le site et annonce les nouveaux modules
      - rappels de révision éventuels, définis dans la variable REMINDERS {"<cron>": {title, body, url}} */
 import {generateVapidKeys, sendPush} from "./webpush.js";
+import {iaLogin, iaEvaluer} from "./ia.js";
 
 const PUSH_HOSTS = [/^web\.push\.apple\.com$/, /^fcm\.googleapis\.com$/, /(^|\.)push\.services\.mozilla\.com$/, /\.notify\.windows\.com$/];
 const MAX_SUBS = 200;
@@ -112,6 +116,16 @@ export default {
         subs.forEach(s => { const host = new URL(s.subscription.endpoint).hostname; hosts[host] = (hosts[host] || 0) + 1; });
         return json({subscriptions: subs.length, byService: hosts, created: subs.map(s => s.created).sort(),
           seenModules: await env.SUBS.get("seen-modules", "json"), lastRuns: (await env.SUBS.get("runs", "json")) || []}, 200, h);
+      }
+      if (req.method === "GET" && url.pathname === "/ia/etat") {
+        return json({active: !!(env.IA_PASSWORD && env.ANTHROPIC_API_KEY), model: env.IA_MODEL || null}, 200, h);
+      }
+      if (req.method === "POST" && url.pathname === "/ia/login") {
+        const {password} = await req.json();
+        const r = await iaLogin(env, password); return json(r.body, r.status, h);
+      }
+      if (req.method === "POST" && url.pathname === "/ia/evaluer") {
+        const r = await iaEvaluer(env, await req.json()); return json(r.body, r.status, h);
       }
       if (req.method === "GET" && url.pathname === "/vapid-public-key") {
         return json({key: (await getVapid(env)).publicKey}, 200, h);

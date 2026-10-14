@@ -58,6 +58,10 @@ INVARIANTS = r"""() => {
     } else add(`${where} : kind inconnu « ${it.kind} »`);
   };
   const stats = {cards: 0, quiz: 0, control: 0, filters: []};
+  for (const it of (M.redaction && M.redaction.items) || []) {
+    if (!it.id || !it.consigne || !it.modele || !Array.isArray(it.criteres) || !it.criteres.length) add(`rédaction « ${it.id} » : consigne, modèle ou critères manquants`);
+    if (it.unit && !R.unit(it.unit)) add(`rédaction « ${it.id} » : unit inconnue`);
+  }
   const pools = [["tout", R.units]];
   Object.keys(M.groups).forEach(g => { const p = R.units.filter(u => u.group === g); if (p.length) pools.push([g, p]); });
   for (const [name, pool] of pools) {
@@ -126,6 +130,23 @@ async def ui_pass(pg, shots_prefix=None):
         if not shot_done: await shot("controle"); shot_done = True
         await pg.click("#cbtn")
     assert await pg.query_selector(".grade"), "le contrôle ne mène pas à la note"
+    # rédaction (si le module en a) : un sujet, une réponse, l'autocorrection jusqu'à la note
+    if await pg.evaluate("!!(window.__module.M.redaction && window.__module.M.redaction.items.length)"):
+        await pg.click("[data-act=home]"); await pg.click("[data-act=redaction]"); await pg.click("[data-act=rdopen]")
+        await pg.fill("#rdtext", "Une réponse de test assez longue pour être corrigée par l'élève lui-même.")
+        await pg.click("[data-act=rdself]"); await pg.click("#rdc0"); await pg.click("[data-act=rdselfok]")
+        assert await pg.query_selector(".rd-crits"), "l'autocorrection de la rédaction ne mène pas à la note"
+        await pg.click("[data-act=home]"); await pg.click("[data-act=control]"); await pg.click("[data-act=cstart]")
+        for _ in range(200):
+            if not await pg.query_selector("#cform"): break
+            if await pg.query_selector("#c-0"):
+                k = 0
+                while await pg.query_selector(f"#c-{k}"):
+                    await pg.fill(f"#c-{k}", "test"); k += 1
+                await pg.click("#cbtn")
+            else:
+                await pg.click("[data-act=canswer]")
+            await pg.click("#cbtn")
     retry = await pg.query_selector("[data-act=cretry]")
     if retry:
         await retry.click(); assert await pg.query_selector("#cform"), "« Refaire mes erreurs » ne relance pas"
