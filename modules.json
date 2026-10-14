@@ -84,6 +84,36 @@
         "Los Angeles",
         "São Paulo"
       ]
+    },
+    {
+      "matiere": "sciences",
+      "chemin": "sciences/systeme-nerveux/",
+      "titre": "Le système nerveux",
+      "chapitre": "SVT · Thème 1 · Chapitre 1",
+      "resume": "Trajet du message nerveux, neurone et synapse, aires du cerveau, addictions.",
+      "ajoute": "2026-10-14",
+      "motsCles": [
+        "SVT",
+        "système nerveux",
+        "neurone",
+        "synapse",
+        "axone",
+        "myéline",
+        "dendrites",
+        "neurotransmetteur",
+        "stimulus",
+        "organe sensoriel",
+        "organe effecteur",
+        "nerf sensitif",
+        "nerf moteur",
+        "moelle épinière",
+        "cerveau",
+        "aires cérébrales",
+        "AVC",
+        "intégration",
+        "addiction",
+        "dopamine"
+      ]
     }
   ]
 }
