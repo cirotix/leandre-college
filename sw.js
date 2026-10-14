@@ -1,8 +1,8 @@
 /* Service worker du site : révisions disponibles hors connexion + réception des notifications.
    Stratégie « réseau d'abord » : une mise à jour du site est visible tout de suite quand on est connecté,
    et la dernière version vue reste utilisable sans réseau. */
-const CACHE = "revisions-v1";
-const CORE = ["./", "index.html", "modules.json", "manifest.webmanifest", "icon.svg",
+const CACHE = "revisions-v2";
+const CORE = ["./", "index.html", "modules.json", "manifest.webmanifest", "icon.svg", "icon-192.png", "apple-touch-icon.png",
   "lib/revision.css", "lib/revision.js", "lib/home.js", "lib/push.js", "lib/module.html"];
 
 self.addEventListener("install", event => {
@@ -56,7 +56,7 @@ self.addEventListener("push", event => {
   event.waitUntil(self.registration.showNotification(d.title || "Révisions", {
     body: d.body || "",
     tag: d.tag,
-    icon: "icon.svg",
+    icon: "icon-192.png",
     data: {url: d.url || self.registration.scope}
   }));
 });
