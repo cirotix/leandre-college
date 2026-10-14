@@ -440,7 +440,7 @@ Revision.start({
   allLabel: () => "Tout le chapitre",
   mastery: {max: 5, noun: "notions", feminine: true, help: "Une pastille se remplit à chaque bonne réponse au contrôle et se vide à chaque erreur. Cinq pastilles : notion maîtrisée."},
   modes: {
-    cards: ["pour commencer", "Lis la question, retourne la carte : la leçon et des exemples."],
+    cards: ["la leçon", "Lis la question, retourne la carte : la leçon et des exemples."],
     quiz: ["10 questions", "Définitions, schéma du neurone, étapes dans l'ordre, vrai ou faux."],
     control: ["noté sur 20", "Tu écris les mots toi-même et tu légendes le neurone, comme à l'évaluation."]
   },
