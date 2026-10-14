@@ -4,7 +4,7 @@
 
 Vérifie, sans rien savoir du contenu :
   - la page se charge sans erreur JavaScript ;
-  - Cartes : chaque carte a un recto et un verso ; on peut toutes les parcourir ;
+  - Cartes : chaque carte a un recto et un verso ; une série se parcourt jusqu'au bilan (Je savais / À revoir) ;
   - Quiz : 300 quiz générés, chaque question a exactement une bonne réponse et des options distinctes ;
   - Contrôle : 300 contrôles générés, chaque item est valide (choix ou champs), a un `review`, une `unit`,
     un `redo()` qui renvoie un item valide, et les champs refusent une réponse absurde ;
@@ -93,8 +93,15 @@ async def ui_pass(pg, shots_prefix=None):
     await shot("accueil")
     await pg.click("[data-act=cards]"); await pg.click("#flip"); await pg.wait_for_timeout(650)
     await shot("carte")
-    n = await pg.evaluate("window.__module.M.cards(window.__module.R.pool(), window.__module.R).length")
-    for _ in range(n): await pg.click("[data-act=next]")
+    # une série de cartes : « À revoir » / « Je savais » en alternance (la carte est déjà retournée), jusqu'au bilan
+    for k in range(12):
+        if not await pg.query_selector("#flip"): break
+        if k: await pg.click("#flip")
+        await pg.click(f"[data-act=rate][data-v='{k % 2}']")
+    assert await pg.query_selector(".tally"), "la série de cartes ne mène pas au bilan"
+    again = await pg.query_selector("[data-act=cagain]")
+    if again:
+        await again.click(); assert await pg.query_selector("#flip"), "« Revoir les cartes » ne relance pas"
     await pg.click("[data-act=home]"); await pg.click("[data-act=quiz]")
     for i in range(await pg.evaluate("window.__module.M.quiz.count || 10")):
         await pg.click("[data-act=answer]")

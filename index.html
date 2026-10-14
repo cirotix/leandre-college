@@ -77,6 +77,14 @@ h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px
 .mods{margin:18px 0 0}
 .new{font-family:var(--f-hand); font-size:22px; font-weight:700; color:var(--red); transform:rotate(-3deg)}
 .ch{font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.top .ch{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.top .new{flex:none}
+.st{display:flex; align-items:center; gap:10px; font-size:14px; font-weight:500; color:var(--muted)}
+.st .bar{flex:none; width:64px; height:8px; border-radius:99px; background:linear-gradient(90deg, var(--pen) var(--p), var(--line) var(--p))}
+.mod{-webkit-tap-highlight-color:transparent}
+.mod:active{transform:rotate(0) scale(.98)}
+.chip{-webkit-tap-highlight-color:transparent; touch-action:manipulation}
+.chip:active{transform:scale(.96)}
 .tip{margin-top:44px}
 .find{display:grid; gap:12px; margin:30px 0 0; position:sticky; top:0; z-index:2; padding:12px 0 10px; background:linear-gradient(var(--paper) 85%, transparent)}
 .srch{display:flex; align-items:center; gap:10px; background:var(--sheet); border:1.5px solid var(--line); border-radius:12px; padding:0 14px; min-height:52px; box-shadow:0 1px 2px var(--shadow)}
@@ -113,7 +121,7 @@ mark{background:var(--hl-2); color:inherit; border-radius:3px; padding:0 1px}
   <p class="hand">Cherche un chapitre ou choisis ta matière</p>
 
   <div class="find">
-    <label class="srch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><span class="sr">Chercher un module</span><input id="q" type="search" placeholder="Chercher : verbes, triangles, fractions…" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
+    <label class="srch"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><span class="sr">Chercher un module</span><input id="q" type="search" placeholder="Chercher un chapitre…" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search"></label>
     <div class="chips" id="mats" role="group" aria-label="Matières"></div>
   </div>
   <p class="count" id="count" aria-live="polite"></p>

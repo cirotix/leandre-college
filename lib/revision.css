@@ -295,7 +295,7 @@ h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px
 .site-back{display:inline-block;margin:16px 0 0;font:600 14px var(--f-body);color:var(--muted);text-decoration:none}
 .site-back:hover{color:var(--ink);text-decoration:underline}
 .site-wrap{max-width:760px;margin:0 auto}
-@media (min-width:800px){.site-back{position:absolute;left:24px;top:8px}}
+
 /* vidéo de révision (facultative) */
 @media (min-width:521px){.modes.four{grid-template-columns:1fr 1fr}}
 .vid{padding:10px; margin:6px 0 22px; transform:rotate(-.3deg)}
@@ -304,3 +304,64 @@ h1{font-family:var(--f-display); font-weight:400; font-size:clamp(44px,11vw,68px
 .chap{display:flex; align-items:center; gap:12px; text-align:left; min-height:46px; padding:8px 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--sheet); color:var(--ink); font:inherit; font-size:15px; cursor:pointer}
 .chap:hover{border-color:var(--ink)}
 .chap-t{font-weight:700; font-variant-numeric:tabular-nums; color:var(--red); min-width:3.2em}
+
+/* ---------- un seul retour par écran : « Mes révisions » sur l'accueil du module, « Le module » ailleurs ---------- */
+body[data-screen]:not([data-screen="home"]) .site-wrap{display:none}
+body:not([data-screen="home"]) .app{padding-top:24px}
+
+/* ---------- accueil du module ---------- */
+.pills{display:flex; flex-wrap:wrap; gap:8px}
+.pills:empty{display:none}
+.pills .jx{margin-top:10px}
+.mode-st{justify-self:start; font-size:13px; font-weight:700; padding:3px 11px; border-radius:999px; margin-top:-2px}
+.mode.next{box-shadow:0 0 0 3px var(--pen), 0 10px 24px var(--shadow)}
+.mode.next .mode-st{background:var(--pen); color:var(--sheet)}
+.mode.done .mode-st{background:var(--ok-soft); color:var(--ok)}
+.prog-d{margin:6px 0 0; background:var(--sheet); border-radius:8px; box-shadow:0 1px 2px var(--shadow)}
+.prog-d > summary{list-style:none; cursor:pointer; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; padding:14px 44px 14px 18px; position:relative; min-height:52px}
+.prog-d > summary::-webkit-details-marker{display:none}
+.prog-d > summary::after{content:""; position:absolute; right:20px; top:22px; width:9px; height:9px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(45deg); transition:transform .2s ease}
+.prog-d[open] > summary::after{transform:rotate(-135deg); top:26px}
+.prog-d > summary span:first-child{font-weight:600}
+.pd-n{font-size:14px; color:var(--muted)}
+.prog-d .prog{margin:0; padding:0 12px 14px}
+.result + .prog-d{margin-top:22px}
+
+/* ---------- cartes ---------- */
+.kdots{display:flex; gap:6px; justify-content:center; margin:-6px 0 14px}
+.kdots i{width:9px; height:9px; border-radius:50%; background:var(--line); transition:transform .15s ease}
+.kdots i.ok{background:var(--ok)} .kdots i.ko{background:var(--red)}
+.kdots i.cur{transform:scale(1.45); box-shadow:0 0 0 2px var(--paper), 0 0 0 3.5px var(--pen)}
+.flash{touch-action:pan-y; -webkit-user-select:none; user-select:none}
+.flash.dragging{transition:none; cursor:grabbing}
+.flash.snap{transition:transform .22s cubic-bezier(.3,.7,.25,1)}
+.flash.fly{transition:transform .17s ease-in, opacity .17s ease-in; opacity:0}
+.rate{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px}
+.rate .btn{min-height:56px; font-size:17px}
+.rate .rate-ko{border-color:var(--red); color:var(--red)}
+.hint{text-align:center; margin:14px 0 0}
+.tally{display:flex; justify-content:center; flex-wrap:wrap; gap:10px 26px; margin:18px 0 6px; font-size:17px}
+.tally b{font-family:var(--f-display); font-weight:400; font-size:38px; line-height:1; display:block}
+.t-ok b{color:var(--ok)} .t-ko b{color:var(--red)} .t-sk b{color:var(--muted)}
+.ctrls.stack{flex-direction:column; align-items:stretch; max-width:360px; margin-inline:auto}
+
+/* ---------- quiz et contrôle : glisser pour la suite ---------- */
+.qcard, #cform{touch-action:pan-y}
+.qcard.dragging, #cform.dragging{transition:none}
+.qcard.snap, #cform.snap{transition:transform .22s cubic-bezier(.3,.7,.25,1)}
+.qcard.fly, #cform.fly{transition:transform .17s ease-in, opacity .17s ease-in; opacity:0}
+
+/* ---------- erreurs repliées sous les boutons ---------- */
+details.misses{border-top:0; margin-top:20px}
+details.misses > summary{cursor:pointer; list-style:none; font-weight:600; color:var(--pen); padding:12px 2px; border-bottom:1px solid var(--line); text-align:center}
+details.misses > summary::-webkit-details-marker{display:none}
+details.misses[open] > summary{color:var(--muted)}
+
+/* ---------- toucher : réponse immédiate au doigt ---------- */
+.btn, .opt, .mode, .chip, .chap, .vchip, .flip{-webkit-tap-highlight-color:transparent; touch-action:manipulation}
+.btn:active:not(:disabled), .chip:active, .chap:active, .vchip:active{transform:scale(.96)}
+.opt:active:not(:disabled){transform:scale(.98); border-color:var(--pen)}
+.mode:active{transform:rotate(0) scale(.98)}
+.btn, .chip, .chap, .vchip, .opt{transition:transform .08s ease, border-color .15s ease, background-color .15s ease}
+@media (prefers-reduced-motion: reduce){ .flash.fly, .qcard.fly, #cform.fly, .flash.snap, .qcard.snap, #cform.snap{transition:none} }
+.hd + .sec, .hd + .modes{margin-top:26px}

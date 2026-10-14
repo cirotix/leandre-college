@@ -29,7 +29,8 @@ Identifiants en minuscules, sans accent, avec des tirets : `maths/fractions/`, `
 2. Écrire `<matiere>/<module>/module.js` (contrat ci-dessous), en s'inspirant de `maths/triangles/` (cours + exercices
    générés) ou `anglais/verbes-irreguliers/` (liste d'éléments à choisir, saisie de texte, voix).
 3. Ajouter l'entrée dans `modules.json` : `matiere`, `chemin`, `titre`, `resume`, `ajoute` (AAAA-MM-JJ),
-   `chapitre` et `motsCles` (liste, pour la recherche) facultatifs. « Nouveau ! » s'affiche 14 jours.
+   `chapitre` et `motsCles` (liste, pour la recherche) facultatifs. « Nouveau ! » s'affiche 14 jours, tant que le
+   module n'a pas été ouvert sur l'appareil.
    Nouvelle matière : l'ajouter dans `matieres` (`id`, `nom`, `couleur` parmi hl-1, hl-2, hl-3).
 4. `python3 tools/check.py` puis `python3 tools/test_module.py <chemin> --shots /tmp/shots` (regarder les captures), commit, push.
 
@@ -40,6 +41,17 @@ Le Chromium des tests ne lit pas le H.264 : pour tester la lecture, utiliser une
 
 Ne pas modifier le moteur pour un besoin propre à un module : soit c'est générique et ça va dans `lib/`
 (en vérifiant que tous les modules marchent encore), soit ça reste dans le `module.js`.
+
+## Parcours (moteur, rien à faire dans les modules)
+
+- Accueil d'un module : étapes Vidéo (si `video`) → Cartes → Quiz → Contrôle, chacune « ✓ Fait » pendant 7 jours,
+  la première non faite marquée « À faire maintenant » ; les notions maîtrisées sont en bas, repliées.
+- Cartes : séries de 10, « Je savais / À revoir » (une notion « à revoir » est tirée plus souvent au quiz et au contrôle,
+  sans toucher à la maîtrise, qui ne bouge qu'au contrôle), glisser à gauche = carte suivante, à droite = précédente.
+- Quiz et contrôle : glisser à gauche = question suivante une fois la réponse donnée ; en fin de série, les boutons
+  passent avant la liste des erreurs (repliée) et « Revoir les cartes » relance les cartes des notions ratées.
+- Chaque module écrit un résumé dans `localStorage["revisions-index"]` (`{chemin: {seen, done, n, noun, fem, cd}}`),
+  lu par l'accueil du site (progression, « Nouveau ! », compte à rebours).
 
 ## Contrat de `module.js`
 

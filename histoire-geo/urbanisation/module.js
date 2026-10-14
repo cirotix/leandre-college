@@ -287,7 +287,7 @@ const G = {
     if (!pool.length) return null;
     const v = pick(pool), base = {n, prompt: `Quel est le mot ?<br><b>${esc(v.def)}</b>`, explain: `C'est <b>${esc(v.word)}</b>.`,
       review: rev(n, v.def, v.word), redo: () => G.vocab(n, typed)};
-    if (typed) return Object.assign(base, {field: {label: "Le mot", lang: "fr", check: val => { const ok = vocOk(v, val); return {ok, fix: ok ? "✓" : `→ ${v.word}`}; }}});
+    if (typed) return Object.assign(base, {explain: "", field: {label: "Le mot", lang: "fr", check: val => { const ok = vocOk(v, val); return {ok, fix: ok ? "✓" : `→ ${v.word}`}; }}});
     const others = shuffle(VOC.filter(x => x !== v)).slice(0, 3).map(x => ({t: x.word, ok: false}));
     return Object.assign(base, {opts: shuffle([{t: v.word, ok: true}, ...others])});
   },
@@ -316,7 +316,7 @@ function make(kinds, n, typed){
 const asQuiz = e => ({unit: UBY[e.n], key: e.review, prompt: e.prompt, wide: e.wide, opts: e.opts, tip: e.tip,
   feedback: () => box(e.explain), review: e.review});
 const asControl = e => Object.assign({unit: UBY[e.n], prompt: e.prompt, wide: e.wide, tip: e.tip, review: e.review,
-  correction: () => `<p class="label" style="margin-top:4px">Correction</p>${box(e.explain)}`, redo: () => asControl(e.redo())},
+  correction: () => e.explain ? `<p class="label" style="margin-top:4px">Correction</p>${box(e.explain)}` : "", redo: () => asControl(e.redo())},
   e.field ? {kind: "fields", fields: [e.field]} : {kind: "choice", opts: e.opts});
 
 Revision.start({
