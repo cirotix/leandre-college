@@ -13,7 +13,8 @@ lib/revision.css           styles communs (cahier Seyès, fiches bristol, mode s
 lib/module.html            gabarit de page : chaque <matiere>/<module>/index.html en est une COPIE EXACTE
 lib/home.js                logique de l'accueil
 <matiere>/<module>/module.js   le module : données + règles, rien d'autre
-tools/check.py             vérifications à lancer avant chaque commit
+tools/check.py             vérifications de cohérence à lancer avant chaque commit
+tools/test_module.py       test d'un module dans Chromium : python3 tools/test_module.py <matiere>/<module>/ [--shots DOSSIER]
 sw.js                      service worker : hors connexion (réseau d'abord, modules préchargés via modules.json) + notifications
 lib/push.js                bloc « Notifications » de l'accueil (abonnement) ; adresse du worker dans push.json
 worker/                    Worker Cloudflare « leandre-push » (abonnements en KV, envoi Web Push sans dépendance)
@@ -30,7 +31,7 @@ Identifiants en minuscules, sans accent, avec des tirets : `maths/fractions/`, `
 3. Ajouter l'entrée dans `modules.json` : `matiere`, `chemin`, `titre`, `resume`, `ajoute` (AAAA-MM-JJ),
    `chapitre` et `motsCles` (liste, pour la recherche) facultatifs. « Nouveau ! » s'affiche 14 jours.
    Nouvelle matière : l'ajouter dans `matieres` (`id`, `nom`, `couleur` parmi hl-1, hl-2, hl-3).
-4. `python3 tools/check.py`, tester les trois modes dans un navigateur (mobile et tablette), commit, push.
+4. `python3 tools/check.py` puis `python3 tools/test_module.py <chemin> --shots /tmp/shots` (regarder les captures), commit, push.
 
 Ne pas modifier le moteur pour un besoin propre à un module : soit c'est générique et ça va dans `lib/`
 (en vérifiant que tous les modules marchent encore), soit ça reste dans le `module.js`.
