@@ -71,7 +71,7 @@ Revision.start({
   key: "leandre-<matiere>-<module>-v1",    // clé localStorage, unique (exceptions historiques : verbes-leandre-v1, triangles-leandre-v1)
   title, subtitle?, eyebrow?, hand?,        // en-tête du module (hand = note manuscrite rouge)
   countdown?: {date: "AAAA-MM-JJ", label: "mardi 13 octobre"},
-  video?: {src: "video.mp4", poster?, length?: "6 min", title?, text?, chapters?: [[secondes, "titre"]]},  // 4e tuile « Vidéo »
+  video?: {src: "video.mp4", poster?, length?: "6 min", title?, text?, chapters?: [[secondes, "titre"]]} ou une liste de ces objets,  // tuile « Vidéo(s) »
   groups: {"1": {name, plural?, cls: "l1"|"l2"|"l3", filter?}},   // couleur + chips « Je révise »
   units: [{id, name, group, tag?, sub?}],   // ce dont on suit la maîtrise (verbe, notion…)
   allLabel?: n => "Tout le chapitre",

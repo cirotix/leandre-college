@@ -397,3 +397,5 @@ details.misses[open] > summary{color:var(--muted)}
 .kjump::-webkit-scrollbar{display:none}
 .kjump .chip{flex:none}
 [hidden]{display:none !important}
+.vpick{margin:0 0 12px}
+.vtext{margin:0 2px 10px}
