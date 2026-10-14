@@ -3,7 +3,7 @@
    fiche « Les organes mis en jeu lors d'une course de 100 m » et « Le système nerveux central »,
    fiche « Les neurones » (documents 1 à 4 : neurone, transmission, synapse, neurone et muscle),
    activité 3 « Cerveau et message nerveux » (le téléphone sonne), TD « AVC de Jean » (aires cérébrales),
-   TP « Système nerveux et conduites addictives ». Vidéo de révision (NotebookLM) fournie par Damien.
+   TP « Système nerveux et conduites addictives », « Fiche mémo des 4èmes » (12 questions-réponses, reprises telles quelles). Vidéo de révision (NotebookLM) fournie par Damien.
    Données + règles ; le moteur est dans lib/revision.js. */
 (() => {
 "use strict";
@@ -18,156 +18,172 @@ const UNITS = [
   {id: "mus", group: "2", name: "Du neurone au muscle",        sub: "Contraction, anesthésie"},
   {id: "air", group: "3", name: "Les aires cérébrales",        sub: "Hémisphères, aires sensitives et motrices, l'AVC de Jean"},
   {id: "int", group: "3", name: "L'intégration",               sub: "Le téléphone sonne : mémoire et prise de décision"},
-  {id: "add", group: "3", name: "Les addictions",              sub: "Drogues, dopamine, se faire aider"}
+  {id: "add", group: "3", name: "Addictions et hygiène de vie", sub: "Drogues, dopamine, sommeil, se faire aider"}
 ].map(u => Object.assign(u, {tag: u.name}));
 const UBY = Object.fromEntries(UNITS.map(u => [u.id, u]));
 
-/* ---------- questions de cours : carte (recto/verso) + QCM (bonne réponse en premier) ---------- */
+/* ---------- questions de cours : carte (recto/verso) + QCM (bonne réponse en premier) ----------
+   fiche: k = question k de la « Fiche mémo des 4èmes » : question et réponse recopiées telles quelles. */
 const COURS = [
-  {id: "t-stim", n: "trj", card: "Un stimulus, c'est quoi ?", q: "Un stimulus, c'est…",
-   a: "Une information de l'environnement qui déclenche une réaction.\nEx. : le coup de feu pour la sprinteuse, la sonnerie du téléphone.\nAu pluriel, on dit des stimuli.",
-   o: ["une information de l'environnement qui déclenche une réaction", "un muscle qui se contracte", "un nerf qui relie le cerveau aux muscles", "une molécule libérée dans la synapse"]},
-  {id: "t-sens", n: "trj", card: "À quoi servent les organes sensoriels ?", q: "Les organes sensoriels (œil, oreille)…",
-   a: "Ils agissent comme des récepteurs : ils captent les informations de l'environnement.\nL'oreille capte les ondes sonores, l'œil capte les ondes lumineuses, grâce à des cellules spécialisées.",
-   o: ["captent les informations de l'environnement", "mettent le corps en mouvement", "décident de l'action à faire", "protègent la moelle épinière"]},
-  {id: "t-cil", n: "trj", card: "Grâce à quoi l'oreille capte-t-elle les sons ?", q: "L'oreille capte les ondes sonores grâce…",
-   a: "À des cellules spécialisées : les cellules ciliées.", o: ["aux cellules ciliées", "aux neurotransmetteurs", "aux vertèbres", "à la myéline"]},
-  {id: "t-nsens", n: "trj", card: "Les nerfs sensitifs", q: "Les nerfs sensitifs transportent le message nerveux…",
-   a: "Des organes sensoriels vers les centres nerveux (cerveau, moelle épinière).",
-   o: ["des organes sensoriels vers les centres nerveux", "des centres nerveux vers les muscles", "d'un muscle à un autre muscle", "de l'œil vers l'oreille"]},
-  {id: "t-nmot", n: "trj", card: "Les nerfs moteurs", q: "Les nerfs moteurs transportent le message nerveux…",
-   a: "Des centres nerveux vers les organes effecteurs (les muscles).",
-   o: ["des centres nerveux vers les muscles", "des organes sensoriels vers le cerveau", "de l'oreille vers l'œil", "des muscles vers les organes sensoriels"],
-   tip: "Attention : le nerf moteur n'est pas l'organe effecteur. Il relie le centre nerveux à l'organe effecteur (le muscle)."},
-  {id: "t-eff", n: "trj", card: "Les organes effecteurs, c'est quoi ?", q: "Les organes effecteurs des mouvements sont…",
-   a: "Les muscles : en réponse aux stimuli, ils se contractent et mettent le corps en mouvement.",
-   o: ["les muscles", "les yeux et les oreilles", "les nerfs sensitifs", "les vertèbres"]},
-  {id: "t-traj", n: "trj", card: "Le trajet du message nerveux, dans l'ordre", q: "Quel est le bon trajet du message nerveux ?",
-   a: "Stimulus → organe sensoriel → nerf sensitif → centre nerveux → nerf moteur → organe effecteur (muscle) → mouvement.",
-   o: ["organe sensoriel → nerf sensitif → centre nerveux → nerf moteur → muscle", "muscle → nerf moteur → centre nerveux → nerf sensitif → organe sensoriel", "organe sensoriel → nerf moteur → centre nerveux → nerf sensitif → muscle", "centre nerveux → organe sensoriel → muscle → nerf sensitif"]},
-  {id: "t-vit", n: "trj", card: "À quelle vitesse se propagent les messages nerveux ?", q: "Les messages nerveux se propagent à environ…",
-   a: "100 m/s (cent mètres par seconde).", o: ["100 m/s", "1 m/s", "10 000 m/s", "1 km/h"]},
-  {id: "t-sch", n: "trj", card: "Le schéma fonctionnel de la sprinteuse", q: "Dans le schéma de la sprinteuse, le coup de feu est…",
-   a: "Coup de feu (stimulus) → oreilles (organes sensoriels) → nerfs sensitifs → centres nerveux → nerfs moteurs → muscles (organes effecteurs) → action : courir.",
-   o: ["le stimulus", "l'organe effecteur", "le centre nerveux", "le nerf moteur"]},
+  {fiche: 1, n: "snc", card: "Qu'est-ce que le système nerveux ?",
+   a: "C'est un ensemble composé du cerveau, de la moelle épinière et d'un réseau de nerfs parcourant tout l'organisme. Le système nerveux commande et contrôle l'ensemble du corps.",
+   o: ["C'est un ensemble composé du cœur, des vaisseaux sanguins et du sang qui parcourent tout l'organisme. Le système nerveux transporte l'oxygène dans l'ensemble du corps.",
+       "C'est un ensemble composé des muscles, des os et des articulations de tout l'organisme. Le système nerveux permet au corps de tenir debout et de se déplacer.",
+       "C'est uniquement le cerveau, qui se trouve dans la tête. La moelle épinière et les nerfs font partie d'un autre système, qui contrôle seulement les muscles."]},
+  {fiche: 2, n: "trj", card: "Quel est le trajet du message qui permet de réaliser un mouvement ?",
+   a: "Lors d'une stimulation, les messages nerveux sensoriels se propagent des organes sensoriels vers les centres nerveux qui envoient notamment des messages moteurs vers les muscles via les nerfs moteurs.",
+   o: ["Lors d'une stimulation, les messages nerveux se propagent des muscles vers les organes sensoriels, qui envoient notamment des messages moteurs vers les centres nerveux via les nerfs sensitifs.",
+       "Lors d'une stimulation, les messages nerveux sensoriels se propagent des organes sensoriels directement vers les muscles via les nerfs sensitifs, sans passer par les centres nerveux.",
+       "Lors d'une stimulation, les messages nerveux moteurs se propagent des centres nerveux vers les organes sensoriels, qui envoient notamment des messages vers les muscles via les nerfs moteurs."]},
+  {fiche: 3, n: "neu", card: "Quelles structures permettent la communication entre les différents organes du système nerveux ?",
+   a: "Ce sont les cellules nerveuses, appelées les neurones.",
+   o: ["Ce sont les cellules du sang, appelées les globules rouges.", "Ce sont les muscles, reliés entre eux par les tendons.", "Ce sont les os de la colonne, appelés les vertèbres."]},
+  {fiche: 4, n: "neu", card: "Quelles sont les différentes parties d'un neurone ?",
+   a: "Le corps cellulaire composé du noyau avec les dendrites, puis un prolongement nommé axone entouré de myéline.",
+   o: ["Un noyau seul, entouré de neurotransmetteurs et de récepteurs.", "Le corps cellulaire composé de myéline, puis un prolongement nommé dendrite entouré de noyaux.",
+       "Une synapse composée de vertèbres, puis un prolongement nommé moelle épinière."]},
+  {fiche: 5, n: "neu", card: "Quelle est la nature du message nerveux qui circule dans un neurone ?",
+   a: "Le message nerveux circule sous forme électrique le long du neurone.",
+   o: ["Le message nerveux circule sous forme chimique, transporté par le sang.", "Le message nerveux circule sous forme d'ondes sonores le long du neurone.", "Le message nerveux circule sous forme de lumière le long du neurone."]},
+  {fiche: 6, n: "syn", card: "Comment s'appelle le lieu de la transmission du message nerveux entre deux neurones ?",
+   a: "C'est la synapse.", o: ["C'est l'axone.", "C'est la myéline.", "C'est le noyau."]},
+  {fiche: 7, n: "syn", card: "Comment circule le message nerveux entre deux neurones ?",
+   a: "Il y a une libération de neurotransmetteurs (molécules chimiques) dans la synapse.",
+   o: ["Le message électrique saute directement d'un neurone à l'autre, sans aucune molécule.", "Il y a une libération de sang dans la synapse.", "Les deux neurones se collent et ne forment plus qu'une seule cellule."]},
+  {fiche: 8, n: "syn", card: "Qu'est-ce qu'un neurotransmetteur ?",
+   a: "C'est une molécule qui sert de messager entre deux neurones, ou entre un neurone et un muscle.",
+   o: ["C'est une cellule nerveuse qui relie directement le cerveau aux muscles.", "C'est la gaine qui entoure l'axone et accélère le message.", "C'est une zone du cerveau spécialisée dans une fonction précise."]},
+  {fiche: 9, n: "trj", card: "Qu'est-ce qu'un nerf ?",
+   a: "C'est un cordon blanchâtre composé d'axones, qui permet de conduire les messages nerveux.",
+   o: ["C'est un muscle très fin qui se contracte pour transmettre le mouvement.", "C'est une seule cellule nerveuse, très longue, qui part du cerveau.", "C'est un vaisseau qui transporte le sang jusqu'au cerveau."]},
+  {fiche: 10, n: "int", card: "Quel est le rôle du cerveau dans le traitement de l'information ?",
+   a: "Le cerveau intègre les informations sensorielles dans des zones spécialisées appelées « aires ». Et il élabore une réponse adaptée, comme un mouvement.",
+   o: ["Le cerveau capte lui-même les sons et la lumière, sans avoir besoin des organes sensoriels. Il envoie ensuite ces informations aux muscles sans les modifier.", "Le cerveau ne traite pas les informations sensorielles : il les transmet telles quelles aux muscles. C'est la moelle épinière qui élabore la réponse adaptée.",
+       "Le cerveau fabrique les neurotransmetteurs dans des zones appelées « aires ». Ils circulent ensuite dans le sang jusqu'aux muscles pour les faire bouger."]},
+  {fiche: 11, n: "add", card: "C'est quoi l'addiction ?",
+   a: "C'est une maladie qui se manifeste par une dépendance à une substance ou à une activité, et qui a des conséquences nuisibles sur la santé.",
+   o: ["C'est une simple habitude, sans danger, qui disparaît toute seule.", "C'est une maladie des muscles due au manque de sport.", "C'est une zone du cerveau qui produit la sensation de plaisir."]},
+  {fiche: 12, n: "add", card: "Quels sont les effets de nos comportements négatifs sur le système nerveux ?",
+   a: "Une mauvaise hygiène de vie comme un manque de sommeil entraine une baisse des performances cérébrales. La consommation de drogues ou l'addiction aux jeux stimulent le circuit de la récompense et créent des dépendances. Il est important d'avoir une bonne hygiène de vie pour préserver le bon fonctionnement du système nerveux.",
+   o: ["Le manque de sommeil n'a aucun effet sur les performances cérébrales. Seules les drogues agissent sur le cerveau, et les jeux ne créent jamais de dépendance. L'hygiène de vie compte surtout pour les muscles.",
+       "Les drogues et les jeux vidéo stimulent les neurones et améliorent les performances cérébrales. Le sommeil ralentit le cerveau. Pour bien fonctionner, le système nerveux a besoin de stimulations fortes.",
+       "Le système nerveux se répare tout seul pendant la nuit, quelle que soit la durée du sommeil. Les dépendances ne viennent que de l'alcool. L'hygiène de vie n'a pas d'effet sur le système nerveux."]},
 
-  {id: "s-def", n: "snc", card: "Le système nerveux central (le centre nerveux)", q: "Le système nerveux central est formé…",
-   a: "De l'encéphale (dont la plus grande partie est le cerveau) et de la moelle épinière.",
+  /* cartes en plus : une vraie question, une réponse courte */
+  {n: "trj", card: "Qu'est-ce qu'un stimulus ?", q: "Un stimulus, c'est…",
+   a: "Une information de l'environnement qui déclenche une réaction.\nEx. : le coup de feu pour la sprinteuse, la sonnerie du téléphone.",
+   o: ["une information de l'environnement qui déclenche une réaction", "un muscle qui se contracte", "un nerf qui relie le cerveau aux muscles", "une molécule libérée dans la synapse"],
+   tip: "Au pluriel, on dit des stimuli."},
+  {n: "trj", card: "À quoi servent les organes sensoriels ?", q: "Les organes sensoriels (œil, oreille) servent à…",
+   a: "À capter les informations de l'environnement : l'oreille capte les sons, l'œil capte la lumière.",
+   o: ["capter les informations de l'environnement", "mettre le corps en mouvement", "décider de l'action à faire", "protéger la moelle épinière"]},
+  {n: "trj", card: "Grâce à quelles cellules l'oreille capte-t-elle les sons ?", q: "L'oreille capte les sons grâce…",
+   a: "Grâce aux cellules ciliées.", o: ["aux cellules ciliées", "aux neurotransmetteurs", "aux vertèbres", "à la myéline"]},
+  {n: "trj", card: "Quel nerf transporte le message des organes sensoriels vers les centres nerveux ?", q: "Le message va des organes sensoriels vers les centres nerveux par…",
+   a: "Le nerf sensitif.", o: ["les nerfs sensitifs", "les nerfs moteurs", "les muscles", "les vertèbres"]},
+  {n: "trj", card: "Quel nerf transporte le message des centres nerveux vers les muscles ?", q: "Le message va des centres nerveux vers les muscles par…",
+   a: "Le nerf moteur.", o: ["les nerfs moteurs", "les nerfs sensitifs", "les organes sensoriels", "la moelle épinière seule"],
+   tip: "Attention : le nerf moteur n'est pas l'organe effecteur. Il relie le centre nerveux à l'organe effecteur (le muscle)."},
+  {n: "trj", card: "Quels sont les organes effecteurs du mouvement ?", q: "Les organes effecteurs du mouvement sont…",
+   a: "Les muscles : ils se contractent et mettent le corps en mouvement.", o: ["les muscles", "les yeux et les oreilles", "les nerfs sensitifs", "les vertèbres"]},
+  {n: "trj", card: "Remets dans l'ordre : nerf moteur, stimulus, centre nerveux, muscle, organe sensoriel, nerf sensitif.", q: "Quel est le bon ordre ?",
+   a: "Stimulus → organe sensoriel → nerf sensitif → centre nerveux → nerf moteur → muscle.\nEx. : coup de feu → oreille → nerf sensitif → cerveau → nerf moteur → muscles des jambes.",
+   o: ["organe sensoriel → nerf sensitif → centre nerveux → nerf moteur → muscle", "muscle → nerf moteur → centre nerveux → nerf sensitif → organe sensoriel",
+       "organe sensoriel → nerf moteur → centre nerveux → nerf sensitif → muscle", "centre nerveux → organe sensoriel → muscle → nerf sensitif"]},
+  {n: "trj", card: "À quelle vitesse se propagent les messages nerveux ?", q: "Les messages nerveux se propagent à environ…",
+   a: "Environ 100 m/s (cent mètres par seconde).", o: ["100 m/s", "1 m/s", "10 000 m/s", "1 km/h"]},
+
+  {n: "snc", card: "Qu'est-ce qui forme le système nerveux central ?", q: "Le système nerveux central (le centre nerveux) est formé…",
+   a: "L'encéphale (dont la plus grande partie est le cerveau) et la moelle épinière.",
    o: ["de l'encéphale et de la moelle épinière", "des yeux et des oreilles", "des nerfs et des muscles", "du cœur et des poumons"]},
-  {id: "s-moelle", n: "snc", card: "La moelle épinière", q: "La moelle épinière est…",
-   a: "Dans le prolongement du cerveau. Elle est entourée par les vertèbres de la colonne vertébrale, qui la protègent.",
-   o: ["dans le prolongement du cerveau, protégée par les vertèbres", "un muscle du dos", "un organe sensoriel", "une partie de l'oreille"]},
-  {id: "s-ence", n: "snc", card: "L'encéphale et le cerveau", q: "La plus grande partie de l'encéphale est…",
-   a: "Le cerveau.", o: ["le cerveau", "la moelle épinière", "l'oreille", "la colonne vertébrale"]},
-  {id: "s-para", n: "snc", card: "Que se passe-t-il quand le système nerveux est lésé ?", q: "Quand le système nerveux est lésé…",
+  {n: "snc", card: "Qu'est-ce qui protège la moelle épinière ?", q: "La moelle épinière est protégée par…",
+   a: "Les vertèbres de la colonne vertébrale.", o: ["les vertèbres de la colonne vertébrale", "les côtes", "la myéline", "les muscles du dos"]},
+  {n: "snc", card: "Que se passe-t-il quand le système nerveux est lésé ?", q: "Quand le système nerveux est lésé…",
    a: "Il n'y a plus de communication entre les organes, donc plus de mouvement : c'est la paralysie.",
    o: ["il n'y a plus de communication entre les organes : c'est la paralysie", "les muscles se contractent plus vite", "le message nerveux va deux fois plus vite", "rien ne change"]},
 
-  {id: "n-def", n: "neu", card: "Un neurone, c'est quoi ?", q: "Un neurone est…",
-   a: "Une cellule nerveuse. La communication nerveuse est assurée par des milliards de neurones.",
-   o: ["une cellule nerveuse", "un muscle", "une molécule", "un os de la colonne vertébrale"]},
-  {id: "n-comp", n: "neu", card: "De quoi est composé un neurone ?", q: "Un neurone est composé…",
-   a: "D'un corps cellulaire qui contient un noyau, entouré de dendrites,\net d'une fibre nerveuse appelée axone (parfois entourée de myéline), qui se termine par de petites ramifications.",
-   o: ["d'un corps cellulaire avec un noyau, de dendrites et d'un axone", "seulement d'un noyau", "d'un muscle et d'un nerf", "de neurotransmetteurs et de vertèbres"]},
-  {id: "n-axone", n: "neu", card: "L'axone, c'est quoi ?", q: "L'axone, c'est…",
-   a: "La fibre nerveuse du neurone : le long prolongement qui part du corps cellulaire. Le message électrique se propage le long de l'axone.",
-   o: ["la fibre nerveuse du neurone", "le noyau du neurone", "la zone entre deux neurones", "une molécule chimique"]},
-  {id: "n-mye", n: "neu", card: "À quoi sert la myéline ?", q: "La myéline sert…",
-   a: "C'est une gaine qui entoure parfois l'axone. Elle permet d'augmenter la vitesse de propagation du message.",
+  {n: "neu", card: "À quoi sert la myéline ?", q: "La myéline sert…",
+   a: "À augmenter la vitesse du message nerveux. C'est une gaine qui entoure l'axone.",
    o: ["à augmenter la vitesse du message", "à fabriquer des neurotransmetteurs", "à protéger la moelle épinière", "à contracter le muscle"]},
-  {id: "n-dend", n: "neu", card: "Les dendrites", q: "Les dendrites sont…",
-   a: "Les petites ramifications autour du corps cellulaire. Elles reçoivent les messages venant d'autres neurones.",
-   o: ["de petites ramifications autour du corps cellulaire", "le noyau du neurone", "la gaine autour de l'axone", "des molécules de plaisir"],
-   tip: "Le bout de l'axone se ramifie aussi : ce sont les terminaisons de l'axone (la ramification terminale)."},
-  {id: "n-noyau", n: "neu", card: "Où se trouve le noyau du neurone ?", q: "Le noyau du neurone se trouve…",
+  {n: "neu", card: "Où se trouvent les dendrites ?", q: "Les dendrites sont…",
+   a: "Autour du corps cellulaire : ce sont de petites ramifications.",
+   o: ["de petites ramifications autour du corps cellulaire", "le noyau du neurone", "la gaine autour de l'axone", "des molécules libérées dans la synapse"],
+   tip: "Le bout de l'axone se ramifie aussi : ce sont les terminaisons de l'axone."},
+  {n: "neu", card: "Où se trouve le noyau du neurone, et que contient-il ?", q: "Le noyau du neurone se trouve…",
    a: "Dans le corps cellulaire. Il contient l'ADN.", o: ["dans le corps cellulaire", "au bout de l'axone", "dans la myéline", "dans la synapse"]},
-  {id: "n-elec", n: "neu", card: "Sous quelle forme l'information circule-t-elle dans un neurone ?", q: "Le long d'un neurone, le message nerveux circule…",
-   a: "Sous forme de signaux électriques, codés de façon identique, qui se propagent le long de l'axone, dans un seul sens.",
-   o: ["sous forme de signaux électriques, dans un seul sens", "sous forme de molécules, dans les deux sens", "sous forme d'ondes sonores", "dans le sang"]},
+  {n: "neu", card: "Dans combien de sens le message circule-t-il le long d'un neurone ?", q: "Le long d'un neurone, le message circule…",
+   a: "Dans un seul sens : des dendrites vers le corps cellulaire, puis le long de l'axone.",
+   o: ["dans un seul sens", "dans les deux sens", "dans tous les sens", "il ne circule pas"]},
 
-  {id: "y-def", n: "syn", card: "Une synapse, c'est quoi ?", q: "Une synapse, c'est…",
-   a: "La zone de communication entre deux neurones (ou entre un neurone et un muscle).",
-   o: ["la zone de communication entre deux neurones", "le noyau du neurone", "la gaine de myéline", "une partie de l'oreille"]},
-  {id: "y-nb", n: "syn", card: "Combien de synapses a un neurone ?", q: "Un neurone possède environ…",
-   a: "1 000 à 10 000 synapses avec d'autres neurones : le message passe de neurone en neurone.",
-   o: ["1 000 à 10 000 synapses", "1 ou 2 synapses", "10 à 100 synapses", "une seule synapse"]},
-  {id: "y-chim", n: "syn", card: "Entre deux neurones : transmission électrique ou chimique ?", q: "Entre deux neurones, la transmission du message est…",
-   a: "Chimique : des molécules (les neurotransmetteurs) sont libérées par un neurone et réceptionnées par l'autre.\nLe long du neurone, le message est électrique.",
-   o: ["chimique, grâce aux neurotransmetteurs", "électrique, grâce à la myéline", "sonore, grâce aux cellules ciliées", "impossible"]},
-  {id: "y-nt", n: "syn", card: "Un neurotransmetteur, c'est quoi ?", q: "Un neurotransmetteur, c'est…",
-   a: "Une molécule qui sert de message entre deux neurones ou entre un neurone et un muscle.",
-   o: ["une molécule qui sert de message entre deux neurones", "une cellule nerveuse", "un nerf moteur", "un organe sensoriel"]},
-  {id: "y-rec", n: "syn", card: "Les récepteurs du neurone 2", q: "Sur le neurone 2, les neurotransmetteurs se fixent sur…",
-   a: "Des récepteurs. Un nouveau message électrique repart alors dans le neurone 2.",
+  {n: "syn", card: "Combien de synapses possède un neurone ?", q: "Un neurone possède environ…",
+   a: "Environ 1 000 à 10 000 synapses avec d'autres neurones.", o: ["1 000 à 10 000 synapses", "1 ou 2 synapses", "10 à 100 synapses", "une seule synapse"]},
+  {n: "syn", card: "Sur quoi se fixent les neurotransmetteurs ?", q: "Les neurotransmetteurs se fixent sur…",
+   a: "Sur des récepteurs du neurone suivant (ou du muscle). Un nouveau message électrique repart alors.",
    o: ["des récepteurs", "des vertèbres", "des cellules ciliées", "la myéline"]},
+  {n: "syn", card: "Le message nerveux est électrique dans le neurone. Et dans la synapse ?", q: "Dans la synapse, le message nerveux est…",
+   a: "Chimique : ce sont des molécules, les neurotransmetteurs.", o: ["chimique", "électrique", "sonore", "lumineux"]},
 
-  {id: "m-nerf", n: "mus", card: "Les nerfs et les muscles", q: "Les nerfs sont…",
-   a: "Présents dans tout le corps et reliés aux muscles.",
-   o: ["présents dans tout le corps et reliés aux muscles", "seulement dans le cerveau", "seulement dans les yeux", "jamais reliés aux muscles"]},
-  {id: "m-contr", n: "mus", card: "Comment un muscle se contracte-t-il ?", q: "Comment le message nerveux fait-il contracter un muscle ?",
-   a: "Le message nerveux électrique arrive au bout du neurone → il provoque la libération de neurotransmetteurs → ils se fixent sur des récepteurs spécifiques des fibres musculaires → le muscle se contracte.",
+  {n: "mus", card: "Comment le message nerveux fait-il contracter un muscle ?", q: "Comment le message nerveux fait-il contracter un muscle ?",
+   a: "Le neurone libère des neurotransmetteurs, qui se fixent sur les récepteurs des fibres musculaires : le muscle se contracte.",
    o: ["le neurone libère des neurotransmetteurs qui se fixent sur le muscle", "le muscle se contracte tout seul, sans message", "le sang transporte le message électrique", "l'oreille envoie des ondes sonores au muscle"]},
-  {id: "m-anest", n: "mus", card: "Pourquoi l'anesthésie relâche-t-elle les muscles ?", q: "Pendant une opération, l'anesthésie…",
-   a: "Bloque la communication entre les cellules nerveuses et les cellules musculaires : les muscles de la zone opérée se relâchent.",
+  {n: "mus", card: "Pourquoi l'anesthésie relâche-t-elle les muscles ?", q: "Pendant une opération, l'anesthésie…",
+   a: "Elle bloque la communication entre les cellules nerveuses et les cellules musculaires.",
    o: ["bloque la communication entre les nerfs et les muscles", "accélère le message nerveux", "fabrique de la myéline", "fait contracter les muscles"]},
 
-  {id: "a-hemi", n: "air", card: "Les hémisphères cérébraux", q: "Le cerveau est formé de…",
-   a: "Deux parties : les hémisphères cérébraux droit et gauche.", o: ["deux hémisphères, droit et gauche", "quatre hémisphères", "un seul bloc", "deux moelles épinières"]},
-  {id: "a-def", n: "air", card: "Une aire cérébrale, c'est quoi ?", q: "Une aire cérébrale, c'est…",
+  {n: "air", card: "Combien d'hémisphères a le cerveau ?", q: "Le cerveau est formé de…",
+   a: "Deux : l'hémisphère droit et l'hémisphère gauche.", o: ["deux hémisphères, droit et gauche", "quatre hémisphères", "un seul bloc", "deux moelles épinières"]},
+  {n: "air", card: "Qu'est-ce qu'une aire cérébrale ?", q: "Une aire cérébrale, c'est…",
    a: "Une zone du cerveau spécialisée dans une fonction précise (voir, entendre, bouger…).",
    o: ["une zone du cerveau spécialisée dans une fonction précise", "une cellule nerveuse", "un nerf qui va au muscle", "une molécule de plaisir"]},
-  {id: "a-sens", n: "air", card: "Où arrivent les messages nerveux sensitifs ?", q: "Les messages nerveux sensitifs arrivent…",
-   a: "Dans les aires sensitives du cerveau, pour y être traités : aires visuelle, auditive, olfactive, gustative, somesthésique.",
+  {n: "air", card: "Où arrivent les messages nerveux sensitifs ?", q: "Les messages nerveux sensitifs arrivent…",
+   a: "Dans les aires sensitives du cerveau : visuelle, auditive, olfactive, gustative, somesthésique.",
    o: ["dans les aires sensitives du cerveau", "dans les muscles", "dans les vertèbres", "dans les organes sensoriels"]},
-  {id: "a-mot", n: "air", card: "Les aires motrices", q: "Quelles aires commandent les mouvements ?",
-   a: "Les aires motrices (aire motrice primaire, aire motrice supplémentaire, cortex prémoteur). Elles envoient les ordres aux muscles.",
-   o: ["les aires motrices", "l'aire visuelle", "l'aire olfactive", "l'aire gustative"]},
-  {id: "a-vis", n: "air", card: "Où se trouve l'aire visuelle ?", q: "L'aire visuelle se trouve…",
+  {n: "air", card: "Quelles aires commandent les mouvements ?", q: "Quelles aires commandent les mouvements ?",
+   a: "Les aires motrices : elles envoient les ordres aux muscles.", o: ["les aires motrices", "l'aire visuelle", "l'aire olfactive", "l'aire gustative"]},
+  {n: "air", card: "Où se trouve l'aire visuelle ?", q: "L'aire visuelle se trouve…",
    a: "À l'arrière du cerveau.", o: ["à l'arrière du cerveau", "à l'avant, juste derrière les yeux", "dans la moelle épinière", "dans l'oreille"]},
-  {id: "a-avc", n: "air", card: "Un AVC, c'est quoi ?", q: "Un AVC, c'est…",
-   a: "Un accident vasculaire cérébral : par exemple une hémorragie soudaine dans le cerveau.\nIl peut causer des dégâts neurologiques majeurs ; la zone touchée peut être altérée définitivement.",
+  {n: "air", card: "Qu'est-ce qu'un AVC ?", q: "Un AVC, c'est…",
+   a: "Un accident vasculaire cérébral, par exemple une hémorragie soudaine dans le cerveau. La zone touchée peut être abîmée pour toujours.",
    o: ["un accident vasculaire cérébral", "une maladie des muscles", "une drogue", "un organe sensoriel"]},
-  {id: "a-jean", n: "air", card: "Les conséquences de l'AVC de Jean", q: "L'AVC de Jean a touché l'aire visuelle. Il aura surtout…",
-   a: "Des troubles de la vision : comme les patients A et B, il risque de confondre les formes et les couleurs.",
+  {n: "air", card: "Un AVC touche l'aire visuelle. Quelles conséquences ?", q: "L'AVC de Jean a touché l'aire visuelle. Il aura surtout…",
+   a: "Des troubles de la vision : la personne peut confondre les formes et les couleurs.",
    o: ["des troubles de la vision (formes, couleurs)", "des troubles de l'odorat", "des troubles du goût", "aucune conséquence"],
-   tip: "Méthode du TD : je localise la zone touchée (doc 1), je trouve l'aire (doc 2), j'en déduis les troubles (doc 3)."},
+   tip: "Méthode du TD : je localise la zone touchée, je trouve l'aire, j'en déduis les troubles."},
 
-  {id: "i-tel", n: "int", card: "Le téléphone sonne : que se passe-t-il dans ton cerveau ?", q: "Le téléphone sonne. Quelle aire est activée en premier ?",
-   a: "1. L'aire auditive (l'oreille a été stimulée par la sonnerie).\n2. L'aire de la mémoire reconnaît le son.\n3. L'aire de la prise de décision (préfrontale) décide quoi faire.\n4. L'aire motrice envoie l'ordre au bras de saisir le téléphone.",
+  {n: "int", card: "Le téléphone sonne. Dans quel ordre les aires du cerveau travaillent-elles ?", q: "Le téléphone sonne. Quelle aire est activée en premier ?",
+   a: "1. L'aire auditive entend la sonnerie.\n2. L'aire de la mémoire reconnaît le son.\n3. L'aire de la prise de décision décide de répondre.\n4. L'aire motrice envoie l'ordre au bras.",
    o: ["l'aire auditive", "l'aire motrice", "l'aire de la prise de décision", "l'aire visuelle"]},
-  {id: "i-def", n: "int", card: "L'intégration, c'est quoi ?", q: "L'intégration, c'est…",
-   a: "Le traitement simultané par le cerveau des informations reçues des organes sensoriels et des informations échangées dans le cerveau.\nLe cerveau analyse les infos et les met en relation.",
-   o: ["le traitement en même temps de toutes les informations par le cerveau", "la contraction d'un muscle", "la fabrication de myéline", "la libération de dopamine"]},
-  {id: "i-chef", n: "int", card: "Le cerveau est comme…", q: "Dans ton bilan, le cerveau est comparé à…",
-   a: "Un chef d'orchestre du corps : il analyse les infos et les met en relation.", o: ["un chef d'orchestre", "un simple câble", "une batterie", "un muscle"]},
-  {id: "i-mem", n: "int", card: "Le rôle de la mémoire", q: "La mémoire joue un rôle important car elle permet…",
-   a: "De reconnaître ce qu'on a déjà vécu (par exemple reconnaître la sonnerie de son téléphone).",
+  {n: "int", card: "Qu'est-ce que l'intégration ?", q: "L'intégration, c'est…",
+   a: "Le traitement en même temps, par le cerveau, de toutes les informations reçues des organes sensoriels et échangées dans le cerveau.",
+   o: ["le traitement en même temps de toutes les informations par le cerveau", "la contraction d'un muscle", "la fabrication de myéline", "la libération de dopamine"],
+   tip: "Le cerveau est comme un chef d'orchestre : il analyse les infos et les met en relation."},
+  {n: "int", card: "À quoi sert la mémoire quand on perçoit l'environnement ?", q: "La mémoire permet…",
+   a: "À reconnaître ce qu'on a déjà vécu (par exemple la sonnerie de son téléphone).",
    o: ["de reconnaître ce qu'on a déjà vécu", "de faire bouger le bras", "de capter les sons", "de protéger la moelle épinière"]},
-  {id: "i-pref", n: "int", card: "Quelle aire décide de l'action ?", q: "Quelle aire décide de l'action à faire ?",
+  {n: "int", card: "Quelle aire décide de l'action à faire ?", q: "Quelle aire décide de l'action à faire ?",
    a: "L'aire préfrontale (l'aire de la prise de décision), à l'avant du cerveau.",
    o: ["l'aire préfrontale (prise de décision)", "l'aire auditive", "l'aire de la mémoire", "l'aire visuelle"]},
 
-  {id: "d-def", n: "add", card: "L'addiction, c'est quoi ?", q: "Une addiction, c'est…",
-   a: "Une pathologie (une maladie) qui repose sur la consommation répétée d'une drogue (alcool, tabac, produits stupéfiants…)\nou sur la pratique excessive d'un comportement (jeux vidéo, réseaux sociaux…).",
-   o: ["une maladie liée à une drogue ou à un comportement excessif", "un muscle qui se contracte", "une aire du cerveau", "un neurotransmetteur"]},
-  {id: "d-csq", n: "add", card: "Les conséquences d'une addiction", q: "Une addiction a des conséquences…",
-   a: "Négatives sur la vie personnelle, professionnelle et sociale.",
-   o: ["négatives sur la vie personnelle, professionnelle et sociale", "seulement positives", "aucune", "seulement sur la vue"]},
-  {id: "d-dopa", n: "add", card: "La dopamine, c'est quoi ?", q: "La dopamine est…",
+  {n: "add", card: "Qu'est-ce que la dopamine ?", q: "La dopamine est…",
    a: "Une substance chimique qui assure la communication entre neurones et qui provoque la sensation de plaisir.",
    o: ["une substance qui assure la communication entre neurones et provoque le plaisir", "une drogue", "une aire du cerveau", "une gaine autour de l'axone"]},
-  {id: "d-eff", n: "add", card: "Comment les drogues agissent-elles sur le cerveau ?", q: "Les drogues perturbent les synapses du cerveau :…",
-   a: "Elles entraînent une augmentation de la libération de dopamine, à l'origine de la dépendance.",
-   o: ["elles augmentent la libération de dopamine", "elles diminuent la libération de dopamine", "elles détruisent la moelle épinière", "elles fabriquent de la myéline"]},
-  {id: "d-hallu", n: "add", card: "Un autre effet de certaines drogues", q: "Certaines drogues modifient la perception visuelle et provoquent…",
-   a: "Des hallucinations, qui peuvent être dangereuses pour la personne.", o: ["des hallucinations", "une meilleure vue", "la paralysie", "plus de myéline"]},
-  {id: "d-tab", n: "add", card: "Quelle substance a le plus d'usagers quotidiens en France ?", q: "En France (11-75 ans), quelle substance a le plus d'usagers quotidiens ?",
-   a: "Le tabac : environ 12 millions d'usagers quotidiens.\nAlcool : 5 millions ; cannabis : 850 000.",
+  {n: "add", card: "Comment les drogues agissent-elles sur le cerveau ?", q: "Les drogues perturbent les synapses du cerveau : elles…",
+   a: "Elles augmentent la libération de dopamine dans les synapses : c'est ce qui crée la dépendance.",
+   o: ["augmentent la libération de dopamine", "diminuent la libération de dopamine", "détruisent la moelle épinière", "fabriquent de la myéline"]},
+  {n: "add", card: "Que peuvent provoquer certaines drogues sur la vue ?", q: "Certaines drogues modifient la perception visuelle et provoquent…",
+   a: "Des hallucinations, qui peuvent être dangereuses.", o: ["des hallucinations", "une meilleure vue", "la paralysie", "plus de myéline"]},
+  {n: "add", card: "Quelles sont les conséquences d'une addiction ?", q: "Une addiction a des conséquences…",
+   a: "Des conséquences négatives sur la vie personnelle, professionnelle et sociale.",
+   o: ["négatives sur la vie personnelle, professionnelle et sociale", "seulement positives", "aucune", "seulement sur la vue"]},
+  {n: "add", card: "En France, quelle substance a le plus d'usagers chaque jour ?", q: "En France (11-75 ans), quelle substance a le plus d'usagers quotidiens ?",
+   a: "Le tabac : environ 12 millions. Puis l'alcool (5 millions) et le cannabis (850 000).",
    o: ["le tabac", "l'alcool", "le cannabis", "aucune, elles sont à égalité"]},
-  {id: "d-aide", n: "add", card: "Comment sortir d'une addiction ?", q: "Pour sortir d'une addiction, on a souvent besoin…",
-   a: "D'un accompagnement par un professionnel de santé (médecin généraliste, addictologue, psychiatre…),\nsouvent avec un traitement médicamenteux et une prise en charge psychologique, seul ou en groupe.\nDes services d'aide existent, par exemple Tabac info service (39 89).",
+  {n: "add", card: "Qui peut aider à sortir d'une addiction ?", q: "Pour sortir d'une addiction, on a souvent besoin…",
+   a: "Un professionnel de santé (médecin, addictologue, psychiatre), avec souvent un traitement et un suivi psychologique.\nTabac info service : 39 89.",
    o: ["d'un accompagnement par un professionnel de santé", "de rester seul sans en parler", "de consommer davantage", "de changer de drogue"]}
-];
+].map((c, i) => Object.assign(c, {id: c.fiche ? "f" + c.fiche : "c" + i,
+  q: c.q || c.card, o: c.fiche ? [c.a, ...c.o] : c.o}));
+const FICHE = COURS.filter(c => c.fiche);
 
 /* ---------- le schéma du neurone ---------- */
 const PARTS = [
@@ -255,6 +271,7 @@ const VOC = [
   {def: "Plus de mouvement, parce que le système nerveux est lésé.", word: "la paralysie", ok: ["paralysie"], n: "snc"},
   {def: "Ensemble formé par l'encéphale et la moelle épinière.", word: "le système nerveux central", ok: ["systeme nerveux central", "centre nerveux", "snc"], n: "snc"},
   {def: "Cellule nerveuse.", word: "un neurone", ok: ["neurone"], n: "neu"},
+  {def: "Cordon blanchâtre composé d'axones, qui permet de conduire les messages nerveux.", word: "un nerf", ok: ["nerf"], n: "trj"},
   {def: "Fibre nerveuse du neurone, le long de laquelle se propage le message électrique.", word: "l'axone", ok: ["axone"], n: "neu"},
   {def: "Gaine autour de l'axone qui augmente la vitesse du message.", word: "la myéline", ok: ["myeline", "gaine de myeline"], n: "neu"},
   {def: "Partie du neurone qui contient le noyau.", word: "le corps cellulaire", ok: ["corps cellulaire"], n: "neu"},
@@ -313,6 +330,9 @@ const VF = [
   ["L'intégration, c'est le cerveau qui traite en même temps toutes les informations.", true, "int", "Oui : il les analyse et les met en relation."],
   ["Les drogues diminuent la libération de dopamine.", false, "add", "Non : elles l'augmentent, et c'est à l'origine de la dépendance."],
   ["Une addiction peut aussi concerner un comportement, comme les jeux vidéo.", true, "add", "Oui : la pratique excessive d'un comportement (jeux vidéo, réseaux sociaux…)."],
+  ["Le manque de sommeil fait baisser les performances du cerveau.", true, "add", "Oui : une mauvaise hygiène de vie (comme le manque de sommeil) entraîne une baisse des performances cérébrales."],
+  ["L'addiction aux jeux vidéo peut créer une dépendance, comme une drogue.", true, "add", "Oui : elle stimule le circuit de la récompense et crée une dépendance."],
+  ["Un nerf est une seule cellule nerveuse.", false, "trj", "Non : un nerf est un cordon composé de nombreux axones."],
   ["Pour sortir d'une addiction, on peut se faire accompagner par un professionnel de santé.", true, "add", "Oui : médecin, addictologue, psychiatre, avec souvent un traitement et un suivi psychologique."]
 ];
 
@@ -326,9 +346,17 @@ const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 /* Chaque générateur renvoie un exercice neutre {n, prompt, fig?, opts | field, explain, review, tip?, redo} */
 const G = {
   cours(n){
-    const c = pick(COURS.filter(x => x.n === n));
+    const own = COURS.filter(x => x.n === n && !x.fiche), c = pick(own.length ? own : COURS.filter(x => x.n === n));
     return {n, prompt: esc(c.q), wide: true, opts: shuffle(c.o.map((t, i) => ({t, ok: i === 0}))), explain: nl(c.a), tip: c.tip,
       review: rev(n, c.q, c.o[0]), redo: () => G.cours(n)};
+  },
+  fiche(n){
+    const pool = FICHE.filter(x => x.n === n);
+    if (!pool.length) return null;
+    const c = pick(pool);
+    return {n, fiche: c.fiche, prompt: `<span class="label">Fiche mémo · question ${c.fiche}</span><br>${esc(c.card)}`, wide: true,
+      opts: shuffle(c.o.map((t, i) => ({t, ok: i === 0}))), explain: `La bonne réponse (en vert) est celle de la fiche mémo, mot pour mot : c'est elle qu'il faut savoir redire.`,
+      review: rev(n, `Fiche mémo, question ${c.fiche} : ${c.card}`, c.a), redo: () => G.fiche(n)};
   },
   exemple(n){
     const pool = EX.filter(e => e.n === n);
@@ -417,8 +445,8 @@ const asControl = e => Object.assign({unit: UBY[e.n], prompt: e.prompt, fig: e.f
   correction: () => e.explain ? `<p class="label" style="margin-top:4px">Correction</p>${box(e.explain)}` : "", redo: () => asControl(e.redo())},
   e.field ? {kind: "fields", fields: [e.field]} : {kind: "choice", opts: e.opts});
 
-const card = (n, front, back, tip) => ({unit: UBY[n],
-  front: `<div class="fbody"><span class="card-q">${front}</span><span class="hint">Touche la carte pour voir la réponse</span></div>`,
+const card = (n, front, back, tip, fiche) => ({unit: UBY[n],
+  front: `<div class="fbody">${fiche ? `<span class="label">Fiche mémo · question ${fiche}</span>` : ""}<span class="card-q">${front}</span><span class="hint">Touche la carte pour voir la réponse</span></div>`,
   back: `<div class="fbody left"><span class="card-a">${back}</span>${tip ? `<span class="tip">${esc(tip)}</span>` : ""}</div>`});
 
 Revision.start({
@@ -440,24 +468,29 @@ Revision.start({
   allLabel: () => "Tout le chapitre",
   mastery: {max: 5, noun: "notions", feminine: true, help: "Une pastille se remplit à chaque bonne réponse au contrôle et se vide à chaque erreur. Cinq pastilles : notion maîtrisée."},
   modes: {
-    cards: ["la leçon", "Lis la question, retourne la carte : la leçon et des exemples."],
-    quiz: ["10 questions", "Définitions, schéma du neurone, étapes dans l'ordre, vrai ou faux."],
+    cards: ["la leçon", "Les 12 questions de la fiche mémo, puis le reste du cours, à réviser chaque jour."],
+    quiz: ["10 questions", "Les questions de la fiche mémo, le schéma du neurone, les étapes dans l'ordre."],
     control: ["noté sur 20", "Tu écris les mots toi-même et tu légendes le neurone, comme à l'évaluation."]
   },
   cards: pool => {
-    const ids = pool.map(u => u.id), out = COURS.filter(c => ids.includes(c.n)).map(c => card(c.n, esc(c.card), nl(c.a), c.tip));
-    if (ids.includes("neu")) out.splice(Math.min(out.length, 9), 0, card("neu", `Légende le schéma du neurone${neuronFig()}`,
+    const ids = pool.map(u => u.id);
+    const out = COURS.filter(c => ids.includes(c.n)).map(c => card(c.n, esc(c.card), nl(c.a), c.tip, c.fiche));
+    const k = out.findIndex((c, i) => i >= FICHE.length && c.unit.id === "neu");
+    if (ids.includes("neu")) out.splice(k >= 0 ? k : out.length, 0, card("neu", `Légende le schéma du neurone${neuronFig()}`,
       "1 · les dendrites<br>2 · le corps cellulaire<br>3 · le noyau (il contient l'ADN)<br>4 · l'axone (la fibre nerveuse)<br>5 · la gaine de myéline<br>6 · les terminaisons de l'axone",
       "Titre à mettre : « Schéma d'un neurone »."));
     return out;
   },
-  quiz: {count: 10, make: (pool, R) => asQuiz(make(KINDS_QUIZ, R.weighted(pool).id, false))},
+  quiz: {count: 10, make: (pool, R, i) => {
+    const n = R.weighted(pool).id, f = i % 5 < 2 ? G.fiche(n) : null;   // environ 4 questions sur 10 viennent de la fiche mémo
+    return asQuiz(f || make(KINDS_QUIZ, n, false));
+  }},
   control: {
-    lead: "13 questions : des mots à écrire, le schéma du neurone à légender, des étapes à remettre dans l'ordre et des questions de cours. Chaque question compte autant.",
+    lead: "13 questions : des mots à écrire, le schéma du neurone à légender, des questions de la fiche mémo, des étapes à remettre dans l'ordre. Chaque question compte autant.",
     note: "Les accents, les majuscules et les articles ne comptent pas pour les mots. Pour les chiffres, une petite approximation est acceptée.",
     size: () => 13,
     build: (pool, R) => {
-      const plan = ["vocab", "vocab", "vocab", "vocab", "schema", "chiffre", "exemple", "aire", "suite", "vraiFaux", "vraiFaux", "cours", "cours"];
+      const plan = ["vocab", "vocab", "vocab", "vocab", "schema", "fiche", "fiche", "exemple", "aire", "suite", "vraiFaux", "cours", "chiffre"];
       const ids = pool.map(u => u.id), items = [];
       for (const k of plan) {
         let e = null;
