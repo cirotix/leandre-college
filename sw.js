@@ -31,6 +31,8 @@ self.addEventListener("fetch", event => {
   const sameOrigin = url.origin === self.location.origin;
   const fonts = /^fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
   if (!sameOrigin && !fonts) return;
+  // vidéos : laissées au navigateur (lecture par morceaux « Range », trop lourdes pour le cache hors connexion)
+  if (sameOrigin && (req.headers.has("range") || /\.(mp4|m4v|webm|mov)$/i.test(url.pathname))) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     if (fonts) { // les polices ne changent pas : cache d'abord

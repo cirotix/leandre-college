@@ -33,6 +33,11 @@ Identifiants en minuscules, sans accent, avec des tirets : `maths/fractions/`, `
    Nouvelle matière : l'ajouter dans `matieres` (`id`, `nom`, `couleur` parmi hl-1, hl-2, hl-3).
 4. `python3 tools/check.py` puis `python3 tools/test_module.py <chemin> --shots /tmp/shots` (regarder les captures), commit, push.
 
+Vidéo de révision (facultative) : poser le fichier dans le dossier du module (`video.mp4` en H.264/AAC, < 100 Mo,
+remuxé avec `ffmpeg -i in.mp4 -c copy -movflags +faststart video.mp4`, affiche `video.jpg`) et déclarer `video` dans
+`Revision.start`. Sans `video`, rien ne change. Les vidéos ne passent pas par le cache hors connexion (sw.js).
+Le Chromium des tests ne lit pas le H.264 : pour tester la lecture, utiliser une copie WebM temporaire.
+
 Ne pas modifier le moteur pour un besoin propre à un module : soit c'est générique et ça va dans `lib/`
 (en vérifiant que tous les modules marchent encore), soit ça reste dans le `module.js`.
 
@@ -45,6 +50,7 @@ Revision.start({
   key: "leandre-<matiere>-<module>-v1",    // clé localStorage, unique (exceptions historiques : verbes-leandre-v1, triangles-leandre-v1)
   title, subtitle?, eyebrow?, hand?,        // en-tête du module (hand = note manuscrite rouge)
   countdown?: {date: "AAAA-MM-JJ", label: "mardi 13 octobre"},
+  video?: {src: "video.mp4", poster?, length?: "6 min", title?, text?, chapters?: [[secondes, "titre"]]},  // 4e tuile « Vidéo »
   groups: {"1": {name, plural?, cls: "l1"|"l2"|"l3", filter?}},   // couleur + chips « Je révise »
   units: [{id, name, group, tag?, sub?}],   // ce dont on suit la maîtrise (verbe, notion…)
   allLabel?: n => "Tout le chapitre",

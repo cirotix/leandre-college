@@ -3,7 +3,7 @@
    fiche « Les organes mis en jeu lors d'une course de 100 m » et « Le système nerveux central »,
    fiche « Les neurones » (documents 1 à 4 : neurone, transmission, synapse, neurone et muscle),
    activité 3 « Cerveau et message nerveux » (le téléphone sonne), TD « AVC de Jean » (aires cérébrales),
-   TP « Système nerveux et conduites addictives ».
+   TP « Système nerveux et conduites addictives ». Vidéo de révision (NotebookLM) fournie par Damien.
    Données + règles ; le moteur est dans lib/revision.js. */
 (() => {
 "use strict";
@@ -427,6 +427,10 @@ Revision.start({
   subtitle: "Thème 1 · Corps humain et santé",
   eyebrow: "SVT · Chapitre 1",
   hand: "Du stimulus au mouvement, du neurone au cerveau",
+  video: {src: "video.mp4", poster: "video.jpg", length: "6 min", title: "Le système nerveux, en vidéo",
+    text: "Tout le chapitre résumé en 6 minutes. Idéal avant de commencer ou la veille du contrôle.",
+    chapters: [[0, "Introduction"], [49, "1 · Le trajet du message"], [107, "2 · Neurones et synapses"], [186, "3 · Le cerveau, chef d'orchestre"],
+      [235, "4 · Lésions et AVC"], [285, "5 · Les conduites addictives"], [335, "Conclusion"]]},
   groups: {
     "1": {name: "Le trajet du message", cls: "l1", filter: "Le trajet du message"},
     "2": {name: "La communication nerveuse", cls: "l2", filter: "Neurones et synapses"},
