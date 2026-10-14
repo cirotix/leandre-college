@@ -136,6 +136,8 @@ export default {
         if (!rec) return json({error: "tablette non abonnée"}, 404, h);
         const st = await sendPush(rec.subscription, {title: "Ça marche !", body: "Tu recevras ici les nouveaux modules de révision.", url: env.SITE_URL, tag: "test"}, await getVapid(env), env.VAPID_SUBJECT);
         if (st === 404 || st === 410) await env.SUBS.delete("sub:" + await sha256hex(endpoint));
+        const runs = (await env.SUBS.get("runs", "json")) || [];
+        await env.SUBS.put("runs", JSON.stringify([{at: new Date().toISOString(), test: st, service: new URL(endpoint).hostname}, ...runs].slice(0, 12)));
         return json({ok: st >= 200 && st < 300, status: st}, 200, h);
       }
       return json({error: "introuvable"}, 404, h);
