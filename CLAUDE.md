@@ -46,11 +46,20 @@ Ne pas modifier le moteur pour un besoin propre à un module : soit c'est géné
 
 - Accueil d'un module : étapes Vidéo (si `video`) → Cartes → Quiz → Contrôle, chacune « ✓ Fait » pendant 7 jours,
   la première non faite marquée « À faire maintenant » ; les notions maîtrisées sont en bas, repliées.
-- Cartes : séries de 10, « Je savais / À revoir » (une notion « à revoir » est tirée plus souvent au quiz et au contrôle,
-  sans toucher à la maîtrise, qui ne bouge qu'au contrôle), glisser à gauche = carte suivante, à droite = précédente.
+- Cartes = répétition espacée (boîtes de Leitner, état par carte dans `S.cb`, identifiant = notion + empreinte du recto :
+  modifier le recto d'une carte la fait repartir comme nouvelle). « Je savais » : boîte +1, revient dans 1, 3, 7, 14
+  puis 30 jours (intervalles raccourcis à ~40 % du délai restant quand `countdown` approche, et toujours une révision
+  avant le contrôle). « À revoir » : boîte 1, la carte revient 3 cartes plus loin dans la séance, puis le lendemain.
+  Acquise = boîte 4 ou 5. « Cartes du jour » = cartes échues (mélangées entre notions) + 10 nouvelles par jour
+  (davantage si le contrôle approche, pour tout avoir vu à J-2), 20 cartes max (40 à moins de 15 jours du contrôle).
+  En plus : « Mes cartes difficiles » (ratées et pas remontées), « M'entraîner quand même » (une réussite n'avance pas
+  la carte), « Parcourir toutes les cartes » (lecture libre par notion, sans noter). Glisser : en séance, droite =
+  je savais, gauche = à revoir ; en parcours, gauche = suivante, droite = précédente. Une notion avec des cartes
+  difficiles est tirée plus souvent au quiz et au contrôle ; la maîtrise, elle, ne bouge qu'au contrôle.
+  Pour tester sur plusieurs jours : `window.__revisionNow = "2026-10-20T18:00"` avant d'appeler les fonctions.
 - Quiz et contrôle : glisser à gauche = question suivante une fois la réponse donnée ; en fin de série, les boutons
   passent avant la liste des erreurs (repliée) et « Revoir les cartes » relance les cartes des notions ratées.
-- Chaque module écrit un résumé dans `localStorage["revisions-index"]` (`{chemin: {seen, done, n, noun, fem, cd}}`),
+- Chaque module écrit un résumé dans `localStorage["revisions-index"]` (`{chemin: {seen, done, n, noun, fem, cd, k, kd}}`, k = cartes du jour calculées le jour kd),
   lu par l'accueil du site (progression, « Nouveau ! », compte à rebours).
 
 ## Contrat de `module.js`

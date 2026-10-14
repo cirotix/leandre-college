@@ -4,7 +4,7 @@
 
 Vérifie, sans rien savoir du contenu :
   - la page se charge sans erreur JavaScript ;
-  - Cartes : chaque carte a un recto et un verso ; une série se parcourt jusqu'au bilan (Je savais / À revoir) ;
+  - Cartes : chaque carte a un recto et un verso ; les cartes du jour vont jusqu'au bilan, « Parcourir » et « Cartes difficiles » marchent ;
   - Quiz : 300 quiz générés, chaque question a exactement une bonne réponse et des options distinctes ;
   - Contrôle : 300 contrôles générés, chaque item est valide (choix ou champs), a un `review`, une `unit`,
     un `redo()` qui renvoie un item valide, et les champs refusent une réponse absurde ;
@@ -91,17 +91,21 @@ async def ui_pass(pg, shots_prefix=None):
         if shots_prefix: await pg.screenshot(path=f"{shots_prefix}-{name}.png", full_page=True)
     await pg.goto(BASE + MOD); await pg.wait_for_selector(".mode")
     await shot("accueil")
-    await pg.click("[data-act=cards]"); await pg.click("#flip"); await pg.wait_for_timeout(650)
+    await pg.click("[data-act=cards]"); await pg.click("[data-act=kday]"); await pg.click("#flip"); await pg.wait_for_timeout(650)
     await shot("carte")
-    # une série de cartes : « À revoir » / « Je savais » en alternance (la carte est déjà retournée), jusqu'au bilan
-    for k in range(12):
+    # cartes du jour : « À revoir » une fois sur trois (la carte revient dans la séance), jusqu'au bilan
+    for k in range(200):
         if not await pg.query_selector("#flip"): break
         if k: await pg.click("#flip")
-        await pg.click(f"[data-act=rate][data-v='{k % 2}']")
-    assert await pg.query_selector(".tally"), "la série de cartes ne mène pas au bilan"
-    again = await pg.query_selector("[data-act=cagain]")
-    if again:
-        await again.click(); assert await pg.query_selector("#flip"), "« Revoir les cartes » ne relance pas"
+        await pg.click(f"[data-act=rate][data-v='{0 if k % 3 == 0 else 1}']")
+    assert await pg.query_selector(".tally"), "les cartes du jour ne mènent pas au bilan"
+    await pg.click(".result [data-act=cards]")
+    assert await pg.query_selector("[data-act=kbrowse]"), "pas d'accès à « Parcourir toutes les cartes »"
+    hard = await pg.query_selector("[data-act=khard]")
+    if hard:
+        await hard.click(); assert await pg.query_selector("#flip"), "« Mes cartes difficiles » ne lance rien"
+        await pg.click("[data-act=home]"); await pg.click("[data-act=cards]")
+    await pg.click("[data-act=kbrowse]"); await pg.click("[data-act=bnext]"); await pg.click("[data-act=bprev]")
     await pg.click("[data-act=home]"); await pg.click("[data-act=quiz]")
     for i in range(await pg.evaluate("window.__module.M.quiz.count || 10")):
         await pg.click("[data-act=answer]")

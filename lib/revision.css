@@ -365,3 +365,35 @@ details.misses[open] > summary{color:var(--muted)}
 .btn, .chip, .chap, .vchip, .opt{transition:transform .08s ease, border-color .15s ease, background-color .15s ease}
 @media (prefers-reduced-motion: reduce){ .flash.fly, .qcard.fly, #cform.fly, .flash.snap, .qcard.snap, #cform.snap{transition:none} }
 .hd + .sec, .hd + .modes{margin-top:26px}
+
+/* ---------- cartes : répétition espacée ---------- */
+.kday{padding:0 20px 22px; text-align:center}
+.kbig{font-size:19px; margin:20px 0 4px}
+.kbig b{font-family:var(--f-display); font-weight:400; font-size:46px; line-height:1; color:var(--pen); display:block}
+.kstate{margin:22px 2px 0}
+.kbar{display:flex; height:12px; border-radius:99px; overflow:hidden; background:var(--line)}
+.kbar i{display:block; height:100%}
+.kbar i.new, .klegend i.new{background:var(--line)}
+.kbar i.mid, .klegend i.mid{background:var(--lv-2, #F2B13F)}
+.kbar i.ok, .klegend i.ok{background:var(--ok)}
+.kbar i.new{background:transparent}
+.klegend{display:flex; flex-wrap:wrap; gap:6px 18px; margin:10px 0 0; font-size:14px; color:var(--muted)}
+.klegend span{display:inline-flex; align-items:center; gap:7px}
+.klegend i{width:11px; height:11px; border-radius:3px; display:inline-block}
+.klegend i.new{border:1.5px solid var(--muted); background:transparent}
+.kmore{display:grid; gap:10px; margin:22px 0 0}
+.kmore .btn{justify-content:flex-start}
+.kwhy{margin:18px 2px 0; max-width:62ch}
+.kbox{font-size:12px; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap}
+.kbox.new{color:var(--pen); background:var(--pen-soft)}
+.kbox.ko{color:var(--red); background:var(--red-soft)}
+.kbox.mid{color:var(--ink); background:color-mix(in srgb, var(--lv-2, #F2B13F) 30%, transparent)}
+.kbox.ok{color:var(--ok); background:var(--ok-soft)}
+.kprog{height:5px; border-radius:99px; background:var(--line); overflow:hidden; margin:-8px 0 14px}
+.kprog i{display:block; height:100%; background:var(--pen); transition:width .25s ease}
+.btn.wide{min-width:min(100%, 320px); min-height:52px}
+.t-mid b{color:var(--lv-2, #C98A00)}
+.kjump{display:flex; gap:8px; overflow-x:auto; padding:2px 2px 12px; margin:-6px -2px 6px; scrollbar-width:none; -webkit-overflow-scrolling:touch}
+.kjump::-webkit-scrollbar{display:none}
+.kjump .chip{flex:none}
+[hidden]{display:none !important}
