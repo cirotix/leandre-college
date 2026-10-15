@@ -12,10 +12,12 @@ lib/revision.js            LE moteur : écrans Cartes / Quiz / Contrôle, progre
 lib/revision.css           styles communs (cahier Seyès, fiches bristol, mode sombre = ardoise)
 lib/module.html            gabarit de page : chaque <matiere>/<module>/index.html en est une COPIE EXACTE
 lib/home.js                logique de l'accueil
+lib/lesson.js              Revision.lesson(données) : module « leçon » piloté par les données (modules de la fabrique)
 <matiere>/<module>/module.js   le module : données + règles, rien d'autre
 tools/check.py             vérifications de cohérence à lancer avant chaque commit
 tools/test_module.py       test d'un module dans Chromium : python3 tools/test_module.py <matiere>/<module>/ [--shots DOSSIER]
-tools/film/                fabrication des films animés des modules (make_film.py + sources/ des scènes)
+tools/film/                fabrication des films animés des modules (make_film.py + sources/ des scènes ; gabarit.html = film généré d'un storyboard)
+tools/fabrique/            chaîne autonome photos → module (API Claude) + interface Streamlit, voir tools/fabrique/README.md
 sw.js                      service worker : hors connexion (réseau d'abord, modules préchargés via modules.json) + notifications
 lib/push.js                bloc « Notifications » de l'accueil (abonnement) ; adresse du worker dans push.json
 worker/                    Worker Cloudflare « leandre-push » : notifications (KV, Web Push) + correction par l'IA (src/ia.js)
@@ -27,6 +29,10 @@ outils/comparer-ia.html    page cachée : 10 réponses tests corrigées par Haik
 Identifiants en minuscules, sans accent, avec des tirets : `maths/fractions/`, `francais/accords-participe/`.
 
 ## Ajouter un module
+
+Deux voies : la **fabrique** (`streamlit run tools/fabrique/app.py`, sur la machine de Damien : photos → module
+`Revision.lesson`, relu, testé, chiffré, publié après validation), ou à la main comme ci-dessous (modules sur mesure :
+schémas SVG, exercices de calcul, listes à saisir).
 
 1. `mkdir <matiere>/<module> && cp lib/module.html <matiere>/<module>/index.html`
 2. Écrire `<matiere>/<module>/module.js` (contrat ci-dessous), en s'inspirant de `maths/triangles/` (cours + exercices
@@ -99,6 +105,10 @@ Revision.start({
             build: (pool, R) => [item]}
 });
 ```
+
+Variante données seules (fabrique) : `Revision.lesson({key, titre, sousTitre, surtitre, note, controle?: {date, label}, video?,
+parties, notions, parCoeur, cours, vocabulaire, vraiFaux, chiffres, etapes, classements, redaction})`, schéma `LECON` dans
+`tools/fabrique/schemas.py` ; `lib/lesson.js` en tire cartes (par cœur d'abord), quiz, contrôle (textes à trous inclus) et rédaction.
 
 Un `item` de contrôle : `{unit, kind: "choice", opts}` ou `{unit, kind: "fields", fields: [{label, lang?, inputmode?, unit?, check: v => ({ok, fix})}]}`,
 plus `prompt?`, `given?: {label, value}`, `fig?`, `correction: all => html`, `tip?`, `review: html` (ligne « À revoir »),

@@ -1,0 +1,276 @@
+{
+ "matiere": "SVT",
+ "niveau": "4e",
+ "chapitre": "Thème 1 · Chapitre 1",
+ "titre": "Le système nerveux",
+ "date_evaluation": "",
+ "parties": [
+  {
+   "titre": "Le trajet du message",
+   "contenu": "Qu'est-ce qu'un stimulus ? Une information de l'environnement qui déclenche une réaction.\nEx. : le coup de feu pour la sprinteuse, la sonnerie du téléphone.\nÀ quoi servent les organes sensoriels ? À capter les informations de l'environnement : l'oreille capte les sons, l'œil capte la lumière.\nGrâce à quelles cellules l'oreille capte-t-elle les sons ? Grâce aux cellules ciliées.\nQuel nerf transporte le message des organes sensoriels vers les centres nerveux ? Le nerf sensitif.\nQuel nerf transporte le message des centres nerveux vers les muscles ? Le nerf moteur.\nQuels sont les organes effecteurs du mouvement ? Les muscles : ils se contractent et mettent le corps en mouvement.\nRemets dans l'ordre : nerf moteur, stimulus, centre nerveux, muscle, organe sensoriel, nerf sensitif. Stimulus → organe sensoriel → nerf sensitif → centre nerveux → nerf moteur → muscle.\nEx. : coup de feu → oreille → nerf sensitif → cerveau → nerf moteur → muscles des jambes.\nÀ quelle vitesse se propagent les messages nerveux ? Environ 100 m/s (cent mètres par seconde).\nQu'est-ce qui forme le système nerveux central ? L'encéphale (dont la plus grande partie est le cerveau) et la moelle épinière.\nQu'est-ce qui protège la moelle épinière ? Les vertèbres de la colonne vertébrale.\nQue se passe-t-il quand le système nerveux est lésé ? Il n'y a plus de communication entre les organes, donc plus de mouvement : c'est la paralysie."
+  },
+  {
+   "titre": "La communication nerveuse",
+   "contenu": "À quoi sert la myéline ? À augmenter la vitesse du message nerveux. C'est une gaine qui entoure l'axone.\nOù se trouvent les dendrites ? Autour du corps cellulaire : ce sont de petites ramifications.\nOù se trouve le noyau du neurone, et que contient-il ? Dans le corps cellulaire. Il contient l'ADN.\nDans combien de sens le message circule-t-il le long d'un neurone ? Dans un seul sens : des dendrites vers le corps cellulaire, puis le long de l'axone.\nCombien de synapses possède un neurone ? Environ 1 000 à 10 000 synapses avec d'autres neurones.\nSur quoi se fixent les neurotransmetteurs ? Sur des récepteurs du neurone suivant (ou du muscle). Un nouveau message électrique repart alors.\nLe message nerveux est électrique dans le neurone. Et dans la synapse ? Chimique : ce sont des molécules, les neurotransmetteurs.\nComment le message nerveux fait-il contracter un muscle ? Le neurone libère des neurotransmetteurs, qui se fixent sur les récepteurs des fibres musculaires : le muscle se contracte.\nPourquoi l'anesthésie relâche-t-elle les muscles ? Elle bloque la communication entre les cellules nerveuses et les cellules musculaires."
+  },
+  {
+   "titre": "Le cerveau",
+   "contenu": "Combien d'hémisphères a le cerveau ? Deux : l'hémisphère droit et l'hémisphère gauche.\nQu'est-ce qu'une aire cérébrale ? Une zone du cerveau spécialisée dans une fonction précise (voir, entendre, bouger…).\nOù arrivent les messages nerveux sensitifs ? Dans les aires sensitives du cerveau : visuelle, auditive, olfactive, gustative, somesthésique.\nQuelles aires commandent les mouvements ? Les aires motrices : elles envoient les ordres aux muscles.\nOù se trouve l'aire visuelle ? À l'arrière du cerveau.\nQu'est-ce qu'un AVC ? Un accident vasculaire cérébral, par exemple une hémorragie soudaine dans le cerveau. La zone touchée peut être abîmée pour toujours.\nUn AVC touche l'aire visuelle. Quelles conséquences ? Des troubles de la vision : la personne peut confondre les formes et les couleurs.\nLe téléphone sonne. Dans quel ordre les aires du cerveau travaillent-elles ? 1. L'aire auditive entend la sonnerie.\n2. L'aire de la mémoire reconnaît le son.\n3. L'aire de la prise de décision décide de répondre.\n4. L'aire motrice envoie l'ordre au bras.\nQu'est-ce que l'intégration ? Le traitement en même temps, par le cerveau, de toutes les informations reçues des organes sensoriels et échangées dans le cerveau.\nÀ quoi sert la mémoire quand on perçoit l'environnement ? À reconnaître ce qu'on a déjà vécu (par exemple la sonnerie de son téléphone).\nQuelle aire décide de l'action à faire ? L'aire préfrontale (l'aire de la prise de décision), à l'avant du cerveau.\nQu'est-ce que la dopamine ? Une substance chimique qui assure la communication entre neurones et qui provoque la sensation de plaisir.\nComment les drogues agissent-elles sur le cerveau ? Elles augmentent la libération de dopamine dans les synapses : c'est ce qui crée la dépendance.\nQue peuvent provoquer certaines drogues sur la vue ? Des hallucinations, qui peuvent être dangereuses.\nQuelles sont les conséquences d'une addiction ? Des conséquences négatives sur la vie personnelle, professionnelle et sociale.\nEn France, quelle substance a le plus d'usagers chaque jour ? Le tabac : environ 12 millions. Puis l'alcool (5 millions) et le cannabis (850 000).\nQui peut aider à sortir d'une addiction ? Un professionnel de santé (médecin, addictologue, psychiatre), avec souvent un traitement et un suivi psychologique.\nTabac info service : 39 89."
+  }
+ ],
+ "par_coeur": [
+  {
+   "phrase": "C'est un ensemble composé du cerveau, de la moelle épinière et d'un réseau de nerfs parcourant tout l'organisme. Le système nerveux commande et contrôle l'ensemble du corps.",
+   "source": "Fiche mémo, question 1",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "Lors d'une stimulation, les messages nerveux sensoriels se propagent des organes sensoriels vers les centres nerveux qui envoient notamment des messages moteurs vers les muscles via les nerfs moteurs.",
+   "source": "Fiche mémo, question 2",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "Ce sont les cellules nerveuses, appelées les neurones.",
+   "source": "Fiche mémo, question 3",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "Le corps cellulaire composé du noyau avec les dendrites, puis un prolongement nommé axone entouré de myéline.",
+   "source": "Fiche mémo, question 4",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "Le message nerveux circule sous forme électrique le long du neurone.",
+   "source": "Fiche mémo, question 5",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "C'est la synapse.",
+   "source": "Fiche mémo, question 6",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "Il y a une libération de neurotransmetteurs (molécules chimiques) dans la synapse.",
+   "source": "Fiche mémo, question 7",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "C'est une molécule qui sert de messager entre deux neurones, ou entre un neurone et un muscle.",
+   "source": "Fiche mémo, question 8",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "C'est un cordon blanchâtre composé d'axones, qui permet de conduire les messages nerveux.",
+   "source": "Fiche mémo, question 9",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "Le cerveau intègre les informations sensorielles dans des zones spécialisées appelées « aires ». Et il élabore une réponse adaptée, comme un mouvement.",
+   "source": "Fiche mémo, question 10",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "C'est une maladie qui se manifeste par une dépendance à une substance ou à une activité, et qui a des conséquences nuisibles sur la santé.",
+   "source": "Fiche mémo, question 11",
+   "indice": "fiche de questions-réponses du professeur"
+  },
+  {
+   "phrase": "Une mauvaise hygiène de vie comme un manque de sommeil entraine une baisse des performances cérébrales. La consommation de drogues ou l'addiction aux jeux stimulent le circuit de la récompense et créent des dépendances. Il est important d'avoir une bonne hygiène de vie pour préserver le bon fonctionnement du système nerveux.",
+   "source": "Fiche mémo, question 12",
+   "indice": "fiche de questions-réponses du professeur"
+  }
+ ],
+ "fiche_questions": [
+  {
+   "question": "Qu'est-ce que le système nerveux ?",
+   "reponse": "C'est un ensemble composé du cerveau, de la moelle épinière et d'un réseau de nerfs parcourant tout l'organisme. Le système nerveux commande et contrôle l'ensemble du corps."
+  },
+  {
+   "question": "Quel est le trajet du message qui permet de réaliser un mouvement ?",
+   "reponse": "Lors d'une stimulation, les messages nerveux sensoriels se propagent des organes sensoriels vers les centres nerveux qui envoient notamment des messages moteurs vers les muscles via les nerfs moteurs."
+  },
+  {
+   "question": "Quelles structures permettent la communication entre les différents organes du système nerveux ?",
+   "reponse": "Ce sont les cellules nerveuses, appelées les neurones."
+  },
+  {
+   "question": "Quelles sont les différentes parties d'un neurone ?",
+   "reponse": "Le corps cellulaire composé du noyau avec les dendrites, puis un prolongement nommé axone entouré de myéline."
+  },
+  {
+   "question": "Quelle est la nature du message nerveux qui circule dans un neurone ?",
+   "reponse": "Le message nerveux circule sous forme électrique le long du neurone."
+  },
+  {
+   "question": "Comment s'appelle le lieu de la transmission du message nerveux entre deux neurones ?",
+   "reponse": "C'est la synapse."
+  },
+  {
+   "question": "Comment circule le message nerveux entre deux neurones ?",
+   "reponse": "Il y a une libération de neurotransmetteurs (molécules chimiques) dans la synapse."
+  },
+  {
+   "question": "Qu'est-ce qu'un neurotransmetteur ?",
+   "reponse": "C'est une molécule qui sert de messager entre deux neurones, ou entre un neurone et un muscle."
+  },
+  {
+   "question": "Qu'est-ce qu'un nerf ?",
+   "reponse": "C'est un cordon blanchâtre composé d'axones, qui permet de conduire les messages nerveux."
+  },
+  {
+   "question": "Quel est le rôle du cerveau dans le traitement de l'information ?",
+   "reponse": "Le cerveau intègre les informations sensorielles dans des zones spécialisées appelées « aires ». Et il élabore une réponse adaptée, comme un mouvement."
+  },
+  {
+   "question": "C'est quoi l'addiction ?",
+   "reponse": "C'est une maladie qui se manifeste par une dépendance à une substance ou à une activité, et qui a des conséquences nuisibles sur la santé."
+  },
+  {
+   "question": "Quels sont les effets de nos comportements négatifs sur le système nerveux ?",
+   "reponse": "Une mauvaise hygiène de vie comme un manque de sommeil entraine une baisse des performances cérébrales. La consommation de drogues ou l'addiction aux jeux stimulent le circuit de la récompense et créent des dépendances. Il est important d'avoir une bonne hygiène de vie pour préserver le bon fonctionnement du système nerveux."
+  }
+ ],
+ "vocabulaire": [
+  {
+   "mot": "un stimulus",
+   "definition": "Information de l'environnement qui déclenche une réaction (ex. : le coup de feu)."
+  },
+  {
+   "mot": "un organe sensoriel",
+   "definition": "Organe qui capte les informations de l'environnement (œil, oreille)."
+  },
+  {
+   "mot": "un organe effecteur",
+   "definition": "Organe qui réalise le mouvement en se contractant."
+  },
+  {
+   "mot": "un nerf sensitif",
+   "definition": "Nerf qui transporte le message des organes sensoriels vers les centres nerveux."
+  },
+  {
+   "mot": "un nerf moteur",
+   "definition": "Nerf qui transporte le message des centres nerveux vers les muscles."
+  },
+  {
+   "mot": "la moelle épinière",
+   "definition": "Partie du centre nerveux, dans le prolongement du cerveau, protégée par les vertèbres."
+  },
+  {
+   "mot": "la paralysie",
+   "definition": "Plus de mouvement, parce que le système nerveux est lésé."
+  },
+  {
+   "mot": "le système nerveux central",
+   "definition": "Ensemble formé par l'encéphale et la moelle épinière."
+  },
+  {
+   "mot": "un neurone",
+   "definition": "Cellule nerveuse."
+  },
+  {
+   "mot": "un nerf",
+   "definition": "Cordon blanchâtre composé d'axones, qui permet de conduire les messages nerveux."
+  },
+  {
+   "mot": "l'axone",
+   "definition": "Fibre nerveuse du neurone, le long de laquelle se propage le message électrique."
+  },
+  {
+   "mot": "la myéline",
+   "definition": "Gaine autour de l'axone qui augmente la vitesse du message."
+  },
+  {
+   "mot": "le corps cellulaire",
+   "definition": "Partie du neurone qui contient le noyau."
+  },
+  {
+   "mot": "les dendrites",
+   "definition": "Petites ramifications autour du corps cellulaire qui reçoivent les messages."
+  },
+  {
+   "mot": "une synapse",
+   "definition": "Zone de communication entre deux neurones."
+  },
+  {
+   "mot": "un neurotransmetteur",
+   "definition": "Molécule qui sert de message entre deux neurones ou entre un neurone et un muscle."
+  },
+  {
+   "mot": "un récepteur",
+   "definition": "Structure du neurone 2 (ou du muscle) sur laquelle se fixent les neurotransmetteurs."
+  },
+  {
+   "mot": "la contraction",
+   "definition": "Réaction du muscle quand les neurotransmetteurs se fixent sur ses récepteurs."
+  },
+  {
+   "mot": "l'anesthésie",
+   "definition": "Pendant une opération, elle bloque la communication entre les cellules nerveuses et musculaires."
+  },
+  {
+   "mot": "une aire",
+   "definition": "Zone du cerveau spécialisée dans une fonction précise."
+  },
+  {
+   "mot": "un hémisphère",
+   "definition": "Chacune des deux moitiés du cerveau, droite ou gauche."
+  },
+  {
+   "mot": "un AVC",
+   "definition": "Accident dû par exemple à une hémorragie soudaine dans le cerveau (en trois lettres)."
+  },
+  {
+   "mot": "l'intégration",
+   "definition": "Traitement simultané par le cerveau des informations reçues et échangées."
+  },
+  {
+   "mot": "la mémoire",
+   "definition": "Elle permet de reconnaître ce qu'on a déjà vécu."
+  },
+  {
+   "mot": "une addiction",
+   "definition": "Maladie liée à la consommation répétée d'une drogue ou à un comportement excessif."
+  },
+  {
+   "mot": "la dopamine",
+   "definition": "Substance qui assure la communication entre neurones et provoque la sensation de plaisir."
+  },
+  {
+   "mot": "des hallucinations",
+   "definition": "Fausses perceptions visuelles provoquées par certaines drogues."
+  }
+ ],
+ "faits_chiffres": [
+  "Environ 100 m/s, c'est-à-dire 100 mètres par seconde.",
+  "Environ 1 000 à 10 000 synapses avec d'autres neurones.",
+  "Deux : l'hémisphère droit et l'hémisphère gauche.",
+  "Environ 12 millions d'usagers quotidiens de tabac.",
+  "Environ 5 millions d'usagers quotidiens d'alcool."
+ ],
+ "schemas": [
+  {
+   "titre": "Le neurone",
+   "description": "Corps cellulaire avec noyau, dendrites, axone entouré de myéline, terminaisons."
+  }
+ ],
+ "activites": [
+  {
+   "titre": "L'AVC de Jean",
+   "consigne": "Tu es médecin. Écris quelques phrases à la famille de Jean pour lui expliquer **quelle aire de son cerveau est touchée** et **quelles seront les conséquences** de son AVC. Appuie-toi sur les documents.",
+   "documents": "Jean a fait un **AVC** : une hémorragie soudaine dans son cerveau. L'IRM montre que la zone touchée se trouve **à l'arrière du cerveau**.\n\nRappel du document 2 : le cerveau est divisé en **aires** spécialisées. L'aire visuelle est à l'arrière du cerveau, l'aire motrice sur le dessus, l'aire auditive sur le côté.\n\nDocument 3 : des patients touchés à cet endroit confondent les formes et les couleurs des objets."
+  },
+  {
+   "titre": "Le départ de la sprinteuse",
+   "consigne": "Explique le **trajet du message nerveux**, du coup de feu jusqu'au mouvement, en utilisant le vocabulaire du cours. Tu peux aussi faire le **schéma fonctionnel** sur une feuille et le prendre en photo.",
+   "documents": "Sur ses starting-blocks, la sprinteuse attend le coup de feu. Dès qu'elle l'entend, elle s'élance."
+  }
+ ],
+ "erreurs_cahier": [
+  {
+   "constat": "« neuronne » écrit avec deux n (partie 2).",
+   "correction": "neurone"
+  }
+ ],
+ "doutes": [],
+ "photos_illisibles": []
+}

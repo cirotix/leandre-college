@@ -33,6 +33,8 @@ Les notions maîtrisées (au contrôle) sont gardées sur l'appareil. On glisse 
 - `modules.json` : le catalogue qui construit l'accueil (recherche, filtre par matière, « Nouveau ! », progression).
 - `tools/check.py` : vérifications de cohérence ; `tools/test_module.py <chemin>` : test complet d'un module dans Chromium.
 - `tools/film/` : fabrication des films animés (`make_film.py` + une page de scènes par module dans `sources/`).
+- `tools/fabrique/` : **la fabrique** — des photos du cahier au module publié, toute seule (API Claude, interface
+  Streamlit, coûts par module, modèles configurables) ; mode d'emploi dans `tools/fabrique/README.md`.
 - `worker/` : Worker Cloudflare des notifications « nouveau module » et de la correction par l'IA.
 - `outils/comparer-ia.html` : comparaison des modèles de correction sur des réponses tests.
 

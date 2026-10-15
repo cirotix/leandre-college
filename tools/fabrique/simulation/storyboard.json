@@ -1,0 +1,191 @@
+{
+ "titre": "Le système nerveux",
+ "scenes": [
+  {
+   "type": "titre",
+   "partie": "Introduction",
+   "titre": "Le système nerveux",
+   "texte": "Du stimulus au mouvement, du neurone au cerveau",
+   "etiquette": "",
+   "elements": [],
+   "duree": 8
+  },
+  {
+   "type": "chaine",
+   "partie": "Le trajet du message",
+   "titre": "Du stimulus au mouvement",
+   "texte": "Le message nerveux suit toujours le même chemin.",
+   "etiquette": "",
+   "elements": [
+    {
+     "label": "Organe sensoriel",
+     "detail": "capte le stimulus",
+     "valeur": 0
+    },
+    {
+     "label": "Nerf sensitif",
+     "detail": "message vers le cerveau",
+     "valeur": 0
+    },
+    {
+     "label": "Cerveau",
+     "detail": "analyse et décide",
+     "valeur": 0
+    },
+    {
+     "label": "Moelle épinière",
+     "detail": "relais",
+     "valeur": 0
+    },
+    {
+     "label": "Nerf moteur",
+     "detail": "message vers le muscle",
+     "valeur": 0
+    },
+    {
+     "label": "Muscle",
+     "detail": "se contracte",
+     "valeur": 0
+    }
+   ],
+   "duree": 26
+  },
+  {
+   "type": "phrase",
+   "partie": "Le trajet du message",
+   "titre": "Le système nerveux central",
+   "texte": "C'est un ensemble composé du cerveau, de la moelle épinière et d'un réseau de nerfs parcourant tout l'organisme. Le système nerveux commande et contrôle l'ensemble du corps.",
+   "etiquette": "À savoir par cœur · Fiche mémo, question 1",
+   "elements": [],
+   "duree": 16
+  },
+  {
+   "type": "chiffres",
+   "partie": "Le trajet du message",
+   "titre": "Ça va vite !",
+   "texte": "Les messages nerveux circulent très rapidement.",
+   "etiquette": "",
+   "elements": [
+    {
+     "label": "vitesse maximale",
+     "detail": "m/s",
+     "valeur": 120
+    },
+    {
+     "label": "neurones dans le cerveau",
+     "detail": "milliards",
+     "valeur": 86
+    }
+   ],
+   "duree": 14
+  },
+  {
+   "type": "definition",
+   "partie": "Le neurone",
+   "titre": "Neurone",
+   "texte": "Cellule nerveuse spécialisée qui transmet le message nerveux.",
+   "etiquette": "",
+   "elements": [],
+   "duree": 12
+  },
+  {
+   "type": "liste",
+   "partie": "Le neurone",
+   "titre": "Les parties du neurone",
+   "texte": "",
+   "etiquette": "",
+   "elements": [
+    {
+     "label": "Corps cellulaire",
+     "detail": "contient le noyau",
+     "valeur": 0
+    },
+    {
+     "label": "Dendrites",
+     "detail": "reçoivent les messages",
+     "valeur": 0
+    },
+    {
+     "label": "Axone",
+     "detail": "conduit le message",
+     "valeur": 0
+    },
+    {
+     "label": "Terminaisons",
+     "detail": "libèrent les neurotransmetteurs",
+     "valeur": 0
+    }
+   ],
+   "duree": 20
+  },
+  {
+   "type": "phrase",
+   "partie": "La synapse",
+   "titre": "La synapse",
+   "texte": "C'est la synapse.",
+   "etiquette": "À savoir par cœur · Fiche mémo, question 6",
+   "elements": [],
+   "duree": 14
+  },
+  {
+   "type": "comparaison",
+   "partie": "Le cerveau",
+   "titre": "Aires cérébrales",
+   "texte": "Chaque aire a son rôle.",
+   "etiquette": "",
+   "elements": [
+    {
+     "label": "Aire motrice",
+     "detail": "commande les mouvements",
+     "valeur": 0
+    },
+    {
+     "label": "Aire visuelle",
+     "detail": "analyse ce que l'on voit",
+     "valeur": 0
+    }
+   ],
+   "duree": 16
+  },
+  {
+   "type": "recap",
+   "partie": "À retenir",
+   "titre": "À retenir",
+   "texte": "",
+   "etiquette": "",
+   "elements": [
+    {
+     "label": "C'est un ensemble composé du cerveau, de",
+     "detail": "",
+     "valeur": 0
+    },
+    {
+     "label": "Lors d'une stimulation, les messages ner",
+     "detail": "",
+     "valeur": 0
+    },
+    {
+     "label": "Ce sont les cellules nerveuses, appelées",
+     "detail": "",
+     "valeur": 0
+    },
+    {
+     "label": "Le corps cellulaire composé du noyau ave",
+     "detail": "",
+     "valeur": 0
+    },
+    {
+     "label": "Le message nerveux circule sous forme él",
+     "detail": "",
+     "valeur": 0
+    },
+    {
+     "label": "C'est la synapse.",
+     "detail": "",
+     "valeur": 0
+    }
+   ],
+   "duree": 28
+  }
+ ]
+}

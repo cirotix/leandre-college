@@ -1,0 +1,7 @@
+streamlit>=1.38
+requests
+pyyaml
+jsonschema
+pillow
+numpy        # musique du film
+playwright   # tests du module et rendu du film ; puis : playwright install chromium

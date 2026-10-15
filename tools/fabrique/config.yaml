@@ -1,0 +1,47 @@
+# Configuration de la fabrique. Modifiable aussi depuis l'interface (onglet « Modèles »).
+#
+# etapes   : le modèle et les réglages de chaque étape, par défaut.
+# profils  : surcharges par matière (id du site : sciences, histoire-geo, maths…), pour comparer des modèles
+#            sur un type de module sans toucher aux autres. Seuls les champs écrits remplacent les valeurs par défaut.
+# prix     : dollars par million de jetons (vérifier sur https://platform.claude.com/docs/en/about-claude/pricing).
+#            cache_lecture / cache_ecriture : multiplicateurs du prix d'entrée.
+
+simulation: false        # true = aucune requête, réponses lues dans simulation/ (ou FABRIQUE_SIMULATION=1)
+batch: false             # true = API Batch (-50 %), mais réponse en quelques minutes à quelques heures
+batch_attente_max: 10800 # secondes
+tours_correction: 1      # relecture → correction, combien de fois au plus
+relecture: true          # false = pas de relecture par un modèle (seulement les vérifications automatiques)
+
+etapes:
+  extraction:            # lit les photos : le plus important pour la fidélité
+    modele: claude-sonnet-5-5
+    max_tokens: 16000
+  production:            # écrit les cartes, questions, sujets
+    modele: claude-haiku-5-5
+    max_tokens: 32000
+  relecture:
+    modele: claude-sonnet-5-5
+    max_tokens: 8000
+  correction:
+    modele: claude-haiku-5-5
+    max_tokens: 32000
+  storyboard:            # scénario du film (si la vidéo est cochée)
+    modele: claude-sonnet-5-5
+    max_tokens: 8000
+
+profils:
+  histoire-geo:
+    production: {modele: claude-sonnet-5-5}
+  # exemple pour essayer Opus sur la SVT :
+  # sciences:
+  #   extraction: {modele: claude-opus-5-5}
+
+modeles: [claude-haiku-5-5, claude-sonnet-5-5, claude-opus-5-5]
+
+prix:
+  remise_batch: 0.5
+  claude-haiku-5-5:  {entree: 0.10, sortie: 0.50, cache_lecture: 0.1, cache_ecriture: 1.25}
+  claude-sonnet-5-5: {entree: 2.00, sortie: 10.00, cache_lecture: 0.05, cache_ecriture: 1.25}
+  claude-opus-5-5:   {entree: 4.00, sortie: 20.00, cache_lecture: 0.05, cache_ecriture: 1.25}
+
+euro_par_dollar: 0.92    # pour afficher les coûts en euros

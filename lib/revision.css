@@ -445,3 +445,4 @@ details.misses[open] > summary{color:var(--muted)}
 .rd-crit em{font-style:normal; font-weight:700; font-size:14px; color:var(--muted); white-space:nowrap}
 .rd-tip{text-align:left; margin:10px 0 0; font-size:15px}
 .rd-tr{text-align:left; padding:6px 2px 10px; margin:0}
+.trou{color:var(--red); font-weight:700; white-space:nowrap}

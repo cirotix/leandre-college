@@ -1,0 +1,1540 @@
+{
+ "titre": "Le système nerveux",
+ "sousTitre": "Thème 1 · Corps humain et santé",
+ "surtitre": "SVT · Chapitre 1",
+ "note": "Du stimulus au mouvement, du neurone au cerveau",
+ "resume": "Trajet du message nerveux, neurone et synapse, aires du cerveau, addictions.",
+ "motsCles": [
+  "SVT",
+  "neurone",
+  "synapse",
+  "cerveau"
+ ],
+ "parties": [
+  {
+   "id": "1",
+   "nom": "Le trajet du message",
+   "filtre": "Le trajet du message"
+  },
+  {
+   "id": "2",
+   "nom": "La communication nerveuse",
+   "filtre": "Neurones et synapses"
+  },
+  {
+   "id": "3",
+   "nom": "Le cerveau",
+   "filtre": "Le cerveau"
+  }
+ ],
+ "notions": [
+  {
+   "id": "trj",
+   "nom": "Le trajet du message",
+   "partie": "1",
+   "detail": "Stimulus, organes sensoriels, nerfs, organes effecteurs"
+  },
+  {
+   "id": "snc",
+   "nom": "Le système nerveux central",
+   "partie": "1",
+   "detail": "Encéphale, cerveau, moelle épinière, paralysie"
+  },
+  {
+   "id": "neu",
+   "nom": "Le neurone",
+   "partie": "2",
+   "detail": "Corps cellulaire, noyau, dendrites, axone, myéline"
+  },
+  {
+   "id": "syn",
+   "nom": "La synapse",
+   "partie": "2",
+   "detail": "Neurotransmetteurs, récepteurs, transmission chimique"
+  },
+  {
+   "id": "mus",
+   "nom": "Du neurone au muscle",
+   "partie": "2",
+   "detail": "Contraction, anesthésie"
+  },
+  {
+   "id": "air",
+   "nom": "Les aires cérébrales",
+   "partie": "3",
+   "detail": "Hémisphères, aires sensitives et motrices, l'AVC de Jean"
+  },
+  {
+   "id": "int",
+   "nom": "L'intégration",
+   "partie": "3",
+   "detail": "Le téléphone sonne : mémoire et prise de décision"
+  },
+  {
+   "id": "add",
+   "nom": "Addictions et hygiène de vie",
+   "partie": "3",
+   "detail": "Drogues, dopamine, sommeil, se faire aider"
+  }
+ ],
+ "parCoeur": [
+  {
+   "id": "f1",
+   "notion": "snc",
+   "question": "Qu'est-ce que le système nerveux ?",
+   "phrase": "C'est un ensemble composé du cerveau, de la moelle épinière et d'un réseau de nerfs parcourant tout l'organisme. Le système nerveux commande et contrôle l'ensemble du corps.",
+   "source": "Fiche mémo, question 1",
+   "motsCles": [
+    "parcourant",
+    "ensemble"
+   ],
+   "pieges": [
+    "C'est un ensemble composé du cœur, des vaisseaux sanguins et du sang qui parcourent tout l'organisme. Le système nerveux transporte l'oxygène dans l'ensemble du corps.",
+    "C'est un ensemble composé des muscles, des os et des articulations de tout l'organisme. Le système nerveux permet au corps de tenir debout et de se déplacer.",
+    "C'est uniquement le cerveau, qui se trouve dans la tête. La moelle épinière et les nerfs font partie d'un autre système, qui contrôle seulement les muscles."
+   ]
+  },
+  {
+   "id": "f2",
+   "notion": "trj",
+   "question": "Quel est le trajet du message qui permet de réaliser un mouvement ?",
+   "phrase": "Lors d'une stimulation, les messages nerveux sensoriels se propagent des organes sensoriels vers les centres nerveux qui envoient notamment des messages moteurs vers les muscles via les nerfs moteurs.",
+   "source": "Fiche mémo, question 2",
+   "motsCles": [
+    "stimulation",
+    "sensoriels"
+   ],
+   "pieges": [
+    "Lors d'une stimulation, les messages nerveux se propagent des muscles vers les organes sensoriels, qui envoient notamment des messages moteurs vers les centres nerveux via les nerfs sensitifs.",
+    "Lors d'une stimulation, les messages nerveux sensoriels se propagent des organes sensoriels directement vers les muscles via les nerfs sensitifs, sans passer par les centres nerveux.",
+    "Lors d'une stimulation, les messages nerveux moteurs se propagent des centres nerveux vers les organes sensoriels, qui envoient notamment des messages vers les muscles via les nerfs moteurs."
+   ]
+  },
+  {
+   "id": "f3",
+   "notion": "neu",
+   "question": "Quelles structures permettent la communication entre les différents organes du système nerveux ?",
+   "phrase": "Ce sont les cellules nerveuses, appelées les neurones.",
+   "source": "Fiche mémo, question 3",
+   "motsCles": [
+    "nerveuses",
+    "cellules"
+   ],
+   "pieges": [
+    "Ce sont les cellules du sang, appelées les globules rouges.",
+    "Ce sont les muscles, reliés entre eux par les tendons.",
+    "Ce sont les os de la colonne, appelés les vertèbres."
+   ]
+  },
+  {
+   "id": "f4",
+   "notion": "neu",
+   "question": "Quelles sont les différentes parties d'un neurone ?",
+   "phrase": "Le corps cellulaire composé du noyau avec les dendrites, puis un prolongement nommé axone entouré de myéline.",
+   "source": "Fiche mémo, question 4",
+   "motsCles": [
+    "prolongement",
+    "cellulaire"
+   ],
+   "pieges": [
+    "Un noyau seul, entouré de neurotransmetteurs et de récepteurs.",
+    "Le corps cellulaire composé de myéline, puis un prolongement nommé dendrite entouré de noyaux.",
+    "Une synapse composée de vertèbres, puis un prolongement nommé moelle épinière."
+   ]
+  },
+  {
+   "id": "f5",
+   "notion": "neu",
+   "question": "Quelle est la nature du message nerveux qui circule dans un neurone ?",
+   "phrase": "Le message nerveux circule sous forme électrique le long du neurone.",
+   "source": "Fiche mémo, question 5",
+   "motsCles": [
+    "électrique"
+   ],
+   "pieges": [
+    "Le message nerveux circule sous forme chimique, transporté par le sang.",
+    "Le message nerveux circule sous forme d'ondes sonores le long du neurone.",
+    "Le message nerveux circule sous forme de lumière le long du neurone."
+   ]
+  },
+  {
+   "id": "f6",
+   "notion": "syn",
+   "question": "Comment s'appelle le lieu de la transmission du message nerveux entre deux neurones ?",
+   "phrase": "C'est la synapse.",
+   "source": "Fiche mémo, question 6",
+   "motsCles": [],
+   "pieges": [
+    "C'est l'axone.",
+    "C'est la myéline.",
+    "C'est le noyau."
+   ]
+  },
+  {
+   "id": "f7",
+   "notion": "syn",
+   "question": "Comment circule le message nerveux entre deux neurones ?",
+   "phrase": "Il y a une libération de neurotransmetteurs (molécules chimiques) dans la synapse.",
+   "source": "Fiche mémo, question 7",
+   "motsCles": [
+    "neurotransmetteurs",
+    "libération"
+   ],
+   "pieges": [
+    "Le message électrique saute directement d'un neurone à l'autre, sans aucune molécule.",
+    "Il y a une libération de sang dans la synapse.",
+    "Les deux neurones se collent et ne forment plus qu'une seule cellule."
+   ]
+  },
+  {
+   "id": "f8",
+   "notion": "syn",
+   "question": "Qu'est-ce qu'un neurotransmetteur ?",
+   "phrase": "C'est une molécule qui sert de messager entre deux neurones, ou entre un neurone et un muscle.",
+   "source": "Fiche mémo, question 8",
+   "motsCles": [
+    "molécule",
+    "messager"
+   ],
+   "pieges": [
+    "C'est une cellule nerveuse qui relie directement le cerveau aux muscles.",
+    "C'est la gaine qui entoure l'axone et accélère le message.",
+    "C'est une zone du cerveau spécialisée dans une fonction précise."
+   ]
+  },
+  {
+   "id": "f9",
+   "notion": "trj",
+   "question": "Qu'est-ce qu'un nerf ?",
+   "phrase": "C'est un cordon blanchâtre composé d'axones, qui permet de conduire les messages nerveux.",
+   "source": "Fiche mémo, question 9",
+   "motsCles": [
+    "blanchâtre",
+    "conduire"
+   ],
+   "pieges": [
+    "C'est un muscle très fin qui se contracte pour transmettre le mouvement.",
+    "C'est une seule cellule nerveuse, très longue, qui part du cerveau.",
+    "C'est un vaisseau qui transporte le sang jusqu'au cerveau."
+   ]
+  },
+  {
+   "id": "f10",
+   "notion": "int",
+   "question": "Quel est le rôle du cerveau dans le traitement de l'information ?",
+   "phrase": "Le cerveau intègre les informations sensorielles dans des zones spécialisées appelées « aires ». Et il élabore une réponse adaptée, comme un mouvement.",
+   "source": "Fiche mémo, question 10",
+   "motsCles": [
+    "informations",
+    "sensorielles"
+   ],
+   "pieges": [
+    "Le cerveau capte lui-même les sons et la lumière, sans avoir besoin des organes sensoriels. Il envoie ensuite ces informations aux muscles sans les modifier.",
+    "Le cerveau ne traite pas les informations sensorielles : il les transmet telles quelles aux muscles. C'est la moelle épinière qui élabore la réponse adaptée.",
+    "Le cerveau fabrique les neurotransmetteurs dans des zones appelées « aires ». Ils circulent ensuite dans le sang jusqu'aux muscles pour les faire bouger."
+   ]
+  },
+  {
+   "id": "f11",
+   "notion": "add",
+   "question": "C'est quoi l'addiction ?",
+   "phrase": "C'est une maladie qui se manifeste par une dépendance à une substance ou à une activité, et qui a des conséquences nuisibles sur la santé.",
+   "source": "Fiche mémo, question 11",
+   "motsCles": [
+    "conséquences",
+    "dépendance"
+   ],
+   "pieges": [
+    "C'est une simple habitude, sans danger, qui disparaît toute seule.",
+    "C'est une maladie des muscles due au manque de sport.",
+    "C'est une zone du cerveau qui produit la sensation de plaisir."
+   ]
+  },
+  {
+   "id": "f12",
+   "notion": "add",
+   "question": "Quels sont les effets de nos comportements négatifs sur le système nerveux ?",
+   "phrase": "Une mauvaise hygiène de vie comme un manque de sommeil entraine une baisse des performances cérébrales. La consommation de drogues ou l'addiction aux jeux stimulent le circuit de la récompense et créent des dépendances. Il est important d'avoir une bonne hygiène de vie pour préserver le bon fonctionnement du système nerveux.",
+   "source": "Fiche mémo, question 12",
+   "motsCles": [
+    "fonctionnement",
+    "performances"
+   ],
+   "pieges": [
+    "Le manque de sommeil n'a aucun effet sur les performances cérébrales. Seules les drogues agissent sur le cerveau, et les jeux ne créent jamais de dépendance. L'hygiène de vie compte surtout pour les muscles.",
+    "Les drogues et les jeux vidéo stimulent les neurones et améliorent les performances cérébrales. Le sommeil ralentit le cerveau. Pour bien fonctionner, le système nerveux a besoin de stimulations fortes.",
+    "Le système nerveux se répare tout seul pendant la nuit, quelle que soit la durée du sommeil. Les dépendances ne viennent que de l'alcool. L'hygiène de vie n'a pas d'effet sur le système nerveux."
+   ]
+  }
+ ],
+ "cours": [
+  {
+   "notion": "trj",
+   "question": "Qu'est-ce qu'un stimulus ?",
+   "reponse": "Une information de l'environnement qui déclenche une réaction.\nEx. : le coup de feu pour la sprinteuse, la sonnerie du téléphone.",
+   "astuce": "Au pluriel, on dit des stimuli.",
+   "qcm": {
+    "question": "Un stimulus, c'est…",
+    "bonne": "une information de l'environnement qui déclenche une réaction",
+    "pieges": [
+     "un muscle qui se contracte",
+     "un nerf qui relie le cerveau aux muscles",
+     "une molécule libérée dans la synapse"
+    ]
+   }
+  },
+  {
+   "notion": "trj",
+   "question": "À quoi servent les organes sensoriels ?",
+   "reponse": "À capter les informations de l'environnement : l'oreille capte les sons, l'œil capte la lumière.",
+   "astuce": "",
+   "qcm": {
+    "question": "Les organes sensoriels (œil, oreille) servent à…",
+    "bonne": "capter les informations de l'environnement",
+    "pieges": [
+     "mettre le corps en mouvement",
+     "décider de l'action à faire",
+     "protéger la moelle épinière"
+    ]
+   }
+  },
+  {
+   "notion": "trj",
+   "question": "Grâce à quelles cellules l'oreille capte-t-elle les sons ?",
+   "reponse": "Grâce aux cellules ciliées.",
+   "astuce": "",
+   "qcm": {
+    "question": "L'oreille capte les sons grâce…",
+    "bonne": "aux cellules ciliées",
+    "pieges": [
+     "aux neurotransmetteurs",
+     "aux vertèbres",
+     "à la myéline"
+    ]
+   }
+  },
+  {
+   "notion": "trj",
+   "question": "Quel nerf transporte le message des organes sensoriels vers les centres nerveux ?",
+   "reponse": "Le nerf sensitif.",
+   "astuce": "",
+   "qcm": {
+    "question": "Le message va des organes sensoriels vers les centres nerveux par…",
+    "bonne": "les nerfs sensitifs",
+    "pieges": [
+     "les nerfs moteurs",
+     "les muscles",
+     "les vertèbres"
+    ]
+   }
+  },
+  {
+   "notion": "trj",
+   "question": "Quel nerf transporte le message des centres nerveux vers les muscles ?",
+   "reponse": "Le nerf moteur.",
+   "astuce": "Attention : le nerf moteur n'est pas l'organe effecteur. Il relie le centre nerveux à l'organe effecteur (le muscle).",
+   "qcm": {
+    "question": "Le message va des centres nerveux vers les muscles par…",
+    "bonne": "les nerfs moteurs",
+    "pieges": [
+     "les nerfs sensitifs",
+     "les organes sensoriels",
+     "la moelle épinière seule"
+    ]
+   }
+  },
+  {
+   "notion": "trj",
+   "question": "Quels sont les organes effecteurs du mouvement ?",
+   "reponse": "Les muscles : ils se contractent et mettent le corps en mouvement.",
+   "astuce": "",
+   "qcm": {
+    "question": "Les organes effecteurs du mouvement sont…",
+    "bonne": "les muscles",
+    "pieges": [
+     "les yeux et les oreilles",
+     "les nerfs sensitifs",
+     "les vertèbres"
+    ]
+   }
+  },
+  {
+   "notion": "trj",
+   "question": "Remets dans l'ordre : nerf moteur, stimulus, centre nerveux, muscle, organe sensoriel, nerf sensitif.",
+   "reponse": "Stimulus → organe sensoriel → nerf sensitif → centre nerveux → nerf moteur → muscle.\nEx. : coup de feu → oreille → nerf sensitif → cerveau → nerf moteur → muscles des jambes.",
+   "astuce": "",
+   "qcm": {
+    "question": "Quel est le bon ordre ?",
+    "bonne": "organe sensoriel → nerf sensitif → centre nerveux → nerf moteur → muscle",
+    "pieges": [
+     "muscle → nerf moteur → centre nerveux → nerf sensitif → organe sensoriel",
+     "organe sensoriel → nerf moteur → centre nerveux → nerf sensitif → muscle",
+     "centre nerveux → organe sensoriel → muscle → nerf sensitif"
+    ]
+   }
+  },
+  {
+   "notion": "trj",
+   "question": "À quelle vitesse se propagent les messages nerveux ?",
+   "reponse": "Environ 100 m/s (cent mètres par seconde).",
+   "astuce": "",
+   "qcm": {
+    "question": "Les messages nerveux se propagent à environ…",
+    "bonne": "100 m/s",
+    "pieges": [
+     "1 m/s",
+     "10 000 m/s",
+     "1 km/h"
+    ]
+   }
+  },
+  {
+   "notion": "snc",
+   "question": "Qu'est-ce qui forme le système nerveux central ?",
+   "reponse": "L'encéphale (dont la plus grande partie est le cerveau) et la moelle épinière.",
+   "astuce": "",
+   "qcm": {
+    "question": "Le système nerveux central (le centre nerveux) est formé…",
+    "bonne": "de l'encéphale et de la moelle épinière",
+    "pieges": [
+     "des yeux et des oreilles",
+     "des nerfs et des muscles",
+     "du cœur et des poumons"
+    ]
+   }
+  },
+  {
+   "notion": "snc",
+   "question": "Qu'est-ce qui protège la moelle épinière ?",
+   "reponse": "Les vertèbres de la colonne vertébrale.",
+   "astuce": "",
+   "qcm": {
+    "question": "La moelle épinière est protégée par…",
+    "bonne": "les vertèbres de la colonne vertébrale",
+    "pieges": [
+     "les côtes",
+     "la myéline",
+     "les muscles du dos"
+    ]
+   }
+  },
+  {
+   "notion": "snc",
+   "question": "Que se passe-t-il quand le système nerveux est lésé ?",
+   "reponse": "Il n'y a plus de communication entre les organes, donc plus de mouvement : c'est la paralysie.",
+   "astuce": "",
+   "qcm": {
+    "question": "Quand le système nerveux est lésé…",
+    "bonne": "il n'y a plus de communication entre les organes : c'est la paralysie",
+    "pieges": [
+     "les muscles se contractent plus vite",
+     "le message nerveux va deux fois plus vite",
+     "rien ne change"
+    ]
+   }
+  },
+  {
+   "notion": "neu",
+   "question": "À quoi sert la myéline ?",
+   "reponse": "À augmenter la vitesse du message nerveux. C'est une gaine qui entoure l'axone.",
+   "astuce": "",
+   "qcm": {
+    "question": "La myéline sert…",
+    "bonne": "à augmenter la vitesse du message",
+    "pieges": [
+     "à fabriquer des neurotransmetteurs",
+     "à protéger la moelle épinière",
+     "à contracter le muscle"
+    ]
+   }
+  },
+  {
+   "notion": "neu",
+   "question": "Où se trouvent les dendrites ?",
+   "reponse": "Autour du corps cellulaire : ce sont de petites ramifications.",
+   "astuce": "Le bout de l'axone se ramifie aussi : ce sont les terminaisons de l'axone.",
+   "qcm": {
+    "question": "Les dendrites sont…",
+    "bonne": "de petites ramifications autour du corps cellulaire",
+    "pieges": [
+     "le noyau du neurone",
+     "la gaine autour de l'axone",
+     "des molécules libérées dans la synapse"
+    ]
+   }
+  },
+  {
+   "notion": "neu",
+   "question": "Où se trouve le noyau du neurone, et que contient-il ?",
+   "reponse": "Dans le corps cellulaire. Il contient l'ADN.",
+   "astuce": "",
+   "qcm": {
+    "question": "Le noyau du neurone se trouve…",
+    "bonne": "dans le corps cellulaire",
+    "pieges": [
+     "au bout de l'axone",
+     "dans la myéline",
+     "dans la synapse"
+    ]
+   }
+  },
+  {
+   "notion": "neu",
+   "question": "Dans combien de sens le message circule-t-il le long d'un neurone ?",
+   "reponse": "Dans un seul sens : des dendrites vers le corps cellulaire, puis le long de l'axone.",
+   "astuce": "",
+   "qcm": {
+    "question": "Le long d'un neurone, le message circule…",
+    "bonne": "dans un seul sens",
+    "pieges": [
+     "dans les deux sens",
+     "dans tous les sens",
+     "il ne circule pas"
+    ]
+   }
+  },
+  {
+   "notion": "syn",
+   "question": "Combien de synapses possède un neurone ?",
+   "reponse": "Environ 1 000 à 10 000 synapses avec d'autres neurones.",
+   "astuce": "",
+   "qcm": {
+    "question": "Un neurone possède environ…",
+    "bonne": "1 000 à 10 000 synapses",
+    "pieges": [
+     "1 ou 2 synapses",
+     "10 à 100 synapses",
+     "une seule synapse"
+    ]
+   }
+  },
+  {
+   "notion": "syn",
+   "question": "Sur quoi se fixent les neurotransmetteurs ?",
+   "reponse": "Sur des récepteurs du neurone suivant (ou du muscle). Un nouveau message électrique repart alors.",
+   "astuce": "",
+   "qcm": {
+    "question": "Les neurotransmetteurs se fixent sur…",
+    "bonne": "des récepteurs",
+    "pieges": [
+     "des vertèbres",
+     "des cellules ciliées",
+     "la myéline"
+    ]
+   }
+  },
+  {
+   "notion": "syn",
+   "question": "Le message nerveux est électrique dans le neurone. Et dans la synapse ?",
+   "reponse": "Chimique : ce sont des molécules, les neurotransmetteurs.",
+   "astuce": "",
+   "qcm": {
+    "question": "Dans la synapse, le message nerveux est…",
+    "bonne": "chimique",
+    "pieges": [
+     "électrique",
+     "sonore",
+     "lumineux"
+    ]
+   }
+  },
+  {
+   "notion": "mus",
+   "question": "Comment le message nerveux fait-il contracter un muscle ?",
+   "reponse": "Le neurone libère des neurotransmetteurs, qui se fixent sur les récepteurs des fibres musculaires : le muscle se contracte.",
+   "astuce": "",
+   "qcm": {
+    "question": "Comment le message nerveux fait-il contracter un muscle ?",
+    "bonne": "le neurone libère des neurotransmetteurs qui se fixent sur le muscle",
+    "pieges": [
+     "le muscle se contracte tout seul, sans message",
+     "le sang transporte le message électrique",
+     "l'oreille envoie des ondes sonores au muscle"
+    ]
+   }
+  },
+  {
+   "notion": "mus",
+   "question": "Pourquoi l'anesthésie relâche-t-elle les muscles ?",
+   "reponse": "Elle bloque la communication entre les cellules nerveuses et les cellules musculaires.",
+   "astuce": "",
+   "qcm": {
+    "question": "Pendant une opération, l'anesthésie…",
+    "bonne": "bloque la communication entre les nerfs et les muscles",
+    "pieges": [
+     "accélère le message nerveux",
+     "fabrique de la myéline",
+     "fait contracter les muscles"
+    ]
+   }
+  },
+  {
+   "notion": "air",
+   "question": "Combien d'hémisphères a le cerveau ?",
+   "reponse": "Deux : l'hémisphère droit et l'hémisphère gauche.",
+   "astuce": "",
+   "qcm": {
+    "question": "Le cerveau est formé de…",
+    "bonne": "deux hémisphères, droit et gauche",
+    "pieges": [
+     "quatre hémisphères",
+     "un seul bloc",
+     "deux moelles épinières"
+    ]
+   }
+  },
+  {
+   "notion": "air",
+   "question": "Qu'est-ce qu'une aire cérébrale ?",
+   "reponse": "Une zone du cerveau spécialisée dans une fonction précise (voir, entendre, bouger…).",
+   "astuce": "",
+   "qcm": {
+    "question": "Une aire cérébrale, c'est…",
+    "bonne": "une zone du cerveau spécialisée dans une fonction précise",
+    "pieges": [
+     "une cellule nerveuse",
+     "un nerf qui va au muscle",
+     "une molécule de plaisir"
+    ]
+   }
+  },
+  {
+   "notion": "air",
+   "question": "Où arrivent les messages nerveux sensitifs ?",
+   "reponse": "Dans les aires sensitives du cerveau : visuelle, auditive, olfactive, gustative, somesthésique.",
+   "astuce": "",
+   "qcm": {
+    "question": "Les messages nerveux sensitifs arrivent…",
+    "bonne": "dans les aires sensitives du cerveau",
+    "pieges": [
+     "dans les muscles",
+     "dans les vertèbres",
+     "dans les organes sensoriels"
+    ]
+   }
+  },
+  {
+   "notion": "air",
+   "question": "Quelles aires commandent les mouvements ?",
+   "reponse": "Les aires motrices : elles envoient les ordres aux muscles.",
+   "astuce": "",
+   "qcm": {
+    "question": "Quelles aires commandent les mouvements ?",
+    "bonne": "les aires motrices",
+    "pieges": [
+     "l'aire visuelle",
+     "l'aire olfactive",
+     "l'aire gustative"
+    ]
+   }
+  },
+  {
+   "notion": "air",
+   "question": "Où se trouve l'aire visuelle ?",
+   "reponse": "À l'arrière du cerveau.",
+   "astuce": "",
+   "qcm": {
+    "question": "L'aire visuelle se trouve…",
+    "bonne": "à l'arrière du cerveau",
+    "pieges": [
+     "à l'avant, juste derrière les yeux",
+     "dans la moelle épinière",
+     "dans l'oreille"
+    ]
+   }
+  },
+  {
+   "notion": "air",
+   "question": "Qu'est-ce qu'un AVC ?",
+   "reponse": "Un accident vasculaire cérébral, par exemple une hémorragie soudaine dans le cerveau. La zone touchée peut être abîmée pour toujours.",
+   "astuce": "",
+   "qcm": {
+    "question": "Un AVC, c'est…",
+    "bonne": "un accident vasculaire cérébral",
+    "pieges": [
+     "une maladie des muscles",
+     "une drogue",
+     "un organe sensoriel"
+    ]
+   }
+  },
+  {
+   "notion": "air",
+   "question": "Un AVC touche l'aire visuelle. Quelles conséquences ?",
+   "reponse": "Des troubles de la vision : la personne peut confondre les formes et les couleurs.",
+   "astuce": "Méthode du TD : je localise la zone touchée, je trouve l'aire, j'en déduis les troubles.",
+   "qcm": {
+    "question": "L'AVC de Jean a touché l'aire visuelle. Il aura surtout…",
+    "bonne": "des troubles de la vision (formes, couleurs)",
+    "pieges": [
+     "des troubles de l'odorat",
+     "des troubles du goût",
+     "aucune conséquence"
+    ]
+   }
+  },
+  {
+   "notion": "int",
+   "question": "Le téléphone sonne. Dans quel ordre les aires du cerveau travaillent-elles ?",
+   "reponse": "1. L'aire auditive entend la sonnerie.\n2. L'aire de la mémoire reconnaît le son.\n3. L'aire de la prise de décision décide de répondre.\n4. L'aire motrice envoie l'ordre au bras.",
+   "astuce": "",
+   "qcm": {
+    "question": "Le téléphone sonne. Quelle aire est activée en premier ?",
+    "bonne": "l'aire auditive",
+    "pieges": [
+     "l'aire motrice",
+     "l'aire de la prise de décision",
+     "l'aire visuelle"
+    ]
+   }
+  },
+  {
+   "notion": "int",
+   "question": "Qu'est-ce que l'intégration ?",
+   "reponse": "Le traitement en même temps, par le cerveau, de toutes les informations reçues des organes sensoriels et échangées dans le cerveau.",
+   "astuce": "Le cerveau est comme un chef d'orchestre : il analyse les infos et les met en relation.",
+   "qcm": {
+    "question": "L'intégration, c'est…",
+    "bonne": "le traitement en même temps de toutes les informations par le cerveau",
+    "pieges": [
+     "la contraction d'un muscle",
+     "la fabrication de myéline",
+     "la libération de dopamine"
+    ]
+   }
+  },
+  {
+   "notion": "int",
+   "question": "À quoi sert la mémoire quand on perçoit l'environnement ?",
+   "reponse": "À reconnaître ce qu'on a déjà vécu (par exemple la sonnerie de son téléphone).",
+   "astuce": "",
+   "qcm": {
+    "question": "La mémoire permet…",
+    "bonne": "de reconnaître ce qu'on a déjà vécu",
+    "pieges": [
+     "de faire bouger le bras",
+     "de capter les sons",
+     "de protéger la moelle épinière"
+    ]
+   }
+  },
+  {
+   "notion": "int",
+   "question": "Quelle aire décide de l'action à faire ?",
+   "reponse": "L'aire préfrontale (l'aire de la prise de décision), à l'avant du cerveau.",
+   "astuce": "",
+   "qcm": {
+    "question": "Quelle aire décide de l'action à faire ?",
+    "bonne": "l'aire préfrontale (prise de décision)",
+    "pieges": [
+     "l'aire auditive",
+     "l'aire de la mémoire",
+     "l'aire visuelle"
+    ]
+   }
+  },
+  {
+   "notion": "add",
+   "question": "Qu'est-ce que la dopamine ?",
+   "reponse": "Une substance chimique qui assure la communication entre neurones et qui provoque la sensation de plaisir.",
+   "astuce": "",
+   "qcm": {
+    "question": "La dopamine est…",
+    "bonne": "une substance qui assure la communication entre neurones et provoque le plaisir",
+    "pieges": [
+     "une drogue",
+     "une aire du cerveau",
+     "une gaine autour de l'axone"
+    ]
+   }
+  },
+  {
+   "notion": "add",
+   "question": "Comment les drogues agissent-elles sur le cerveau ?",
+   "reponse": "Elles augmentent la libération de dopamine dans les synapses : c'est ce qui crée la dépendance.",
+   "astuce": "",
+   "qcm": {
+    "question": "Les drogues perturbent les synapses du cerveau : elles…",
+    "bonne": "augmentent la libération de dopamine",
+    "pieges": [
+     "diminuent la libération de dopamine",
+     "détruisent la moelle épinière",
+     "fabriquent de la myéline"
+    ]
+   }
+  },
+  {
+   "notion": "add",
+   "question": "Que peuvent provoquer certaines drogues sur la vue ?",
+   "reponse": "Des hallucinations, qui peuvent être dangereuses.",
+   "astuce": "",
+   "qcm": {
+    "question": "Certaines drogues modifient la perception visuelle et provoquent…",
+    "bonne": "des hallucinations",
+    "pieges": [
+     "une meilleure vue",
+     "la paralysie",
+     "plus de myéline"
+    ]
+   }
+  },
+  {
+   "notion": "add",
+   "question": "Quelles sont les conséquences d'une addiction ?",
+   "reponse": "Des conséquences négatives sur la vie personnelle, professionnelle et sociale.",
+   "astuce": "",
+   "qcm": {
+    "question": "Une addiction a des conséquences…",
+    "bonne": "négatives sur la vie personnelle, professionnelle et sociale",
+    "pieges": [
+     "seulement positives",
+     "aucune",
+     "seulement sur la vue"
+    ]
+   }
+  },
+  {
+   "notion": "add",
+   "question": "En France, quelle substance a le plus d'usagers chaque jour ?",
+   "reponse": "Le tabac : environ 12 millions. Puis l'alcool (5 millions) et le cannabis (850 000).",
+   "astuce": "",
+   "qcm": {
+    "question": "En France (11-75 ans), quelle substance a le plus d'usagers quotidiens ?",
+    "bonne": "le tabac",
+    "pieges": [
+     "l'alcool",
+     "le cannabis",
+     "aucune, elles sont à égalité"
+    ]
+   }
+  },
+  {
+   "notion": "add",
+   "question": "Qui peut aider à sortir d'une addiction ?",
+   "reponse": "Un professionnel de santé (médecin, addictologue, psychiatre), avec souvent un traitement et un suivi psychologique.\nTabac info service : 39 89.",
+   "astuce": "",
+   "qcm": {
+    "question": "Pour sortir d'une addiction, on a souvent besoin…",
+    "bonne": "d'un accompagnement par un professionnel de santé",
+    "pieges": [
+     "de rester seul sans en parler",
+     "de consommer davantage",
+     "de changer de drogue"
+    ]
+   }
+  }
+ ],
+ "vocabulaire": [
+  {
+   "notion": "trj",
+   "mot": "un stimulus",
+   "definition": "Information de l'environnement qui déclenche une réaction (ex. : le coup de feu).",
+   "variantes": [
+    "stimulus",
+    "stimuli"
+   ]
+  },
+  {
+   "notion": "trj",
+   "mot": "un organe sensoriel",
+   "definition": "Organe qui capte les informations de l'environnement (œil, oreille).",
+   "variantes": [
+    "organe sensoriel",
+    "organe des sens"
+   ]
+  },
+  {
+   "notion": "trj",
+   "mot": "un organe effecteur",
+   "definition": "Organe qui réalise le mouvement en se contractant.",
+   "variantes": [
+    "organe effecteur",
+    "effecteur",
+    "muscle"
+   ]
+  },
+  {
+   "notion": "trj",
+   "mot": "un nerf sensitif",
+   "definition": "Nerf qui transporte le message des organes sensoriels vers les centres nerveux.",
+   "variantes": [
+    "nerf sensitif",
+    "nerfs sensitifs"
+   ]
+  },
+  {
+   "notion": "trj",
+   "mot": "un nerf moteur",
+   "definition": "Nerf qui transporte le message des centres nerveux vers les muscles.",
+   "variantes": [
+    "nerf moteur",
+    "nerfs moteurs"
+   ]
+  },
+  {
+   "notion": "snc",
+   "mot": "la moelle épinière",
+   "definition": "Partie du centre nerveux, dans le prolongement du cerveau, protégée par les vertèbres.",
+   "variantes": [
+    "moelle epiniere",
+    "moelle"
+   ]
+  },
+  {
+   "notion": "snc",
+   "mot": "la paralysie",
+   "definition": "Plus de mouvement, parce que le système nerveux est lésé.",
+   "variantes": [
+    "paralysie"
+   ]
+  },
+  {
+   "notion": "snc",
+   "mot": "le système nerveux central",
+   "definition": "Ensemble formé par l'encéphale et la moelle épinière.",
+   "variantes": [
+    "systeme nerveux central",
+    "centre nerveux",
+    "snc"
+   ]
+  },
+  {
+   "notion": "neu",
+   "mot": "un neurone",
+   "definition": "Cellule nerveuse.",
+   "variantes": [
+    "neurone"
+   ]
+  },
+  {
+   "notion": "trj",
+   "mot": "un nerf",
+   "definition": "Cordon blanchâtre composé d'axones, qui permet de conduire les messages nerveux.",
+   "variantes": [
+    "nerf"
+   ]
+  },
+  {
+   "notion": "neu",
+   "mot": "l'axone",
+   "definition": "Fibre nerveuse du neurone, le long de laquelle se propage le message électrique.",
+   "variantes": [
+    "axone"
+   ]
+  },
+  {
+   "notion": "neu",
+   "mot": "la myéline",
+   "definition": "Gaine autour de l'axone qui augmente la vitesse du message.",
+   "variantes": [
+    "myeline",
+    "gaine de myeline"
+   ]
+  },
+  {
+   "notion": "neu",
+   "mot": "le corps cellulaire",
+   "definition": "Partie du neurone qui contient le noyau.",
+   "variantes": [
+    "corps cellulaire"
+   ]
+  },
+  {
+   "notion": "neu",
+   "mot": "les dendrites",
+   "definition": "Petites ramifications autour du corps cellulaire qui reçoivent les messages.",
+   "variantes": [
+    "dendrite",
+    "dendrites"
+   ]
+  },
+  {
+   "notion": "syn",
+   "mot": "une synapse",
+   "definition": "Zone de communication entre deux neurones.",
+   "variantes": [
+    "synapse"
+   ]
+  },
+  {
+   "notion": "syn",
+   "mot": "un neurotransmetteur",
+   "definition": "Molécule qui sert de message entre deux neurones ou entre un neurone et un muscle.",
+   "variantes": [
+    "neurotransmetteur"
+   ]
+  },
+  {
+   "notion": "syn",
+   "mot": "un récepteur",
+   "definition": "Structure du neurone 2 (ou du muscle) sur laquelle se fixent les neurotransmetteurs.",
+   "variantes": [
+    "recepteur"
+   ]
+  },
+  {
+   "notion": "mus",
+   "mot": "la contraction",
+   "definition": "Réaction du muscle quand les neurotransmetteurs se fixent sur ses récepteurs.",
+   "variantes": [
+    "contraction"
+   ]
+  },
+  {
+   "notion": "mus",
+   "mot": "l'anesthésie",
+   "definition": "Pendant une opération, elle bloque la communication entre les cellules nerveuses et musculaires.",
+   "variantes": [
+    "anesthesie"
+   ]
+  },
+  {
+   "notion": "air",
+   "mot": "une aire",
+   "definition": "Zone du cerveau spécialisée dans une fonction précise.",
+   "variantes": [
+    "aire",
+    "aire cerebrale"
+   ]
+  },
+  {
+   "notion": "air",
+   "mot": "un hémisphère",
+   "definition": "Chacune des deux moitiés du cerveau, droite ou gauche.",
+   "variantes": [
+    "hemisphere",
+    "hemisphere cerebral"
+   ]
+  },
+  {
+   "notion": "air",
+   "mot": "un AVC",
+   "definition": "Accident dû par exemple à une hémorragie soudaine dans le cerveau (en trois lettres).",
+   "variantes": [
+    "avc",
+    "accident vasculaire cerebral"
+   ]
+  },
+  {
+   "notion": "int",
+   "mot": "l'intégration",
+   "definition": "Traitement simultané par le cerveau des informations reçues et échangées.",
+   "variantes": [
+    "integration"
+   ]
+  },
+  {
+   "notion": "int",
+   "mot": "la mémoire",
+   "definition": "Elle permet de reconnaître ce qu'on a déjà vécu.",
+   "variantes": [
+    "memoire"
+   ]
+  },
+  {
+   "notion": "add",
+   "mot": "une addiction",
+   "definition": "Maladie liée à la consommation répétée d'une drogue ou à un comportement excessif.",
+   "variantes": [
+    "addiction",
+    "dependance"
+   ]
+  },
+  {
+   "notion": "add",
+   "mot": "la dopamine",
+   "definition": "Substance qui assure la communication entre neurones et provoque la sensation de plaisir.",
+   "variantes": [
+    "dopamine"
+   ]
+  },
+  {
+   "notion": "add",
+   "mot": "des hallucinations",
+   "definition": "Fausses perceptions visuelles provoquées par certaines drogues.",
+   "variantes": [
+    "hallucination",
+    "hallucinations"
+   ]
+  }
+ ],
+ "vraiFaux": [
+  {
+   "notion": "neu",
+   "affirmation": "Le long d'un neurone, le message nerveux circule dans les deux sens.",
+   "vrai": false,
+   "explication": "Non : il circule dans un seul sens."
+  },
+  {
+   "notion": "neu",
+   "affirmation": "Le long d'un neurone, le message nerveux est électrique.",
+   "vrai": true,
+   "explication": "Oui : ce sont des signaux électriques qui se propagent le long de l'axone."
+  },
+  {
+   "notion": "neu",
+   "affirmation": "La myéline ralentit le message nerveux.",
+   "vrai": false,
+   "explication": "Non : elle augmente la vitesse de propagation du message."
+  },
+  {
+   "notion": "neu",
+   "affirmation": "Le noyau se trouve dans le corps cellulaire.",
+   "vrai": true,
+   "explication": "Oui, et il contient l'ADN."
+  },
+  {
+   "notion": "syn",
+   "affirmation": "Entre deux neurones, la transmission est électrique.",
+   "vrai": false,
+   "explication": "Non : elle est chimique, grâce aux neurotransmetteurs."
+  },
+  {
+   "notion": "syn",
+   "affirmation": "Un neurone n'est relié qu'à un seul autre neurone.",
+   "vrai": false,
+   "explication": "Non : il a environ 1 000 à 10 000 synapses."
+  },
+  {
+   "notion": "syn",
+   "affirmation": "Les neurotransmetteurs se fixent sur des récepteurs.",
+   "vrai": true,
+   "explication": "Oui : sur les récepteurs du neurone suivant ou du muscle."
+  },
+  {
+   "notion": "trj",
+   "affirmation": "Les muscles sont des organes effecteurs.",
+   "vrai": true,
+   "explication": "Oui : ils se contractent et produisent le mouvement."
+  },
+  {
+   "notion": "trj",
+   "affirmation": "Les nerfs moteurs vont des organes sensoriels vers le cerveau.",
+   "vrai": false,
+   "explication": "Non : ça, ce sont les nerfs sensitifs. Les nerfs moteurs vont des centres nerveux vers les muscles."
+  },
+  {
+   "notion": "trj",
+   "affirmation": "L'œil et l'oreille sont des organes sensoriels.",
+   "vrai": true,
+   "explication": "Oui : ils captent les informations de l'environnement."
+  },
+  {
+   "notion": "snc",
+   "affirmation": "La moelle épinière fait partie du système nerveux central.",
+   "vrai": true,
+   "explication": "Oui : avec l'encéphale."
+  },
+  {
+   "notion": "snc",
+   "affirmation": "La moelle épinière est protégée par les vertèbres.",
+   "vrai": true,
+   "explication": "Oui : par la colonne vertébrale."
+  },
+  {
+   "notion": "snc",
+   "affirmation": "Si le système nerveux est lésé, cela peut provoquer une paralysie.",
+   "vrai": true,
+   "explication": "Oui : plus de communication entre les organes, donc plus de mouvement."
+  },
+  {
+   "notion": "mus",
+   "affirmation": "L'anesthésie bloque la communication entre les nerfs et les muscles.",
+   "vrai": true,
+   "explication": "Oui : les muscles de la zone opérée se relâchent."
+  },
+  {
+   "notion": "mus",
+   "affirmation": "Un muscle se contracte sans recevoir de message nerveux.",
+   "vrai": false,
+   "explication": "Non : il faut que des neurotransmetteurs se fixent sur ses récepteurs."
+  },
+  {
+   "notion": "air",
+   "affirmation": "Le cerveau est formé de deux hémisphères.",
+   "vrai": true,
+   "explication": "Oui : le droit et le gauche."
+  },
+  {
+   "notion": "air",
+   "affirmation": "L'aire visuelle se trouve à l'avant du cerveau.",
+   "vrai": false,
+   "explication": "Non : à l'arrière du cerveau."
+  },
+  {
+   "notion": "air",
+   "affirmation": "Une aire cérébrale est spécialisée dans une fonction précise.",
+   "vrai": true,
+   "explication": "Oui : voir, entendre, bouger…"
+  },
+  {
+   "notion": "int",
+   "affirmation": "Quand le téléphone sonne, l'aire motrice est activée en premier.",
+   "vrai": false,
+   "explication": "Non : d'abord l'aire auditive, puis la mémoire, la décision, et enfin l'aire motrice."
+  },
+  {
+   "notion": "int",
+   "affirmation": "La mémoire permet de reconnaître ce qu'on a déjà vécu.",
+   "vrai": true,
+   "explication": "Oui : par exemple la sonnerie de ton téléphone."
+  },
+  {
+   "notion": "int",
+   "affirmation": "L'intégration, c'est le cerveau qui traite en même temps toutes les informations.",
+   "vrai": true,
+   "explication": "Oui : il les analyse et les met en relation."
+  },
+  {
+   "notion": "add",
+   "affirmation": "Les drogues diminuent la libération de dopamine.",
+   "vrai": false,
+   "explication": "Non : elles l'augmentent, et c'est à l'origine de la dépendance."
+  },
+  {
+   "notion": "add",
+   "affirmation": "Une addiction peut aussi concerner un comportement, comme les jeux vidéo.",
+   "vrai": true,
+   "explication": "Oui : la pratique excessive d'un comportement (jeux vidéo, réseaux sociaux…)."
+  },
+  {
+   "notion": "add",
+   "affirmation": "Le manque de sommeil fait baisser les performances du cerveau.",
+   "vrai": true,
+   "explication": "Oui : une mauvaise hygiène de vie (comme le manque de sommeil) entraîne une baisse des performances cérébrales."
+  },
+  {
+   "notion": "add",
+   "affirmation": "L'addiction aux jeux vidéo peut créer une dépendance, comme une drogue.",
+   "vrai": true,
+   "explication": "Oui : elle stimule le circuit de la récompense et crée une dépendance."
+  },
+  {
+   "notion": "trj",
+   "affirmation": "Un nerf est une seule cellule nerveuse.",
+   "vrai": false,
+   "explication": "Non : un nerf est un cordon composé de nombreux axones."
+  },
+  {
+   "notion": "add",
+   "affirmation": "Pour sortir d'une addiction, on peut se faire accompagner par un professionnel de santé.",
+   "vrai": true,
+   "explication": "Oui : médecin, addictologue, psychiatre, avec souvent un traitement et un suivi psychologique."
+  }
+ ],
+ "chiffres": [
+  {
+   "notion": "trj",
+   "question": "À quelle vitesse (en m/s) se propagent les messages nerveux ?",
+   "valeur": 100,
+   "unite": "m/s",
+   "tolerance": 10,
+   "pieges": [
+    1,
+    10,
+    10000
+   ],
+   "explication": "Environ 100 m/s, c'est-à-dire 100 mètres par seconde."
+  },
+  {
+   "notion": "syn",
+   "question": "Un neurone possède environ 1 000 à combien de synapses ?",
+   "valeur": 10000,
+   "unite": "synapses",
+   "tolerance": 0,
+   "pieges": [
+    100,
+    2000,
+    1000000
+   ],
+   "explication": "Environ 1 000 à 10 000 synapses avec d'autres neurones."
+  },
+  {
+   "notion": "air",
+   "question": "En combien d'hémisphères le cerveau est-il divisé ?",
+   "valeur": 2,
+   "unite": "hémisphères",
+   "tolerance": 0,
+   "pieges": [
+    1,
+    3,
+    4
+   ],
+   "explication": "Deux : l'hémisphère droit et l'hémisphère gauche."
+  },
+  {
+   "notion": "add",
+   "question": "Combien de millions de personnes fument du tabac chaque jour en France (11-75 ans) ?",
+   "valeur": 12,
+   "unite": "millions",
+   "tolerance": 1,
+   "pieges": [
+    5,
+    1,
+    50
+   ],
+   "explication": "Environ 12 millions d'usagers quotidiens de tabac."
+  },
+  {
+   "notion": "add",
+   "question": "Combien de millions de personnes boivent de l'alcool chaque jour en France (11-75 ans) ?",
+   "valeur": 5,
+   "unite": "millions",
+   "tolerance": 1,
+   "pieges": [
+    12,
+    1,
+    50
+   ],
+   "explication": "Environ 5 millions d'usagers quotidiens d'alcool."
+  }
+ ],
+ "etapes": [
+  {
+   "notion": "trj",
+   "nom": "Chez la sprinteuse",
+   "liste": [
+    "le stimulus (le coup de feu)",
+    "l'organe sensoriel (l'oreille) capte l'information",
+    "le nerf sensitif transporte le message",
+    "le centre nerveux traite le message",
+    "le nerf moteur transporte le message",
+    "l'organe effecteur (le muscle) se contracte",
+    "le mouvement : elle court"
+   ]
+  },
+  {
+   "notion": "syn",
+   "nom": "À la synapse",
+   "liste": [
+    "le message électrique arrive au bout du neurone 1",
+    "le neurone 1 libère des neurotransmetteurs",
+    "les neurotransmetteurs se fixent sur les récepteurs du neurone 2",
+    "un nouveau message électrique part dans le neurone 2"
+   ]
+  },
+  {
+   "notion": "mus",
+   "nom": "Du neurone au muscle",
+   "liste": [
+    "le message électrique arrive au bout du neurone",
+    "des neurotransmetteurs sont libérés",
+    "les neurotransmetteurs se fixent sur les récepteurs du muscle",
+    "le muscle se contracte"
+   ]
+  },
+  {
+   "notion": "int",
+   "nom": "Le téléphone sonne",
+   "liste": [
+    "la sonnerie stimule l'oreille",
+    "l'aire auditive est activée",
+    "l'aire de la mémoire reconnaît le son",
+    "l'aire de la prise de décision décide de répondre",
+    "l'aire motrice envoie l'ordre au bras",
+    "le bras saisit le téléphone"
+   ]
+  }
+ ],
+ "classements": [
+  {
+   "question": "Dans le trajet du message nerveux, c'est…",
+   "categories": [
+    "Un stimulus",
+    "Un organe sensoriel",
+    "Un nerf sensitif",
+    "Un centre nerveux",
+    "Un nerf moteur",
+    "Un organe effecteur"
+   ],
+   "items": [
+    {
+     "notion": "trj",
+     "nom": "Le coup de feu du départ",
+     "categorie": "Un stimulus",
+     "pourquoi": "Le coup de feu est une information de l'environnement qui déclenche la réaction : c'est le stimulus."
+    },
+    {
+     "notion": "trj",
+     "nom": "La sonnerie du téléphone",
+     "categorie": "Un stimulus",
+     "pourquoi": "La sonnerie stimule l'oreille et déclenche une réaction : c'est un stimulus."
+    },
+    {
+     "notion": "trj",
+     "nom": "L'oreille",
+     "categorie": "Un organe sensoriel",
+     "pourquoi": "L'oreille capte les ondes sonores grâce aux cellules ciliées : c'est un organe sensoriel."
+    },
+    {
+     "notion": "trj",
+     "nom": "L'œil",
+     "categorie": "Un organe sensoriel",
+     "pourquoi": "L'œil capte les ondes lumineuses grâce à des cellules spécialisées : c'est un organe sensoriel."
+    },
+    {
+     "notion": "snc",
+     "nom": "Le cerveau",
+     "categorie": "Un centre nerveux",
+     "pourquoi": "Le cerveau fait partie de l'encéphale : c'est un centre nerveux."
+    },
+    {
+     "notion": "snc",
+     "nom": "La moelle épinière",
+     "categorie": "Un centre nerveux",
+     "pourquoi": "Avec l'encéphale, la moelle épinière forme le système nerveux central."
+    },
+    {
+     "notion": "trj",
+     "nom": "Les muscles des jambes de la sprinteuse",
+     "categorie": "Un organe effecteur",
+     "pourquoi": "Les muscles se contractent et la mettent en mouvement : ce sont des organes effecteurs."
+    },
+    {
+     "notion": "trj",
+     "nom": "Le muscle du bras qui saisit le téléphone",
+     "categorie": "Un organe effecteur",
+     "pourquoi": "Le muscle réalise le mouvement : c'est un organe effecteur."
+    },
+    {
+     "notion": "trj",
+     "nom": "Le nerf qui va de l'oreille vers le cerveau",
+     "categorie": "Un nerf sensitif",
+     "pourquoi": "Il transporte le message de l'organe sensoriel vers le centre nerveux : c'est un nerf sensitif."
+    },
+    {
+     "notion": "trj",
+     "nom": "Le nerf qui va de la moelle épinière aux muscles des jambes",
+     "categorie": "Un nerf moteur",
+     "pourquoi": "Il transporte le message du centre nerveux vers le muscle : c'est un nerf moteur."
+    }
+   ]
+  }
+ ],
+ "redaction": [
+  {
+   "id": "avc-jean",
+   "notion": "air",
+   "titre": "L'AVC de Jean",
+   "document": "Jean a fait un **AVC** : une hémorragie soudaine dans son cerveau. L'IRM montre que la zone touchée se trouve **à l'arrière du cerveau**.\n\nRappel du document 2 : le cerveau est divisé en **aires** spécialisées. L'aire visuelle est à l'arrière du cerveau, l'aire motrice sur le dessus, l'aire auditive sur le côté.\n\nDocument 3 : des patients touchés à cet endroit confondent les formes et les couleurs des objets.",
+   "consigne": "Tu es médecin. Écris quelques phrases à la famille de Jean pour lui expliquer **quelle aire de son cerveau est touchée** et **quelles seront les conséquences** de son AVC. Appuie-toi sur les documents.",
+   "modele": "D'après l'IRM (document 1), l'hémorragie a touché l'arrière du cerveau de Jean. Le document 2 montre que l'arrière du cerveau correspond à l'aire visuelle : c'est la zone qui traite les messages venant des yeux. Chaque aire du cerveau est spécialisée dans une fonction, donc si l'aire visuelle est abîmée, cette fonction ne se fait plus correctement. Comme les patients du document 3, Jean risque d'avoir des troubles de la vue : il pourra confondre les formes et les couleurs des objets.",
+   "photo": true,
+   "criteres": [
+    {
+     "t": "Dit que la zone touchée est l'aire visuelle, à l'arrière du cerveau",
+     "pts": 1
+    },
+    {
+     "t": "Explique qu'une aire est spécialisée dans une fonction : abîmée, elle ne fonctionne plus bien",
+     "pts": 1
+    },
+    {
+     "t": "En déduit un trouble de la vue (formes, couleurs)",
+     "pts": 1
+    },
+    {
+     "t": "S'appuie sur les documents (« d'après le document… »)",
+     "pts": 1
+    },
+    {
+     "t": "Rédige des phrases claires, adressées à la famille",
+     "pts": 1
+    }
+   ]
+  },
+  {
+   "id": "sprinteuse",
+   "notion": "trj",
+   "titre": "Le départ de la sprinteuse",
+   "document": "Sur ses starting-blocks, la sprinteuse attend le coup de feu. Dès qu'elle l'entend, elle s'élance.",
+   "consigne": "Explique le **trajet du message nerveux**, du coup de feu jusqu'au mouvement, en utilisant le vocabulaire du cours. Tu peux aussi faire le **schéma fonctionnel** sur une feuille et le prendre en photo.",
+   "modele": "Le coup de feu est le stimulus. Il est capté par l'oreille, un organe sensoriel. Un message nerveux part alors de l'oreille et circule dans un nerf sensitif jusqu'aux centres nerveux (le cerveau et la moelle épinière). Les centres nerveux envoient à leur tour un message nerveux moteur, qui circule dans des nerfs moteurs jusqu'aux muscles des jambes, les organes effecteurs. Les muscles se contractent : la sprinteuse s'élance.",
+   "photo": true,
+   "criteres": [
+    {
+     "t": "Le coup de feu (stimulus) est capté par l'oreille, un organe sensoriel",
+     "pts": 1
+    },
+    {
+     "t": "Un message nerveux va de l'oreille aux centres nerveux par un nerf sensitif",
+     "pts": 1
+    },
+    {
+     "t": "Les centres nerveux (cerveau, moelle épinière) envoient un message vers les muscles",
+     "pts": 1
+    },
+    {
+     "t": "Ce message passe par un nerf moteur jusqu'aux muscles, les organes effecteurs, qui se contractent",
+     "pts": 1
+    },
+    {
+     "t": "Les étapes sont dans le bon ordre",
+     "pts": 1
+    }
+   ]
+  },
+  {
+   "id": "cycliste",
+   "notion": "int",
+   "titre": "Le cycliste et le feu rouge",
+   "document": "Un cycliste roule en ville. Le feu passe au rouge : il serre aussitôt le frein avec sa main.",
+   "consigne": "Explique ce qui se passe dans son système nerveux, **de l'œil jusqu'à la main**. Précise aussi **sous quelle forme** circule le message nerveux **dans un neurone** et **entre deux neurones**.",
+   "modele": "La lumière rouge du feu est le stimulus : elle est captée par l'œil, un organe sensoriel. Un message nerveux circule dans un nerf sensitif jusqu'au cerveau, où il arrive dans l'aire visuelle. Le cerveau intègre l'information : il reconnaît le feu rouge grâce à la mémoire et décide de freiner. L'aire motrice envoie alors un message nerveux qui passe par la moelle épinière puis par un nerf moteur jusqu'aux muscles de la main, qui se contractent et serrent le frein. Dans un neurone, le message nerveux est électrique. Entre deux neurones, au niveau de la synapse, il devient chimique : le neurone libère des neurotransmetteurs qui se fixent sur le neurone suivant.",
+   "photo": true,
+   "criteres": [
+    {
+     "t": "L'œil (organe sensoriel) capte la lumière du feu, un nerf sensitif emmène le message au cerveau",
+     "pts": 1
+    },
+    {
+     "t": "Le cerveau analyse l'information (aire visuelle, mémoire) et décide de freiner",
+     "pts": 1
+    },
+    {
+     "t": "L'aire motrice envoie un message par la moelle épinière et un nerf moteur jusqu'aux muscles de la main",
+     "pts": 1
+    },
+    {
+     "t": "Dans un neurone, le message nerveux est électrique",
+     "pts": 1
+    },
+    {
+     "t": "Entre deux neurones (synapse), il est chimique : des neurotransmetteurs sont libérés",
+     "pts": 1
+    }
+   ]
+  },
+  {
+   "id": "dependance",
+   "notion": "add",
+   "titre": "Pourquoi devient-on dépendant ?",
+   "document": "Document : « Les drogues perturbent le fonctionnement des synapses au niveau cérébral : elles entraînent une augmentation de la libération de dopamine, à l'origine de la dépendance. » La dopamine est une substance qui assure la communication entre neurones et provoque la sensation de plaisir.\n\nEn France, 12 millions de personnes fument du tabac chaque jour.",
+   "consigne": "Explique comment la consommation répétée d'une drogue peut entraîner une **dépendance**, puis donne **un conseil** pour garder son système nerveux en bonne santé.",
+   "modele": "D'après le document, les drogues agissent sur les synapses du cerveau : elles font libérer beaucoup plus de dopamine que d'habitude. La dopamine provoque une sensation de plaisir, car elle stimule le circuit de la récompense. Le cerveau en redemande, alors la personne consomme à nouveau la drogue : c'est la dépendance, une addiction, qui est une maladie avec des conséquences nuisibles sur la santé. Pour préserver son système nerveux, il faut avoir une bonne hygiène de vie, par exemple dormir suffisamment, et ne pas consommer de drogues. En cas d'addiction, on peut se faire aider par un professionnel de santé.",
+   "photo": true,
+   "criteres": [
+    {
+     "t": "Les drogues agissent sur les synapses du cerveau",
+     "pts": 1
+    },
+    {
+     "t": "Elles augmentent la libération de dopamine",
+     "pts": 1
+    },
+    {
+     "t": "La dopamine donne du plaisir : le cerveau en redemande, d'où la dépendance",
+     "pts": 1
+    },
+    {
+     "t": "Donne un conseil d'hygiène de vie (sommeil, ne pas consommer, se faire aider…)",
+     "pts": 1
+    },
+    {
+     "t": "S'appuie sur le document",
+     "pts": 1
+    }
+   ]
+  }
+ ]
+}

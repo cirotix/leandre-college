@@ -1,0 +1,20 @@
+{
+ "note": 8,
+ "publiable": true,
+ "problemes": [
+  {
+   "gravite": "important",
+   "ou": "parCoeur[5].motsCles",
+   "constat": "Aucun mot-clé : pas de texte à trous.",
+   "correction": "Ajouter « synapse »."
+  },
+  {
+   "gravite": "mineur",
+   "ou": "cours[3].astuce",
+   "constat": "Astuce un peu longue.",
+   "correction": ""
+  }
+ ],
+ "par_coeur_oublie": [],
+ "resume": "Module fidèle au cours, bien couvert. Un mot-clé manque pour un texte à trous."
+}

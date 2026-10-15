@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Film — gabarit de la fabrique</title>
+<!-- Gabarit générique : la fabrique (tools/fabrique) le copie en sources/<matiere>-<module>.html en remplaçant
+     STORYBOARD ci-dessous par le scénario (schéma STORYBOARD de tools/fabrique/schemas.py), puis lance make_film.py.
+     Types de scène : titre, chaine, liste, definition, phrase, chiffres, comparaison, recap. -->
+<style>
+:root{
+  --paper:#F4F7FC; --sheet:#FFFFFF; --rule:#E3EAF6; --rule2:#CBD8EF; --margin:#E05A6C;
+  --ink:#1A2250; --muted:#5B6488; --pen:#2340C4; --pen-soft:#DDE4FB; --red:#CC2D2A; --red-soft:#FCE6E5;
+  --ok:#0F8456; --ok-soft:#DDF3E8; --hl1:#C2F4A0; --hl2:#FFD98C; --hl3:#FFB6D9; --spark:#FFB800;
+}
+html,body{margin:0;background:#000}
+#stage{width:1920px;height:1080px;position:relative;overflow:hidden;transform-origin:0 0;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(90deg, transparent 150px, var(--margin) 150px, var(--margin) 153px, transparent 153px),
+    repeating-linear-gradient(180deg, transparent 0 47px, var(--rule2) 47px 48px),
+    repeating-linear-gradient(180deg, transparent 0 11px, var(--rule) 11px 12px),
+    repeating-linear-gradient(90deg, transparent 0 47px, var(--rule) 47px 48px);
+  font-family:"Inter",system-ui,sans-serif; color:var(--ink)}
+.sc{position:absolute;inset:0;display:none}
+.sc > *{position:absolute}
+svg.art{left:0;top:0;width:1920px;height:1080px;overflow:visible}
+.tag{left:190px;top:52px;font:800 24px "Inter";letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:4px 14px 5px 12px;background:var(--hl1);transform:rotate(-1.5deg)}
+.tag.l2{background:var(--hl2)} .tag.l3{background:var(--hl3)} .tag.l0{background:var(--pen-soft)}
+.h{left:190px;top:100px;right:110px;margin:0;font:900 76px/1.05 "Inter Display","Inter";color:var(--pen);letter-spacing:-.01em}
+.cap{left:190px;right:110px;bottom:56px;background:var(--sheet);border-radius:10px;padding:22px 30px;font:600 40px/1.3 "Inter";
+  box-shadow:0 2px 4px rgba(26,34,80,.08),0 14px 30px rgba(26,34,80,.12);border-left:8px solid var(--pen)}
+.cap.red{border-left-color:var(--red)}
+.fiche{font:700 24px "Inter";color:var(--red);letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:14px}
+.pill{font:700 34px "Inter";padding:8px 20px;border-radius:999px;background:var(--sheet);border:3px solid var(--ink);white-space:nowrap;box-shadow:0 6px 14px rgba(26,34,80,.12)}
+.box{background:var(--sheet);border-radius:16px;border:4px solid var(--ink);box-shadow:0 8px 20px rgba(26,34,80,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 14px;text-align:center;box-sizing:border-box}
+.box .k{font:800 22px "Inter";letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.box .v{font:800 34px/1.15 "Inter";color:var(--ink);margin-top:6px}
+.box .d{font:500 26px/1.3 "Inter";color:var(--muted);margin-top:10px}
+.big{font:900 140px/0.98 "Inter Display","Inter";color:var(--pen);letter-spacing:-.02em;margin:0}
+.txt{font:600 44px/1.3 "Inter";color:var(--ink)}
+.num{font:900 120px/1 "Inter Display","Inter";color:var(--pen)}
+.hand{font:700 46px "Inter";color:var(--red);transform:rotate(-2deg)}
+.list{font:600 40px/1.3 "Inter";display:grid;gap:26px}
+.list > div{display:flex;gap:26px;align-items:flex-start}
+.list i{font-style:normal;font:900 40px "Inter Display","Inter";color:var(--sheet);background:var(--pen);border-radius:50%;width:60px;height:60px;display:grid;place-items:center;flex:none}
+.list i.ok{background:var(--ok)}
+.list small{display:block;font:500 32px/1.3 "Inter";color:var(--muted);margin-top:4px}
+.sheet{background:var(--sheet);border-radius:14px;box-shadow:0 2px 4px rgba(26,34,80,.08),0 18px 40px rgba(26,34,80,.14);padding:48px 60px;box-sizing:border-box}
+.quote{font:700 54px/1.35 "Inter";color:var(--ink)}
+.under{position:absolute;left:60px;right:60px;bottom:34px;height:8px;background:var(--red);border-radius:4px;transform-origin:0 50%}
+.vs{font:900 64px "Inter Display","Inter";color:var(--red)}
+</style></head>
+<body><div id="stage"></div>
+<script>
+"use strict";
+const STORYBOARD = /*STORYBOARD*/{"titre": "Exemple", "scenes": [
+  {"type": "titre", "partie": "Introduction", "titre": "Exemple de film", "texte": "Tout le chapitre en 5 minutes", "etiquette": "", "elements": [], "duree": 8},
+  {"type": "chaine", "partie": "Le trajet", "titre": "Du stimulus au mouvement", "texte": "Le message suit toujours le même chemin.", "etiquette": "", "elements": [{"label": "Organe des sens", "detail": "capte", "valeur": 0}, {"label": "Nerf sensitif", "detail": "", "valeur": 0}, {"label": "Cerveau", "detail": "décide", "valeur": 0}, {"label": "Nerf moteur", "detail": "", "valeur": 0}, {"label": "Muscle", "detail": "bouge", "valeur": 0}], "duree": 18}
+]}/*FIN*/;
+
+/* ---------- construction des scènes ---------- */
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const fmtN = v => { const r = Math.abs(v) >= 100 || Number.isInteger(v) ? Math.round(v) : Math.round(v * 10) / 10;
+  return String(r).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, " "); };
+const fit = (s, sizes) => { const n = String(s || "").length; for (const [max, px] of sizes) if (n <= max) return px; return sizes[sizes.length - 1][1]; };
+const SB = STORYBOARD, stage = document.getElementById("stage");
+const parties = [...new Set(SB.scenes.map(s => s.partie).filter(p => p && !/^(introduction|à retenir|a retenir|conclusion)$/i.test(p)))];
+const numero = p => parties.indexOf(p) + 1;
+const tagOf = s => { const k = numero(s.partie); return k ? `<div class="tag l${(k - 1) % 3 + 1}" data-a="fade 0 .4">${k} · ${esc(s.partie)}</div>` : `<div class="tag l0" data-a="fade 0 .4">${esc(s.partie || SB.titre)}</div>`; };
+const HOOKS = {};
+
+const BUILD = {
+  titre(s){
+    const pills = parties.map((p, i) => `<span class="pill" data-a="pop ${2.4 + i * .4} .4">${i + 1} · ${esc(p)}</span>`).join("");
+    return `<div class="tag l0" style="top:250px" data-a="fade .2 .6">${esc(s.etiquette || SB.sousTitre || "Le film du chapitre")}</div>
+      <h1 class="big" style="left:190px;top:320px;right:110px;font-size:${fit(s.titre, [[22, 140], [40, 110], [999, 84]])}px" data-a="up .4 .8">${esc(s.titre)}</h1>
+      ${s.texte ? `<div class="hand" style="left:196px;top:640px;right:110px" data-a="up 1.4 .7">${esc(s.texte)}</div>` : ""}
+      <div style="left:190px;top:790px;display:flex;gap:14px;flex-wrap:wrap;width:1620px">${pills}</div>`;
+  },
+  chaine(s, id){
+    const el = s.elements.slice(0, 6), n = el.length, gap = 70, w = Math.min(330, (1630 - gap * (n - 1)) / n), x0 = 190;
+    const t0 = 1.6, step = Math.min(2.6, Math.max(1.2, (s.duree - 6) / Math.max(1, n)));
+    let boxes = "", arrows = "";
+    el.forEach((e, i) => {
+      const x = x0 + i * (w + gap), ta = t0 + i * step;
+      boxes += `<div class="box" style="left:${x}px;top:330px;width:${w}px;height:300px;${i === n - 1 ? "border-color:var(--ok)" : ""}" data-a="pop ${ta.toFixed(2)} .5">
+        <span class="k">Étape ${i + 1}</span><span class="v" style="font-size:${fit(e.label, [[14, 34], [24, 30], [999, 26]])}px">${esc(e.label)}</span>${e.detail ? `<span class="d">${esc(e.detail)}</span>` : ""}</div>`;
+      if (i < n - 1) arrows += `<path d="M${x + w + 8} 480 L${x + w + gap - 8} 480" stroke="#1A2250" stroke-width="7" fill="none" marker-end="url(#ar${id})" data-a="draw ${(ta + step * .6).toFixed(2)} .5"/>`;
+    });
+    const fin = t0 + n * step;
+    HOOKS[id] = t => {   // un point lumineux parcourt la chaîne au fur et à mesure
+      const dot = document.getElementById(id + "dot"), k = (t - t0) / step;
+      if (k < 0 || t > fin + 2.5) { dot.style.opacity = 0; return; }
+      const loop = t > fin ? ((t - fin) / 2.5) * (n - 1) : Math.min(k, n - 1);
+      const x = x0 + w / 2 + loop * (w + gap);
+      dot.setAttribute("transform", `translate(${x} 660)`); dot.style.opacity = 1;
+    };
+    return `${tagOf(s)}<h2 class="h" data-a="up .2 .6">${esc(s.titre)}</h2>
+      <svg class="art" viewBox="0 0 1920 1080"><defs><marker id="ar${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1A2250"/></marker></defs>${arrows}
+      <g id="${id}dot" style="opacity:0"><circle r="26" fill="#FFB800" opacity=".35"/><circle r="12" fill="#FFB800"/></g></svg>${boxes}
+      ${s.texte ? `<div class="cap" data-a="up ${Math.min(fin + .4, s.duree - 4).toFixed(2)} .7">${esc(s.texte)}</div>` : ""}`;
+  },
+  liste(s){
+    const el = s.elements.slice(0, 5), step = Math.min(3, Math.max(1.4, (s.duree - 5) / Math.max(1, el.length)));
+    const items = el.map((e, i) => `<div data-a="up ${(1.2 + i * step).toFixed(2)} .6"><i>${i + 1}</i><div><b>${esc(e.label)}</b>${e.detail ? `<small>${esc(e.detail)}</small>` : ""}</div></div>`).join("");
+    const top = s.texte ? 300 : 280;
+    return `${tagOf(s)}<h2 class="h" data-a="up .2 .6">${esc(s.titre)}</h2>
+      ${s.texte ? `<div class="txt" style="left:190px;top:215px;right:110px;font-size:36px;color:var(--muted)" data-a="fade .8 .6">${esc(s.texte)}</div>` : ""}
+      <div class="list" style="left:190px;top:${top + 40}px;right:160px;font-size:${el.length > 4 ? 36 : 40}px">${items}</div>`;
+  },
+  definition(s){
+    return `${tagOf(s)}${s.etiquette ? `<div class="fiche" style="left:190px;top:200px" data-a="fade .4 .5">${esc(s.etiquette)}</div>` : ""}
+      <div class="num" style="left:190px;top:270px;right:110px;font-size:${fit(s.titre, [[12, 130], [22, 100], [999, 76]])}px" data-a="pop .6 .6">${esc(s.titre)}</div>
+      <div class="sheet txt" style="left:190px;top:500px;right:160px;font-size:${fit(s.texte, [[90, 50], [170, 44], [999, 38]])}px;border-left:10px solid var(--pen)" data-a="up 2 .8">${esc(s.texte)}</div>`;
+  },
+  phrase(s){
+    const fs = fit(s.texte, [[90, 60], [160, 54], [240, 46], [999, 40]]);
+    return `${tagOf(s)}<h2 class="h" data-a="up .2 .6">${esc(s.titre)}</h2>
+      <div class="sheet" style="left:190px;top:300px;right:160px;padding-bottom:70px" data-a="up 1 .8">
+        <span class="fiche">${esc(s.etiquette || "À savoir par cœur")}</span>
+        <div class="quote" style="font-size:${fs}px">${esc(s.texte)}</div>
+        <div class="under" data-a="grow 2.6 1.4"></div></div>`;
+  },
+  chiffres(s, id){
+    const el = s.elements.slice(0, 4), n = el.length, w = (1630 - 40 * (n - 1)) / n;
+    const boxes = el.map((e, i) => `<div class="box" style="left:${190 + i * (w + 40)}px;top:330px;width:${w}px;height:380px" data-a="pop ${(1 + i * 1.6).toFixed(2)} .5">
+      <span class="num" id="${id}n${i}" style="font-size:${n > 2 ? 96 : 120}px">0</span>
+      ${e.detail ? `<span class="v" style="color:var(--pen)">${esc(e.detail)}</span>` : ""}<span class="d" style="font-size:30px">${esc(e.label)}</span></div>`).join("");
+    HOOKS[id] = t => el.forEach((e, i) => { const p = Math.max(0, Math.min(1, (t - 1.2 - i * 1.6) / 1.4)), q = 1 - Math.pow(1 - p, 3);
+      document.getElementById(id + "n" + i).textContent = fmtN(e.valeur * q); });
+    return `${tagOf(s)}<h2 class="h" data-a="up .2 .6">${esc(s.titre)}</h2>${boxes}
+      ${s.texte ? `<div class="cap" data-a="up ${(1.6 + n * 1.6).toFixed(2)} .7">${esc(s.texte)}</div>` : ""}`;
+  },
+  comparaison(s){
+    const [a, b] = s.elements;
+    const one = (e, x, t, col) => e ? `<div class="box" style="left:${x}px;top:300px;width:720px;height:420px;border-color:${col}" data-a="pop ${t} .6">
+      <span class="v" style="font-size:52px;color:${col}">${esc(e.label)}</span>${e.detail ? `<span class="d" style="font-size:36px;color:var(--ink)">${esc(e.detail)}</span>` : ""}</div>` : "";
+    return `${tagOf(s)}<h2 class="h" data-a="up .2 .6">${esc(s.titre)}</h2>${one(a, 190, 1.2, "var(--pen)")}
+      <div class="vs" style="left:935px;top:470px" data-a="pop 2.6 .4">≠</div>${one(b, 1090, 3.2, "var(--red)")}
+      ${s.texte ? `<div class="cap" data-a="up 5.5 .7">${esc(s.texte)}</div>` : ""}`;
+  },
+  recap(s){
+    const el = s.elements.slice(0, 6), step = Math.min(3.5, Math.max(1.6, (s.duree - 6) / Math.max(1, el.length)));
+    const items = el.map((e, i) => `<div data-a="up ${(1.2 + i * step).toFixed(2)} .6"><i class="ok">✓</i><div>${esc(e.label)}${e.detail ? `<small>${esc(e.detail)}</small>` : ""}</div></div>`).join("");
+    const fin = 1.2 + el.length * step;
+    return `<div class="tag l0" data-a="fade 0 .4">${esc(s.partie || "À retenir")}</div><h2 class="h" data-a="up .2 .6">${esc(s.titre || "À retenir")}</h2>
+      <div class="list" style="left:190px;top:250px;right:160px;font-size:${el.length > 4 ? 32 : 38}px;gap:20px">${items}</div>
+      <div class="hand" style="right:140px;bottom:50px" data-a="up ${Math.min(fin, s.duree - 3).toFixed(2)} .7">À toi : tes cartes du jour !</div>`;
+  }
+};
+SB.scenes.forEach((s, i) => {
+  const id = "s" + i, sec = document.createElement("section");
+  sec.className = "sc"; sec.id = id; sec.dataset.d = Math.max(6, Math.min(40, +s.duree || 12));
+  s.elements = s.elements || [];
+  sec.innerHTML = (BUILD[s.type] || BUILD.liste)(s, id);
+  stage.appendChild(sec);
+});
+
+/* ---------- moteur d'animation (le même que les films faits main) : tout est une fonction du temps ---------- */
+const cl = x => Math.max(0, Math.min(1, x));
+const E = {out: x => 1 - Math.pow(1 - x, 3), io: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2, back: x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }};
+const $ = id => document.getElementById(id);
+const scenes = [...document.querySelectorAll(".sc")];
+let acc = 0;
+scenes.forEach(s => { s._s = acc; acc += +s.dataset.d; s._e = acc; });
+const TOTAL = acc;
+const anims = scenes.map(s => [...s.querySelectorAll("[data-a]")].map(el => {
+  const [type, a, d, oa, od] = el.dataset.a.split(/\s+/);
+  const svg = el instanceof SVGElement;
+  return {el, type, a: +a, d: +(d || .6), oa: oa !== undefined ? +oa : null, od: +(od || .5), len: 0, svg, base: svg ? (el.getAttribute("transform") || "") : null, c: null};
+}));
+function xf(A, k, dy){
+  if (!A.svg) { A.el.style.transform = `translateY(${dy}px) scale(${k})`; return; }
+  if (!A.c) { const b = A.el.getBBox(); A.c = [b.x + b.width / 2, b.y + b.height / 2]; }
+  const [cx, cy] = A.c;
+  A.el.setAttribute("transform", `${A.base} translate(${cx} ${cy + dy}) scale(${k}) translate(${-cx} ${-cy})`);
+}
+function apply(A, t){
+  const p = cl((t - A.a) / A.d), o = A.oa === null ? 1 : 1 - cl((t - A.oa) / A.od), el = A.el, e = E.out(p);
+  switch (A.type) {
+    case "fade": el.style.opacity = p * o; break;
+    case "up": el.style.opacity = e * o; xf(A, 1, (1 - e) * 40); break;
+    case "pop": el.style.opacity = cl(p * 3) * o; xf(A, .5 + .5 * E.back(p), 0); break;
+    case "grow": el.style.opacity = (p > 0 ? 1 : 0) * o; el.style.transform = `scaleX(${e})`; break;
+    case "draw": if (!A.len) A.len = el.getTotalLength() || 1; el.style.strokeDasharray = A.len; el.style.strokeDashoffset = A.len * (1 - E.io(p)); el.style.opacity = (p > 0 ? 1 : 0) * o; break;
+  }
+}
+function render(T){
+  for (let i = 0; i < scenes.length; i++) {
+    const s = scenes[i], on = T >= s._s && T < s._e;
+    s.style.display = on ? "block" : "none";
+    if (!on) continue;
+    const t = T - s._s;
+    s.style.opacity = Math.min(cl(t / .45), cl((s._e - T) / .45));
+    for (const A of anims[i]) apply(A, t);
+    if (HOOKS[s.id]) HOOKS[s.id](t);
+  }
+}
+function events(){ const out = []; scenes.forEach((s, i) => anims[i].forEach(A => { if (A.type === "pop" && (A.el.classList.contains("pill") || A.el.classList.contains("box"))) out.push(+(s._s + A.a).toFixed(2)); })); return out.sort((a, b) => a - b); }
+function chapters(){   // un chapitre à chaque changement de partie
+  const out = []; let prev = null;
+  SB.scenes.forEach((s, i) => {
+    const nom = s.type === "titre" ? "Introduction" : s.type === "recap" ? (s.titre || "À retenir") : numero(s.partie) ? `${numero(s.partie)} · ${s.partie}` : s.partie;
+    if (nom !== prev) out.push([scenes[i]._s, nom]); prev = nom;
+  });
+  return out;
+}
+window.FILM = {render, TOTAL, events, chapters};
+function fitStage(){ const k = Math.min(innerWidth / 1920, innerHeight / 1080); $("stage").style.transform = `scale(${k})`; }
+addEventListener("resize", fitStage); fitStage(); render(0);
+</script>
+</body></html>

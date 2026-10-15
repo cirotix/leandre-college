@@ -33,9 +33,9 @@ for m in data["modules"]:
         errors.append(f"{where} : module.js introuvable")
         continue
     src = js.read_text(encoding="utf8")
-    if "Revision.start(" not in src:
-        errors.append(f"{where} : module.js doit appeler Revision.start(...)")
-    found = re.findall(r'Revision\.start\(\{\s*key:\s*"([^"]+)"', src)
+    if "Revision.start(" not in src and "Revision.lesson(" not in src:
+        errors.append(f"{where} : module.js doit appeler Revision.start(...) ou Revision.lesson(...)")
+    found = re.findall(r'Revision\.(?:start|lesson)\(\{\s*"?key"?:\s*"([^"]+)"', src)
     if len(found) != 1:
         errors.append(f"{where} : Revision.start doit commencer par key: \"…\" (clé localStorage)")
     else:

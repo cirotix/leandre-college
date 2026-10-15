@@ -3,7 +3,7 @@
    et la dernière version vue reste utilisable sans réseau. */
 const CACHE = "revisions-v2";
 const CORE = ["./", "index.html", "modules.json", "manifest.webmanifest", "icon.svg", "icon-192.png", "apple-touch-icon.png",
-  "lib/revision.css", "lib/revision.js", "lib/home.js", "lib/push.js", "lib/module.html"];
+  "lib/revision.css", "lib/revision.js", "lib/lesson.js", "lib/home.js", "lib/push.js", "lib/module.html"];
 
 self.addEventListener("install", event => {
   event.waitUntil((async () => {
