@@ -114,6 +114,51 @@
         "addiction",
         "dopamine"
       ]
+    },
+    {
+      "matiere": "francais",
+      "chemin": "francais/vivre-au-xixe/",
+      "titre": "Vivre au XIXe siècle : un monde qui change",
+      "chapitre": "Séquence 1",
+      "resume": "Classes et fonctions grammaticales, temps du récit, accords dans le GN, vocabulaire, et quatre romans : Balzac, Sand, Zola, Flaubert.",
+      "ajoute": "2026-10-22",
+      "motsCles": [
+        "français",
+        "XIXe siècle",
+        "réalisme",
+        "classes grammaticales",
+        "nature",
+        "fonctions grammaticales",
+        "COD",
+        "COI",
+        "attribut du sujet",
+        "complément d'agent",
+        "complément circonstanciel",
+        "épithète",
+        "apposition",
+        "temps du récit",
+        "passé simple",
+        "imparfait",
+        "plus-que-parfait",
+        "passé antérieur",
+        "conditionnel",
+        "accords",
+        "groupe nominal",
+        "féminin",
+        "pluriel",
+        "vie quotidienne",
+        "vocabulaire",
+        "Balzac",
+        "Le Père Goriot",
+        "Rastignac",
+        "George Sand",
+        "Horace",
+        "Zola",
+        "Germinal",
+        "Flaubert",
+        "Madame Bovary",
+        "Emma Bovary"
+      ]
     }
   ]
 }
