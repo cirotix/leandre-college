@@ -187,6 +187,26 @@
         "Andrea",
         "questions"
       ]
+    },
+    {
+      "matiere": "francais",
+      "chemin": "francais/passe-simple/",
+      "titre": "Le passé simple",
+      "chapitre": "Conjugaison",
+      "resume": "Les terminaisons -ai, -is, -us, -ins, les pièges, et quand l'employer plutôt que l'imparfait.",
+      "ajoute": "2026-10-22",
+      "motsCles": [
+        "conjugaison",
+        "passé simple",
+        "imparfait",
+        "temps du récit",
+        "premier plan",
+        "arrière-plan",
+        "terminaisons",
+        "verbes irréguliers",
+        "accent circonflexe",
+        "récit au passé"
+      ]
     }
   ]
 }
