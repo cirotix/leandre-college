@@ -24,6 +24,11 @@
       "id": "sciences",
       "nom": "Sciences",
       "couleur": "hl-1"
+    },
+    {
+      "id": "espagnol",
+      "nom": "Espagnol",
+      "couleur": "hl-3"
     }
   ],
   "modules": [
@@ -158,6 +163,29 @@
         "Flaubert",
         "Madame Bovary",
         "Emma Bovary"
+      ]
+    },
+    {
+      "matiere": "espagnol",
+      "chemin": "espagnol/mi-presentacion/",
+      "titre": "Mi presentación",
+      "chapitre": "Se présenter",
+      "resume": "Les 16 questions pour se présenter et leurs réponses : nom, âge, famille, goûts, portrait.",
+      "ajoute": "2026-10-22",
+      "motsCles": [
+        "presentación",
+        "se présenter",
+        "¿Cómo te llamas?",
+        "edad",
+        "cumpleaños",
+        "nacionalidad",
+        "origen",
+        "hermanos",
+        "padres",
+        "me gusta",
+        "mascotas",
+        "Andrea",
+        "questions"
       ]
     }
   ]
