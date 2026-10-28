@@ -61,7 +61,7 @@ Ne pas modifier le moteur pour un besoin propre à un module : soit c'est géné
 - Accueil d'un module : étapes Vidéo (si `video`) → Cartes → Quiz → Contrôle, chacune « ✓ Fait » pendant 7 jours,
   la première non faite marquée « À faire maintenant » ; les notions maîtrisées sont en bas, repliées.
 - Cartes = répétition espacée (boîtes de Leitner, état par carte dans `S.cb`, identifiant = notion + empreinte du recto :
-  modifier le recto d'une carte la fait repartir comme nouvelle). « Je savais » : boîte +1, revient dans 1, 3, 7, 14
+  modifier le recto d'une carte la fait repartir comme nouvelle, sauf si elle garde son ancien recto dans `idFront`). « Je savais » : boîte +1, revient dans 1, 3, 7, 14
   puis 30 jours (intervalles raccourcis à ~40 % du délai restant quand `countdown` approche, et toujours une révision
   avant le contrôle). « À revoir » : boîte 1, la carte revient 3 cartes plus loin dans la séance, puis le lendemain.
   Acquise = boîte 4 ou 5. « Cartes du jour » = cartes échues (mélangées entre notions) + 10 nouvelles par jour
@@ -99,7 +99,7 @@ Revision.start({
   modes?: {cards: [badge, texte], quiz: [...], control: [...]},
   selection?: {default: [ids], button, filters: [{id, label, test}], chip: u => html, counter: sel => html},
   overview?: (selectedUnits, R) => html,    // bloc libre sur l'accueil du module
-  cards: (pool, R) => [{unit, front: html, back: html, extra?: html}],
+  cards: (pool, R) => [{unit, front: html, back: html, extra?: html, idFront?: html}],   // idFront : ancien recto, pour changer l'affichage sans perdre la progression
   quiz: {count, make: (pool, R, i) => ({unit, key, prompt: html, fig?, opts: [{t, ok}], wide?, feedback: ok => html, tip?, review: html})},
   control: {lead: html, note?: html, options?: [{id, label, choices: [[k, t]], default}], size?: pool => n,
             build: (pool, R) => [item]}

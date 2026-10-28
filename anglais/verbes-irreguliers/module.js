@@ -304,8 +304,11 @@ Revision.start({
     }
   },
   overview: table,
+  /* Recto : le verbe seul, la traduction est à retrouver de tête (elle est au verso).
+     idFront = texte de l'ancien recto (avec la traduction) : chaque carte garde sa progression. */
   cards: pool => pool.map(v => ({unit: v,
-    front: `<div class="fbody"><span class="big">${esc(D(v, "base"))}</span><span class="frl">${esc(v.fr)}</span><span class="hint">Touche la carte pour voir la réponse</span></div>`,
+    front: `<div class="fbody"><span class="big">${esc(D(v, "base"))}</span><span class="hint">Touche la carte pour voir la réponse</span></div>`,
+    idFront: `${esc(D(v, "base"))} ${esc(v.fr)} Touche la carte pour voir la réponse`,
     back: `<div class="forms">${["base", "pret", "pp"].map(c => `<div class="form"><span class="flab">${COLS[c]}</span><span class="fw">${esc(D(v, c))}</span></div>`).join("")}</div><span class="frl">${esc(v.fr)}</span>${v.tip ? `<span class="tip">${esc(v.tip)}</span>` : ""}`,
     extra: spk(v)})),
   quiz: {count: 10, make: (pool, R) => makeQ(R.weighted(pool), R)},
