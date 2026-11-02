@@ -207,6 +207,24 @@
         "accent circonflexe",
         "récit au passé"
       ]
+    },
+    {
+      "matiere": "maths",
+      "chemin": "maths/proportionnalite/",
+      "titre": "La proportionnalité",
+      "chapitre": "Chapitre 10",
+      "resume": "Tableaux, coefficient, produits en croix, graphiques et vitesses.",
+      "ajoute": "2026-11-02",
+      "motsCles": [
+        "proportionnalité",
+        "coefficient",
+        "produits en croix",
+        "quatrième proportionnelle",
+        "passage à l'unité",
+        "graphique",
+        "vitesse",
+        "tableau"
+      ]
     }
   ]
 }
