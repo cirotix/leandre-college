@@ -9,13 +9,30 @@ self.addEventListener("install", event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
     await cache.addAll(CORE).catch(() => {});
-    try {
-      const data = await (await fetch("modules.json", {cache: "no-store"})).json();
-      await cache.addAll(data.modules.flatMap(m => [m.chemin, m.chemin + "module.js"])).catch(() => {});
-    } catch (e) {}
+    try { await cacheModules(cache, await (await fetch("modules.json", {cache: "no-store"})).json()); } catch (e) {}
     self.skipWaiting();
   })());
 });
+
+/* Met en cache les modules du catalogue qui n'y sont pas encore (appelé à l'installation et à chaque modules.json
+   reçu du réseau) : un module ajouté après l'installation devient lui aussi disponible hors connexion. */
+async function cacheModules(cache, data){
+  const urls = (data.modules || []).flatMap(m => [m.chemin, m.chemin + "index.html", m.chemin + "module.js"]);
+  const missing = [];
+  for (const u of urls) if (!(await cache.match(u))) missing.push(u);
+  await Promise.all(missing.map(u => cache.add(u).catch(() => {})));
+}
+
+/* Page affichée quand on ouvre hors connexion une page qui n'a jamais été mise en cache.
+   (Avant : l'accueil était renvoyé à la place, et ses liens relatifs cassaient sous le chemin du module.) */
+const OFFLINE = home => `<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Pas de connexion</title>
+<style>body{font:17px/1.5 system-ui,-apple-system,sans-serif;max-width:32em;margin:12vh auto;padding:0 20px;color:#1b2340}
+h1{color:#2340C4;font-size:1.6em}a,button{display:inline-block;margin:8px 10px 0 0;padding:10px 16px;border-radius:10px;
+font:inherit;border:0;background:#2340C4;color:#fff;text-decoration:none}a{background:#e8ecfb;color:#2340C4}</style></head>
+<body><h1>Pas de connexion</h1><p>Cette page n'a pas encore été enregistrée sur cet appareil : il faut l'ouvrir une
+première fois avec Internet. Les modules déjà ouverts restent disponibles.</p>
+<button onclick="location.reload()">Réessayer</button><a href="${home}">← Mes révisions</a></body></html>`;
 
 self.addEventListener("activate", event => {
   event.waitUntil((async () => {
@@ -44,10 +61,18 @@ self.addEventListener("fetch", event => {
     }
     try {
       const res = await fetch(req, {cache: "no-cache"});
-      if (res.ok) cache.put(req, res.clone());
+      if (res.ok) {
+        cache.put(req, res.clone());
+        if (url.pathname.endsWith("/modules.json")) event.waitUntil(res.clone().json().then(d => cacheModules(cache, d)).catch(() => {}));
+      }
       return res;
     } catch (e) {
-      return (await cache.match(req, {ignoreSearch: true})) || (req.mode === "navigate" && await cache.match("./")) || Response.error();
+      const hit = await cache.match(req, {ignoreSearch: true});
+      if (hit) return hit;
+      if (req.mode !== "navigate") return Response.error();
+      const scope = new URL(self.registration.scope);
+      if (url.pathname === scope.pathname) { const home = await cache.match("./"); if (home) return home; }
+      return new Response(OFFLINE(scope.href), {headers: {"Content-Type": "text/html; charset=utf-8"}});
     }
   })());
 });
