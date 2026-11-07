@@ -246,6 +246,30 @@
         "positif",
         "facteurs"
       ]
+    },
+    {
+      "matiere": "histoire-geo",
+      "chemin": "histoire-geo/villes-mondialisation/",
+      "titre": "Villes et mondialisation",
+      "chapitre": "Géographie · Séquence 2",
+      "resume": "Métropoles mondiales, flux, archipel métropolitain, villes en marge et shrinking cities, le croquis.",
+      "ajoute": "2026-11-07",
+      "motsCles": [
+        "géographie",
+        "mondialisation",
+        "métropoles",
+        "mégalopole",
+        "archipel métropolitain",
+        "flux",
+        "fonctions de commandement",
+        "cosmopolite",
+        "shrinking cities",
+        "croquis",
+        "New York",
+        "Londres",
+        "Tokyo",
+        "Detroit"
+      ]
     }
   ]
 }
