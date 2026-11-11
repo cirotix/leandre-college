@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Describe a picture — film</title>
+<style>
+:root{
+  --paper:#F4F7FC; --sheet:#FFFFFF; --rule:#E3EAF6; --rule2:#CBD8EF; --margin:#E05A6C;
+  --ink:#1A2250; --muted:#5B6488; --pen:#2340C4; --pen-soft:#DDE4FB; --red:#CC2D2A; --red-soft:#FCE6E5;
+  --ok:#0F8456; --ok-soft:#DDF3E8; --hl1:#C2F4A0; --hl2:#FFD98C; --hl3:#FFB6D9; --spark:#FFB800;
+  --a-dec:#F7A8A0; --a-mot:#FFD45C; --a-som:#9FE08A; --a-aud:#FFA25C; --a-vis:#7FB2FF; --a-mem:#C9A2F2; --a-gus:#D9A27A; --a-olf:#B8C2CC;
+}
+html,body{margin:0;background:#000}
+#stage{width:1920px;height:1080px;position:relative;overflow:hidden;transform-origin:0 0;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(90deg, transparent 150px, var(--margin) 150px, var(--margin) 153px, transparent 153px),
+    repeating-linear-gradient(180deg, transparent 0 47px, var(--rule2) 47px 48px),
+    repeating-linear-gradient(180deg, transparent 0 11px, var(--rule) 11px 12px),
+    repeating-linear-gradient(90deg, transparent 0 47px, var(--rule) 47px 48px);
+  font-family:"Inter",system-ui,sans-serif; color:var(--ink)}
+.sc{position:absolute;inset:0;display:none}
+.sc > *{position:absolute}
+svg.art{left:0;top:0;width:1920px;height:1080px;overflow:visible}
+#s8mus{transform-box:fill-box;transform-origin:center}
+.tag{left:190px;top:52px;font:800 24px "Inter";letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:4px 14px 5px 12px;background:var(--hl1);transform:rotate(-1.5deg)}
+.tag.l2{background:var(--hl2)} .tag.l3{background:var(--hl3)} .tag.l0{background:var(--pen-soft)}
+.h{left:190px;top:100px;margin:0;font:900 76px/1.05 "Inter Display","Inter";color:var(--pen);letter-spacing:-.01em}
+.cap{left:190px;right:110px;bottom:56px;background:var(--sheet);border-radius:10px;padding:22px 30px;font:600 40px/1.3 "Inter";
+  box-shadow:0 2px 4px rgba(26,34,80,.08),0 14px 30px rgba(26,34,80,.12);border-left:8px solid var(--pen)}
+.cap.red{border-left-color:var(--red)} .cap.ok{border-left-color:var(--ok)}
+.cap b{color:var(--pen)} .cap .r{color:var(--red)} .cap .g{color:var(--ok)}
+.fiche{font:700 22px "Inter";color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px}
+.pill{font:700 34px "Inter";padding:8px 20px;border-radius:999px;background:var(--sheet);border:3px solid var(--ink);white-space:nowrap;box-shadow:0 6px 14px rgba(26,34,80,.12)}
+.pill.b{border-color:var(--pen);color:var(--pen)} .pill.r{border-color:var(--red);color:var(--red)} .pill.g{border-color:var(--ok);color:var(--ok)}
+.box{background:var(--sheet);border-radius:16px;border:4px solid var(--ink);box-shadow:0 8px 20px rgba(26,34,80,.12);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px 10px 18px;text-align:center}
+.box .k{font:800 22px "Inter";letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.box .v{font:800 34px/1.1 "Inter";color:var(--ink);margin-top:4px}
+.big{font:900 150px/0.95 "Inter Display","Inter";color:var(--pen);letter-spacing:-.02em;margin:0}
+.txt{font:600 44px/1.3 "Inter";color:var(--ink)}
+.txt b{color:var(--pen)} .txt .r{color:var(--red)} .txt .g{color:var(--ok)}
+.num{font:900 120px/1 "Inter Display","Inter";color:var(--pen)}
+.hand{font:700 46px "Inter";color:var(--red);transform:rotate(-2deg)}
+.list{font:600 38px/1.35 "Inter";display:grid;gap:18px}
+.list div{display:flex;gap:22px;align-items:baseline}
+.list i{font-style:normal;font:900 40px "Inter Display";color:var(--sheet);background:var(--pen);border-radius:50%;width:56px;height:56px;display:grid;place-items:center;flex:none}
+.pic > *{position:absolute}
+.pic > svg{left:0;top:0;width:100%;height:100%;display:block}
+.cell{background:rgba(204,45,42,.2);border:6px solid #CC2D2A;border-radius:14px;box-sizing:border-box}
+.cell.soft{background:rgba(35,64,196,.2);border-color:#2340C4}
+.ring{border:7px dashed #CC2D2A;border-radius:50%;box-sizing:border-box}
+.band{background:rgba(204,45,42,.16);border:6px dashed #CC2D2A;border-radius:14px;box-sizing:border-box}
+.zl{text-align:center;font:800 25px/1.2 "Inter";color:#2340C4;background:rgba(255,255,255,.93);border-radius:10px;padding:5px 6px;box-sizing:border-box;box-shadow:0 3px 8px rgba(26,34,80,.15)}
+.en{font:900 66px/1.08 "Inter Display","Inter";color:var(--pen)}
+.fr{font:700 44px/1.25 "Inter";color:var(--muted)}
+.ex{font:600 38px/1.3 "Inter";color:var(--ink)} .ex b{color:var(--red)}
+.q{font:800 52px/1.2 "Inter";color:var(--ink)} .q b{color:var(--pen)}
+.a{font:800 54px/1.2 "Inter";color:var(--ok)}
+.col{width:520px;background:var(--sheet);border-radius:18px;border:4px solid var(--ink);box-shadow:0 8px 20px rgba(26,34,80,.12);padding:24px 34px;box-sizing:border-box}
+.cp{font:900 130px/1 "Inter Display","Inter";color:var(--red)} .ct{font:700 50px/1.35 "Inter";color:var(--ink);margin-top:12px}
+.pp{width:500px} .pp svg{border-radius:10px} .pt{font:600 30px/1.3 "Inter";margin-top:12px} .pt b{color:var(--red)} .pt span{color:var(--muted);font-size:26px}
+.txt.sm{font-size:36px}
+.li{font:700 44px/1.2 "Inter";color:var(--ink)} .li b{color:var(--pen)} .li span{display:block;font:500 28px "Inter";color:var(--muted);margin-top:4px}
+.para{font:600 34px/1.45 "Inter";color:var(--ink);background:var(--sheet);border-radius:12px;padding:24px 30px;box-shadow:0 6px 16px rgba(26,34,80,.1);box-sizing:border-box} .para b{color:var(--red)}
+.pill.lab{font-size:30px;padding:6px 16px}
+</style></head>
+<body><div id="stage"></div>
+<script>
+/* Film du module anglais « Décrire une image ». Les dessins (bloc ART) sont ceux de anglais/decrire-une-image/module.js. */
+/* hasard reproductible : les deux moitiés du film sont rendues par deux navigateurs, elles doivent voir les mêmes images */
+Math.random = (() => { let a = 20261002; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; })();
+/*@ART-DEBUT@*/
+/* ---------- les dessins (SVG) : objets, scènes, mini-schémas ----------
+   Repère des scènes : 360 × 240, découpé en 9 zones de 120 × 80 (3 lignes, 3 colonnes).
+   Chaque objet est dessiné autour de son ancre (0, 0) : au sol pour les objets posés, au centre pour le ciel. */
+const ART = (() => {
+  const K = {ink: "#2A3152", sky: "#BFE4FF", sky2: "#EAF6FF", grass: "#A5DB7C", grass2: "#86C95E", hill: "#7DBF5C", hill2: "#9DD27A",
+    red: "#D64B3C", red2: "#A93B30", wood: "#B98049", wood2: "#87592C", white: "#FFFFFF", cream: "#FFF3DA", rock: "#8D97AE",
+    rock2: "#B9C1D4", water: "#4FA8E0", water2: "#8ED0F4", sand: "#F3DBA2", sand2: "#E7C67F", sun: "#FFC93C", orange: "#FF8A1F",
+    skin: "#F1C29A", skin2: "#C98B5E", leaf: "#3C9A4B", leaf2: "#5DBA56", yellow: "#FFD84A", blue: "#3B78DE", pink: "#FF92B8",
+    gray: "#717A93", brown: "#A0683A", black: "#2B2B33", green: "#3E9F4C"};
+  const S = `stroke="${K.ink}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"`;
+  const S1 = `stroke="${K.ink}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"`;
+  const at = (x, y, s, body, flip) => `<g transform="translate(${x} ${y}) scale(${flip ? -s : s} ${s})">${body}</g>`;
+  let uid = 0;
+
+  /* ---------- les objets ---------- */
+  const D = {
+    barn: () => `<path d="M-25 0V-26L-14 -41H14L25 -26V0Z" fill="${K.red}" ${S}/>
+      <path d="M-27 -25L-15 -43H15L27 -25" fill="none" stroke="${K.white}" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M-27 -25L-15 -43H15L27 -25" fill="none" ${S1}/>
+      <rect x="-10" y="-21" width="20" height="21" fill="${K.white}" ${S1}/>
+      <path d="M-10 -21L10 0M10 -21L-10 0" stroke="${K.red}" stroke-width="2.2"/>
+      <rect x="-5" y="-35" width="10" height="8" fill="${K.white}" ${S1}/>`,
+    windmill: () => `<path d="M-9 0L-5 -36H5L9 0Z" fill="${K.cream}" ${S}/>
+      <rect x="-3" y="-10" width="6" height="10" fill="${K.wood2}"/>
+      <path d="M-7 -35Q0 -46 7 -35Z" fill="${K.red}" ${S}/>
+      ${[25, 115, 205, 295].map(a => `<g transform="rotate(${a} 0 -39)"><rect x="-3" y="-64" width="6" height="24" fill="${K.white}" ${S1}/><path d="M0 -62V-42" stroke="${K.ink}" stroke-width=".9"/></g>`).join("")}
+      <circle cx="0" cy="-39" r="3" fill="${K.ink}"/>`,
+    watertower: () => `<path d="M-10 0L-7 -28M10 0L7 -28M-9 -9L9 -19M9 -9L-9 -19" fill="none" stroke="${K.ink}" stroke-width="2.2" stroke-linecap="round"/>
+      <rect x="-14" y="-47" width="28" height="19" rx="3" fill="${K.rock2}" ${S}/>
+      <path d="M-14 -40H14" stroke="${K.ink}" stroke-width="1"/>
+      <path d="M-15 -47L0 -57L15 -47Z" fill="${K.gray}" ${S}/>`,
+    house: () => `<rect x="-17" y="-25" width="34" height="25" fill="${K.cream}" ${S}/>
+      <path d="M-21 -23L0 -41L21 -23Z" fill="${K.red2}" ${S}/>
+      <rect x="-5" y="-15" width="10" height="15" fill="${K.wood}" ${S1}/>
+      <rect x="-14" y="-19" width="7" height="7" fill="${K.sky}" ${S1}/><rect x="7" y="-19" width="7" height="7" fill="${K.sky}" ${S1}/>`,
+    tree: () => `<rect x="-3.5" y="-23" width="7" height="23" fill="${K.wood}" ${S}/>
+      <path d="M-14 -22C-25 -23 -25 -40 -13 -42C-12 -55 12 -55 13 -42C25 -40 25 -23 14 -22Z" fill="${K.leaf2}" ${S}/>
+      <path d="M-6 -36q3 -4 7 -2M5 -28q3 -3 6 -1" fill="none" stroke="${K.leaf}" stroke-width="1.6" stroke-linecap="round"/>`,
+    bush: () => `<path d="M-21 0C-28 0 -28 -12 -18 -14C-18 -25 -5 -27 0 -19C5 -27 18 -25 18 -14C28 -12 28 0 21 0Z" fill="${K.leaf}" ${S}/>
+      <circle cx="-9" cy="-10" r="1.8" fill="${K.red}"/><circle cx="7" cy="-15" r="1.8" fill="${K.red}"/><circle cx="12" cy="-6" r="1.8" fill="${K.red}"/>`,
+    fence: () => `<rect x="-28" y="-19" width="56" height="4.5" fill="${K.wood}" ${S1}/><rect x="-28" y="-10" width="56" height="4.5" fill="${K.wood}" ${S1}/>
+      ${[-23, -8, 7, 22].map(x => `<path d="M${x - 3} 0V-21L${x} -24L${x + 3} -21V0Z" fill="${K.wood}" ${S1}/>`).join("")}`,
+    cow: () => `<path d="M-12 -9V0M-6 -9V0M10 -9V0M16 -9V0" stroke="${K.ink}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M20 -21q7 4 4 13" fill="none" ${S}/>
+      <rect x="-17" y="-25" width="38" height="17" rx="7" fill="${K.white}" ${S}/>
+      <path d="M-5 -25q7 5 1 12q-8 -1 -8 -8q2 -3 7 -4z" fill="${K.black}"/><circle cx="13" cy="-17" r="4" fill="${K.black}"/>
+      <rect x="-29" y="-32" width="14" height="14" rx="5" fill="${K.white}" ${S}/>
+      <rect x="-32" y="-23" width="11" height="8" rx="3.5" fill="${K.pink}" ${S1}/>
+      <path d="M-27 -32l-2 -4M-18 -32l2 -4" ${S}/><circle cx="-24" cy="-27" r="1.3" fill="${K.ink}"/>`,
+    sheep: () => `<path d="M-8 -7V0M-2 -7V0M8 -7V0M13 -7V0" stroke="${K.black}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M-14 -10C-21 -10 -21 -21 -13 -22C-12 -30 -2 -30 0 -25C3 -31 13 -30 13 -23C21 -22 21 -10 14 -9C11 -4 -10 -4 -14 -10Z" fill="${K.white}" ${S}/>
+      <ellipse cx="-17" cy="-20" rx="5" ry="6.5" fill="${K.black}"/><circle cx="-18.5" cy="-21" r="1.2" fill="${K.white}"/>`,
+    horse: () => `<path d="M-11 -14V0M-5 -14V0M10 -14V0M15 -14V0" stroke="${K.wood2}" stroke-width="3.4" stroke-linecap="round"/>
+      <path d="M18 -25q9 6 4 17" fill="none" stroke="${K.black}" stroke-width="3" stroke-linecap="round"/>
+      <rect x="-16" y="-28" width="36" height="16" rx="7" fill="${K.brown}" ${S}/>
+      <path d="M-15 -24L-21 -42L-13 -45L-6 -27Z" fill="${K.brown}" ${S}/>
+      <path d="M-21 -42L-32 -37Q-34 -33 -30 -32L-18 -35Z" fill="${K.brown}" ${S}/>
+      <path d="M-13 -45L-5 -27" stroke="${K.black}" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="-22" cy="-39" r="1.2" fill="${K.ink}"/>`,
+    tractor: () => `<path d="M-26 -9V-20H-1V-36H17V-9Z" fill="${K.green}" ${S}/>
+      <rect x="3" y="-33" width="11" height="11" fill="${K.sky}" ${S1}/>
+      <rect x="-15" y="-29" width="3.5" height="9" fill="${K.ink}"/>
+      <circle cx="10" cy="-12" r="12" fill="${K.black}" ${S}/><circle cx="10" cy="-12" r="4.5" fill="${K.yellow}"/>
+      <circle cx="-18" cy="-6" r="6" fill="${K.black}" ${S}/><circle cx="-18" cy="-6" r="2.2" fill="${K.yellow}"/>`,
+    flowers: () => `<path d="M-11 0V-12M0 0V-17M11 0V-11" stroke="${K.leaf}" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M-5 -6q-5 -4 -8 0M5 -7q5 -4 8 0" fill="${K.leaf2}" stroke="${K.leaf}" stroke-width="1.2"/>
+      ${[[-11, -14, K.pink], [0, -19, K.yellow], [11, -13, K.blue]].map(([x, y, c]) => `<g transform="translate(${x} ${y})">${[0, 72, 144, 216, 288].map(a => `<circle cx="0" cy="-3.6" r="2.8" fill="${c}" transform="rotate(${a})"/>`).join("")}<circle r="2" fill="${K.orange}"/></g>`).join("")}`,
+    dog: () => `<path d="M-9 -9V0M-4 -9V0M6 -9V0M10 -9V0" stroke="${K.wood2}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M12 -15q7 -5 5 -12" fill="none" stroke="${K.wood2}" stroke-width="3" stroke-linecap="round"/>
+      <rect x="-12" y="-18" width="26" height="11" rx="5.5" fill="${K.brown}" ${S}/>
+      <circle cx="-13" cy="-22" r="7" fill="${K.brown}" ${S}/>
+      <ellipse cx="-20" cy="-20" rx="4" ry="3" fill="${K.brown}" ${S1}/><circle cx="-23.5" cy="-20.5" r="1.4" fill="${K.ink}"/>
+      <path d="M-10 -28q5 2 3 10q-4 -1 -5 -6z" fill="${K.wood2}"/><circle cx="-15" cy="-24" r="1.2" fill="${K.ink}"/>`,
+    cat: () => `<path d="M8 -2q12 -2 10 -14" fill="none" stroke="${K.gray}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M-9 0C-11 -8 -9 -16 -2 -18C6 -18 10 -10 9 0Z" fill="${K.gray}" ${S}/>
+      <circle cx="-3" cy="-22" r="7" fill="${K.gray}" ${S}/>
+      <path d="M-9 -25L-9 -32L-4 -28ZM2 -28L4 -32L4 -24Z" fill="${K.gray}" ${S1}/>
+      <circle cx="-5.5" cy="-23" r="1.1" fill="${K.ink}"/><circle cx="-0.5" cy="-23" r="1.1" fill="${K.ink}"/>`,
+    bench: () => `<path d="M-19 -12V0M19 -12V0" stroke="${K.ink}" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M-19 -15V-29M19 -15V-29" stroke="${K.ink}" stroke-width="2.4" stroke-linecap="round"/>
+      <rect x="-25" y="-16" width="50" height="5" rx="1.5" fill="${K.wood}" ${S1}/>
+      <rect x="-25" y="-30" width="50" height="5" rx="1.5" fill="${K.wood}" ${S1}/><rect x="-25" y="-23" width="50" height="4" rx="1.5" fill="${K.wood}" ${S1}/>`,
+    ball: () => `<circle cx="0" cy="-7" r="7" fill="${K.red}" ${S}/><path d="M-7 -7H7M0 -14q5 7 0 14" fill="none" stroke="${K.white}" stroke-width="1.6"/>`,
+    sun: () => `${Array.from({length: 10}, (_, i) => `<path d="M0 -17V-24" stroke="${K.sun}" stroke-width="3" stroke-linecap="round" transform="rotate(${i * 36})"/>`).join("")}
+      <circle r="13" fill="${K.sun}" ${S}/>`,
+    cloud: () => `<path d="M-24 8C-32 8 -32 -3 -23 -4C-23 -14 -10 -16 -6 -9C-3 -18 12 -18 13 -8C24 -10 28 2 22 8Z" fill="${K.white}" stroke="#9FB3CC" stroke-width="1.6" stroke-linejoin="round"/>`,
+    birds: () => `<path d="M-16 0q5 -7 10 0q5 -7 10 0M4 -12q4 -6 8 0q4 -6 8 0M-2 8q3 -5 6 0q3 -5 6 0" fill="none" stroke="${K.ink}" stroke-width="2" stroke-linecap="round"/>`,
+    plane: () => `<path d="M-24 0Q-24 -5 -16 -5H18L26 -13H30L26 0Q24 3 18 3H-18Q-24 3 -24 0Z" fill="${K.white}" ${S}/>
+      <path d="M-4 -1L6 -1L-6 12H-12Z" fill="${K.rock2}" ${S1}/><circle cx="-14" cy="-1" r="1.6" fill="${K.sky}" ${S1}/><circle cx="-8" cy="-1" r="1.6" fill="${K.sky}" ${S1}/><circle cx="-2" cy="-1" r="1.6" fill="${K.sky}" ${S1}/>`,
+    mountain: () => `<path d="M-62 0L-24 -58L-10 -40L10 -72L62 0Z" fill="${K.rock2}" ${S}/>
+      <path d="M-32 -46L-24 -58L-15 -46L-20 -42L-25 -47Z" fill="${K.white}" ${S1}/><path d="M1 -58L10 -72L20 -57L14 -53L10 -58L5 -53Z" fill="${K.white}" ${S1}/>`,
+    boat: () => `<path d="M-22 -8H22L15 2H-15Z" fill="${K.red}" ${S}/><path d="M0 -8V-44" stroke="${K.ink}" stroke-width="2"/>
+      <path d="M2 -42L20 -12H2Z" fill="${K.white}" ${S1}/><path d="M-2 -38L-16 -12H-2Z" fill="${K.yellow}" ${S1}/>`,
+    lighthouse: () => `<path d="M-9 0L-6 -46H6L9 0Z" fill="${K.white}" ${S}/>
+      <path d="M-8.2 -12H8.2L7.4 -24H-7.4ZM-6.8 -34H6.8L6.3 -42H-6.3Z" fill="${K.red}"/>
+      <rect x="-6" y="-56" width="12" height="10" fill="${K.yellow}" ${S1}/><path d="M-8 -56L0 -63L8 -56Z" fill="${K.red}" ${S1}/>`,
+    umbrella: () => `<path d="M0 0V-38" stroke="${K.ink}" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M-26 -34Q0 -58 26 -34Q19 -38 13 -34Q6 -39 0 -34Q-6 -39 -13 -34Q-19 -38 -26 -34Z" fill="${K.red}" ${S}/>
+      <path d="M-13 -34Q-8 -50 0 -49Q8 -50 13 -34" fill="none" stroke="${K.white}" stroke-width="3"/>`,
+    sandcastle: () => `<path d="M-20 0V-14H-14V-18H-9V-14H9V-18H14V-14H20V0Z" fill="${K.sand2}" ${S}/>
+      <path d="M-7 -14V-26H-3V-30H3V-26H7V-14Z" fill="${K.sand2}" ${S}/><path d="M0 -30V-38L7 -35L0 -33" fill="${K.red}" stroke="${K.ink}" stroke-width="1.2"/>
+      <path d="M-3 0V-6Q0 -9 3 -6V0Z" fill="${K.wood2}"/>`,
+    bucket: () => `<path d="M-8 -14H8L6 0H-6Z" fill="${K.blue}" ${S}/><path d="M-8 -14Q0 -24 8 -14" fill="none" stroke="${K.ink}" stroke-width="1.6"/>
+      <path d="M12 0L16 -18" stroke="${K.ink}" stroke-width="2"/><path d="M13 0L19 -2L17 4Z" fill="${K.yellow}" ${S1}/>`,
+    lifejacket: () => `<path d="M-14 -30L-6 -34Q0 -26 6 -34L14 -30L13 0H-13Z" fill="${K.orange}" ${S}/>
+      <path d="M0 -26V0" stroke="${K.ink}" stroke-width="1.5"/><path d="M-13 -12H13M-13 -20H13" stroke="${K.ink}" stroke-width="2.2"/>
+      <rect x="-3" y="-14" width="6" height="4" fill="${K.rock2}" ${S1}/><rect x="-3" y="-22" width="6" height="4" fill="${K.rock2}" ${S1}/>`,
+    swimsuit: () => `<path d="M-14 -22H14L13 -8Q6 -8 2 0H-2Q-6 -8 -13 -8Z" fill="${K.blue}" ${S}/><path d="M-14 -18H14" stroke="${K.yellow}" stroke-width="2.4"/>`
+  };
+  const icon = (t, x, y, s = 1, flip = false) => at(x, y, s, D[t](), flip);
+
+  /* une personne : pose = stand | jump | swim | sit | build ; vest = gilet de sauvetage */
+  function kid(x, y, s, o = {}){
+    const sk = o.skin || K.skin, sh = o.shirt || K.blue, hair = o.hair || K.wood2, pose = o.pose || "stand";
+    const limb = (d, c = sk, w = 3.4) => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const torso = o.vest
+      ? `<path d="M-6 -28L-2 -30Q0 -26 2 -30L6 -28L6 -15H-6Z" fill="${K.orange}" ${S1}/><path d="M-6 -21H6" stroke="${K.ink}" stroke-width="1.3"/>`
+      : `<rect x="-5.5" y="-29" width="11" height="15" rx="3" fill="${sh}" ${S1}/>`;
+    const trunks = `<rect x="-5.5" y="-16" width="11" height="5" rx="1.5" fill="${o.trunks || K.blue}" ${S1}/>`;
+    const head = (hx, hy) => `<circle cx="${hx}" cy="${hy}" r="5.6" fill="${sk}" ${S1}/><path d="M${hx - 5.6} ${hy - 1}q1 -6 5.6 -6q4.6 0 5.6 6q-3 -3 -5.6 -3q-3 0 -5.6 3z" fill="${hair}"/>
+      ${o.smile !== false ? `<path d="M${hx - 2} ${hy + 1.6}q2 2 4 0" fill="none" stroke="${K.ink}" stroke-width="1"/>` : ""}`;
+    let b = "";
+    if (pose === "stand") b = limb("M-3 -12L-4 0M3 -12L4 0", sk) + limb("M-5 -27L-10 -16M5 -27L10 -16") + torso + (o.vest ? trunks : "") + head(0, -35);
+    else if (pose === "arms") b = limb("M-3 -12L-4 0M3 -12L4 0", sk) + limb("M-5 -27L-11 -38M5 -27L11 -38") + torso + (o.vest ? trunks : "") + head(0, -35);
+    else if (pose === "jump") b = limb("M-3 -12L-9 -6L-5 0M3 -12L9 -7L7 0", sk) + limb("M-5 -27L-12 -39M5 -27L12 -39") + torso + trunks + head(0, -35);
+    else if (pose === "swim") b = limb("M-5 -4L-14 -12M5 -4L14 -12") + (o.vest ? `<path d="M-6 -4L-2 -6Q0 -2 2 -6L6 -4L6 2H-6Z" fill="${K.orange}" ${S1}/>` : "") + head(0, -10)
+      + `<path d="M-18 2q4 -3 8 0q4 -3 8 0q4 -3 8 0q4 -3 8 0q4 -3 8 0" fill="none" stroke="${K.white}" stroke-width="1.6"/>`;
+    else if (pose === "build") b = limb("M-4 -2L-12 0M4 -2L12 0", sk) + limb("M-5 -16L-10 -6M5 -16L11 -8") + `<rect x="-5.5" y="-18" width="11" height="15" rx="3" fill="${sh}" ${S1}/>` + head(0, -24);
+    return at(x, y, s, b, o.flip);
+  }
+
+  /* ---------- fonds et cadres ---------- */
+  function sky(id, c1 = K.sky, c2 = K.sky2){
+    return `<defs><linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="360" height="240" fill="url(#${id}s)"/>`;
+  }
+  function country(id){
+    return sky(id) + `<path d="M0 124Q50 104 110 118T220 114T360 120V240H0Z" fill="${K.hill2}"/>
+      <path d="M0 132Q90 122 180 130T360 128V240H0Z" fill="${K.grass}"/>
+      <path d="M20 200q4 -6 8 0M80 180q4 -6 8 0M300 190q4 -6 8 0M240 214q4 -6 8 0M150 226q4 -6 8 0" fill="none" stroke="${K.grass2}" stroke-width="1.6" stroke-linecap="round"/>`;
+  }
+  function frame(inner, o = {}){
+    const id = "a" + (++uid), w = o.w || 360, h = o.h || 240;
+    return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${o.label || "Une image à décrire"}" style="${o.style || ""}"><defs><clipPath id="${id}c"><rect width="${w}" height="${h}" rx="10"/></clipPath></defs>
+      <g clip-path="url(#${id}c)">${typeof inner === "function" ? inner(id) : inner}</g><rect x="1" y="1" width="${w - 2}" height="${h - 2}" rx="10" fill="none" stroke="${K.ink}" stroke-width="2"/></svg>`;
+  }
+
+  /* ---------- les 9 zones ---------- */
+  const CX = [60, 180, 300], CY = [40, 120, 200];
+  const ROW = {top: ["sun", "cloud", "birds", "plane"], mid: ["barn", "windmill", "watertower", "house", "tree"],
+    bot: ["cow", "sheep", "horse", "bush", "tractor", "flowers", "dog", "fence"]};
+  const SIZE = {barn: [52, 44], windmill: [50, 64], watertower: [30, 57], house: [42, 41], tree: [50, 55], cow: [56, 36], sheep: [42, 30],
+    horse: [54, 45], bush: [52, 27], tractor: [52, 36], flowers: [30, 24], dog: [40, 30], fence: [58, 24], sun: [50, 50], cloud: [60, 26],
+    birds: [40, 24], plane: [56, 26], mountain: [124, 72]};
+  /* place un objet dans la zone z (0 à 8) ; renvoie {svg, box: [cx, cy, rx, ry]} */
+  function place(t, z, jit = 0){
+    const r = Math.floor(z / 3), c = z % 3, x = CX[c] + jit, [w, h] = SIZE[t];
+    if (r === 0) return {svg: icon(t, x, CY[0], 1.15), box: [x, CY[0], w * .62, h * .7]};
+    if (r === 1) { const s = .95, y = 150; return {svg: icon(t, x, y, s, c === 2 && t !== "barn"), box: [x, y - h * s / 2, w * s * .62, h * s * .66]}; }
+    const s = 1.3, y = 226; return {svg: icon(t, x, y, s, c === 0 && Math.random() < .5), box: [x, y - h * s / 2, w * s * .6, h * s * .68]};
+  }
+  const rowOf = z => ["top", "mid", "bot"][Math.floor(z / 3)];
+  /* une scène de campagne tirée au hasard : 6 à 8 objets, tous différents, au plus un par zone */
+  function randomScene(must){
+    const zones = [0, 1, 2, 3, 4, 5, 6, 7, 8], used = new Set(), items = [];
+    const pickT = row => { const c = ROW[row].filter(t => !used.has(t)); return c[Math.floor(Math.random() * c.length)]; };
+    const keep = zones.filter(z => (must !== undefined && z === must) || Math.random() < (Math.floor(z / 3) === 0 ? .62 : .78));
+    for (const z of keep) { const t = pickT(rowOf(z)); used.add(t); items.push({t, z}); }
+    return items;
+  }
+  function sceneSVG(items, o = {}){
+    const placed = items.map(it => Object.assign({}, it, place(it.t, it.z, it.j || 0)));
+    const hi = o.ring !== undefined ? placed.find(p => p.z === o.ring) : null;
+    return {svg: frame(id => country(id) + placed.map(p => p.svg).join("")
+      + (hi ? `<ellipse cx="${hi.box[0]}" cy="${hi.box[1]}" rx="${hi.box[2] + 6}" ry="${hi.box[3] + 6}" fill="none" stroke="${K.red}" stroke-width="3" stroke-dasharray="7 5"/>` : "")
+      + (o.grid ? grid() : ""), {label: o.label || "Une image de la campagne"}), placed};
+  }
+  const grid = () => `<g stroke="${K.ink}" stroke-width="1.2" stroke-dasharray="4 4" opacity=".45"><path d="M120 0V240M240 0V240M0 80H360M0 160H360"/></g>`;
+
+  /* mini-schéma : la zone (ou le plan) en couleur */
+  function miniZone(z){
+    const r = Math.floor(z / 3), c = z % 3;
+    return `<svg viewBox="0 0 150 100" role="img" aria-label="La zone sur l'image" style="max-width:190px">
+      <rect x="1" y="1" width="148" height="98" rx="6" fill="${K.sky2}" stroke="${K.ink}" stroke-width="2"/>
+      <rect x="${1 + c * 49.3}" y="${1 + r * 32.7}" width="49.3" height="32.7" fill="${K.red}" opacity=".85" rx="${(r !== 1 && c !== 1) ? 5 : 0}"/>
+      <path d="M50.3 1V99M99.6 1V99M1 33.7H149M1 66.4H149" stroke="${K.ink}" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/></svg>`;
+  }
+  function miniPlan(fg){
+    return frame(id => country(id) + icon("mountain", 250, 132, .9) + icon("windmill", 120, 136, .55)
+      + icon("bush", 70, 228, 1.5) + icon("sheep", 250, 224, 1.4)
+      + `<rect x="5" y="${fg ? 176 : 70}" width="350" height="${fg ? 60 : 74}" rx="8" fill="${K.red}" fill-opacity=".14" stroke="${K.red}" stroke-width="3" stroke-dasharray="8 6"/>`
+      + `<rect x="98" y="${fg ? 140 : 18}" width="164" height="30" rx="8" fill="${K.white}" stroke="${K.red}" stroke-width="2"/><text x="180" y="${fg ? 161 : 39}" text-anchor="middle" font-family="Lexend,sans-serif" font-weight="700" font-size="17" fill="${K.red}">${fg ? "in the foreground" : "in the background"}</text>`,
+      {label: fg ? "Le premier plan : en bas, ce qui est près" : "L'arrière-plan : au fond, ce qui est loin", style: "max-width:260px"});
+  }
+  /* image « près / loin » : un objet au premier plan, un autre à l'arrière-plan */
+  function planScene(fgT, bgT){
+    return frame(id => country(id) + icon("mountain", 270, 132, .8) + (bgT ? icon(bgT, 110, 134, .55, false) : "") + (fgT ? icon(fgT, 200, 228, 1.7) : ""),
+      {label: "Une image avec un premier plan et un arrière-plan"});
+  }
+
+  /* ---------- les prépositions ---------- */
+  const PREP = {
+    "next to": [["dog", "house", "The dog is next to the house."], ["cow", "tree", "The cow is next to the tree."], ["sheep", "barn", "The sheep is next to the barn."]],
+    "behind": [["cow", "fence", "The cow is behind the fence."], ["dog", "bush", "The dog is behind the bush."], ["sheep", "fence", "The sheep is behind the fence."]],
+    "in front of": [["dog", "house", "The dog is in front of the house."], ["horse", "barn", "The horse is in front of the barn."], ["tractor", "barn", "The tractor is in front of the barn."]],
+    "between": [["dog", "tree", "The dog is between the two trees."], ["cow", "bush", "The cow is between the two bushes."], ["house", "tree", "The house is between the two trees."]],
+    "under": [["dog", "bench", "The dog is under the bench."], ["ball", "bench", "The ball is under the bench."], ["cat", "bench", "The cat is under the bench."]],
+    "above": [["birds", "barn", "The birds are above the barn."], ["plane", "house", "The plane is above the house."], ["sun", "windmill", "The sun is above the windmill."]],
+    "on": [["cat", "house", "The cat is on the roof."], ["ball", "bench", "The ball is on the bench."], ["cat", "bench", "The cat is on the bench."]]
+  };
+  function prepScene(p, k){
+    const [a, b] = PREP[p][k], gnd = 128;
+    const bg = id => sky(id) + `<path d="M0 100Q120 90 240 100V150H0Z" fill="${K.grass}"/>`;
+    let s = "";
+    if (p === "next to") s = icon(b, 92, gnd, 1.25) + icon(a, 158, gnd, 1.15);
+    if (p === "behind") s = (b === "fence" ? icon(a, 124, gnd - 12, a === "sheep" ? 1.45 : 1.25) + icon(b, 120, gnd, 1.3) : icon(a, 136, gnd - 14, 1.35) + icon(b, 112, gnd, 1.45));
+    if (p === "in front of") s = icon(b, 112, gnd - 14, 1.25) + icon(a, 138, gnd + 4, 1.2);
+    if (p === "between") s = icon(b, 58, gnd, 1.15) + icon(b, 182, gnd, 1.15) + icon(a, 120, gnd, a === "house" ? 1.05 : 1.15);
+    if (p === "under") s = icon(b, 120, gnd, 1.7) + icon(a, 120, gnd - 1, a === "ball" ? 1.1 : .85);
+    if (p === "above") s = icon(b, 120, gnd, 1.25) + icon(a, 120, 26, 1);
+    if (p === "on") s = a === "cat" && b === "house" ? icon(b, 120, gnd, 1.6) + icon(a, 104, gnd - 51, .8) : icon(b, 120, gnd, 1.6) + icon(a, 120, gnd - 25, a === "ball" ? 1.1 : .85);
+    return frame(id => bg(id) + s, {w: 240, h: 150, label: "Où est-il ?", style: "max-width:320px"});
+  }
+
+  /* ---------- les visages ---------- */
+  const FACE = {
+    happy: `<path d="M-9 -6q0 -3 0 0M9 -6q0 -3 0 0" stroke="${K.ink}" stroke-width="3.4" stroke-linecap="round"/><path d="M-11 5q11 11 22 0" fill="none" ${S}/>`,
+    sad: `<circle cx="-8" cy="-5" r="2" fill="${K.ink}"/><circle cx="8" cy="-5" r="2" fill="${K.ink}"/><path d="M-9 11q9 -8 18 0" fill="none" ${S}/><path d="M-14 -12l5 -2M14 -12l-5 -2" ${S}/><path d="M-9 0q-2 4 0 6q2 -2 0 -6z" fill="${K.water}"/>`,
+    scared: `<circle cx="-8" cy="-5" r="4.6" fill="${K.white}" ${S1}/><circle cx="8" cy="-5" r="4.6" fill="${K.white}" ${S1}/><circle cx="-8" cy="-5" r="1.6" fill="${K.ink}"/><circle cx="8" cy="-5" r="1.6" fill="${K.ink}"/><path d="M-9 10q3 -3 6 0q3 3 6 0q3 -3 6 0" fill="none" ${S}/><path d="M-14 -14l6 2M14 -14l-6 2" ${S}/>`,
+    tired: `<path d="M-12 -4q4 3 8 0M4 -4q4 3 8 0" fill="none" ${S}/><path d="M-5 9h10" ${S}/><text x="13" y="-12" font-family="Lexend,sans-serif" font-weight="700" font-size="11" fill="${K.blue}">z z</text>`,
+    surprised: `<circle cx="-8" cy="-5" r="3" fill="${K.ink}"/><circle cx="8" cy="-5" r="3" fill="${K.ink}"/><ellipse cx="0" cy="9" rx="4.5" ry="6" fill="${K.ink}"/><path d="M-13 -14q5 -4 9 -1M13 -14q-5 -4 -9 -1" fill="none" ${S}/>`,
+    angry: `<circle cx="-8" cy="-3" r="2" fill="${K.ink}"/><circle cx="8" cy="-3" r="2" fill="${K.ink}"/><path d="M-14 -11l9 4M14 -11l-9 4" ${S}/><path d="M-9 11q9 -7 18 0" fill="none" ${S}/>`
+  };
+  const face = f => `<svg viewBox="-34 -34 68 68" role="img" aria-label="Un visage" style="max-width:150px"><circle r="28" fill="${f === "angry" ? "#FFB49A" : K.yellow}" stroke="${K.ink}" stroke-width="2.4"/>${FACE[f]}</svg>`;
+
+  /* ---------- une vignette d'objet (vocabulaire) ---------- */
+  const SKYT = new Set(["sun", "cloud", "birds", "plane"]);
+  function thumb(t){
+    const big = {mountain: .9, barn: 1.5, windmill: 1.3, watertower: 1.4, house: 1.6, tree: 1.4, field: 1};
+    if (t === "field") return frame(id => sky(id) + `<path d="M0 60H160V120H0Z" fill="${K.grass}"/><path d="M0 64L160 62V120H0Z" fill="#E9C85B"/>` + [0, 1, 2, 3, 4, 5, 6, 7, 8].map(i => `<path d="M${-30 + i * 26} 120L${40 + i * 10} 63" stroke="#C9A43A" stroke-width="3"/>`).join(""), {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+    if (t === "grass") return frame(id => sky(id) + `<path d="M0 70H160V120H0Z" fill="${K.grass}"/>` + Array.from({length: 26}, (_, i) => `<path d="M${4 + i * 6} 120q${i % 2 ? 2 : -2} -20 ${i % 3 - 1} -${28 + (i * 7) % 18}" fill="none" stroke="${i % 2 ? K.leaf : K.leaf2}" stroke-width="3" stroke-linecap="round"/>`).join(""), {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+    if (t === "path") return frame(id => country(id).replace('width="360" height="240"', 'width="360" height="240"') + `<path d="M120 240Q160 190 175 150Q182 132 186 126H194Q196 134 196 150Q205 195 250 240Z" fill="${K.sand}" stroke="${K.sand2}" stroke-width="2"/>`, {label: "Une image", style: "max-width:220px"});
+    if (t === "hill") return frame(id => sky(id) + `<path d="M0 120Q50 40 110 70T160 80V120H0Z" fill="${K.hill}" stroke="${K.ink}" stroke-width="2"/>`, {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+    if (t === "sea" || t === "lake" || t === "river" || t === "pool") return frame(id => water(id, t), {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+    if (t === "inflatable") return frame(id => sky(id) + `<rect y="70" width="160" height="50" fill="${K.water}"/>` + inflatable(80, 98, .62), {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+    if (t === "boat" || t === "lighthouse") return frame(id => sky(id) + `<rect y="${t === "boat" ? 74 : 96}" width="160" height="50" fill="${K.water}"/>` + (t === "lighthouse" ? `<path d="M40 104Q60 84 100 90L120 106H40Z" fill="${K.rock}" stroke="${K.ink}" stroke-width="1.6"/>` + icon(t, 80, 100, 1.45) : icon(t, 80, 96, 1.5)), {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+    if (t === "kids") return frame(id => sky(id) + `<rect y="88" width="160" height="32" fill="${K.grass}"/>` + kid(40, 108, 1.4, {shirt: K.red, pose: "arms"}) + kid(80, 108, 1.5, {shirt: K.blue, hair: K.black}) + kid(120, 108, 1.4, {shirt: K.yellow, pose: "arms", hair: K.orange, skin: K.skin2}), {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+    const s = big[t] || (SKYT.has(t) ? 1.6 : 1.6), y = SKYT.has(t) ? 58 : 106;
+    return frame(id => sky(id) + (SKYT.has(t) ? "" : `<rect y="96" width="160" height="24" fill="${K.grass}"/>`) + icon(t, 80, t === "mountain" ? 112 : y, s), {w: 160, h: 120, label: "Une image", style: "max-width:200px"});
+  }
+  function water(id, t){
+    if (t === "sea") return sky(id) + `<rect y="58" width="160" height="62" fill="${K.water}"/><path d="M0 58H160" stroke="#2F7FB8" stroke-width="2"/>` + [72, 88, 104].map((y, i) => `<path d="M${-10 + i * 8} ${y}q10 -6 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0" fill="none" stroke="${K.white}" stroke-width="2" opacity=".8"/>`).join("") + icon("boat", 112, 66, .7);
+    if (t === "lake") return sky(id) + `<path d="M0 48Q40 36 80 46T160 44V120H0Z" fill="${K.hill}"/>` + [14, 34, 132, 150].map(x => icon("tree", x, 70, .5)).join("") + `<ellipse cx="80" cy="92" rx="76" ry="24" fill="${K.water}" stroke="#2F7FB8" stroke-width="2"/><path d="M50 90h20M90 98h24" stroke="${K.white}" stroke-width="2" stroke-linecap="round"/>`;
+    if (t === "river") return sky(id) + `<rect y="50" width="160" height="70" fill="${K.grass}"/><path d="M70 50Q60 70 84 84T64 120H112Q118 96 98 82T82 50Z" fill="${K.water}" stroke="#2F7FB8" stroke-width="2"/>` + icon("tree", 30, 92, .7) + icon("tree", 136, 78, .55);
+    return `<rect width="160" height="120" fill="#DDE7F2"/><rect x="18" y="40" width="124" height="66" rx="6" fill="${K.water2}" stroke="${K.ink}" stroke-width="2"/>` + [50, 70, 90].map(y => `<path d="M18 ${y}H142" stroke="${K.white}" stroke-width="1.6" stroke-dasharray="6 6"/>`).join("") + `<path d="M120 40V20M132 40V20M120 26H132M120 33H132" stroke="${K.gray}" stroke-width="2.4"/>`;
+  }
+  /* la structure gonflable (bleue et jaune) */
+  function inflatable(x, y, s){
+    return at(x, y, s, `<rect x="-70" y="-8" width="140" height="22" rx="11" fill="${K.blue}" ${S}/><path d="M-62 3H62" stroke="${K.white}" stroke-width="2" opacity=".6"/>
+      <path d="M-34 -8V-40Q-34 -48 -26 -48H-2Q6 -48 6 -40V-8Z" fill="${K.yellow}" ${S}/><path d="M-34 -28H6" stroke="${K.ink}" stroke-width="1.4"/>
+      <path d="M6 -40Q40 -38 58 -8H40Q30 -26 6 -26Z" fill="${K.red}" ${S}/>`);
+  }
+
+  /* ---------- les grandes scènes (rédaction, film) ---------- */
+  /* une clôture en perspective : de (x0, y0) (près) à (x1, y1) (loin), n poteaux */
+  function fenceLine(x0, y0, x1, y1, n){
+    const P = Array.from({length: n}, (_, i) => { const t = 1 - Math.pow(1 - i / (n - 1), 1.35); return [x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, 30 * (1 - .72 * t)]; });
+    const rail = f => `<path d="M${P.map(([x, y, h]) => `${x} ${y - h * f}`).join("L")}" fill="none" stroke="${K.wood}" stroke-width="5" stroke-linecap="round"/><path d="M${P.map(([x, y, h]) => `${x} ${y - h * f}`).join("L")}" fill="none" stroke="${K.wood2}" stroke-width="1.2"/>`;
+    return rail(.78) + rail(.42) + P.map(([x, y, h]) => `<rect x="${x - h * .1}" y="${y - h}" width="${h * .2}" height="${h}" rx="1" fill="${K.wood}" ${S1}/>`).join("");
+  }
+  /* La ferme (le dessin du cahier) */
+  function farm(id){
+    let s = country(id);
+    s += icon("mountain", 300, 128, 1.3) + icon("mountain", 210, 128, .8);
+    s += icon("cloud", 54, 36, 1.7) + icon("cloud", 140, 22, .9);
+    s += `<path d="M118 132L250 129L262 158L104 162Z" fill="#E9C85B" stroke="#C9A43A" stroke-width="1.5"/>` + [0, 1, 2, 3, 4, 5, 6, 7].map(i => `<path d="M${112 + i * 20} 161L${124 + i * 17.5} 131" stroke="#C9A43A" stroke-width="2"/>`).join("");
+    s += icon("windmill", 180, 132, .75);
+    s += `<path d="M140 240Q170 200 182 172Q188 160 190 158H200Q201 165 202 174Q212 205 238 240Z" fill="${K.sand}" stroke="${K.sand2}" stroke-width="2"/>`;
+    s += icon("barn", 288, 178, 1.45) + icon("watertower", 342, 178, 1.05);
+    s += fenceLine(6, 236, 112, 158, 9);
+    s += icon("bush", 322, 236, 1.6) + icon("flowers", 260, 232, 1.1);
+    return s;
+  }
+  /* Le lac : dix garçons sautent d'une structure gonflable */
+  function lake(id){
+    let s = sky(id) + icon("sun", 318, 38, 1.2) + icon("cloud", 60, 34, 1.4) + icon("cloud", 150, 20, .8);
+    s += `<path d="M0 100Q60 80 120 92T240 88T360 96V120H0Z" fill="${K.leaf}"/>` + [20, 48, 80, 230, 262, 300, 334].map((x, i) => icon("tree", x, 108 + (i % 2) * 4, .5 + (i % 3) * .06)).join("");
+    s += `<rect y="112" width="360" height="128" fill="${K.water}"/>` + [130, 150, 175, 205].map((y, i) => `<path d="M${(i * 37) % 60} ${y}h40M${120 + (i * 53) % 80} ${y + 6}h30M${250 + (i * 29) % 60} ${y - 4}h36" stroke="${K.water2}" stroke-width="2.4" stroke-linecap="round"/>`).join("");
+    s += `<path d="M300 112Q330 104 360 108V140Q330 128 300 120Z" fill="${K.grass2}"/>` + icon("tree", 320, 128, .9) + icon("tree", 348, 132, 1);
+    s += inflatable(150, 160, 1.15);
+    const V = {vest: true, smile: true};
+    s += kid(108, 104, .95, Object.assign({pose: "arms", hair: K.black}, V)) + kid(132, 104, .95, Object.assign({pose: "stand", skin: K.skin2}, V)) + kid(86, 151, .95, Object.assign({pose: "stand", hair: K.orange}, V));
+    s += kid(196, 120, 1, Object.assign({pose: "jump", hair: K.yellow}, V)) + kid(228, 132, 1, Object.assign({pose: "jump", skin: K.skin2, hair: K.black}, V))
+      + kid(60, 138, 1, Object.assign({pose: "jump", flip: true}, V)) + kid(250, 104, .95, Object.assign({pose: "jump", hair: K.orange}, V));
+    s += kid(90, 214, 1.5, Object.assign({pose: "swim"}, V)) + kid(200, 222, 1.6, Object.assign({pose: "swim", hair: K.black, skin: K.skin2}, V)) + kid(290, 206, 1.4, Object.assign({pose: "swim", hair: K.yellow}, V));
+    s += [[196, 175], [230, 186], [60, 186]].map(([x, y]) => `<path d="M${x - 12} ${y}q4 -10 6 -2q2 -12 6 0q4 -10 6 2" fill="${K.white}" stroke="${K.water2}" stroke-width="1.2"/>`).join("");
+    return s;
+  }
+  /* La plage */
+  function beach(id){
+    let s = sky(id) + icon("sun", 318, 38, 1.2) + icon("birds", 180, 34, 1.2) + icon("cloud", 70, 30, 1.2);
+    s += `<rect y="96" width="360" height="60" fill="${K.water}"/><path d="M0 96H360" stroke="#2F7FB8" stroke-width="2"/>`
+      + [108, 124, 140].map((y, i) => `<path d="M${-10 + i * 9} ${y}${"q9 -5 18 0".repeat(22)}" fill="none" stroke="${K.white}" stroke-width="1.6" opacity=".8"/>`).join("");
+    s += `<path d="M0 104Q20 92 44 100L56 112L0 118Z" fill="${K.rock}" stroke="${K.ink}" stroke-width="1.6"/>` + icon("lighthouse", 30, 104, 1.1);
+    s += icon("boat", 186, 108, .75);
+    s += `<path d="M0 150Q90 136 180 146T360 140V240H0Z" fill="${K.sand}"/><path d="M0 150Q90 136 180 146T360 140" fill="none" stroke="${K.white}" stroke-width="3"/>`;
+    s += `<rect x="262" y="186" width="60" height="22" rx="3" fill="${K.pink}" stroke="${K.ink}" stroke-width="1.4" transform="rotate(-6 292 197)"/>` + icon("umbrella", 296, 190, 1.5);
+    s += icon("sandcastle", 180, 222, 1.5) + kid(136, 226, 1.5, {pose: "build", shirt: K.red, hair: K.orange}) + kid(226, 226, 1.5, {pose: "build", shirt: K.yellow, hair: K.black, skin: K.skin2, flip: true});
+    s += icon("bucket", 48, 228, 1.4);
+    return s;
+  }
+  const big = (fn, label, extra = "") => frame(id => fn(id) + extra, {label, style: "max-width:560px"});
+
+  return {K, icon, kid, frame, country, sky, randomScene, sceneSVG, place, grid, miniZone, miniPlan, planScene, PREP, prepScene, face, FACES: Object.keys(FACE),
+    thumb, farm, lake, beach, big, inflatable, ROW, SIZE, CX, CY};
+})();
+/*@ART-FIN@*/
+/* ---------- les scènes du film (construites ici, puis animées par le moteur) ---------- */
+const H = [];   // [id, durée, html]
+const scene = (id, d, html) => H.push([id, d, html]);
+const pic = (x, y, w, svg, extra = "", a = "") => `<div class="pic" style="left:${x}px;top:${y}px;width:${w}px;height:${w * 2 / 3}px" ${a ? `data-a="${a}"` : ""}>${svg}${extra}</div>`;
+const frameOf = fn => ART.frame(fn, {label: "image"});
+/* une zone de l'image (0 à 8) en surbrillance, dans une image placée en (x, y), largeur w */
+const cellAt = (z, w, a, oa, cls = "") => { const r = Math.floor(z / 3), c = z % 3, cw = w / 3, ch = w * 2 / 9;
+  return `<div class="cell ${cls}" style="left:${c * cw}px;top:${r * ch}px;width:${cw}px;height:${ch}px" data-a="fade ${a} .4${oa ? ` ${oa} .4` : ""}"></div>`; };
+const boxAt = (bx, by, bw, bh, w, a, oa) => { const k = w / 360;
+  return `<div class="cell" style="left:${bx * k}px;top:${by * k}px;width:${bw * k}px;height:${bh * k}px" data-a="fade ${a} .4${oa ? ` ${oa} .4` : ""}"></div>`; };
+const ringAt = (b, w, a, oa) => { const k = w / 360, [cx, cy, rx, ry] = b;
+  return `<div class="ring" style="left:${(cx - rx - 8) * k}px;top:${(cy - ry - 8) * k}px;width:${(rx + 8) * 2 * k}px;height:${(ry + 8) * 2 * k}px" data-a="pop ${a} .5${oa ? ` ${oa} .4` : ""}"></div>`; };
+const gridLines = (w, a) => { const h = w * 2 / 3;
+  return `<svg class="gl" viewBox="0 0 ${w} ${h}" style="left:0;top:0;width:${w}px;height:${h}px"><g stroke="#1A2250" stroke-width="5" stroke-dasharray="16 12" fill="none">
+    <path d="M${w / 3} 0V${h}" data-a="draw ${a} .9"/><path d="M${2 * w / 3} 0V${h}" data-a="draw ${a + .3} .9"/><path d="M0 ${h / 3}H${w}" data-a="draw ${a + .6} .9"/><path d="M0 ${2 * h / 3}H${w}" data-a="draw ${a + .9} .9"/></g></svg>`; };
+const head = (tag, h, cls = "") => `<div class="tag ${cls}" data-a="fade 0 .4">${tag}</div><h2 class="h" data-a="up .2 .6">${h}</h2>`;
+
+/* la scène des 9 zones : un objet bien net dans chaque zone */
+const GRID_ITEMS = [{t: "cloud", z: 0}, {t: "birds", z: 1}, {t: "sun", z: 2}, {t: "house", z: 3}, {t: "windmill", z: 4}, {t: "barn", z: 5}, {t: "fence", z: 6}, {t: "cow", z: 7}, {t: "bush", z: 8}];
+const GS = ART.sceneSVG(GRID_ITEMS);
+const gridSvg = GS.svg, BOX = Object.fromEntries(GS.placed.map(p => [p.t, p.box]));
+const Z = [
+  {z: 0, en: "in the top left corner", fr: "en haut à gauche", ex: "In the top left corner, there is <b>a cloud</b>.", pc: 1},
+  {z: 2, en: "in the top right corner", fr: "en haut à droite", ex: "In the top right corner, <b>the sun</b> is shining.", pc: 0},
+  {z: 6, en: "in the bottom left corner", fr: "en bas à gauche", ex: "In the bottom left corner, there is <b>a fence</b>.", pc: 0},
+  {z: 8, en: "in the bottom right corner", fr: "en bas à droite", ex: "In the bottom right corner, there is <b>a bush</b>.", pc: 1},
+  {z: 1, en: "at the top", fr: "en haut", ex: "At the top, there are <b>birds</b>.", pc: 1},
+  {z: 7, en: "at the bottom", fr: "en bas", ex: "At the bottom, there is <b>a cow</b>.", pc: 1},
+  {z: 3, en: "on the left", fr: "à gauche", ex: "On the left, there is <b>a house</b>.", pc: 1},
+  {z: 5, en: "on the right", fr: "à droite", ex: "On the right, there is <b>a barn</b>.", pc: 1},
+  {z: 4, en: "in the middle", fr: "au milieu", ex: "In the middle, there is <b>a windmill</b>.", pc: 1}
+];
+const PX = 190, PY = 215, PW = 990;
+function zoneStep(q, a, dur){
+  const oa = (a + dur - .5).toFixed(2), col = `left:1250px;width:600px`;
+  return {cell: cellAt(q.z, PW, a, oa), txt: `<div class="fiche" style="${col};top:250px" data-a="fade ${a} .4 ${oa} .4">${q.pc ? "À savoir par cœur" : "En plus"}</div>
+    <div class="en" style="${col};top:300px" data-a="up ${a + .2} .5 ${oa} .4">${q.en}</div>
+    <div class="fr" style="${col};top:480px" data-a="up ${a + .8} .5 ${oa} .4">= ${q.fr}</div>
+    <div class="ex" style="${col};top:600px" data-a="up ${a + 1.8} .5 ${oa} .4">${q.ex}</div>`};
+}
+function zoneScene(id, d0, list, tag, title, recap){
+  const steps = list.map((q, i) => zoneStep(q, 1.2 + i * 6.5, 6.5));
+  let end = 1.2 + list.length * 6.5;
+  let lab = "";
+  if (recap) {
+    const k = PW / 360;
+    lab = ZONES_ALL.map((q, i) => { const r = Math.floor(q.z / 3), c = q.z % 3;
+      return `<div class="zl" style="left:${c * PW / 3 + 10}px;top:${r * PW * 2 / 9 + (r === 0 ? 8 : r === 1 ? 70 : 160)}px;width:${PW / 3 - 20}px" data-a="pop ${end + .3 + i * .35} .4">${q.en}</div>`; }).join("");
+    end += 7;
+  }
+  scene(id, Math.round(end + .5), head(tag, title) + pic(PX, PY, PW, gridSvg, gridLines(PW, 0) + steps.map(s => s.cell).join("") + lab) + steps.map(s => s.txt).join("")
+    + (recap ? `<div class="txt" style="left:1250px;top:300px;width:600px" data-a="up ${end - 6.4} .6"><b>9 zones</b> pour dire <b>où</b> est chaque chose.<br><br>Attention aux petits mots : <b>in</b>, <b>at</b>, <b>on</b> !</div>` : ""));
+}
+const ZONES_ALL = [0, 1, 2, 3, 4, 5, 6, 7, 8].map(z => Object.assign({z}, ({0: {en: "in the top left corner"}, 1: {en: "at the top"}, 2: {en: "in the top right corner"}, 3: {en: "on the left"},
+  4: {en: "in the middle"}, 5: {en: "on the right"}, 6: {en: "in the bottom left corner"}, 7: {en: "at the bottom"}, 8: {en: "in the bottom right corner"}})[z]));
+
+/* 0 · titre */
+scene("s0", 9, `<div class="tag l0" style="top:250px" data-a="fade .2 .6">Anglais · 4e</div>
+  <h1 class="big" style="left:190px;top:310px" data-a="up .4 .8">Describe<br>a picture</h1>
+  <div class="hand" style="left:196px;top:640px" data-a="up 1.4 .7">Décrire une image : où est-ce ?</div>
+  ${pic(1060, 230, 760, frameOf(ART.farm), "", "pop .8 .7")}
+  <div style="left:190px;top:800px;display:flex;gap:14px">
+    <span class="pill" data-a="pop 3 .4">1 · Where? Où ?</span><span class="pill" data-a="pop 3.5 .4">2 · What? Quoi ?</span><span class="pill" data-a="pop 4 .4">3 · How? Comment ?</span></div>`);
+
+/* 1 · la campagne : le vocabulaire de l'image du cahier */
+{
+  const k = PW / 360, L = [["a cloud", 54, 40, 2], ["mountains", 300, 64, 3.4], ["a windmill", 180, 92, 4.8], ["a field", 210, 140, 6.2], ["a barn", 286, 128, 7.6],
+    ["a water tower", 318, 104, 9], ["a fence", 50, 180, 10.4], ["a path", 180, 214, 11.8], ["grass", 66, 226, 13.2], ["a bush", 316, 214, 14.6]];
+  const pills = L.map(([t, x, y, a]) => `<span class="pill lab" style="left:${x * k - t.length * 9.5 - 18}px;top:${y * k - 26}px" data-a="pop ${a} .4">${t}</span>`).join("");
+  scene("s1", 22, head("Where? · Le vocabulaire", "campagne = countryside") + pic(PX, PY, PW, frameOf(ART.farm), pills)
+    + `<div class="txt" style="left:1250px;top:260px;width:600px" data-a="up 1 .6"><span class="fiche">À savoir par cœur</span>la campagne =<br><b style="font-size:64px">the countryside</b></div>
+    <div class="txt" style="left:1250px;top:560px;width:600px;font-size:36px" data-a="up 16.5 .6">Le vocabulaire du cahier :<br><b>fence, windmill, mountain, barn, water tower, field, grass, path, bush</b></div>`);
+}
+
+/* 2 · les 9 zones */
+scene("s2", 13, head("1 · Where? Où est-ce ?", "L'image en 9 zones") + pic(PX, PY, PW, gridSvg, gridLines(PW, 2)
+  + [0, 1, 2, 3, 4, 5, 6, 7, 8].map(z => cellAt(z, PW, 4 + z * .35, 4.35 + z * .35 + .5, "soft")).join(""))
+  + `<div class="txt" style="left:1250px;top:280px;width:600px" data-a="up 1 .6">Pour dire <b>où</b> est quelque chose, on découpe l'image en <b>9 zones</b>.</div>
+  <div class="txt" style="left:1250px;top:560px;width:600px" data-a="up 8 .6">3 en haut, 3 au milieu, 3 en bas.<br><span class="r">Chaque zone a son expression.</span></div>`);
+zoneScene("s3", 0, Z.slice(0, 4), "1 · Where? · Les coins", "The corners : les coins", false);
+zoneScene("s4", 0, Z.slice(4), "1 · Where? · Haut, bas, côtés", "Top, bottom, left, right", true);
+
+/* 5 · in, at, on */
+scene("s5", 15, head("1 · Where? · Le piège", "in, at ou on ?", "l2")
+  + [["AT", "the top<br>the bottom", 1], ["ON", "the left<br>the right", 3], ["IN", "the middle<br>the … corner<br>the foreground<br>the background", 5]].map(([p, t, a], i) =>
+    `<div class="col" style="left:${190 + i * 560}px;top:260px" data-a="pop ${a} .5"><div class="cp">${p}</div><div class="ct">${t}</div></div>`).join("")
+  + `<div class="cap red" data-a="up 9 .6">Jamais <span class="r"><s>in the left</s></span>, <span class="r"><s>on the foreground</s></span>, <span class="r"><s>in the top left angle</s></span> !</div>`);
+
+/* 6 · premier plan, arrière-plan */
+{
+  const k = PW / 360;
+  scene("s6", 22, head("1 · Where? · Les plans", "Devant ou au fond ?") + pic(PX, PY, PW, frameOf(ART.farm),
+      `<div class="band" style="left:0;top:${168 * k}px;width:${PW}px;height:${72 * k}px" data-a="fade 1.5 .5 10 .5"></div><div class="band" style="left:0;top:${30 * k}px;width:${PW}px;height:${108 * k}px" data-a="fade 10.6 .5 20 .5"></div>`)
+    + `<div class="fiche" style="left:1250px;top:250px;width:600px" data-a="fade 1.5 .4 10 .4">À savoir par cœur</div>
+    <div class="en" style="left:1250px;top:300px;width:600px" data-a="up 1.7 .5 10 .4">in the foreground</div>
+    <div class="fr" style="left:1250px;top:480px;width:600px" data-a="up 2.4 .5 10 .4">= au premier plan<br><span style="font-size:32px">devant, en bas, ce qui est près</span></div>
+    <div class="ex" style="left:1250px;top:680px;width:600px" data-a="up 4.5 .5 10 .4">In the foreground, there is <b>a path</b> and <b>a bush</b>.</div>
+    <div class="fiche" style="left:1250px;top:250px;width:600px" data-a="fade 10.6 .4 20 .4">À savoir par cœur</div>
+    <div class="en" style="left:1250px;top:300px;width:600px" data-a="up 10.8 .5 20 .4">in the background</div>
+    <div class="fr" style="left:1250px;top:480px;width:600px" data-a="up 11.5 .5 20 .4">= à l'arrière-plan<br><span style="font-size:32px">au fond, ce qui est loin et petit</span></div>
+    <div class="ex" style="left:1250px;top:680px;width:600px" data-a="up 13.5 .5 20 .4">In the background, there are <b>mountains</b>.</div>`);
+}
+
+/* 7 · à toi : où est-ce ? */
+scene("s7", 21, head("1 · Where? · À toi !", "Where is it?", "l2") + pic(PX, PY, PW, gridSvg, ringAt(BOX.barn, PW, 1, 7.3) + ringAt(BOX.cow, PW, 7.6, 14) + cellAt(2, PW, 14.4, 20.5))
+  + `<div class="q" style="left:1250px;top:280px;width:600px" data-a="up 1 .5 7.3 .4">Where is the <b>barn</b>?</div>
+  <div class="a" style="left:1250px;top:420px;width:600px" data-a="pop 4.2 .5 7.3 .4">It's <b>on the right</b>.</div>
+  <div class="q" style="left:1250px;top:280px;width:600px" data-a="up 7.6 .5 14 .4">Where is the <b>cow</b>?</div>
+  <div class="a" style="left:1250px;top:420px;width:600px" data-a="pop 10.8 .5 14 .4">It's <b>at the bottom</b>.</div>
+  <div class="q" style="left:1250px;top:280px;width:600px" data-a="up 14.4 .5">What can you see <b>in the top right corner</b>?</div>
+  <div class="a" style="left:1250px;top:520px;width:600px" data-a="pop 17.4 .5">I can see <b>the sun</b>.</div>
+  <div class="hand" style="left:1260px;top:780px" data-a="fade 1.6 .4 4 .3">Réfléchis…</div>`);
+
+/* 8 · les prépositions */
+{
+  const P = [["next to", 0, "à côté de"], ["behind", 0, "derrière"], ["in front of", 0, "devant"], ["between", 0, "entre"], ["under", 0, "sous"], ["above", 0, "au-dessus de"]];
+  scene("s8", 26, head("En plus · Les prépositions", "Next to, behind, between…", "l0") + P.map(([p, k, fr], i) => {
+    const x = 190 + (i % 3) * 560, y = 230 + Math.floor(i / 3) * 400, a = 1 + i * 3.6, s = ART.PREP[p][k][2].replace(p, `<b>${p}</b>`);
+    return `<div class="pp" style="left:${x}px;top:${y}px" data-a="pop ${a} .5">${ART.prepScene(p, k).replace('style="max-width:320px"', 'style="width:500px;height:312px;display:block"')}<div class="pt">${s}<br><span>${p} = ${fr}</span></div></div>`;
+  }).join(""));
+}
+
+/* 9 · la photo du cahier : décrire les garçons */
+scene("s9", 27, head("2 · What? · La photo du cahier", "We can see…", "l2") + pic(PX, PY, 900, frameOf(ART.lake), "", "fade 0 .5")
+  + `<div class="txt" style="left:1150px;top:240px;width:700px" data-a="up 1 .6"><span class="fiche">À savoir par cœur</span>We can see <b>ten boys</b> jumping in <b>the water</b>.</div>
+  <div class="txt sm" style="left:1150px;top:470px;width:700px" data-a="up 6 .6">On peut changer :<br><b>boys</b> · <b>kids</b> · <b>children</b> · <b>teenagers</b> · <b>young people</b></div>
+  <div class="txt sm" style="left:1150px;top:640px;width:700px" data-a="up 10 .6">in <b>the water</b> · <b>the sea</b> · <b>a lake</b> · <b>the river</b> · <b>the pool</b><br>off <b>an inflatable structure</b></div>
+  <div class="cap" data-a="up 15 .6"><span class="fiche">À savoir par cœur</span>They're <b>wearing lifejackets</b> and <b>swimsuits</b>. <span style="color:var(--muted);font-size:32px">(porter = wear)</span></div>`);
+
+/* 10 · les impressions */
+{
+  const S = [["The boys <b>look</b> happy.", "ont l'air heureux"], ["The boys <b>seem</b> excited.", "semblent tout excités"], ["The boys <b>are having fun</b>.", "s'amusent"],
+    ["The boys <b>are smiling</b>.", "sourient"], ["They have a wide smile on <b>their</b> faces.", "un grand sourire (their, pas them !)"], ["They <b>seem to be having fun</b>.", "ont l'air de bien s'amuser"]];
+  scene("s10", 25, head("3 · How? · Les impressions", "They look happy!", "l3") + pic(PX, 230, 640, frameOf(ART.lake), "", "fade 0 .5")
+    + `<div class="fiche" style="left:900px;top:236px" data-a="fade .6 .4">À savoir par cœur · cahier</div>`
+    + S.map(([en, fr], i) => `<div class="li" style="left:900px;top:${290 + i * 110}px;width:950px" data-a="up ${1 + i * 3.4} .5">${en}<span>${fr}</span></div>`).join(""));
+}
+
+/* 11 · les phrases utiles */
+scene("s11", 20, head("3 · How? · Les phrases utiles", "There is, there are…", "l3")
+  + `<div class="txt" style="left:190px;top:250px;width:1600px" data-a="up 1 .6"><b>There is</b> + un seul : There is <b>a barn</b> on the right.</div>
+  <div class="txt" style="left:190px;top:340px;width:1600px" data-a="up 3.5 .6"><b>There are</b> + plusieurs : There are <b>two cows</b> in the field.</div>
+  <div class="txt" style="left:190px;top:480px;width:1600px" data-a="up 7 .6">Ce qu'ils font : <b>be + V-ing</b> → The boys <b>are jumping</b>. The farmer <b>is driving</b> a tractor.</div>
+  <div class="txt" style="left:190px;top:620px;width:1600px" data-a="up 11 .6"><b>look + adjectif</b> → They look happy. <span class="r">(pas look like happy)</span></div>
+  <div class="txt" style="left:190px;top:710px;width:1600px" data-a="up 13.5 .6"><b>look like + nom</b> → It looks like a farm.</div>`);
+
+/* 12 · la méthode */
+scene("s12", 20, head("La méthode", "Décrire une image en 4 étapes", "l0")
+  + `<div class="list" style="left:190px;top:250px;width:1600px">
+    <div data-a="up 1 .5"><i>1</i><span><b>What is it?</b> This is a picture of the countryside. / It's a photo of a lake.</span></div>
+    <div data-a="up 4 .5"><i>2</i><span><b>Where?</b> In the foreground… In the background… On the left… In the top right corner…</span></div>
+    <div data-a="up 8 .5"><i>3</i><span><b>Who? What are they doing?</b> There is / There are… They are jumping, they're wearing…</span></div>
+    <div data-a="up 12 .5"><i>4</i><span><b>How?</b> They look happy. They seem to be having fun. It looks peaceful.</span></div></div>`);
+
+/* 13 · l'exemple complet sur l'image de la ferme */
+{
+  const W = 940, k = W / 360;
+  const S = [["This is a picture of the countryside.", null], ["In the top left corner, there is a big cloud.", [0, 0, 120, 80]], ["In the bottom left corner, there is a fence.", [0, 160, 120, 80]],
+    ["In the middle, there is a windmill.", [120, 80, 120, 80]], ["On the right, there is a red barn.", [240, 110, 120, 80]], ["In the background, there are mountains.", [180, 40, 180, 95]],
+    ["In the foreground, there is a path.", [120, 168, 130, 72]], ["It looks peaceful: it seems to be summer.", null]];
+  const t0 = i => 1 + i * 3.7;
+  scene("s13", 32, head("Exemple", "Describe the picture", "l2") + pic(PX, 230, W, frameOf(ART.farm),
+      S.map(([, b], i) => b ? boxAt(b[0], b[1], b[2], b[3], W, t0(i), t0(i) + 3.5) : "").join(""))
+    + `<div class="para" style="left:1170px;top:220px;width:700px">${S.map(([s], i) => `<span data-a="fade ${t0(i)} .5">${s.replace(/^(In the [a-z ]+?|On the left|On the right|At the [a-z]+)(,)/, "<b>$1</b>$2")} </span>`).join("")}</div>`);
+}
+
+/* 14 · à retenir */
+scene("s14", 17, head("À retenir", "Describe a picture", "l3")
+  + `<div class="list" style="left:190px;top:240px;width:1600px">
+    <div data-a="up .8 .5"><i>1</i><span><b>in the top left corner</b>, <b>at the top</b>, <b>on the left</b>, <b>in the middle</b>, <b>on the right</b>, <b>at the bottom</b>, <b>in the bottom right corner</b></span></div>
+    <div data-a="up 3 .5"><i>2</i><span><b>in the foreground</b> (devant) · <b>in the background</b> (au fond)</span></div>
+    <div data-a="up 5 .5"><i>3</i><span>campagne = <b>countryside</b> : fence, windmill, barn, water tower, field, path, bush</span></div>
+    <div data-a="up 7.5 .5"><i>4</i><span><b>We can see</b> ten boys <b>jumping</b> in the water. They're <b>wearing</b> lifejackets.</span></div>
+    <div data-a="up 10 .5"><i>5</i><span>They <b>look</b> happy. They <b>seem to be having fun</b>. A wide smile on <b>their</b> faces.</span></div></div>`);
+scene("s15", 6, `<h1 class="big" style="left:190px;top:330px" data-a="up .3 .8">À toi :<br>tes cartes du jour !</h1><div class="hand" style="left:196px;top:680px" data-a="up 1.4 .7">Puis le quiz, et une image à décrire.</div>`);
+
+document.getElementById("stage").innerHTML = H.map(([id, d, h]) => `<section class="sc" id="${id}" data-d="${d}">${h}</section>`).join("");
+
+/* ---------- moteur d'animation : tout est une fonction du temps t ---------- */
+const cl = x => Math.max(0, Math.min(1, x));
+const E = {out: x => 1 - Math.pow(1 - x, 3), io: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2, back: x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }};
+const $ = id => document.getElementById(id);
+const scenes = [...document.querySelectorAll(".sc")];
+let acc = 0;
+scenes.forEach(s => { s._s = acc; acc += +s.dataset.d; s._e = acc; });
+const TOTAL = acc;
+const anims = scenes.map(s => [...s.querySelectorAll("[data-a]")].map(el => {
+  const [type, a, d, oa, od] = el.dataset.a.split(/\s+/);
+  const svg = el instanceof SVGElement;
+  return {el, type, a: +a, d: +(d || .6), oa: oa !== undefined ? +oa : null, od: +(od || .5), len: 0, svg, base: svg ? (el.getAttribute("transform") || "") : null, c: null};
+}));
+function xf(A, k, dy){   // transformation composée : SVG via l'attribut (garde translate/rotate d'origine), HTML via CSS
+  if (!A.svg) { A.el.style.transform = `translateY(${dy}px) scale(${k})`; return; }
+  if (!A.c) { const b = A.el.getBBox(); A.c = [b.x + b.width / 2, b.y + b.height / 2]; }
+  const [cx, cy] = A.c;
+  A.el.setAttribute("transform", `${A.base} translate(${cx} ${cy + dy}) scale(${k}) translate(${-cx} ${-cy})`);
+}
+function apply(A, t){
+  const p = cl((t - A.a) / A.d), o = A.oa === null ? 1 : 1 - cl((t - A.oa) / A.od), el = A.el, e = E.out(p);
+  switch (A.type) {
+    case "fade": el.style.opacity = p * o; break;
+    case "up": el.style.opacity = e * o; xf(A, 1, (1 - e) * 40); break;
+    case "pop": el.style.opacity = cl(p * 3) * o; xf(A, .5 + .5 * E.back(p), 0); break;
+    case "grow": el.style.opacity = (p > 0 ? 1 : 0) * o; el.style.transform = `scaleX(${e})`; break;
+    case "draw": if (!A.len) A.len = el.getTotalLength() || 1; el.style.strokeDasharray = A.len; el.style.strokeDashoffset = A.len * (1 - E.io(p)); el.style.opacity = (p > 0 ? 1 : 0) * o; break;
+  }
+}
+function along(path, p){ const L = path.getTotalLength(); return path.getPointAtLength(L * cl(p)); }
+function dotOn(dot, path, p){ if (p <= 0 || p >= 1) { dot.style.opacity = 0; return; } const q = along(path, p); dot.setAttribute("transform", `translate(${q.x} ${q.y})`); dot.style.opacity = 1; }
+const seg = (t, a, d) => (t - a) / d;
+const lerp = (a, b, p) => a + (b - a) * p;
+function areaGlow(id, t, a){ const g = $(id); if (!g) return; const p = cl((t - a) / .4); g.style.opacity = .15 + .85 * p; g.style.filter = p > 0 ? `drop-shadow(0 0 ${18 * p}px rgba(255,184,0,.9))` : "none"; }
+
+const HOOKS = {};
+function render(T){
+  for (let i = 0; i < scenes.length; i++) {
+    const s = scenes[i], on = T >= s._s && T < s._e;
+    s.style.display = on ? "block" : "none";
+    if (!on) continue;
+    const t = T - s._s;
+    s.style.opacity = Math.min(cl(t / .45), cl((s._e - T) / .45));
+    for (const A of anims[i]) apply(A, t);
+    if (HOOKS[s.id]) HOOKS[s.id](t);
+  }
+}
+/* sons : un petit « pop » à chaque apparition d'étiquette */
+function events(){ const out = []; scenes.forEach((s, i) => anims[i].forEach(A => { if (A.type === "pop" && A.el.classList.contains("pill") || A.type === "pop" && A.el.classList.contains("box")) out.push(+(s._s + A.a).toFixed(2)); })); return out.sort((a, b) => a - b); }
+const chapters = () => [["Introduction", 0], ["La campagne", "s1"], ["1 · Les 9 zones", "s2"], ["Premier plan, arrière-plan", "s6"], ["Les prépositions", "s8"], ["2 · La photo du cahier", "s9"], ["3 · Les impressions", "s10"], ["La méthode et un exemple", "s12"], ["À retenir", "s14"]]
+  .map(([n, id]) => [typeof id === "number" ? id : $(id)._s, n]);
+window.FILM = {render, TOTAL, events, chapters};
+function fit(){ const k = Math.min(innerWidth / 1920, innerHeight / 1080); $("stage").style.transform = `scale(${k})`; }
+addEventListener("resize", fit); fit(); render(0);
+</script>
+</body></html>
