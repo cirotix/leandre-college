@@ -230,8 +230,8 @@
       "matiere": "maths",
       "chemin": "maths/relatifs-multiplication/",
       "titre": "Multiplier et diviser des nombres relatifs",
-      "chapitre": "Nombres relatifs",
-      "resume": "La règle des signes pour multiplier et diviser, jusqu'à 4 facteurs : compter les facteurs négatifs, le zéro, le nombre manquant et le piège de l'addition.",
+      "chapitre": "N2 · Nombres relatifs",
+      "resume": "La règle des signes pour multiplier et diviser, le nombre de facteurs négatifs, les quotients en fractions, les propriétés (commutative, associative, distributivité) et les trois sens du signe « − ».",
       "ajoute": "2026-11-05",
       "motsCles": [
         "relatifs",
@@ -244,7 +244,14 @@
         "signe",
         "négatif",
         "positif",
-        "facteurs"
+        "facteurs",
+        "commutative",
+        "associative",
+        "distributivité",
+        "fraction",
+        "opposé",
+        "soustraction",
+        "propriétés"
       ]
     },
     {
