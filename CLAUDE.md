@@ -124,7 +124,7 @@ Variante données seules (fabrique) : `Revision.lesson({key, titre, sousTitre, s
 parties, notions, parCoeur, cours, vocabulaire, vraiFaux, chiffres, etapes, classements, redaction, croquis?})` (croquis : `notion` au lieu de `unit`), schéma `LECON` dans
 `tools/fabrique/schemas.py` ; `lib/lesson.js` en tire cartes (par cœur d'abord), quiz, contrôle (textes à trous inclus) et rédaction.
 
-Un `item` de contrôle : `{unit, kind: "choice", opts}` ou `{unit, kind: "fields", fields: [{label, lang?, inputmode?, unit?, check: v => ({ok, fix})}]}`,
+Un `item` de contrôle : `{unit, kind: "choice", opts}` ou `{unit, kind: "fields", fields: [{label, lang?, inputmode?, unit?, check: (v, toutes, k) => ({ok, fix})}]}` (toutes = les valeurs de tous les champs de l'item, k = son rang),
 plus `prompt?`, `given?: {label, value}`, `fig?`, `correction: all => html`, `tip?`, `review: html` (ligne « À revoir »),
 `redo: () => item` (même exercice, nouveaux nombres, pour « Refaire mes erreurs »).
 
