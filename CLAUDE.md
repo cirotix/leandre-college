@@ -76,11 +76,14 @@ Ne pas modifier le moteur pour un besoin propre à un module : soit c'est géné
   photo de la copie, puis correction critère par critère : par l'IA si l'appareil est débloqué (mot de passe tapé une
   fois, jeton gardé dans `localStorage["revisions-ia-jeton"]`), sinon autocorrection (cases à cocher + réponse modèle).
   Meilleure note par sujet dans `S.rd`.
-- Croquis (si `croquis`) : avant la Rédaction. Planisphère vierge avec des petits ronds (villes à placer + leurres
-  `points`) : l'élève touche une étiquette puis sa place (zoom automatique quand plusieurs villes sont sous le doigt),
-  choisit la couleur dans la légende (« Colorier aussi »), puis « Vérifier » : bonne place en vert, sa réponse en rouge,
-  « Refaire mes erreurs ». Séries (`series`) + « Tout le croquis » ; meilleur % par série dans `S.cq`. Dans une leçon
-  (`Revision.lesson`), le quiz et le contrôle en tirent aussi « Sur la carte, quelle lettre montre… ? ».
+- Croquis (si `croquis`) : avant la Rédaction. Une copie à compléter comme en devoir sur le planisphère vierge
+  (`lib/planisphere.js`) avec les points imprimés du fond du professeur : l'élève écrit le titre, tape le nom des villes
+  sur les points, colorie, entoure les mégalopoles et trace les flux au doigt, pose les barres vertes (1, 2 ou 4 cm),
+  puis rédige la légende (une ligne par figuré utilisé). Outils : Nom, couleurs, Entourer, Flux, barres, Gomme, Annuler ;
+  zoom automatique quand plusieurs points sont sous le doigt. Copie gardée dans `S.cqd`. « Rendre ma copie » : note
+  sur 20 (barème `bareme`), corrigé sur la carte, liste des erreurs ; la légende est corrigée par l'IA (worker
+  `/ia/evaluer`, appareil débloqué) ou par l'élève. Meilleure note dans `S.cq.best`. Dans une leçon (`Revision.lesson`),
+  le quiz et le contrôle en tirent aussi « Sur la carte, quelle lettre montre… ? ».
 - Quiz et contrôle : glisser à gauche = question suivante une fois la réponse donnée ; en fin de série, les boutons
   passent avant la liste des erreurs (repliée) et « Revoir les cartes » relance les cartes des notions ratées.
 - Chaque module écrit un résumé dans `localStorage["revisions-index"]` (`{chemin: {seen, done, n, noun, fem, cd, k, kd}}`, k = cartes du jour calculées le jour kd),
@@ -96,8 +99,11 @@ Revision.start({
   title, subtitle?, eyebrow?, hand?,        // en-tête du module (hand = note manuscrite rouge)
   countdown?: {date: "AAAA-MM-JJ", label: "mardi 13 octobre"},
   video?: {src: "video.mp4", poster?, length?: "6 min", title?, text?, chapters?: [[secondes, "titre"]]} ou une liste de ces objets,  // tuile « Vidéo(s) »
-  croquis?: {text?, badge?, consigne?: html, legende?: [{id, t, c: "#hex"}], series?: [{id, t, ids}], points?: [[lon, lat]],
-             elements: [{id, nom, court?, unit, lon, lat, zone?: [[lon, lat, rx°, ry°]], cercle?, couleur?, aide?, ou?}]},  // étape « Croquis »
+  croquis?: {text?, badge?, consigne: html, titre: {attendu, motsCles}, couleurs: [{id, nom, c}],
+             villes: [{id, nom, variantes?, lon, lat, couleur? | couleurs?: [ids ou null], facultative?, aide?, ou?}],
+             points?: [[lon, lat]], megalopoles: [{id, nom, villes, lon, lat}], flux: [{a, b, bords?}], cm?,
+             continents: [{id, nom, taille, boites, centre?}], legende: {<couleur>|cercle|fleche|b1|b2|b4: "sens attendu"},
+             bareme?},   // étape « Croquis » (détail en tête de la section croquis de lib/revision.js)
   redaction?: {text?, items: [{id, unit, titre, doc?: html, consigne: html, photo?: false, modele: "texte",
                criteres: [{t: "ce que la réponse doit contenir", pts}]}]},   // étape « Rédaction »
   groups: {"1": {name, plural?, cls: "l1"|"l2"|"l3", filter?}},   // couleur + chips « Je révise »

@@ -2,7 +2,7 @@
    Sources : cahier de Léandre (problématique, activité 1 « critères de puissance d'une métropole » : Londres, New York, Tokyo,
    tableau Shanghai / Ouagadougou), croquis « Des villes inégalement insérées dans la mondialisation » (consigne et légende),
    trace écrite de l'activité 3 « Les villes organisent la mondialisation » (toute la trace est à savoir par cœur, validé par Damien).
-   Étape Croquis : le croquis réalisé par Léandre sur le planisphère vierge (photo du 15/11/2026), à refaire sur le fond de carte.
+   Étape Croquis : le croquis réalisé par Léandre (photo du 15/11/2026), à refaire comme en devoir sur le même fond (31 points).
    Module « leçon » piloté par les données : lib/lesson.js construit cartes, quiz, contrôle et rédaction. */
 (() => {
 "use strict";
@@ -356,51 +356,65 @@ Revision.lesson({
      ]}
   ],
 
-  /* ---------- le croquis à refaire sur le planisphère vierge ---------- */
+  /* ---------- le croquis, à refaire comme en devoir sur le même fond (31 points imprimés, 13 villes à nommer) ---------- */
   croquis: {
-    text: "Replace les villes, les 3 océans et les 3 mégalopoles sur le planisphère vierge, et colorie-les comme sur ton croquis.",
-    consigne: "Comme sur ton croquis : touche une étiquette, puis sa place sur la carte. Les <b>petits ronds</b> sont des villes : à toi de trouver la bonne. Ensuite, choisis sa couleur dans la légende.",
-    legende: [
-      {id: "rouge", t: "Villes les mieux insérées", c: "#D7263D"},
-      {id: "jaune", t: "Villes inégalement insérées", c: "#F5C518"},
-      {id: "marron", t: "Villes mal insérées, en marge", c: "#8B5A2B"}
+    text: "Refais ton croquis comme en devoir : titre, noms des villes, couleurs, mégalopoles, flux, barres vertes et légende. Puis rends ta copie.",
+    badge: "comme en devoir",
+    consigne: "<p>Place le titre « Des villes inégalement insérées dans la mondialisation ».</p>" +
+      "<p>Place et colorie en <b>rouge</b> les 4 villes les mieux insérées dans la mondialisation. Place et colorie en <b>jaune</b> des villes inégalement insérées dans la mondialisation (une par continent). Place et colorie en <b>marron</b> des villes mal insérées dans la mondialisation aux États-Unis, au Royaume-Uni et en Corée du Nord. Tu indiqueras lisiblement le nom ou les initiales des villes.</p>" +
+      "<p><b>Entoure en rouge</b> les trois mégalopoles et relie-les par un <b>flux</b> des échanges. Place une <b>barre graphique en vert</b> par continent pour indiquer si l'urbanisation y est faible (1 cm), moyenne (2 cm) ou forte (4 cm).</p>" +
+      "<p>Tu compléteras la <b>légende</b> de ton croquis.</p>" +
+      "<p class=\"fine\">Sur la carte, il y a d'autres points que tes villes : ne nomme et ne colorie que celles qui sont demandées.</p>",
+    titre: {attendu: "Des villes inégalement insérées dans la mondialisation", motsCles: ["inegal", "inser", "mondialisation"]},
+    couleurs: [
+      {id: "rouge", nom: "rouge", c: "#D7263D"},
+      {id: "jaune", nom: "jaune", c: "#F5C518"},
+      {id: "marron", nom: "marron", c: "#8B5A2B"}
     ],
-    series: [
-      {id: "reperes", t: "Océans et mégalopoles", ids: ["atl", "pac", "ind", "mg-us", "mg-eu", "mg-as"]},
-      {id: "villes", t: "Les villes", ids: ["ny", "lon", "par", "tok", "mex", "sao", "lag", "mum", "sha", "syd", "det", "liv", "pyo"]}
+    villes: [
+      {id: "ny",  notion: "top", nom: "New York", variantes: ["NY", "N.Y.", "New-York"], lon: -74.0, lat: 40.7, couleur: "rouge", ou: "sur la côte est des États-Unis", aide: "Côte est des États-Unis. Une des 4 villes les mieux insérées : en rouge."},
+      {id: "lon", notion: "top", nom: "Londres", variantes: ["London", "L"], lon: -0.13, lat: 51.5, couleur: "rouge", ou: "au Royaume-Uni, juste au nord de Paris", aide: "Au sud-est du Royaume-Uni, au nord de Paris. En rouge."},
+      {id: "par", notion: "top", nom: "Paris", variantes: ["P"], lon: 2.35, lat: 48.86, couleur: "rouge", ou: "en France, juste au sud de Londres", aide: "En France, juste au sud de Londres. En rouge."},
+      {id: "tok", notion: "top", nom: "Tokyo", variantes: ["Tokio", "T"], lon: 139.7, lat: 35.7, couleur: "rouge", ou: "au Japon", aide: "Au Japon, le point le plus à l'est (Osaka est juste à côté). En rouge."},
+      {id: "mex", notion: "ineg", nom: "Mexico", variantes: ["Mexico City", "Ciudad de Mexico", "M"], lon: -99.1, lat: 19.4, couleur: "jaune", ou: "au Mexique, au sud des États-Unis", aide: "Au Mexique (Amérique du Nord). En jaune."},
+      {id: "sao", notion: "ineg", nom: "São Paulo", variantes: ["Sao Paulo", "Saint Paul", "SP", "S.P."], lon: -46.6, lat: -23.5, couleur: "jaune", ou: "au sud-est du Brésil, juste à gauche de Rio", aide: "Au sud-est du Brésil, le point juste à gauche de Rio. En jaune."},
+      {id: "rio", notion: "ineg", nom: "Rio", variantes: ["Rio de Janeiro", "RJ", "R"], lon: -43.2, lat: -22.9, couleurs: [null, "jaune"], facultative: true, ou: "au sud-est du Brésil, juste à droite de São Paulo", aide: "Facultative : sur ton croquis, Rio est nommée mais pas coloriée."},
+      {id: "lag", notion: "ineg", nom: "Lagos", variantes: ["La"], lon: 3.4, lat: 6.5, couleur: "jaune", ou: "au Nigeria, sur le golfe de Guinée", aide: "Au Nigeria, au bord du golfe de Guinée (Afrique). En jaune."},
+      {id: "mum", notion: "ineg", nom: "Mumbai", variantes: ["Bombay", "Mumbaï"], lon: 72.9, lat: 19.1, couleur: "jaune", ou: "sur la côte ouest de l'Inde", aide: "Sur la côte ouest de l'Inde (Delhi est au nord, Karachi au Pakistan). En jaune."},
+      {id: "sha", notion: "ineg", nom: "Shanghai", variantes: ["Shangai", "Changhai", "Shangaï", "Shanghaï"], lon: 121.5, lat: 31.2, couleur: "jaune", ou: "sur la côte est de la Chine", aide: "Sur la côte est de la Chine, entre Pékin (au nord) et Hong Kong (au sud). En jaune."},
+      {id: "det", notion: "marge", nom: "Detroit", variantes: ["Détroit", "D"], lon: -83.0, lat: 42.3, couleur: "marron", ou: "aux États-Unis, près des Grands Lacs", aide: "Aux États-Unis, près des Grands Lacs, à l'ouest de New York. Une shrinking city : en marron."},
+      {id: "liv", notion: "marge", nom: "Liverpool", variantes: [], lon: -2.98, lat: 53.4, couleur: "marron", ou: "au nord-ouest de l'Angleterre, au-dessus de Londres", aide: "Au nord-ouest de l'Angleterre, au-dessus de Londres. Une shrinking city : en marron."},
+      {id: "pyo", notion: "marge", nom: "Pyongyang", variantes: ["Pyong Yang", "Pyongyan", "Pyeongyang"], lon: 125.75, lat: 39.0, couleur: "marron", ou: "en Corée du Nord, entre la Chine et le Japon", aide: "En Corée du Nord, au nord de Séoul. Capitale d'un pays fermé au monde : en marron."}
     ],
-    elements: [
-      {id: "atl", court: "Atlantique", notion: "croq", nom: "océan Atlantique", lon: -38, lat: 28, ou: "entre les Amériques d'un côté, l'Europe et l'Afrique de l'autre",
-       zone: [[-42, 36, 22, 16], [-35, 8, 14, 12], [-18, -22, 17, 24]], aide: "Entre les Amériques d'un côté, l'Europe et l'Afrique de l'autre."},
-      {id: "pac", court: "Pacifique", notion: "croq", nom: "océan Pacifique", lon: -140, lat: 8, ou: "le plus grand océan, à gauche des Amériques et à droite de l'Asie",
-       zone: [[-145, 12, 32, 38], [-108, -25, 22, 22], [158, 22, 20, 16], [170, -22, 18, 22]], aide: "Le plus grand : à gauche des Amériques et à droite de l'Asie (il est coupé en deux sur le planisphère)."},
-      {id: "ind", court: "Indien", notion: "croq", nom: "océan Indien", lon: 78, lat: -22, ou: "au sud de l'Inde, entre l'Afrique et l'Australie",
-       zone: [[78, -22, 28, 18], [64, 8, 8, 9], [88, 8, 6, 9]], aide: "Au sud de l'Inde, entre l'Afrique et l'Australie."},
-      {id: "mg-us", court: "Nord-Est américain", notion: "flux", cercle: true, nom: "mégalopole du Nord-Est américain", lon: -75, lat: 41, ou: "sur la côte est des États-Unis, autour de New York",
-       zone: [[-76, 41.5, 9, 6]], aide: "Sur la côte est des États-Unis, autour de New York : on l'entoure en rouge."},
-      {id: "mg-eu", court: "Europe de l'Ouest", notion: "flux", cercle: true, nom: "mégalopole d'Europe de l'Ouest", lon: 4, lat: 50, ou: "de Londres à Milan, en passant par Paris",
-       zone: [[4, 49, 10, 7]], aide: "De Londres à Milan, en passant par Paris : on l'entoure en rouge."},
-      {id: "mg-as", court: "Asie de l'Est", notion: "flux", cercle: true, nom: "mégalopole d'Asie de l'Est", lon: 136, lat: 35, ou: "au Japon, autour de Tokyo",
-       zone: [[134, 34, 11, 8]], aide: "Au Japon, autour de Tokyo : on l'entoure en rouge."},
-      {id: "ny",  notion: "top", nom: "New York", lon: -74.0, lat: 40.7, couleur: "rouge", ou: "sur la côte est des États-Unis", aide: "Côte est des États-Unis. Une des 4 villes les mieux insérées : en rouge."},
-      {id: "lon", notion: "top", nom: "Londres", lon: -0.13, lat: 51.5, couleur: "rouge", ou: "au Royaume-Uni, juste au nord de Paris", aide: "Au sud-est du Royaume-Uni. Une des 4 villes les mieux insérées : en rouge."},
-      {id: "par", notion: "top", nom: "Paris", lon: 2.35, lat: 48.86, couleur: "rouge", ou: "en France, juste au sud de Londres", aide: "En France, juste au sud de Londres. Une des 4 villes les mieux insérées : en rouge."},
-      {id: "tok", notion: "top", nom: "Tokyo", lon: 139.7, lat: 35.7, couleur: "rouge", ou: "au Japon", aide: "Au Japon, l'archipel à l'est de l'Asie. Une des 4 villes les mieux insérées : en rouge."},
-      {id: "mex", notion: "ineg", nom: "Mexico", lon: -99.1, lat: 19.4, couleur: "jaune", ou: "au Mexique, au sud des États-Unis", aide: "Au Mexique (Amérique du Nord). Inégalement insérée : en jaune."},
-      {id: "sao", notion: "ineg", nom: "São Paulo", lon: -46.6, lat: -23.5, couleur: "jaune", ou: "au sud-est du Brésil, juste à gauche de Rio", aide: "Au sud-est du Brésil, juste à côté de Rio (Amérique du Sud). Inégalement insérée : en jaune."},
-      {id: "lag", notion: "ineg", nom: "Lagos", lon: 3.4, lat: 6.5, couleur: "jaune", ou: "au Nigeria, sur le golfe de Guinée", aide: "Au Nigeria, au bord du golfe de Guinée (Afrique). Inégalement insérée : en jaune."},
-      {id: "mum", notion: "ineg", nom: "Mumbai", lon: 72.9, lat: 19.1, couleur: "jaune", ou: "sur la côte ouest de l'Inde", aide: "Sur la côte ouest de l'Inde (Asie). Inégalement insérée : en jaune."},
-      {id: "sha", notion: "ineg", nom: "Shanghai", lon: 121.5, lat: 31.2, couleur: "jaune", ou: "sur la côte est de la Chine", aide: "Sur la côte est de la Chine (Asie). Inégalement insérée : en jaune."},
-      {id: "syd", notion: "ineg", nom: "Sydney", lon: 151.2, lat: -33.9, couleur: "jaune", ou: "sur la côte sud-est de l'Australie", aide: "Sur la côte sud-est de l'Australie (Océanie). Citée dans le cours parmi les villes inégalement connectées : en jaune."},
-      {id: "det", notion: "marge", nom: "Detroit", lon: -83.0, lat: 42.3, couleur: "marron", ou: "aux États-Unis, près des Grands Lacs", aide: "Aux États-Unis, près des Grands Lacs, à l'ouest de New York. Une shrinking city : en marron."},
-      {id: "liv", notion: "marge", nom: "Liverpool", lon: -2.98, lat: 53.4, couleur: "marron", ou: "au nord-ouest de l'Angleterre, au-dessus de Londres", aide: "Au nord-ouest de l'Angleterre, au-dessus de Londres. Une shrinking city : en marron."},
-      {id: "pyo", notion: "marge", nom: "Pyongyang", lon: 125.75, lat: 39.0, couleur: "marron", ou: "en Corée du Nord, entre la Chine et le Japon", aide: "En Corée du Nord, au nord de Séoul. Capitale d'un pays fermé au monde : en marron."}
+    /* les 18 autres points imprimés sur le fond de carte du professeur : à laisser vides */
+    points: [[-118.2, 34.05], [-58.4, -34.6], [7.0, 51.45], [37.6, 55.75], [29.0, 41.0], [31.2, 30.0], [51.4, 35.7], [67.0, 24.9],
+      [77.2, 28.6], [88.4, 22.6], [90.4, 23.8], [116.4, 39.9], [127.0, 37.6], [135.5, 34.7], [114.2, 22.3], [100.5, 13.75],
+      [121.0, 14.6], [106.8, -6.2]],
+    megalopoles: [
+      {id: "mg-us", nom: "la mégalopole du Nord-Est américain", villes: ["ny"], lon: -75, lat: 41},
+      {id: "mg-eu", nom: "la mégalopole d'Europe de l'Ouest", villes: ["lon", "par"], lon: 2, lat: 50},
+      {id: "mg-as", nom: "la mégalopole d'Asie de l'Est (Japon)", villes: ["tok"], lon: 137, lat: 35.5}
     ],
-    /* villes imprimées sur le fond de carte (comme sur la fiche du professeur) : des leurres à ne pas confondre */
-    points: [[-118.2, 34.05], [-87.6, 41.9], [-79.4, 43.7], [-77.0, 38.9], [-74.1, 4.7], [-77.0, -12.0], [-58.4, -34.6], [-43.2, -22.9],
-      [-1.5, 12.4], [31.2, 30.0], [15.3, -4.3], [28.0, -26.2], [-3.7, 40.4], [13.4, 52.5], [9.2, 45.5], [37.6, 55.75], [29.0, 41.0],
-      [51.4, 35.7], [67.0, 24.9], [77.2, 28.6], [88.4, 22.6], [100.5, 13.75], [116.4, 39.9], [127.0, 37.6], [135.5, 34.7],
-      [114.2, 22.3], [121.0, 14.6], [106.8, -6.2], [103.8, 1.35], [145.0, -37.8]]
+    flux: [{a: "mg-us", b: "mg-eu"}, {a: "mg-eu", b: "mg-as"}, {a: "mg-as", b: "mg-us", bords: [["mg-us", "gauche"], ["mg-as", "droite"]]}],
+    cm: 20,
+    continents: [
+      {id: "oce", nom: "Océanie", taille: 4, boites: [[110, -50, 180, -11]], centre: [134, -25]},
+      {id: "asi", nom: "Asie", taille: 2, boites: [[35, 12.5, 62, 42], [60, -11, 180, 80]], centre: [95, 45]},
+      {id: "ams", nom: "Amérique du Sud", taille: 4, boites: [[-82, -57, -34, 13]], centre: [-60, -12]},
+      {id: "afr", nom: "Afrique", taille: 1, boites: [[-20, -36, 52, 37.5]], centre: [20, 5]},
+      {id: "eur", nom: "Europe", taille: 4, boites: [[-25, 35, 60, 72]], centre: [20, 55]},
+      {id: "amn", nom: "Amérique du Nord", taille: 4, boites: [[-170, 7, -50, 84]], centre: [-100, 48]}
+    ],
+    legende: {
+      rouge: "les villes les mieux insérées dans la mondialisation (les métropoles les plus connectées)",
+      jaune: "les villes inégalement insérées dans la mondialisation",
+      marron: "les villes mal insérées, en marge de la mondialisation",
+      cercle: "les trois mégalopoles (les grandes métropoles mondiales)",
+      fleche: "les flux majeurs d'échanges qui relient les mégalopoles",
+      b4: "une urbanisation forte",
+      b2: "une urbanisation moyenne",
+      b1: "une urbanisation faible"
+    }
   },
 
   /* ---------- rédaction ---------- */

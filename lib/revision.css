@@ -447,40 +447,61 @@ details.misses[open] > summary{color:var(--muted)}
 .rd-tr{text-align:left; padding:6px 2px 10px; margin:0}
 .trou{color:var(--red); font-weight:700; white-space:nowrap}
 
-/* ---------- croquis : fond de carte vierge à compléter ---------- */
-.cq-lead{margin:14px 0 12px}
-.cq-series{margin:12px 0 4px}
-.cq-ask{font-size:17px; margin:16px 0 8px; min-height:26px}
-.cq-msg{font-size:14px; color:var(--red); margin:0 0 8px}
-.cq-map{position:relative; padding:0; margin:8px 0 12px; overflow:hidden; border-radius:8px; touch-action:manipulation}
-.cq-svg{display:block; width:100%; height:auto; cursor:crosshair; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none}
-.cq-sea{fill:#EAF2FB}
-.cq-land{fill:#FBF8EF; stroke:#59607A; stroke-linejoin:round}
+/* ---------- croquis : copie à compléter sur un fond de carte vierge ---------- */
+.cq-fiche{padding:12px 16px; margin:14px 0 12px}
+.cq-fiche > summary{cursor:pointer; font-weight:600; color:var(--pen)}
+.cq-fiche-c{font-size:15px; line-height:1.55; margin-top:8px}
+.cq-fiche-c p{margin:6px 0}
+.cq-titre{display:flex; align-items:center; gap:10px; margin:6px 0 12px; font-weight:600}
+.cq-titre .inp{flex:1}
+.cq-hand-in{font-family:var(--f-hand); font-size:22px; color:var(--pen)}
+.cq-tools{display:flex; flex-wrap:wrap; gap:6px; position:sticky; top:0; z-index:5; padding:8px 0; background:var(--paper)}
+.cq-tool{display:inline-flex; align-items:center; gap:6px; font:inherit; font-size:14px; font-weight:500; min-height:42px; padding:6px 11px; border-radius:10px; border:1.5px solid var(--line); background:var(--sheet); color:var(--ink); cursor:pointer; -webkit-tap-highlight-color:transparent; touch-action:manipulation}
+.cq-tool[aria-pressed="true"]{border-color:var(--pen); background:var(--pen-soft); box-shadow:inset 0 0 0 1px var(--pen)}
+.cq-tool i{display:inline-block; width:16px; height:16px; border-radius:50%; border:1.5px solid #1A2250}
+.cq-tool svg{height:16px; width:auto}
+.cq-ask{font-size:15px; margin:4px 0 8px; min-height:22px; color:var(--muted)}
+.cq-msg{color:var(--red); font-weight:600}
+.cq-map{position:relative; padding:0; margin:4px 0 12px; overflow:hidden; border-radius:8px}
+.cq-svg{display:block; width:100%; height:auto; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; touch-action:manipulation}
+.cq-svg.draw{touch-action:none; cursor:crosshair}
+.cq-sea{fill:#FFFFFF}
+.cq-land{fill:#FFFFFF; stroke:#3A4060; stroke-linejoin:round}
 .cq-dot{fill:#fff; stroke:#1A2250}
-.cq-city{fill:var(--pen); stroke:#fff}
-.cq-city.col{stroke:#1A2250}
-.cq-city.ok{stroke:var(--ok)} .cq-city.ko{stroke:var(--ok)}
-.cq-pin{fill:var(--pen)} .cq-pin.ko{fill:var(--red)}
-.cq-x{stroke:var(--red); stroke-linecap:round; fill:none}
-.cq-link{stroke:var(--red); fill:none}
-.cq-zone{fill:none} .cq-zone.ok{stroke:var(--ok)} .cq-zone.ko{stroke:#0F8456}
-.cq-lab{font-family:var(--f-body); font-weight:600; fill:#1A2250; stroke:#fff; paint-order:stroke; stroke-linejoin:round; pointer-events:none}
-.cq-lab.ok{fill:#0F8456} .cq-lab.ko{fill:#0F8456} .cq-lab.ko.small{fill:#CC2D2A; font-weight:500}
+.cq-dot.col{stroke:#1A2250}
+.cq-sel{fill:none; stroke:var(--pen); stroke-dasharray:3 2}
+.cq-bar{fill:#7BC043; fill-opacity:.85; stroke:#3E8E1F}
+.cq-ring{fill:none; stroke:#D7263D; stroke-linecap:round; stroke-linejoin:round}
+.cq-arrow{fill:none; stroke:#D7263D; stroke-linecap:round; stroke-linejoin:round}
+.cq-hand{font-family:var(--f-hand); font-weight:700; fill:#2340C4; stroke:#fff; paint-order:stroke; stroke-linejoin:round; pointer-events:none}
+.cq-hand.ok{fill:#0F8456} .cq-hand.ko{fill:#CC2D2A; text-decoration:line-through}
+.cq-fix{font-family:var(--f-body); font-weight:600; fill:#0F8456; stroke:#fff; paint-order:stroke; stroke-linejoin:round; pointer-events:none}
+.cq-want{fill:none; stroke:#0F8456}
 .cq-unzoom{position:absolute; right:8px; bottom:8px; box-shadow:0 2px 8px var(--shadow)}
-.cq-leg{display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 12px}
-.cq-sw{display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:14px; padding:8px 12px; min-height:44px; border-radius:10px; border:1.5px solid var(--line); background:var(--sheet); color:var(--ink); cursor:pointer}
-.cq-sw:not(:disabled){border-color:var(--ink); box-shadow:0 2px 0 var(--ink)}
-.cq-sw:disabled{opacity:.6; cursor:default}
-.cq-sw i, .cq-chip .ck i{display:inline-block; width:16px; height:16px; border-radius:50%; border:1.5px solid #1A2250; flex:none}
-.cq-tray{margin:6px 0 4px}
-.cq-chip{display:inline-flex; align-items:center; gap:6px}
-.cq-chip.placed{border-style:dashed; color:var(--muted)}
-.cq-chip.placed[aria-pressed="true"], .cq-chip[aria-pressed="true"]{background:var(--ink); color:var(--sheet); border-style:solid}
-.cq-chip .ck{color:var(--ok); font-weight:700; display:inline-flex}
-.cq-res{padding:16px 18px; margin:14px 0 4px; text-align:center}
-.cq-res .sum{margin:8px 0 0}
-.cq-res .misses{text-align:left}
+.cq-namebar{padding:12px 14px; margin:0 0 12px}
+.cq-namebar .numrow{display:flex; gap:8px; margin-top:6px}
+.cq-namebar .inp{flex:1; min-width:0}
+.cq-legsec{padding:14px 16px; margin:6px 0 8px}
+.cq-legrow{display:flex; align-items:center; gap:10px; margin-top:8px}
+.cq-legrow .inp{flex:1; min-width:0}
+.cq-fig-ico{width:44px; height:26px; flex:none}
+.cq-result{text-align:center}
+.cq-partial{font-size:28px; margin:6px 0}
+.cq-bareme{margin:10px auto 4px; border-collapse:collapse; font-size:15px; text-align:left}
+.cq-bareme td{padding:4px 10px; border-bottom:1px solid var(--line)}
+.cq-bareme td:last-child{text-align:right; font-weight:600; white-space:nowrap}
+.cq-bareme .ok{color:var(--ok)} .cq-bareme .ko{color:var(--red)}
+.cq-hint{margin:12px 0 6px}
+.cq-legc{display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--line)}
+.cq-legc p{margin:0}
+.cq-mine{font-family:var(--f-hand); font-size:21px; color:var(--pen)}
+.cq-mine.ok{color:var(--ok)} .cq-mine.ko{color:var(--red)}
+.cq-selfck{display:flex; gap:8px; align-items:center; font-size:14px; margin-top:4px}
+.cq-wait{color:var(--muted)}
 .cq-fig{margin:12px 0 4px; border-radius:8px; overflow:hidden; border:1.5px solid var(--line)}
 .cq-fig .cq-svg{cursor:default}
+.cq-fig .cq-sea{fill:#EAF2FB} .cq-fig .cq-land{fill:#FBF8EF; stroke:#59607A}
+.cq-lab{font-family:var(--f-body); font-weight:600; fill:#1A2250; stroke:#fff; paint-order:stroke; stroke-linejoin:round; pointer-events:none}
 .cq-letter{font-family:var(--f-display); font-weight:400; fill:#CC2D2A}
-.cq-hint{margin:-2px 0 6px}
+.cq-colko{fill:none; stroke:#CC2D2A}
+@media (max-width:599px){ .cq-tools{position:static} .cq-tool{min-height:40px; padding:5px 9px; font-size:13px} }
