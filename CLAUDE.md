@@ -12,6 +12,7 @@ lib/revision.js            LE moteur : écrans Cartes / Quiz / Contrôle, progre
 lib/revision.css           styles communs (cahier Seyès, fiches bristol, mode sombre = ardoise)
 lib/module.html            gabarit de page : chaque <matiere>/<module>/index.html en est une COPIE EXACTE
 lib/home.js                logique de l'accueil
+lib/planisphere.js         fond de carte vierge des croquis (généré par tools/carte/planisphere.py, chargé à la demande)
 lib/lesson.js              Revision.lesson(données) : module « leçon » piloté par les données (modules de la fabrique)
 <matiere>/<module>/module.js   le module : données + règles, rien d'autre
 tools/check.py             vérifications de cohérence à lancer avant chaque commit
@@ -75,6 +76,11 @@ Ne pas modifier le moteur pour un besoin propre à un module : soit c'est géné
   photo de la copie, puis correction critère par critère : par l'IA si l'appareil est débloqué (mot de passe tapé une
   fois, jeton gardé dans `localStorage["revisions-ia-jeton"]`), sinon autocorrection (cases à cocher + réponse modèle).
   Meilleure note par sujet dans `S.rd`.
+- Croquis (si `croquis`) : avant la Rédaction. Planisphère vierge avec des petits ronds (villes à placer + leurres
+  `points`) : l'élève touche une étiquette puis sa place (zoom automatique quand plusieurs villes sont sous le doigt),
+  choisit la couleur dans la légende (« Colorier aussi »), puis « Vérifier » : bonne place en vert, sa réponse en rouge,
+  « Refaire mes erreurs ». Séries (`series`) + « Tout le croquis » ; meilleur % par série dans `S.cq`. Dans une leçon
+  (`Revision.lesson`), le quiz et le contrôle en tirent aussi « Sur la carte, quelle lettre montre… ? ».
 - Quiz et contrôle : glisser à gauche = question suivante une fois la réponse donnée ; en fin de série, les boutons
   passent avant la liste des erreurs (repliée) et « Revoir les cartes » relance les cartes des notions ratées.
 - Chaque module écrit un résumé dans `localStorage["revisions-index"]` (`{chemin: {seen, done, n, noun, fem, cd, k, kd}}`, k = cartes du jour calculées le jour kd),
@@ -90,6 +96,8 @@ Revision.start({
   title, subtitle?, eyebrow?, hand?,        // en-tête du module (hand = note manuscrite rouge)
   countdown?: {date: "AAAA-MM-JJ", label: "mardi 13 octobre"},
   video?: {src: "video.mp4", poster?, length?: "6 min", title?, text?, chapters?: [[secondes, "titre"]]} ou une liste de ces objets,  // tuile « Vidéo(s) »
+  croquis?: {text?, badge?, consigne?: html, legende?: [{id, t, c: "#hex"}], series?: [{id, t, ids}], points?: [[lon, lat]],
+             elements: [{id, nom, court?, unit, lon, lat, zone?: [[lon, lat, rx°, ry°]], cercle?, couleur?, aide?, ou?}]},  // étape « Croquis »
   redaction?: {text?, items: [{id, unit, titre, doc?: html, consigne: html, photo?: false, modele: "texte",
                criteres: [{t: "ce que la réponse doit contenir", pts}]}]},   // étape « Rédaction »
   groups: {"1": {name, plural?, cls: "l1"|"l2"|"l3", filter?}},   // couleur + chips « Je révise »
@@ -107,7 +115,7 @@ Revision.start({
 ```
 
 Variante données seules (fabrique) : `Revision.lesson({key, titre, sousTitre, surtitre, note, controle?: {date, label}, video?,
-parties, notions, parCoeur, cours, vocabulaire, vraiFaux, chiffres, etapes, classements, redaction})`, schéma `LECON` dans
+parties, notions, parCoeur, cours, vocabulaire, vraiFaux, chiffres, etapes, classements, redaction, croquis?})` (croquis : `notion` au lieu de `unit`), schéma `LECON` dans
 `tools/fabrique/schemas.py` ; `lib/lesson.js` en tire cartes (par cœur d'abord), quiz, contrôle (textes à trous inclus) et rédaction.
 
 Un `item` de contrôle : `{unit, kind: "choice", opts}` ou `{unit, kind: "fields", fields: [{label, lang?, inputmode?, unit?, check: v => ({ok, fix})}]}`,
