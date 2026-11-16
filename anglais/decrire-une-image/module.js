@@ -7,6 +7,9 @@
    Vocabulaire en plus, signalé « En plus » : les deux autres coins, les prépositions de lieu, quelques mots de la campagne
    et de la plage, There is / There are, be + -ing, les adjectifs des émotions. Images : dessins SVG faits pour le module.
    Film animé (film.mp4) : les 9 zones de l'image, les plans, les prépositions, les phrases du cahier.
+   Ajout du 16 novembre 2026 : la fiche « Tool box » (Things · People · Actions · Places · Feelings, photo du baseball)
+   et les tableaux du cahier remplis sur le même modèle (le camp, le lacrosse, la randonnée, le team building, le baseball),
+   plus la description de la ferme rédigée par Léandre (ses erreurs deviennent des exercices « corrige l'erreur »).
    Données + règles ; le moteur est dans lib/revision.js. */
 (() => {
 "use strict";
@@ -336,8 +339,11 @@ const UNITS = [
   {id: "prep",        group: "1", name: "Les prépositions de lieu",   sub: "next to, behind, in front of, between, under, above, on"},
   {id: "campagne",    group: "2", name: "The countryside",            sub: "barn, windmill, fence, field, path, bush…"},
   {id: "eau",         group: "2", name: "Au bord de l'eau",           sub: "lake, river, swimming pool, lifejacket, swimsuit…"},
+  {id: "camp",        group: "2", name: "Le camp, la randonnée",      sub: "tent, campfire, campsite, hikers, stream, to chat…"},
+  {id: "sport",       group: "2", name: "Le sport",                   sub: "baseball, lacrosse : glove, bat, coach, to score…"},
+  {id: "toolbox",     group: "3", name: "La Tool box",                sub: "Things, People, Actions, Places, Feelings"},
   {id: "phrases",     group: "3", name: "Présenter et décrire",       sub: "We can see…, There is / There are, be + -ing"},
-  {id: "impressions", group: "3", name: "Les impressions",            sub: "look happy, seem excited, are having fun…"}
+  {id: "impressions", group: "3", name: "Les impressions",            sub: "look happy, seem excited, determined, out of breath…"}
 ].map(u => Object.assign(u, {tag: u.name}));
 const UBY = Object.fromEntries(UNITS.map(u => [u.id, u]));
 
@@ -398,7 +404,13 @@ const PAR_COEUR = [
    tip: "their = leur(s). them, c'est « eux » : on ne le met jamais devant un nom."},
   {id: "p8", n: "impressions", text: "They seem to be having fun.", fr: "Ils ont l'air de bien s'amuser.", source: SRC_DESC,
    o: ["They seem be having fun.", "They seem to having fun.", "They seems to be having fun."],
-   gap: [["They seem ", "to be", " having fun."], ["They seem to be ", "having fun", "."]], tip: "seem to be + V-ing : ils ont l'air d'être en train de…"}
+   gap: [["They seem ", "to be", " having fun."], ["They seem to be ", "having fun", "."]], tip: "seem to be + V-ing : ils ont l'air d'être en train de…"},
+  {id: "tb", n: "toolbox", text: "Things, People, Actions, Places, Feelings.", q: "Quelles sont les 5 colonnes de la Tool box pour décrire une image ?",
+   fr: "Les 5 colonnes de la Tool box : les choses, les personnes, les actions, les lieux, les sentiments.", source: "Fiche Tool box",
+   o: ["Things, Persons, Actions, Places, Feelings.", "Things, People, Actions, Colours, Feelings.", "Objects, People, Actions, Places, Moods."],
+   gap: [["Things, ", "People", ", Actions, Places, Feelings."], ["Things, People, ", "Actions", ", Places, Feelings."], ["Things, People, Actions, ", "Places", ", Feelings."],
+     ["Things, People, Actions, Places, ", "Feelings", "."], ["", "Things", ", People, Actions, Places, Feelings."]],
+   tip: "Avant de décrire, on remplit les 5 colonnes : ce qu'on voit, qui, ce qu'ils font, où, ce qu'ils ressentent."}
 ].map(p => {
   const L = p.z !== undefined ? ZONES[p.z] : p.plan ? PLANS[p.plan] : null;
   return L ? Object.assign(p, {text: L.en, fr: L.fr, o: L.o, loc: true}) : p;
@@ -414,8 +426,8 @@ const VOC = [
   {n: "campagne", en: "a water tower", fr: "un château d'eau", ok: ["water tower"], ic: "watertower", cahier: 1},
   {n: "campagne", en: "a field", fr: "un champ", ok: ["field"], ic: "field", cahier: 1, not: ["grass", "a path"]},
   {n: "campagne", en: "grass", fr: "l'herbe", ok: ["grass"], ic: "grass", cahier: 1, not: ["a field", "a bush"]},
-  {n: "campagne", en: "a path", fr: "un chemin (de terre)", ok: ["path", "dirt track", "dust track", "track", "footpath", "trail"], ic: "path", cahier: 1,
-   not: ["grass", "a field", "a hill"], tip: "On dit aussi a dirt track : un chemin de terre."},
+  {n: "campagne", en: "a path", fr: "un chemin (de terre)", ok: ["path", "dirt track", "track", "footpath", "trail"], ic: "path", cahier: 1,
+   not: ["grass", "a field", "a hill"], tip: "On dit aussi a dirt track : un chemin de terre (pas « dust track » : dust, c'est la poussière)."},
   {n: "campagne", en: "a bush", fr: "un buisson", ok: ["bush"], ic: "bush", cahier: 1, not: ["a tree"]},
   {n: "campagne", en: "a sheep", fr: "un mouton", ok: ["sheep"], ic: "sheep", card: 1, tip: "Pas de s au pluriel : one sheep, two sheep."},
   {n: "campagne", en: "a tree", fr: "un arbre", ok: ["tree"], ic: "tree", not: ["a bush"]},
@@ -444,7 +456,94 @@ const VOC = [
   {n: "eau", en: "a lighthouse", fr: "un phare", ok: ["lighthouse"], ic: "lighthouse"},
   {n: "eau", en: "a sandcastle", fr: "un château de sable", ok: ["sandcastle", "sand castle"], ic: "sandcastle"},
   {n: "eau", en: "a beach umbrella", fr: "un parasol", ok: ["beach umbrella", "umbrella", "parasol", "sunshade"], ic: "umbrella"},
-  {n: "eau", en: "a beach", fr: "une plage", ok: ["beach"]}
+  {n: "eau", en: "a beach", fr: "une plage", ok: ["beach"]},
+  /* Tool box du cahier : le camp, la randonnée, le team building (src = le tableau d'où vient le mot) */
+  {n: "camp", src: "le camp", en: "a forest", fr: "une forêt, les bois", ok: ["forest", "woods", "wood"], tip: "On dit aussi the woods : les bois."},
+  {n: "camp", src: "le camp", en: "a barbecue", fr: "un barbecue", ok: ["barbecue", "barbeque", "bbq"]},
+  {n: "camp", src: "le camp", en: "a tent", fr: "une tente", ok: ["tent"]},
+  {n: "camp", src: "le camp", en: "a camp", fr: "un camp (de vacances)", ok: ["camp", "summer camp"], not: ["a campsite", "a campfire"]},
+  {n: "camp", src: "le camp", en: "a hut", fr: "une cabane", ok: ["hut", "cabin"], not: ["a tent"]},
+  {n: "camp", src: "le camp", en: "marshmallows", fr: "des chamallows (des guimauves)", ok: ["marshmallow", "marshmallows"]},
+  {n: "camp", src: "le camp", en: "a backpack", fr: "un sac à dos", ok: ["backpack", "rucksack", "back pack"], tip: "On dit aussi a rucksack."},
+  {n: "camp", src: "le camp", en: "a campfire", fr: "un feu de camp", ok: ["campfire", "camp fire"], not: ["a barbecue", "a camp"]},
+  {n: "camp", src: "le camp", en: "a campsite", fr: "un terrain de camping", ok: ["campsite", "camp site", "campground", "camping site"], not: ["a camp"],
+   tip: "Faux ami : le camping (le lieu) = a campsite. Camping, c'est l'activité : to go camping."},
+  {n: "camp", src: "le camp", en: "a meadow", fr: "un pré, une prairie", ok: ["meadow"]},
+  {n: "camp", src: "le camp", en: "adults", fr: "des adultes", ok: ["adult", "adults", "grown ups"], not: ["instructors", "supervisors"]},
+  {n: "camp", src: "le camp", en: "instructors", fr: "des moniteurs", ok: ["instructor", "instructors"], not: ["supervisors", "adults"]},
+  {n: "camp", src: "le camp", en: "supervisors", fr: "des animateurs, des surveillants", ok: ["supervisor", "supervisors"], not: ["instructors", "adults"]},
+  {n: "camp", src: "le camp", en: "to grill", fr: "faire griller", ok: ["grill", "grilling"], not: ["to cook"]},
+  {n: "camp", src: "le camp", en: "to cook", fr: "faire la cuisine, cuisiner", ok: ["cook", "cooking"], not: ["to grill"]},
+  {n: "camp", src: "le camp", en: "to have a barbecue", fr: "faire un barbecue", ok: ["have a barbecue", "have a bbq", "having a barbecue"]},
+  {n: "camp", src: "le camp", en: "to chat", fr: "bavarder, discuter", ok: ["chat", "chatting", "talk", "talking", "have a chat"], tip: "On dit aussi to talk ou to have a chat."},
+  {n: "camp", src: "le camp", en: "to laugh", fr: "rire", ok: ["laugh", "laughing"], tip: "Sans t à la fin : to laugh. Au passé : laughed."},
+  {n: "camp", src: "le camp", en: "to sit", fr: "s'asseoir, être assis", ok: ["sit", "sitting", "sit down"], tip: "sit → sitting : on double le t."},
+  {n: "camp", src: "la randonnée", en: "rocks", fr: "des rochers", ok: ["rock", "rocks"]},
+  {n: "camp", src: "la randonnée", en: "tree trunks", fr: "des troncs d'arbre", ok: ["tree trunk", "tree trunks", "trunks", "trunk"], not: ["roots"]},
+  {n: "camp", src: "la randonnée", en: "a stream", fr: "un ruisseau", ok: ["stream", "brook", "creek"]},
+  {n: "camp", src: "la randonnée", en: "roots", fr: "des racines", ok: ["root", "roots"], not: ["tree trunks"]},
+  {n: "camp", src: "la randonnée", en: "the dirt", fr: "la terre (par terre, sur le chemin)", ok: ["dirt", "mud", "earth", "ground"]},
+  {n: "camp", src: "la randonnée", en: "trekking shoes", fr: "des chaussures de randonnée", ok: ["trekking shoes", "hiking shoes", "hiking boots", "walking shoes", "walking boots"]},
+  {n: "camp", src: "la randonnée", en: "hikers", fr: "des randonneurs", ok: ["hikers", "hiker", "walkers", "trekkers"], not: ["adventurers"], tip: "On dit aussi walkers ou trekkers."},
+  {n: "camp", src: "la randonnée", en: "adventurers", fr: "des aventuriers", ok: ["adventurer", "adventurers", "explorers"], not: ["hikers"]},
+  {n: "camp", src: "la randonnée", en: "to hike", fr: "faire de la randonnée", ok: ["hike", "hiking", "go hiking", "trek", "trekking"], not: ["to walk"]},
+  {n: "camp", src: "la randonnée", en: "to walk up the hill", fr: "monter la colline (à pied)", ok: ["walk up the hill", "go up the hill", "climb the hill", "walking up the hill"]},
+  {n: "camp", src: "la randonnée", en: "to walk along the stream", fr: "marcher le long du ruisseau", ok: ["walk along the stream", "walking along the stream", "walk along the river"]},
+  {n: "camp", src: "la randonnée", en: "to jump over", fr: "sauter par-dessus", ok: ["jump over", "jumping over"]},
+  {n: "camp", src: "la randonnée", en: "to avoid the water", fr: "éviter l'eau", ok: ["avoid the water", "avoid water", "avoiding the water", "avoiding water"]},
+  {n: "camp", src: "le team building", en: "a team building activity", fr: "une activité pour souder l'équipe", ok: ["team building activity", "team building"]},
+  {n: "camp", src: "le team building", en: "a structure", fr: "une structure (en bois)", ok: ["structure", "frame", "wooden structure"]},
+  {n: "camp", src: "le team building", en: "to carry someone on your shoulders", fr: "porter quelqu'un sur ses épaules",
+   ok: ["carry someone on your shoulders", "carry someone on their shoulders", "carry people on their shoulders", "carry somebody on your shoulders", "carry someone on his shoulders"],
+   tip: "Porter quelqu'un ou quelque chose = to carry. Porter un vêtement = to wear."},
+  {n: "camp", src: "le team building", en: "to squat", fr: "s'accroupir", ok: ["squat", "squatting", "crouch", "crouch down", "squat down"]},
+  /* Tool box du cahier : le baseball et le lacrosse */
+  {n: "sport", src: "le baseball", en: "a leather glove", fr: "un gant en cuir", ok: ["leather glove", "glove", "baseball glove", "mitt"], not: ["gloves"], tip: "leather = le cuir."},
+  {n: "sport", src: "le baseball", en: "a cap", fr: "une casquette", ok: ["cap", "baseball cap"], not: ["a helmet"]},
+  {n: "sport", src: "le baseball", en: "a bat", fr: "une batte", ok: ["bat", "baseball bat"], not: ["a lacrosse stick"]},
+  {n: "sport", src: "le baseball", en: "a coach", fr: "un entraîneur", ok: ["coach", "trainer"]},
+  {n: "sport", src: "le baseball", en: "a team", fr: "une équipe", ok: ["team", "baseball team"]},
+  {n: "sport", src: "le baseball", en: "a player", fr: "un joueur, une joueuse", ok: ["player", "players"], not: ["a batter", "a catcher", "a pitcher", "a goalkeeper"]},
+  {n: "sport", src: "le baseball", en: "a batter", fr: "le batteur (celui qui tape la balle)", ok: ["batter", "hitter"], not: ["a player"]},
+  {n: "sport", src: "le baseball", en: "a catcher", fr: "le receveur (celui qui attrape la balle)", ok: ["catcher"], not: ["a player"]},
+  {n: "sport", src: "le baseball", en: "a pitcher", fr: "le lanceur", ok: ["pitcher", "thrower"], not: ["a player"],
+   tip: "Le cahier dit thrower : on comprend, mais au baseball le lanceur s'appelle the pitcher."},
+  {n: "sport", src: "le baseball", en: "a referee", fr: "un arbitre", ok: ["referee", "umpire", "ref"], tip: "Au baseball, l'arbitre s'appelle an umpire."},
+  {n: "sport", src: "le baseball", en: "a baseball field", fr: "un terrain de baseball", ok: ["baseball field", "baseball pitch", "field", "pitch", "baseball diamond"]},
+  {n: "sport", src: "le baseball", en: "a playground", fr: "une aire de jeux, une cour de récréation", ok: ["playground"]},
+  {n: "sport", src: "le baseball", en: "a park", fr: "un parc", ok: ["park"]},
+  {n: "sport", src: "le baseball", en: "to throw", fr: "lancer", ok: ["throw", "throwing", "pitch", "pitching"]},
+  {n: "sport", src: "le baseball", en: "to catch", fr: "attraper (la balle)", ok: ["catch", "catching"], not: ["to grab", "to hold"]},
+  {n: "sport", src: "le baseball", en: "to run", fr: "courir", ok: ["run", "running"], tip: "run → running : on double le n."},
+  {n: "sport", src: "le baseball", en: "to train", fr: "s'entraîner", ok: ["train", "training", "practise", "practice", "practising", "practicing"]},
+  {n: "sport", src: "le baseball", en: "a practice", fr: "un entraînement", ok: ["practice", "training", "training session", "practice session"], not: ["a game"]},
+  {n: "sport", src: "le lacrosse", en: "a game", fr: "un match", ok: ["game", "match"], not: ["a practice"], tip: "On dit aussi a match."},
+  {n: "sport", src: "le lacrosse", en: "a helmet", fr: "un casque", ok: ["helmet"], not: ["a cap"]},
+  {n: "sport", src: "le lacrosse", en: "equipment", fr: "l'équipement, le matériel", ok: ["equipment", "gear", "kit"],
+   tip: "Pas de s : equipment (et gear) ne se mettent jamais au pluriel."},
+  {n: "sport", src: "le lacrosse", en: "a lacrosse stick", fr: "une crosse de lacrosse", ok: ["lacrosse stick", "stick"], not: ["a bat"]},
+  {n: "sport", src: "le lacrosse", en: "a goal", fr: "un but (la cage)", ok: ["goal", "goal cage", "cage", "net"]},
+  {n: "sport", src: "le lacrosse", en: "a post", fr: "un poteau", ok: ["post", "goalpost", "goal post"]},
+  {n: "sport", src: "le lacrosse", en: "gloves", fr: "des gants", ok: ["gloves", "glove"], not: ["a leather glove"]},
+  {n: "sport", src: "le lacrosse", en: "a goalkeeper", fr: "un gardien de but", ok: ["goalkeeper", "goalie", "keeper", "goal keeper"], not: ["a player"]},
+  {n: "sport", src: "le lacrosse", en: "to hold", fr: "tenir", ok: ["hold", "holding"], not: ["to catch", "to grab"]},
+  {n: "sport", src: "le lacrosse", en: "to grab", fr: "saisir, attraper d'un coup", ok: ["grab", "grabbing", "seize"], not: ["to catch", "to hold"]},
+  {n: "sport", src: "le lacrosse", en: "to score", fr: "marquer (un but, un point)", ok: ["score", "scoring", "score a goal"]},
+  /* Feelings des tableaux du cahier */
+  {n: "impressions", src: "le camp", en: "joyful", fr: "joyeux", ok: ["joyful", "joyous", "cheerful"], not: ["enthusiastic"]},
+  {n: "impressions", src: "le camp", en: "enthusiastic", fr: "enthousiaste", ok: ["enthusiastic"], not: ["joyful", "eager to win"]},
+  {n: "impressions", src: "le lacrosse", en: "determined", fr: "déterminé", ok: ["determined"], not: ["competitive", "focused", "eager to win", "courageous"]},
+  {n: "impressions", src: "le lacrosse", en: "competitive", fr: "qui a l'esprit de compétition", ok: ["competitive"], not: ["determined", "eager to win"]},
+  {n: "impressions", src: "le lacrosse", en: "out of breath", fr: "essoufflé", ok: ["out of breath", "breathless"], not: ["exhausted", "sweating"]},
+  {n: "impressions", src: "le lacrosse", en: "eager to win", fr: "impatient de gagner, qui veut gagner", ok: ["eager to win", "wants to win", "want to win", "eager"],
+   not: ["determined", "competitive", "enthusiastic"]},
+  {n: "impressions", src: "le lacrosse", en: "sweating", fr: "en sueur (il transpire)", ok: ["sweating", "sweaty"], not: ["out of breath", "exhausted"]},
+  {n: "impressions", src: "la randonnée", en: "exhausted", fr: "épuisé", ok: ["exhausted", "worn out"], not: ["out of breath", "sweating"], tip: "Plus fort que tired (fatigué)."},
+  {n: "impressions", src: "la randonnée", en: "courageous", fr: "courageux", ok: ["courageous", "brave"], not: ["adventurous", "determined"]},
+  {n: "impressions", src: "la randonnée", en: "adventurous", fr: "aventureux, qui aime l'aventure", ok: ["adventurous"], not: ["courageous"]},
+  {n: "impressions", src: "le baseball", en: "stressed", fr: "stressé", ok: ["stressed", "stressed out"], not: ["nervous"]},
+  {n: "impressions", src: "le baseball", en: "focused", fr: "concentré", ok: ["focused", "focussed", "concentrated"], not: ["determined"]},
+  {n: "impressions", src: "le baseball", en: "nervous", fr: "nerveux, anxieux", ok: ["nervous", "anxious"], not: ["stressed"], tip: "On dit aussi anxious."}
 ].map((v, i) => Object.assign(v, {id: "v" + i}));
 
 /* ---------- prépositions ---------- */
@@ -514,8 +613,64 @@ const LAKE_Q = [
   {n: "eau", q: "Where are the boys?", a: "They're in a lake.", o: ["They're in a classroom.", "They're in the mountains.", "They're in a barn."]}
 ];
 
+/* ---------- la Tool box : dans quelle colonne ? (mots des tableaux du cahier, sans les mots rangés dans deux colonnes) ---------- */
+const TB_COLS = {
+  Things: "les choses qu'on voit (What can you see?)", People: "les personnes (Who?)", Actions: "ce qu'ils font (What are they doing?)",
+  Places: "le lieu (Where?)", Feelings: "ce qu'ils ressentent (How do they feel?)"
+};
+const TBI = [
+  ["a tent", "Things", "camp"], ["marshmallows", "Things", "camp"], ["a backpack", "Things", "camp"], ["a campfire", "Things", "camp"], ["a barbecue", "Things", "camp"],
+  ["rocks", "Things", "camp"], ["roots", "Things", "camp"], ["trekking shoes", "Things", "camp"], ["a bat", "Things", "sport"], ["a cap", "Things", "sport"],
+  ["a leather glove", "Things", "sport"], ["a helmet", "Things", "sport"], ["a lacrosse stick", "Things", "sport"],
+  ["instructors", "People", "camp"], ["supervisors", "People", "camp"], ["adults", "People", "camp"], ["teenagers", "People", "camp"], ["hikers", "People", "camp"],
+  ["adventurers", "People", "camp"], ["a goalkeeper", "People", "sport"], ["a coach", "People", "sport"], ["a batter", "People", "sport"], ["a catcher", "People", "sport"],
+  ["to grill", "Actions", "camp"], ["to chat", "Actions", "camp"], ["to laugh", "Actions", "camp"], ["to jump over", "Actions", "camp"], ["to hike", "Actions", "camp"],
+  ["to squat", "Actions", "camp"], ["to throw", "Actions", "sport"], ["to catch", "Actions", "sport"], ["to score", "Actions", "sport"], ["to run", "Actions", "sport"],
+  ["a campsite", "Places", "camp"], ["a meadow", "Places", "camp"], ["a baseball field", "Places", "sport"], ["a park", "Places", "sport"], ["a playground", "Places", "sport"],
+  ["joyful", "Feelings", "impressions"], ["enthusiastic", "Feelings", "impressions"], ["determined", "Feelings", "impressions"], ["competitive", "Feelings", "impressions"],
+  ["out of breath", "Feelings", "impressions"], ["exhausted", "Feelings", "impressions"], ["courageous", "Feelings", "impressions"], ["nervous", "Feelings", "impressions"],
+  ["focused", "Feelings", "impressions"], ["stressed", "Feelings", "impressions"]
+];
+
+/* ---------- la description de la ferme écrite par Léandre : corrige l'erreur ---------- */
+const FIX = [
+  {n: "phrases", bad: "On this landscape, they are a barn in the background.", a: "In this picture, there is a barn in the background.",
+   o: ["In this picture, they are a barn in the background.", "In this picture, there are a barn in the background.", "In this picture, their is a barn in the background."],
+   w: "Il y a = there is (un seul) ou there are (plusieurs). They are, c'est « ils sont »."},
+  {n: "cote", bad: "In the top, there is a cloud.", a: "At the top, there is a cloud.",
+   o: ["In the top, there is a cloud.", "On the top, there is a cloud.", "To the top, there is a cloud."], w: "AT the top, AT the bottom."},
+  {n: "cote", bad: "On the middle, there is a windmill.", a: "In the middle, there is a windmill.",
+   o: ["On the middle, there is a windmill.", "At the middle, there is a windmill.", "Of the middle, there is a windmill."], w: "IN the middle."},
+  {n: "coins", bad: "On the right corner, there is a bush.", a: "In the bottom right corner, there is a bush.",
+   o: ["On the bottom right corner, there is a bush.", "In the right bottom corner, there is a bush.", "In the corner right, there is a bush."],
+   w: "IN the … corner, et on dit quel coin : in the bottom right corner (en bas à droite)."},
+  {n: "campagne", bad: "There is a path dusttrack at the bottom to lead in the barn.", a: "There is a dirt track at the bottom, leading to the barn.",
+   o: ["There is a dust track at the bottom, leading to the barn.", "There is a dirt track at the bottom, to lead in the barn.", "There is a dirt track at the bottom, leading in the barn."],
+   w: "a dirt track = un chemin de terre (dust, c'est la poussière). leading to the barn = qui mène à la grange."},
+  {n: "plans", bad: "On the third plan, there are fields.", a: "In the background, there are fields.",
+   o: ["On the third plan, there are fields.", "In the third plan, there are fields.", "On the background, there are fields."],
+   w: "« plan » ne se traduit pas mot à mot : in the foreground (devant), in the background (au fond)."}
+];
+
 /* ---------- vrai ou faux ---------- */
 const VF = [
+  ["La Tool box a 5 colonnes : Things, People, Actions, Places, Feelings.", true, "toolbox", "Oui : on les remplit avant d'écrire la description."],
+  ["Dans la colonne Feelings, on écrit ce que font les personnes.", false, "toolbox", "Non : ce qu'ils font, c'est Actions. Feelings = ce qu'ils ressentent (happy, nervous, determined…)."],
+  ["Dans la colonne Places, on écrit où se passe la scène.", true, "toolbox", "Oui : a campsite, a meadow, a baseball field…"],
+  ["Dans la colonne People, on écrit « a tent ».", false, "toolbox", "Non : a tent est une chose (Things). People = les personnes : hikers, a coach…"],
+  ["« a campsite » veut dire « un terrain de camping ».", true, "camp", "Oui. Attention, faux ami : en anglais, camping c'est l'activité (to go camping)."],
+  ["« a stream » veut dire « un ruisseau ».", true, "camp", "Oui : to walk along the stream = marcher le long du ruisseau."],
+  ["« hikers » veut dire « des randonneurs ».", true, "camp", "Oui, on dit aussi walkers ou trekkers."],
+  ["Rire se dit « to laught ».", false, "camp", "Non : to laugh, sans t à la fin."],
+  ["Pour porter un camarade sur ses épaules, on dit « to wear someone on your shoulders ».", false, "camp", "Non : porter quelqu'un = to carry. to wear, c'est pour les vêtements."],
+  ["On écrit « equipments » au pluriel.", false, "sport", "Non : equipment ne prend jamais de s (gear non plus)."],
+  ["« a bat » veut dire « une batte ».", true, "sport", "Oui (et aussi une chauve-souris !)."],
+  ["« to score » veut dire « marquer un but, un point ».", true, "sport", "Oui."],
+  ["Au baseball, le lanceur s'appelle « the pitcher ».", true, "sport", "Oui : le cahier dit thrower, on comprend, mais le vrai mot est pitcher."],
+  ["« out of breath » veut dire « essoufflé ».", true, "impressions", "Oui : The players are out of breath."],
+  ["« focused » veut dire « concentré ».", true, "impressions", "Oui : The boy looks focused."],
+  ["On dit « on second plan » pour « au second plan ».", false, "plans", "Non, c'est le français mot à mot. On dit in the background (au fond) ou in the foreground (devant)."],
+  ["Pour « il y a une grange », on écrit « they are a barn ».", false, "phrases", "Non : There is a barn. They are = ils sont."],
   ["On dit « in the foreground » pour « au premier plan ».", true, "plans", "Oui : in the foreground, avec in."],
   ["On dit « on the foreground ».", false, "plans", "Non : in the foreground (au premier plan), in the background (à l'arrière-plan)."],
   ["« in the background » veut dire « à l'arrière-plan ».", true, "plans", "Oui : au fond de l'image, ce qui est loin."],
@@ -544,7 +699,7 @@ const VF = [
 const normEN = s => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[’`´‘]/g, "'").replace(/[-_]/g, " ").replace(/[^a-z' ]+/g, " ").replace(/\s+/g, " ").trim();
 const sq = s => s.replace(/[ ']/g, "");
 const sing = w => /(sh|ch|x|ss)es$/.test(w) ? w.slice(0, -2) : /[^aeiou]ies$/.test(w) ? w.slice(0, -3) + "y" : /[^s]s$/.test(w) ? w.slice(0, -1) : w;
-const vkey = s => sing(sq(normEN(s).replace(/\b(a|an|the|some|two|ten)\b/g, " ")));
+const vkey = s => sing(sq(normEN(s).replace(/\b(a|an|the|some|two|ten|to)\b/g, " ")));
 const vocOk = (list, val) => { const a = vkey(val); return !!a && list.some(k => vkey(k) === a); };
 function locForms(en){
   const out = new Set([en]), m = en.match(/^in the (top|bottom) (left|right) corner$/);
@@ -587,7 +742,7 @@ const G = {
     const p = pick(pool);
     if (typed) return G.pcTyped(p);
     const label = `<span class="label">${esc(pcLabel(p))}</span><br>`;
-    const prompt = p.loc ? `${label}Comment dit-on <b>« ${esc(p.fr.replace(/ \(.*\)$/, ""))} »</b> ?` : p.id === "cs" ? `${label}Comment dit-on <b>« la campagne »</b> en anglais ?` : `${label}Dis en anglais : <b>« ${esc(p.fr)} »</b>`;
+    const prompt = p.loc ? `${label}Comment dit-on <b>« ${esc(p.fr.replace(/ \(.*\)$/, ""))} »</b> ?` : p.id === "cs" ? `${label}Comment dit-on <b>« la campagne »</b> en anglais ?` : p.q ? `${label}${esc(p.q)}` : `${label}Dis en anglais : <b>« ${esc(p.fr)} »</b>`;
     return {n, prompt, wide: !p.loc, opts: shuffle([{t: p.text, ok: true}, ...p.o.map(t => ({t, ok: false}))]),
       fig: p.loc ? (p.plan ? fig(ART.miniPlan(p.plan === "fg")) : fig(ART.miniZone(p.z))) : "",
       explain: `<b>${esc(p.text)}</b> : c'est ${p.loc || p.id === "cs" ? "l'expression" : "la phrase"} du cahier, mot pour mot.${p.tip ? `<br>${esc(p.tip)}` : ""}`, say: p.text,
@@ -772,6 +927,25 @@ const G = {
     return {n, prompt: `Look at the picture.<br><b>${esc(x.q)}</b>`, fig: fig(ART.big(ART.lake, "Des garçons sautent dans un lac depuis une structure gonflable")), wide: true,
       opts: shuffle([{t: x.a, ok: true}, ...x.o.map(t => ({t, ok: false}))]), say: x.a, explain: `<b>${esc(x.a)}</b>`, review: rev(n, x.q, x.a), redo: () => G.lake(n)};
   },
+  /* la Tool box : dans quelle colonne ? */
+  tb(n){
+    const pool = TBI.filter(x => n === "toolbox" || x[2] === n);
+    if (!pool.length) return null;
+    const [w, col] = pick(pool), wrong = shuffle(Object.keys(TB_COLS).filter(c => c !== col)).slice(0, 3);
+    return {n, prompt: `<span class="label">Tool box</span><br>Dans quelle colonne ranges-tu <b>« ${esc(w)} »</b> ?`,
+      opts: shuffle([{t: col, ok: true}, ...wrong.map(t => ({t, ok: false}))]), say: w,
+      explain: `<b>${esc(w)}</b> → <b>${col}</b> : ${esc(TB_COLS[col])}.`, review: rev(n, `Tool box : ${w}`, col), redo: () => G.tb(n)};
+  },
+  /* la description de la ferme écrite par Léandre : la bonne phrase */
+  fix(n){
+    const pool = FIX.filter(x => x.n === n);
+    if (!pool.length) return null;
+    const x = pick(pool);
+    return {n, prompt: `<span class="label">Ta description de la ferme · corrige l'erreur</span><br>Tu avais écrit : <i>${esc(x.bad)}</i><br>Quelle est la bonne phrase ?`,
+      fig: fig(ART.big(ART.farm, "Une ferme à la campagne")), wide: true, say: x.a,
+      opts: shuffle([{t: x.a, ok: true}, ...x.o.map(t => ({t, ok: false}))]), explain: `<b>${esc(x.a)}</b><br>${esc(x.w)}`,
+      review: rev(n, `Corrige : ${x.bad}`, x.a), redo: () => G.fix(n)};
+  },
   vf(n){
     const pool = VF.filter(v => v[2] === n);
     if (!pool.length) return null;
@@ -781,17 +955,20 @@ const G = {
   }
 };
 const KINDS = {
-  coins: ["lieu", "lieu", "quoi", "vfScene", "memo", "lieuEN", "vf"],
-  cote: ["lieu", "lieu", "quoi", "vfScene", "memo", "lieuEN", "vf"],
-  plans: ["plan", "plan", "memo", "lieuEN", "vf"],
+  coins: ["lieu", "lieu", "quoi", "vfScene", "memo", "lieuEN", "fix", "vf"],
+  cote: ["lieu", "lieu", "quoi", "vfScene", "memo", "lieuEN", "fix", "vf"],
+  plans: ["plan", "plan", "memo", "lieuEN", "fix", "vf"],
   prep: ["prep", "prep", "prep", "prepFR", "vf"],
-  campagne: ["vocImg", "vocImg", "vocFR", "vocEN", "vf"],
+  campagne: ["vocImg", "vocImg", "vocFR", "vocEN", "fix", "vf"],
   eau: ["vocImg", "vocFR", "vocEN", "lake", "vf"],
-  phrases: ["thereIs", "cont", "cont", "lake", "vf"],
-  impressions: ["face", "lookSeem", "lookSeem", "lake", "vf"]
+  camp: ["vocFR", "vocFR", "vocEN", "vocEN", "tb", "vf"],
+  sport: ["vocFR", "vocFR", "vocEN", "vocEN", "tb", "vf"],
+  toolbox: ["tb", "tb", "tb", "vf"],
+  phrases: ["thereIs", "cont", "cont", "lake", "fix", "vf"],
+  impressions: ["face", "lookSeem", "lookSeem", "lake", "vocFR", "vocEN", "tb", "vf"]
 };
 const KINDS_TYPED = {coins: ["lieu", "pcLoc"], cote: ["lieu", "pcLoc"], plans: ["plan", "pcLoc"], prep: ["prep"], campagne: ["vocImg", "vocFR", "gap"], eau: ["vocImg", "vocFR"],
-  phrases: ["gap", "cont", "thereIs"], impressions: ["gap", "face"]};
+  camp: ["vocFR"], sport: ["vocFR"], toolbox: ["gap"], phrases: ["gap", "cont", "thereIs"], impressions: ["gap", "face", "vocFR"]};
 function make(n, typed){
   for (const k of shuffle(typed ? KINDS_TYPED[n] : KINDS[n])) { const e = G[k](n, typed); if (e) return e; }
   return G.vf(n);
@@ -841,7 +1018,29 @@ const REDAC = [
      {t: "Situe au moins quatre éléments avec des expressions de lieu justes (in the background, on the left, in the foreground…)", pts: 2},
      {t: "Emploie au moins cinq mots de la campagne justes (barn, field, fence, path, windmill, cow…)", pts: 1},
      {t: "Emploie There is / There are ou be + -ing correctement", pts: 1},
-     {t: "Donne une impression ou une hypothèse (It looks peaceful, It seems to be summer…)", pts: 1}]}
+     {t: "Donne une impression ou une hypothèse (It looks peaceful, It seems to be summer…)", pts: 1}]},
+  {id: "ferme-corrige", unit: "cote", titre: "Ma description de la ferme, corrigée",
+   doc: fig(ART.big(ART.farm, "Une ferme à la campagne"))
+     + `<p class="label">Ce que tu avais écrit dans ton cahier</p><p class="fine"><i>On this landscape, they are a barn in the background, a path dusttrack at the bottom to lead in the barn. In the top, there is a cloud. The path dusttrack is between grass. On the left, there is a fence. On the middle but on second plan, there is a windmill. On the right of the barn, there is a water tower. On the right corner, there is a bush. On the third plan, there are fields behind the grass, on the middle. The path dust track is in the foreground.</i></p>`
+     + desc("la campagne. En bas à gauche, une clôture en bois. Au milieu, un moulin à vent, devant un champ de blé jaune. À droite, une grande grange rouge et, tout à droite, un château d'eau. À l'arrière-plan, des montagnes. En haut à gauche, un gros nuage. En bas, au milieu, un chemin de terre qui va vers le moulin et la grange. En bas à droite, un buisson et des fleurs. De l'herbe au premier plan."),
+   consigne: `<p>Voici ta description de la ferme : elle contient des erreurs. <b>Réécris-la sans erreur</b> : <b>there is / there are</b> (pas « they are »), les bonnes <b>prépositions</b> (at the top, in the middle, in the bottom right corner), <b>a dirt track</b>, et <b>in the foreground / in the background</b> à la place de « second plan » ou « third plan ».</p>`,
+   modele: "In this picture, there is a barn on the right and a dirt track at the bottom, leading to the barn. At the top, there is a cloud. The dirt track is between the grass. On the left, there is a fence. In the middle, in the background, there is a windmill. On the right of the barn, there is a water tower. In the bottom right corner, there is a bush. In the background, there are fields behind the grass. The dirt track is in the foreground.",
+   criteres: [
+     {t: "Écrit There is / There are (et non « they are ») pour dire ce qu'il y a", pts: 1},
+     {t: "Écrit At the top et In the middle (et non « In the top », « On the middle »)", pts: 1},
+     {t: "Écrit In the bottom right corner pour le buisson (et non « On the right corner »)", pts: 1},
+     {t: "Écrit a dirt track (ou a path) leading to the barn (et non « dusttrack… to lead in the barn »)", pts: 1},
+     {t: "Remplace « second plan / third plan » par in the background (ou in the foreground)", pts: 1}]},
+  {id: "baseball", unit: "toolbox", titre: "The baseball practice",
+   doc: `<p class="label">La photo de la fiche Tool box (décrite en français)</p><p>Un terrain de baseball en été. <b>Au premier plan, à gauche</b>, un garçon en tenue blanche avec une casquette verte et un gant en cuir, penché en avant, un pied près de la base (un carré blanc par terre) : il attend la balle, très concentré. <b>Au milieu</b>, sur le terrain de terre et d'herbe, d'autres joueurs s'entraînent et se lancent la balle. <b>À l'arrière-plan</b>, deux bus scolaires jaunes et de grands arbres. Le ciel est bleu, il fait beau.</p>`,
+   consigne: `<p>Remplis d'abord ta <b>Tool box</b> au brouillon (<b>Things, People, Actions, Places, Feelings</b>), puis <b>describe the picture</b> en 6 à 8 phrases : <b>où</b> sont les choses, <b>ce que font</b> les joueurs (be + -ing) et <b>ce qu'ils ressentent</b> (look, seem).</p>`,
+   modele: "This is a photo of a baseball practice on a sunny day. In the foreground, on the left, we can see a boy. He's wearing a white uniform, a green cap and a leather glove. He is waiting for the ball: he looks focused and determined. In the middle, other players are throwing and catching the ball. In the background, there are two yellow school buses and big trees. The players seem to be having fun.",
+   criteres: [
+     {t: "Présente l'image (This is a photo of a baseball practice / a baseball game…)", pts: 1},
+     {t: "Situe au moins trois éléments avec une expression de lieu juste (in the foreground, in the middle, in the background…)", pts: 2},
+     {t: "Emploie au moins trois mots du baseball (glove, cap, bat, player, team, field, coach…)", pts: 1},
+     {t: "Dit ce que font les joueurs avec be + -ing (are throwing, is catching, are playing…)", pts: 1},
+     {t: "Dit ce qu'ils ressentent avec look ou seem et un mot de la colonne Feelings (focused, determined, nervous, happy…)", pts: 1}]}
 ];
 
 /* ---------- cartes ---------- */
@@ -857,6 +1056,7 @@ function buildCards(){
     if (p.loc) out.push(card(p.n, `Comment dit-on « ${esc(p.fr.replace(/ \(.*\)$/, ""))} » ?`, ans(p.text, p.fr) + small(p.plan ? ART.miniPlan(p.plan === "fg") : ART.miniZone(p.z)),
       {label: pcLabel(p), say: p.text}));
     else if (p.id === "cs") out.push(card(p.n, "Comment dit-on « la campagne » ?", ans("the countryside", "campagne = countryside") + small(ART.big(ART.farm, "La campagne")), {label: pcLabel(p), say: p.text, tip: p.tip}));
+    else if (p.q) out.push(card(p.n, esc(p.q), ans(p.text, p.fr), {label: pcLabel(p), say: p.text, tip: p.tip}));
     else out.push(card(p.n, `Dis en anglais : « ${esc(p.fr)} »`, ans(p.text), {label: pcLabel(p), say: p.text, tip: p.tip}));
   }
   /* 2. les lieux : en plus */
@@ -883,6 +1083,12 @@ function buildCards(){
     {label: "En plus", tip: "swim → swimming, smile → smiling, run → running", say: "The boys are jumping in the water. The farmer is driving a tractor."}));
   out.push(card("impressions", "look happy ou look like happy ?", `<div class="card-a" style="margin-top:0"><b>look + adjectif</b> : They look happy.\n<b>look like + nom</b> : It looks like a farm.</div>`,
     {label: "En plus", say: "They look happy. It looks like a farm."}));
+  /* 6. la Tool box et ses tableaux */
+  out.push(card("toolbox", "À quelle question répond chaque colonne de la Tool box ?",
+    `<div class="card-a" style="margin-top:0">${Object.entries(TB_COLS).map(([c, d]) => `<b>${c}</b> : ${esc(d)}`).join("\n")}</div>`,
+    {label: "En plus", say: "Things, People, Actions, Places, Feelings."}));
+  for (const v of VOC.filter(v => v.src))
+    out.push(card(v.n, `Comment dit-on « ${esc(v.fr)} » ?`, ans(v.en, v.fr), {label: `Tool box du cahier · ${v.src}`, say: v.en, tip: v.tip}));
   for (const f of ["scared", "tired", "surprised"]) out.push(card("impressions", `Comment dit-on « ${esc(FEEL[f].fr)} » ?`, ans(f) + small(ART.face(f)), {label: "En plus · les émotions", say: `He looks ${f}.`}));
   return out;
 }
@@ -897,7 +1103,9 @@ const asControl = e => Object.assign({unit: UBY[e.n], prompt: e.prompt, fig: e.f
 function overview(){
   const cell = z => { const Z = ZONES[z]; return `<td style="white-space:normal;vertical-align:top;width:33%;padding:8px 6px"><b style="color:var(--pen)">${esc(Z.en)}</b><br><span class="muted" style="font-size:12px">${esc(Z.fr.replace(/ \(.*\)$/, ""))}</span></td>`; };
   return `<p class="label">Les 9 zones de l'image</p><div class="tbw"><table class="tb" style="width:100%;table-layout:fixed">${[0, 1, 2].map(r => `<tr>${[0, 1, 2].map(c => cell(r * 3 + c)).join("")}</tr>`).join("")}</table></div>
-    <p class="fine" style="margin:8px 0 0"><b>AT</b> the top / the bottom · <b>ON</b> the left / the right · <b>IN</b> the middle, the … corner, the foreground (devant), the background (au fond).</p>`;
+    <p class="fine" style="margin:8px 0 0"><b>AT</b> the top / the bottom · <b>ON</b> the left / the right · <b>IN</b> the middle, the … corner, the foreground (devant), the background (au fond).</p>
+    <p class="label" style="margin-top:14px">La Tool box : 5 colonnes à remplir avant d'écrire</p>
+    <p class="fine" style="margin:0">${Object.entries(TB_COLS).map(([c, d]) => `<b>${c}</b> : ${esc(d)}`).join("<br>")}</p>`;
 }
 
 Revision.start({
@@ -914,7 +1122,7 @@ Revision.start({
     "2": {name: "What? · Le vocabulaire", cls: "l2", filter: "Vocabulaire (what?)"},
     "3": {name: "How? · Les phrases", cls: "l3", filter: "Phrases (how?)"}
   },
-  redaction: {items: REDAC, text: "4 images à décrire en anglais, comme à l'évaluation : tu écris (ou tu prends ta copie en photo), puis tu es corrigé critère par critère."},
+  redaction: {items: REDAC, text: "6 images à décrire en anglais, comme à l'évaluation : tu écris (ou tu prends ta copie en photo), puis tu es corrigé critère par critère."},
   units: UNITS,
   allLabel: () => "Tout le chapitre",
   mastery: {max: 5, noun: "notions", feminine: true, help: "Une pastille se remplit à chaque bonne réponse au contrôle et se vide à chaque erreur. Cinq pastilles : notion maîtrisée."},
@@ -930,14 +1138,15 @@ Revision.start({
     return asQuiz(p || make(n, false));
   }},
   control: {
-    lead: "14 questions, comme à l'évaluation : tu situes des objets sur des images, tu écris les expressions de lieu, les mots et les phrases du cahier.",
+    lead: "17 questions, comme à l'évaluation : tu situes des objets sur des images, tu écris les expressions de lieu, les mots des Tool box et les phrases du cahier.",
     note: "Les majuscules et la ponctuation ne comptent pas. Les prépositions (in, at, on) et the, si !",
-    size: () => 14,
+    size: () => 17,
     build: (pool, R) => {
       const ids = pool.map(u => u.id), items = [];
       const plan = [["lieu", ["coins", "cote"]], ["lieu", ["coins", "cote"]], ["pcLoc", ["coins", "cote", "plans"]], ["pcLoc", ["cote", "coins", "plans"]], ["plan", ["plans"]],
         ["prep", ["prep"]], ["vocImg", ["campagne", "eau"]], ["gap", ["campagne"]], ["vocFR", ["eau", "campagne"]], ["gap", ["phrases", "impressions"]],
-        ["gap", ["impressions", "phrases"]], ["cont", ["phrases"]], ["thereIs", ["phrases"]], ["face", ["impressions"]]];
+        ["gap", ["impressions", "phrases"]], ["cont", ["phrases"]], ["thereIs", ["phrases"]], ["face", ["impressions"]],
+        ["vocFR", ["camp", "sport"]], ["vocFR", ["sport", "camp", "impressions"]], ["gap", ["toolbox"]]];
       for (const [k, us] of plan) {
         const cand = us.filter(u => ids.includes(u));
         let e = null;
