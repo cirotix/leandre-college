@@ -308,6 +308,28 @@
         "seem",
         "lifejacket"
       ]
+    },
+    {
+      "matiere": "espagnol",
+      "chemin": "espagnol/la-rutina-diaria/",
+      "titre": "La rutina diaria",
+      "chapitre": "La routine quotidienne",
+      "resume": "Les 23 verbes et expressions de la journée : se réveiller, se doucher, les repas, se coucher…",
+      "ajoute": "2026-11-21",
+      "motsCles": [
+        "rutina diaria",
+        "routine",
+        "verbes pronominaux",
+        "despertarse",
+        "levantarse",
+        "ducharse",
+        "desayunar",
+        "almorzar",
+        "merendar",
+        "cenar",
+        "acostarse",
+        "vocabulaire"
+      ]
     }
   ]
 }
