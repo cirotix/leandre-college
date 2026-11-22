@@ -29,6 +29,11 @@
       "id": "espagnol",
       "nom": "Espagnol",
       "couleur": "hl-3"
+    },
+    {
+      "id": "musique",
+      "nom": "Musique",
+      "couleur": "hl-1"
     }
   ],
   "modules": [
@@ -329,6 +334,27 @@
         "cenar",
         "acostarse",
         "vocabulaire"
+      ]
+    },
+    {
+      "matiere": "musique",
+      "chemin": "musique/menuet-haydn/",
+      "titre": "Le menuet de Haydn",
+      "chapitre": "Éducation musicale · La période classique",
+      "resume": "Comment se construit la musique à la période classique ? Le Quatuor opus 20 n°4, la forme menuet ABA.",
+      "ajoute": "2026-11-22",
+      "motsCles": [
+        "Haydn",
+        "menuet",
+        "quatuor à cordes",
+        "musique de chambre",
+        "période classique",
+        "Mozart",
+        "forme musicale",
+        "tempo",
+        "thème",
+        "ABA",
+        "éducation musicale"
       ]
     }
   ]
