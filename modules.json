@@ -356,6 +356,29 @@
         "ABA",
         "éducation musicale"
       ]
+    },
+    {
+      "matiere": "francais",
+      "chemin": "francais/types-de-phrases/",
+      "titre": "Les types et les formes de phrases",
+      "chapitre": "Grammaire",
+      "resume": "Déclarative, injonctive, interrogative (totale ou partielle) ; affirmative ou négative, active ou passive, impersonnelle, exclamative.",
+      "ajoute": "2026-11-22",
+      "motsCles": [
+        "grammaire",
+        "types de phrases",
+        "phrase déclarative",
+        "phrase injonctive",
+        "phrase interrogative",
+        "interrogation totale",
+        "interrogation partielle",
+        "forme négative",
+        "forme passive",
+        "voix passive",
+        "complément d'agent",
+        "forme impersonnelle",
+        "forme exclamative"
+      ]
     }
   ]
 }
